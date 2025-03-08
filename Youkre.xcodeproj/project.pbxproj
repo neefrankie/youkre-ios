@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		D7F8B1F42D7C8CB60096AB80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7F8B1DB2D7C8CB30096AB80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7F8B1E22D7C8CB30096AB80;
+			remoteInfo = Youkre;
+		};
+		D7F8B1FE2D7C8CB60096AB80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7F8B1DB2D7C8CB30096AB80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7F8B1E22D7C8CB30096AB80;
+			remoteInfo = Youkre;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D7F8B1E32D7C8CB30096AB80 /* Youkre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Youkre.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7F8B1F32D7C8CB60096AB80 /* YoukreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoukreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7F8B1FD2D7C8CB60096AB80 /* YoukreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoukreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D7F8B1E52D7C8CB30096AB80 /* Youkre */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Youkre;
+			sourceTree = "<group>";
+		};
+		D7F8B1F62D7C8CB60096AB80 /* YoukreTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = YoukreTests;
+			sourceTree = "<group>";
+		};
+		D7F8B2002D7C8CB60096AB80 /* YoukreUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = YoukreUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D7F8B1E02D7C8CB30096AB80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7F8B1F02D7C8CB60096AB80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7F8B1FA2D7C8CB60096AB80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D7F8B1DA2D7C8CB30096AB80 = {
+			isa = PBXGroup;
+			children = (
+				D7F8B1E52D7C8CB30096AB80 /* Youkre */,
+				D7F8B1F62D7C8CB60096AB80 /* YoukreTests */,
+				D7F8B2002D7C8CB60096AB80 /* YoukreUITests */,
+				D7F8B1E42D7C8CB30096AB80 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D7F8B1E42D7C8CB30096AB80 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D7F8B1E32D7C8CB30096AB80 /* Youkre.app */,
+				D7F8B1F32D7C8CB60096AB80 /* YoukreTests.xctest */,
+				D7F8B1FD2D7C8CB60096AB80 /* YoukreUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D7F8B1E22D7C8CB30096AB80 /* Youkre */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7F8B2072D7C8CB60096AB80 /* Build configuration list for PBXNativeTarget "Youkre" */;
+			buildPhases = (
+				D7F8B1DF2D7C8CB30096AB80 /* Sources */,
+				D7F8B1E02D7C8CB30096AB80 /* Frameworks */,
+				D7F8B1E12D7C8CB30096AB80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D7F8B1E52D7C8CB30096AB80 /* Youkre */,
+			);
+			name = Youkre;
+			packageProductDependencies = (
+			);
+			productName = Youkre;
+			productReference = D7F8B1E32D7C8CB30096AB80 /* Youkre.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D7F8B1F22D7C8CB60096AB80 /* YoukreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7F8B20A2D7C8CB60096AB80 /* Build configuration list for PBXNativeTarget "YoukreTests" */;
+			buildPhases = (
+				D7F8B1EF2D7C8CB60096AB80 /* Sources */,
+				D7F8B1F02D7C8CB60096AB80 /* Frameworks */,
+				D7F8B1F12D7C8CB60096AB80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7F8B1F52D7C8CB60096AB80 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D7F8B1F62D7C8CB60096AB80 /* YoukreTests */,
+			);
+			name = YoukreTests;
+			packageProductDependencies = (
+			);
+			productName = YoukreTests;
+			productReference = D7F8B1F32D7C8CB60096AB80 /* YoukreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D7F8B1FC2D7C8CB60096AB80 /* YoukreUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7F8B20D2D7C8CB60096AB80 /* Build configuration list for PBXNativeTarget "YoukreUITests" */;
+			buildPhases = (
+				D7F8B1F92D7C8CB60096AB80 /* Sources */,
+				D7F8B1FA2D7C8CB60096AB80 /* Frameworks */,
+				D7F8B1FB2D7C8CB60096AB80 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7F8B1FF2D7C8CB60096AB80 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D7F8B2002D7C8CB60096AB80 /* YoukreUITests */,
+			);
+			name = YoukreUITests;
+			packageProductDependencies = (
+			);
+			productName = YoukreUITests;
+			productReference = D7F8B1FD2D7C8CB60096AB80 /* YoukreUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D7F8B1DB2D7C8CB30096AB80 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					D7F8B1E22D7C8CB30096AB80 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					D7F8B1F22D7C8CB60096AB80 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = D7F8B1E22D7C8CB30096AB80;
+					};
+					D7F8B1FC2D7C8CB60096AB80 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = D7F8B1E22D7C8CB30096AB80;
+					};
+				};
+			};
+			buildConfigurationList = D7F8B1DE2D7C8CB30096AB80 /* Build configuration list for PBXProject "Youkre" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D7F8B1DA2D7C8CB30096AB80;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D7F8B1E42D7C8CB30096AB80 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D7F8B1E22D7C8CB30096AB80 /* Youkre */,
+				D7F8B1F22D7C8CB60096AB80 /* YoukreTests */,
+				D7F8B1FC2D7C8CB60096AB80 /* YoukreUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D7F8B1E12D7C8CB30096AB80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7F8B1F12D7C8CB60096AB80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7F8B1FB2D7C8CB60096AB80 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D7F8B1DF2D7C8CB30096AB80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7F8B1EF2D7C8CB60096AB80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7F8B1F92D7C8CB60096AB80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D7F8B1F52D7C8CB60096AB80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7F8B1E22D7C8CB30096AB80 /* Youkre */;
+			targetProxy = D7F8B1F42D7C8CB60096AB80 /* PBXContainerItemProxy */;
+		};
+		D7F8B1FF2D7C8CB60096AB80 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7F8B1E22D7C8CB30096AB80 /* Youkre */;
+			targetProxy = D7F8B1FE2D7C8CB60096AB80 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D7F8B2052D7C8CB60096AB80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D7F8B2062D7C8CB60096AB80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D7F8B2082D7C8CB60096AB80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Youkre/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youkre.Youkre;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D7F8B2092D7C8CB60096AB80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Youkre/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youkre.Youkre;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D7F8B20B2D7C8CB60096AB80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youkre.YoukreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Youkre.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Youkre";
+			};
+			name = Debug;
+		};
+		D7F8B20C2D7C8CB60096AB80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youkre.YoukreTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Youkre.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Youkre";
+			};
+			name = Release;
+		};
+		D7F8B20E2D7C8CB60096AB80 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youkre.YoukreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Youkre;
+			};
+			name = Debug;
+		};
+		D7F8B20F2D7C8CB60096AB80 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youkre.YoukreUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Youkre;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D7F8B1DE2D7C8CB30096AB80 /* Build configuration list for PBXProject "Youkre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7F8B2052D7C8CB60096AB80 /* Debug */,
+				D7F8B2062D7C8CB60096AB80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7F8B2072D7C8CB60096AB80 /* Build configuration list for PBXNativeTarget "Youkre" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7F8B2082D7C8CB60096AB80 /* Debug */,
+				D7F8B2092D7C8CB60096AB80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7F8B20A2D7C8CB60096AB80 /* Build configuration list for PBXNativeTarget "YoukreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7F8B20B2D7C8CB60096AB80 /* Debug */,
+				D7F8B20C2D7C8CB60096AB80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7F8B20D2D7C8CB60096AB80 /* Build configuration list for PBXNativeTarget "YoukreUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7F8B20E2D7C8CB60096AB80 /* Debug */,
+				D7F8B20F2D7C8CB60096AB80 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D7F8B1DB2D7C8CB30096AB80 /* Project object */;
+}
