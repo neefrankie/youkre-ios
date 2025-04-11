@@ -6,16 +6,27 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            HomeView()
+                .tabItem {
+                    Label(
+                        Config.appName,
+                        systemImage: "book"
+                    )
+                }
+            
+            MeView()
+                .tabItem {
+                    Label(
+                        "我的",
+                        systemImage: "person"
+                    )
+                }
         }
-        .padding()
     }
 }
 
