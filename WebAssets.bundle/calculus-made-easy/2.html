@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易微积分2: 不同程度的微小性 | 优克 - 数学与计算机科学</title>
+    
+<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../css/katex.min.css"/>
+
+    <style>:root {
+    --color-teal: #0d7680;
+    --color-teal20: #052f33;
+    --color-teal30: #08474d;
+    --color-teal40: #0a5e66;
+    --color-teal50: #0d7680;
+    --color-teal60: #0f8e99;
+    --color-teal70: #12a5b3;
+    --color-teal80: #14bdcc;
+    --color-teal90: #17d4e6;
+    --color-teal100: #1aecff;
+    --color-emerald: #009b77;
+    --header-height: 60px;
+    --footer-height: 60px;
+    --radius: 8px;
+}
+body {
+    font-family: -apple-system, sans-serif;
+    font-size: 18px;
+    padding: 8px;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-x: hidden; /* Prevent horizontal scrolling of the whole page */
+}
+h1, h2, h3, h4 {
+    text-align: center;
+    margin: 1em 0;
+}
+figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+div.math {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap; /* Prevent breaking long formulas */
+}
+a {
+    color: var(--color-teal);
+    text-decoration: none;
+}
+.note {
+    border: 1px solid var(--color-teal);
+    border-radius: 0.375rem;
+    padding: 0.5em;
+}
+.bg-emerald {
+    background-color: var(--color-emerald);
+}
+.logo {
+    margin-inline-end: auto;
+    line-height: var(--header-height);
+}
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+}
+.logo a img {
+    display: inline;
+    vertical-align: middle;
+    pointer-events: none;
+    transform: translate(0, -10%);
+    border-radius: 6px;
+}
+.formula-section {
+    display: grid;
+    grid-template-columns: 1fr; /* 在小屏幕上变为单列 */
+    gap: 10px;
+}
+.formula-card {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .formula-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+html[data-bs-theme="dark"] #moon {
+    vertical-align: middle;
+    display: none;
+}
+html:not([data-bs-theme="dark"]) #sun {
+    display: none;
+}</style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #222222 }
+.highlight { background: #000000; color: #CCC }
+.highlight .c { color: #000080 } /* Comment */
+.highlight .err { color: #CCC; border: 1px solid #F00 } /* Error */
+.highlight .esc { color: #CCC } /* Escape */
+.highlight .g { color: #CCC } /* Generic */
+.highlight .k { color: #CDCD00 } /* Keyword */
+.highlight .l { color: #CCC } /* Literal */
+.highlight .n { color: #CCC } /* Name */
+.highlight .o { color: #39C } /* Operator */
+.highlight .x { color: #CCC } /* Other */
+.highlight .p { color: #CCC } /* Punctuation */
+.highlight .ch { color: #000080 } /* Comment.Hashbang */
+.highlight .cm { color: #000080 } /* Comment.Multiline */
+.highlight .cp { color: #000080 } /* Comment.Preproc */
+.highlight .cpf { color: #000080 } /* Comment.PreprocFile */
+.highlight .c1 { color: #000080 } /* Comment.Single */
+.highlight .cs { color: #CD0000; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #CD0000 } /* Generic.Deleted */
+.highlight .ge { color: #CCC; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #CCC; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #F00 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00CD00 } /* Generic.Inserted */
+.highlight .go { color: #888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #CCC; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #CDCD00 } /* Keyword.Constant */
+.highlight .kd { color: #00CD00 } /* Keyword.Declaration */
+.highlight .kn { color: #CD00CD } /* Keyword.Namespace */
+.highlight .kp { color: #CDCD00 } /* Keyword.Pseudo */
+.highlight .kr { color: #CDCD00 } /* Keyword.Reserved */
+.highlight .kt { color: #00CD00 } /* Keyword.Type */
+.highlight .ld { color: #CCC } /* Literal.Date */
+.highlight .m { color: #CD00CD } /* Literal.Number */
+.highlight .s { color: #CD0000 } /* Literal.String */
+.highlight .na { color: #CCC } /* Name.Attribute */
+.highlight .nb { color: #CD00CD } /* Name.Builtin */
+.highlight .nc { color: #00CDCD } /* Name.Class */
+.highlight .no { color: #CCC } /* Name.Constant */
+.highlight .nd { color: #CCC } /* Name.Decorator */
+.highlight .ni { color: #CCC } /* Name.Entity */
+.highlight .ne { color: #669; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #CCC } /* Name.Function */
+.highlight .nl { color: #CCC } /* Name.Label */
+.highlight .nn { color: #CCC } /* Name.Namespace */
+.highlight .nx { color: #CCC } /* Name.Other */
+.highlight .py { color: #CCC } /* Name.Property */
+.highlight .nt { color: #CCC } /* Name.Tag */
+.highlight .nv { color: #00CDCD } /* Name.Variable */
+.highlight .ow { color: #CDCD00 } /* Operator.Word */
+.highlight .pm { color: #CCC } /* Punctuation.Marker */
+.highlight .w { color: #CCC } /* Text.Whitespace */
+.highlight .mb { color: #CD00CD } /* Literal.Number.Bin */
+.highlight .mf { color: #CD00CD } /* Literal.Number.Float */
+.highlight .mh { color: #CD00CD } /* Literal.Number.Hex */
+.highlight .mi { color: #CD00CD } /* Literal.Number.Integer */
+.highlight .mo { color: #CD00CD } /* Literal.Number.Oct */
+.highlight .sa { color: #CD0000 } /* Literal.String.Affix */
+.highlight .sb { color: #CD0000 } /* Literal.String.Backtick */
+.highlight .sc { color: #CD0000 } /* Literal.String.Char */
+.highlight .dl { color: #CD0000 } /* Literal.String.Delimiter */
+.highlight .sd { color: #CD0000 } /* Literal.String.Doc */
+.highlight .s2 { color: #CD0000 } /* Literal.String.Double */
+.highlight .se { color: #CD0000 } /* Literal.String.Escape */
+.highlight .sh { color: #CD0000 } /* Literal.String.Heredoc */
+.highlight .si { color: #CD0000 } /* Literal.String.Interpol */
+.highlight .sx { color: #CD0000 } /* Literal.String.Other */
+.highlight .sr { color: #CD0000 } /* Literal.String.Regex */
+.highlight .s1 { color: #CD0000 } /* Literal.String.Single */
+.highlight .ss { color: #CD0000 } /* Literal.String.Symbol */
+.highlight .bp { color: #CD00CD } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #CCC } /* Name.Function.Magic */
+.highlight .vc { color: #00CDCD } /* Name.Variable.Class */
+.highlight .vg { color: #00CDCD } /* Name.Variable.Global */
+.highlight .vi { color: #00CDCD } /* Name.Variable.Instance */
+.highlight .vm { color: #00CDCD } /* Name.Variable.Magic */
+.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */</style>
+    
+</head>
+<body id="top">
+
+
+
+
+<main class="min-vh-100" role="main">
+    <div class="container">
+        
+<div class="row pt-3 justify-content-center">
+    <article class="col-12 col-md-8">
+        <h2 class="text-center"><span class="pe-2">第 2 章</span><span>不同程度的微小性</span></h2>
+        <div><p>我们会发现，在计算过程中，必须处理具有不同微小程度的数量。</p>
+<p>我们还需要学会在什么情况下可以认为微量已经微小到可以忽略不计。所有这一切都取决于微小的相对程度。</p>
+<p>在制定任何规则之前，想想一些熟悉的例子。一个小时有 60 分钟，一天有 24 小时，一周有 7 天。因此，一天有 1440 分钟，一周有 10080 分钟。</p>
+<p>显然，与整整一周相比，1 分钟是一个非常小的时间量。事实上，前人曾认为与一小时相比，一分钟很小，称之为“一分钟”（one minùte），意思是微不足道的一小点，也就是六十分之一。当他们需要更小的时间单位时，将每一分钟分成 60 个更微小的部分，在伊丽莎白女王时代，这些微小部分被称为“秒钟”（second minùtes，即：第二级微小单位）。如今，我们称这些微量为“秒”(second)。但很少有人知道为什么它们被称为“秒”。</p>
+<p>现在，如果 1 分钟与整整一天相比已经如此微小，那么 1 秒钟相比之下又是多么微小！</p>
+<p>再想想一分钱和一元：一分钱只值一元的百分之一。一分钱多或少对比一元几乎不重要：它可以被看作是一个<strong>很小</strong>的量。但是一分钱和 1000 元相比这个更大的金额相比，就像是一分钱的千分之一与一元比较一样，微不足道。而在百万富翁的财富面前，一元不过是微不足道的量。</p>
+<p>现在，如果我们将某个数值分数定为相对较小的比例，那么就可以轻松地列出其他更高阶微小程度的分数。比如，如果为了表示时间，<span class="math">\(\frac{1}{60}\)</span> 被称为一个小分数，那么 <span class="math">\(\frac{1}{60}\)</span> 的 <span class="math">\(\frac{1}{60}\)</span>（即一个小分数的小分数）可以被视为第二阶微小量。[^1]</p>
+<div class="note"><p>数学家们谈论的“大小”二阶，实际上是指第二级的微小性。这对初学者来说非常困惑。</p></div>
+<p>或者，如果我们将 <span class="math">\(\frac{1}{100}\)</span> 定为微小的分数，那么百分之一的百分之一（即：<span class="math">\(\frac{1}{10,000}\)</span>）将是第二阶微小的小分数；而 <span class="math">\(\frac{1}{1,000,000}\)</span> 将是第三阶微小的小分数，表示百分之一的百分之一的百分之一。</p>
+<p>最后，假设为了精确起见，我们将 <span class="math">\(\frac{1}{1,000,000}\)</span> 视为“微小”。例如，如果一只顶级计时器每年最多误差不超过半分钟，它必须保持1,051,200分之一的精度。就此目的，我们将 <span class="math">\(\frac{1}{1,000,000}\)</span> 视为一个小量，<span class="math">\(\frac{1}{1,000,000}\)</span> 的 <span class="math">\(\frac{1}{1,000,000}\)</span>（即 <span class="math">\(\frac{1}{1,000,000,000,000}\)</span>）将是第二阶微小量，相比之下可以完全忽略不计。</p>
+<p>然后我们看到，一个微量越小，第二阶相应的小量就越可以忽略不计。因此，我们知道在所有情况下，只要第一阶的小量足够小，就可以忽略第二阶、第三阶（或更高阶）的微小量。</p>
+<p>但必须记住，如果微量出现在表达式中，作为与其他因子相乘的因子，它们可能会变得重要，特别是当其他因子本身很大时。即使是一个便士，如果它与几百倍相乘，也会变得重要。</p>
+<p>在微积分中，我们用 <span class="math">\(dx\)</span> 来表示 <span class="math">\(x\)</span> 的微小部分。诸如 <span class="math">\(dx\)</span>、<span class="math">\(du\)</span> 和 <span class="math">\(dy\)</span> 这样的量被称为“微分”，即 <span class="math">\(x\)</span> 或 <span class="math">\(u\)</span> 或 <span class="math">\(y\)</span> 的微小变化。（可以读 <em>dee-eks</em> 、<em>dee-you</em> 或 <em>dee-wy</em>。如果 <span class="math">\(dx\)</span> 是 <span class="math">\(x\)</span> 的微小部分，本身相对很小，并不意味着像 <span class="math">\(x · dx\)</span>、<span class="math">\(x^2\, dx\)</span> 或 <span class="math">\(a^x\, dx\)</span> 这样的量可以忽略不计。但是 <span class="math">\(dx × dx\)</span> 会被忽略不计，因为它是一个第二阶的微量。</p>
+<p>举一个非常简单的例子作为说明。</p>
+<p>假设有一个数量 <span class="math">\(x\)</span> 可以增长一点，得到 <span class="math">\(x + dx\)</span>，其中 <span class="math">\(dx\)</span> 就是通过增长加上去的微量。这个值的平方是 <span class="math">\(x^2 + 2x · dx + (dx)^2\)</span>。第二项不是可以忽略的，因为它是一个一阶微量；而第三项是第二阶微量，是 <span class="math">\(x^2\)</span> 的一小部分的一小部分。因此，如果我们将 <span class="math">\(dx\)</span> 看作数值上大约是 <span class="math">\(x\)</span> 的 <span class="math">\(\frac{1}{60}\)</span>，那么第二项将是 <span class="math">\(x^2\)</span> 的 <span class="math">\(\frac{2}{60}\)</span>，而第三项将是 <span class="math">\(x^2\)</span> 的 <span class="math">\(\frac{1}{3600}\)</span>。显然，最后一项比第二项更不重要。但是，如果我们进一步将 <span class="math">\(dx\)</span> 看作仅为 <span class="math">\(x\)</span> 的 <span class="math">\(\frac{1}{1000}\)</span>，那么第二项将是 <span class="math">\(x^2\)</span> 的 <span class="math">\(\frac{2}{1000}\)</span>，而第三项将仅为 <span class="math">\(x^2\)</span> 的 <span class="math">\(\frac{1}{1,000,000}\)</span>。</p>
+<figure class="text-center"><img src="images/018a.pdf.png-1.png"></figure>
+
+<figure class="text-center"><img src="images/019a.pdf.png-1.png"></figure>
+
+<p>在几何上，可以这样表示：画一个正方形(图1)，它的一边代表 <span class="math">\(x\)</span>。现在假设这个正方形的每一边都增长了一个微量 <span class="math">\(dx\)</span>。增大的正方形由原始的正方形 <span class="math">\(x^2\)</span>、顶部和右侧的两个矩形组成，每个矩形的面积是 <span class="math">\(x · dx\)</span>(或加在一起是 <span class="math">\(2x · dx\)</span>)，右上角的小正方形的面积是 <span class="math">\((dx)^2\)</span>。在图2中，我们让 <span class="math">\(dx\)</span> 占了 <span class="math">\(x\)</span> 相当大一部分 -- 约 1/5。但是，假设我们将 <span class="math">\(dx\)</span> 设定为仅为 <span class="math">\(x\)</span> 的 1/100，大约是用细笔画出的墨迹线的厚度。那么，右上角的小正方形的面积将是 <span class="math">\(x^2\)</span> 的 1/10,000，几乎看不见。显然，如果我们认为增量 <span class="math">\(dx\)</span> 本身足够小，那么 <span class="math">\((dx)^2\)</span> 是可以忽略的。</p>
+<figure class="text-center"><img src="images/019b.pdf.png-1.png"></figure>
+
+<p>我们做个比喻。</p>
+<p>假设一个百万富翁对他的秘书说：下周不管我收到多少钱，都会给你这笔收入的一小部分。假设秘书又对他儿子说：我会给你我得到的一小部分。假设在每种情况下的比例都是 1/100。现在，如果百万富翁先生在下周收到了1000元，那么秘书将收到10元，而男孩将得到1毛钱。10元相对于1000元很少；但1毛钱也是一个非常小的小量，是一个非常次要的量。如果比例不是设为1/100，而是定为1/1000，那么差距会有多大？那时，百万富翁得到1000元，秘书只会得到1元，而男孩得到的只有一分钱！</p>
+<p>牛可能会担心一只普通大小的跳蚤 -- 这是一个第一阶微小量的小生物。但是它可能不会为跳蚤身上的跳蚤烦恼；跳蚤身上的跳蚤是第二阶微小量，可以忽略不计。即使是一打跳蚤的跳蚤，对于这头牛来说也不会有太大的影响。</p>
+</div>
+    </article>
+</div>
+
+    </div>
+</main>
+
+
+
+
+<script defer src="../js/katex.min.js"></script>
+<script defer src="../js/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: "\\begin{align*}", right: "\\end{align*}", display: true}
+        ]
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易微积分12: 曲线的曲率 | 优克 - 数学与计算机科学</title>
+    
+<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../css/katex.min.css"/>
+
+    <style>:root {
+    --color-teal: #0d7680;
+    --color-teal20: #052f33;
+    --color-teal30: #08474d;
+    --color-teal40: #0a5e66;
+    --color-teal50: #0d7680;
+    --color-teal60: #0f8e99;
+    --color-teal70: #12a5b3;
+    --color-teal80: #14bdcc;
+    --color-teal90: #17d4e6;
+    --color-teal100: #1aecff;
+    --color-emerald: #009b77;
+    --header-height: 60px;
+    --footer-height: 60px;
+    --radius: 8px;
+}
+body {
+    font-family: -apple-system, sans-serif;
+    font-size: 18px;
+    padding: 8px;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-x: hidden; /* Prevent horizontal scrolling of the whole page */
+}
+h1, h2, h3, h4 {
+    text-align: center;
+    margin: 1em 0;
+}
+figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+div.math {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap; /* Prevent breaking long formulas */
+}
+a {
+    color: var(--color-teal);
+    text-decoration: none;
+}
+.note {
+    border: 1px solid var(--color-teal);
+    border-radius: 0.375rem;
+    padding: 0.5em;
+}
+.bg-emerald {
+    background-color: var(--color-emerald);
+}
+.logo {
+    margin-inline-end: auto;
+    line-height: var(--header-height);
+}
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+}
+.logo a img {
+    display: inline;
+    vertical-align: middle;
+    pointer-events: none;
+    transform: translate(0, -10%);
+    border-radius: 6px;
+}
+.formula-section {
+    display: grid;
+    grid-template-columns: 1fr; /* 在小屏幕上变为单列 */
+    gap: 10px;
+}
+.formula-card {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .formula-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+html[data-bs-theme="dark"] #moon {
+    vertical-align: middle;
+    display: none;
+}
+html:not([data-bs-theme="dark"]) #sun {
+    display: none;
+}</style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #222222 }
+.highlight { background: #000000; color: #CCC }
+.highlight .c { color: #000080 } /* Comment */
+.highlight .err { color: #CCC; border: 1px solid #F00 } /* Error */
+.highlight .esc { color: #CCC } /* Escape */
+.highlight .g { color: #CCC } /* Generic */
+.highlight .k { color: #CDCD00 } /* Keyword */
+.highlight .l { color: #CCC } /* Literal */
+.highlight .n { color: #CCC } /* Name */
+.highlight .o { color: #39C } /* Operator */
+.highlight .x { color: #CCC } /* Other */
+.highlight .p { color: #CCC } /* Punctuation */
+.highlight .ch { color: #000080 } /* Comment.Hashbang */
+.highlight .cm { color: #000080 } /* Comment.Multiline */
+.highlight .cp { color: #000080 } /* Comment.Preproc */
+.highlight .cpf { color: #000080 } /* Comment.PreprocFile */
+.highlight .c1 { color: #000080 } /* Comment.Single */
+.highlight .cs { color: #CD0000; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #CD0000 } /* Generic.Deleted */
+.highlight .ge { color: #CCC; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #CCC; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #F00 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00CD00 } /* Generic.Inserted */
+.highlight .go { color: #888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #CCC; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #CDCD00 } /* Keyword.Constant */
+.highlight .kd { color: #00CD00 } /* Keyword.Declaration */
+.highlight .kn { color: #CD00CD } /* Keyword.Namespace */
+.highlight .kp { color: #CDCD00 } /* Keyword.Pseudo */
+.highlight .kr { color: #CDCD00 } /* Keyword.Reserved */
+.highlight .kt { color: #00CD00 } /* Keyword.Type */
+.highlight .ld { color: #CCC } /* Literal.Date */
+.highlight .m { color: #CD00CD } /* Literal.Number */
+.highlight .s { color: #CD0000 } /* Literal.String */
+.highlight .na { color: #CCC } /* Name.Attribute */
+.highlight .nb { color: #CD00CD } /* Name.Builtin */
+.highlight .nc { color: #00CDCD } /* Name.Class */
+.highlight .no { color: #CCC } /* Name.Constant */
+.highlight .nd { color: #CCC } /* Name.Decorator */
+.highlight .ni { color: #CCC } /* Name.Entity */
+.highlight .ne { color: #669; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #CCC } /* Name.Function */
+.highlight .nl { color: #CCC } /* Name.Label */
+.highlight .nn { color: #CCC } /* Name.Namespace */
+.highlight .nx { color: #CCC } /* Name.Other */
+.highlight .py { color: #CCC } /* Name.Property */
+.highlight .nt { color: #CCC } /* Name.Tag */
+.highlight .nv { color: #00CDCD } /* Name.Variable */
+.highlight .ow { color: #CDCD00 } /* Operator.Word */
+.highlight .pm { color: #CCC } /* Punctuation.Marker */
+.highlight .w { color: #CCC } /* Text.Whitespace */
+.highlight .mb { color: #CD00CD } /* Literal.Number.Bin */
+.highlight .mf { color: #CD00CD } /* Literal.Number.Float */
+.highlight .mh { color: #CD00CD } /* Literal.Number.Hex */
+.highlight .mi { color: #CD00CD } /* Literal.Number.Integer */
+.highlight .mo { color: #CD00CD } /* Literal.Number.Oct */
+.highlight .sa { color: #CD0000 } /* Literal.String.Affix */
+.highlight .sb { color: #CD0000 } /* Literal.String.Backtick */
+.highlight .sc { color: #CD0000 } /* Literal.String.Char */
+.highlight .dl { color: #CD0000 } /* Literal.String.Delimiter */
+.highlight .sd { color: #CD0000 } /* Literal.String.Doc */
+.highlight .s2 { color: #CD0000 } /* Literal.String.Double */
+.highlight .se { color: #CD0000 } /* Literal.String.Escape */
+.highlight .sh { color: #CD0000 } /* Literal.String.Heredoc */
+.highlight .si { color: #CD0000 } /* Literal.String.Interpol */
+.highlight .sx { color: #CD0000 } /* Literal.String.Other */
+.highlight .sr { color: #CD0000 } /* Literal.String.Regex */
+.highlight .s1 { color: #CD0000 } /* Literal.String.Single */
+.highlight .ss { color: #CD0000 } /* Literal.String.Symbol */
+.highlight .bp { color: #CD00CD } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #CCC } /* Name.Function.Magic */
+.highlight .vc { color: #00CDCD } /* Name.Variable.Class */
+.highlight .vg { color: #00CDCD } /* Name.Variable.Global */
+.highlight .vi { color: #00CDCD } /* Name.Variable.Instance */
+.highlight .vm { color: #00CDCD } /* Name.Variable.Magic */
+.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */</style>
+    
+</head>
+<body id="top">
+
+
+
+
+<main class="min-vh-100" role="main">
+    <div class="container">
+        
+<div class="row pt-3 justify-content-center">
+    <article class="col-12 col-md-8">
+        <h2 class="text-center"><span class="pe-2">第 12 章</span><span>曲线的曲率</span></h2>
+        <div><p>回到连续微分的过程，有人可能会问：为什么要进行两次微分？我们知道，当变量是空间和时间时，通过两次微分可以得到物体的加速度；在几何意义上，应用于曲线时，<span class="math">\(\dfrac{dy}{dx}\)</span> 表示曲线的斜率。但在这种情况下，<span class="math">\(\dfrac{d^2 y}{dx^2}\)</span> 又是什么意思呢？显然，它表示斜率变化的速度（以单位长度 <span class="math">\(x\)</span> 为基准），简而言之，它是斜率曲率的一个量度。</p>
+<figure class="text-center"><img src="images/124a.pdf.png-1.png"></figure>
+
+<figure class="text-center"><img src="images/124b.pdf.png-1.png"></figure>
+
+<p>假设斜率是常数，如图31所示。</p>
+<p>此时，<span class="math">\(\dfrac{dy}{dx}\)</span> 是一个常值。</p>
+<p>然而，假设有一种情况，如图32所示，斜率本身在向上增加，那么 <span class="math">\(\dfrac{d\left(\dfrac{dy}{dx}\right)}{dx}\)</span>，即 <span class="math">\(\dfrac{d^2y}{dx^2}\)</span>，将是正值。</p>
+<p>如果斜率随着向右前进而减小（如图14或图33所示），即使曲线可能在向上，由于这种变化使斜率减小，因此其 <span class="math">\(\dfrac{d^2y}{dx^2}\)</span> 将是负值。</p>
+<figure class="text-center"><img src="images/125a.pdf.png-1.png"></figure>
+
+<p>现在是时候揭示另一个秘密了——如何判断通过“令其等于零”得到的结果是最大值还是最小值。诀窍是：在微分后（以得到需要令其等于零的表达式），再进行第二次微分，观察第二次微分的结果是正值还是负值。如果 <span class="math">\(\dfrac{d^2y}{dx^2}\)</span> 是正值，那么得到的 <span class="math">\(y\)</span> 值是<em>最小值</em>；如果 <span class="math">\(\dfrac{d^2y}{dx^2}\)</span> 是<em>负值</em> ,那么得到的 <span class="math">\(y\)</span> 值是一个<em>最大值</em>。这就是规则。</p>
+<figure class="text-center"><img src="images/126a.pdf.png-1.png"></figure>
+
+<figure class="text-center"><img src="images/126b.pdf.png-1.png"></figure>
+
+<p>其原因应该显而易见。想象一条在其中有最小点的曲线（如图34所示），最小 <span class="math">\(y\)</span> 点标记为 <span class="math">\(M\)</span>，曲线在此处向上凹。在 <span class="math">\(M\)</span> 的左侧，斜率是向下的，即负值，并且逐渐变得不那么负。在 <span class="math">\(M\)</span> 的右侧，斜率变为向上，并且逐渐越来越向上。显然，当曲线经过 <span class="math">\(M\)</span> 时，斜率的变化是使 <span class="math">\(\dfrac{d^2y}{dx^2}\)</span> 为正值，因为随着 <span class="math">\(x\)</span> 增加向右，其作用是将向下的斜率转变为向上的斜率。</p>
+<p>类似地，考虑任何具有最大点的曲线（如图16或图35所示），曲线在此处向下凸，最大点标记为 <span class="math">\(M\)</span>。在这种情况下，当曲线从左向右通过 <span class="math">\(M\)</span> 时，其向上的斜率变为向下的或负的斜率，因此此时“斜率的斜率” <span class="math">\(\dfrac{d^2y}{dx^2}\)</span> 是负值。</p>
+<p>现在回到上一章的例子，用这种方法验证在特定情况下的结论是最大值还是最小值。你会在下面找到一些完整的例子。</p>
+<hr />
+<p>(1) 求以下函数的最大值或最小值，</p>
+<div class="math">\begin{align*}
+\text{(a)}\quad y &= 4x^2-9x-6; \\
+\text{(b)}\quad y &= 6 + 9x-4x^2; \\
+\end{align*}</div>
+
+<p>并判断其为最大值还是最小值。</p>
+<div class="math">\begin{align*}
+\dfrac{dy}{dx}
+  &= 8x-9=0;\quad x=1\tfrac{1}{8}, y = -11.065.\\
+\dfrac{d^2y}{dx^2}
+  &= 8
+\end{align*}</div>
+
+<div class="math">\begin{align*}
+{\dfrac{dy}{dx}}
+  &= 9-8x=0;\quad x = 1\tfrac{1}{8}; y = +11.065.\\
+\dfrac{d^2y}{dx^2}
+  &= -8;
+\end{align*}</div>
+
+<p>(2) 求函数 <span class="math">\(y = x^3-3x+16\)</span> 的极大值和极小值。</p>
+<div class="math">\begin{align*}
+\dfrac{dy}{dx}
+  &= 3x^2 - 3 = 0;\quad x^2 = 1; x = ±1.\\
+\dfrac{d^2y}{dx^2}
+  &= 6x;
+\end{align*}</div>
+
+<p><span class="math">\(x = 1\)</span> 时为正值，因此，<span class="math">\(x=1\)</span> 对应于最小值 <span class="math">\(y=14\)</span>。<span class="math">\(x=-1\)</span> 时为负值，因此 <span class="math">\(x=-1\)</span> 对应于最大值 <span class="math">\(y=+18\)</span>。</p>
+<p>(3) 求函数 <span class="math">\(y=\dfrac{x-1}{x^2+2}\)</span> 的极大值和极小值。</p>
+<div class="math">\begin{align*}
+\frac{dy}{dx} &= \frac{(x^2+2) × 1 - (x-1) × 2x}{(x^2+2)^2} \\
+  &= \frac{2x - x^2 + 2}{(x^2 + 2)^2} \\
+  &= 0;
+\end{align*}</div>
+
+<p>即 <span class="math">\(x^2 - 2x - 2 = 0\)</span>，其解为 <span class="math">\(x =+2.73\)</span> 和 <span class="math">\(x=-0.73\)</span>。</p>
+<div class="math">\begin{align*}
+\dfrac{d^2y}{dx^2}
+  &= - \frac{(x^2 + 2)^2 × (2x-2) - (x^2 - 2x - 2)(4x^3 + 8x)}{(x^2 + 2)^4} \\
+  &= - \frac{2x^5 - 6x^4 - 8x^3 - 8x^2 - 24x + 8}{(x^2 + 2)^4}.
+\end{align*}</div>
+
+<p>分母始终为正，仅需确定分子的符号。</p>
+<p>当 <span class="math">\(x = 2.73\)</span>，分子为负，对应最大值 <span class="math">\(y = 0.183\)</span>。</p>
+<p>当 <span class="math">\(x=-0.73\)</span> 分子为正，对应最小值 <span class="math">\(y=-0.683\)</span> 。</p>
+<p>(4) 某工厂产品的产品处理成本 <span class="math">\(C\)</span> 随周产量 <span class="math">\(P\)</span> 的关系为 <span class="math">\(C = aP + \dfrac{b}{c+P} + d\)</span>，其中 <span class="math">\(a\)</span>、<span class="math">\(b\)</span>、<span class="math">\(c\)</span>、<span class="math">\(d\)</span> 均为正常数。求成本最小时的产量。</p>
+<div class="math">\[
+\dfrac{dC}{dP} = a - \frac{b}{(c+P)^2} = 0
+\]</div>
+
+<p>最高或最低。</p>
+<p>因此 <span class="math">\(a = \dfrac{b}{(c+P)^2}\)</span>，<span class="math">\(P = ±\sqrt{\dfrac{b}{a}} - c\)</span>。</p>
+<p>由于产量不能为负，故 <span class="math">\(P=+\sqrt{\dfrac{b}{a}} - c\)</span> 。</p>
+<div class="math">\[
+\frac{d^2C}{dP^2} = + \frac{b(2c + 2P)}{(c + P)^4},
+\]</div>
+
+<p>对所有 <span class="math">\(P\)</span> 为正，因此 <span class="math">\(P = +\sqrt{\dfrac{b}{a}} - c\)</span> 对应于最小值。</p>
+<p>(5) 一栋建筑使用 <span class="math">\(N\)</span> 盏灯具照明的总成本为每小时 <span class="math">\(C\)</span>。</p>
+<div class="math">\[
+C = N\left(\frac{C_l}{t} + \frac{EPC_e}{1000}\right),
+\]</div>
+
+<p>其中</p>
+<ul>
+<li>$ E$ 为商用效率（瓦/烛光）;</li>
+<li><span class="math">\(P\)</span> 是为单灯烛光功率；</li>
+<li><span class="math">\(t\)</span> 为单灯平均寿命（小时）；</li>
+<li><span class="math">\(C_l =\)</span> 每小时灯泡更换成本；</li>
+<li><span class="math">\(C_e =\)</span> 每千瓦时电能成本。</li>
+</ul>
+<p>灯泡的平均寿命 <span class="math">\(t\)</span> 与其商用效率 <span class="math">\(E\)</span> 的关系为 <span class="math">\(t = mE^n\)</span>，其中 <span class="math">\(m\)</span> 和 <span class="math">\(n\)</span> 为灯泡的特性常数。</p>
+<p>求使照明总成本最低的商用效率。</p>
+<p>我们有</p>
+<div class="math">\begin{align*}
+C &= N\left(\frac{C_l}{m} E^{-n} + \frac{PC_e}{1000} E\right), \\
+\dfrac{dC}{dE}
+  &= \frac{PC_e}{1000} - \frac{nC_l}{m} E^{-(n+1)} = 0
+\end{align*}</div>
+
+<p>时取最大值或最小值。</p>
+<div class="math">\begin{align*}
+E^{n+1} &= \frac{1000 × nC_l}{mPC_e} \\
+E &= \sqrt[n+1]{\frac{1000 × nC_l}{mPC_e}}.
+\end{align*}</div>
+
+<p>显然，这是最小值，因为</p>
+<div class="math">\[
+\frac{d^2C}{dE^2} = (n + 1) \frac{nC_l}{m} E^{-(n+2)},
+\]</div>
+
+<p>对正值 <span class="math">\(E\)</span> 为正。</p>
+<p>对于一种 <span class="math">\(16\)</span> 烛光功率灯，<span class="math">\(C_l= 17\)</span>，<span class="math">\(C_e=5\)</span>，<span class="math">\(m=10\)</span>，<span class="math">\(n=3.6\)</span>。</p>
+<div class="math">\[
+E = \sqrt[4.6]{\frac{1000 × 3.6 × 17}{10 × 16 × 5}} = 2.6\text{ 瓦/每盏功率}.
+\]</div>
+
+<hr />
+</div>
+    </article>
+</div>
+
+    </div>
+</main>
+
+
+
+
+<script defer src="../js/katex.min.js"></script>
+<script defer src="../js/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: "\\begin{align*}", right: "\\end{align*}", display: true}
+        ]
+    });
+});
+</script>
+
+</body>
+</html>

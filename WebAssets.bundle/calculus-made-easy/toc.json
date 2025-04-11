@@ -1,0 +1,205 @@
+{
+    "title": "目录",
+    "items": [
+        {
+            "id": "ace1f71919520c90",
+            "slug": "prologue",
+            "text": "前言",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "662caa141e1055c3",
+            "slug": "1",
+            "text": "第 1 章 摆脱恐惧",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "69b61e849f4eaca5",
+            "slug": "2",
+            "text": "第 2 章 不同程度的微小性",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "25d704fe889cf1c4",
+            "slug": "3",
+            "text": "第 3 章 相对增长",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "24a8c4fa68c50435",
+            "slug": "4",
+            "text": "第 4 章 最简单的情况",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "f8353efc873bf1ca",
+            "slug": "5",
+            "text": "第 5 章 下一步，如何处理常数",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "b1692db27296274f",
+            "slug": "6",
+            "text": "第 6 章 和、差、积与商的微分",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "0bbae5e82614e8be",
+            "slug": "7",
+            "text": "第 7 章 连续求导",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "89f888a1d2f3afde",
+            "slug": "8",
+            "text": "第 8 章 当时间变化时",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "3f6710c90acff4d8",
+            "slug": "9",
+            "text": "第 9 章 介绍一种实用的技巧",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "42951c9149c0985f",
+            "slug": "10",
+            "text": "第 10 章 微分的几何意义",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "6f3a9bb090804e77",
+            "slug": "11",
+            "text": "第 11 章 极大值和极小值",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "b56354362c9d007f",
+            "slug": "12",
+            "text": "第 12 章 曲线的曲率",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "7c17835aa6b51014",
+            "slug": "13",
+            "text": "第 13 章 其他有用的技巧",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "98abffd4a0366472",
+            "slug": "14",
+            "text": "第 14 章 (a) 复利与有机增长定律",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "7149600525bfc9d1",
+            "slug": "14b",
+            "text": "第 14 章 (b) 衰减曲线",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "af4c1837d625196a",
+            "slug": "15",
+            "text": "第 15 章 如何处理正弦和余弦",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "1f122ee173e5f8da",
+            "slug": "16",
+            "text": "第 16 章 偏微分",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "ab740cc21c77a4af",
+            "slug": "17",
+            "text": "第 17 章 积分",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "c00778ebef351dfe",
+            "slug": "18",
+            "text": "第 18 章 将积分视为微分的逆运算",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "8721eafee981adf8",
+            "slug": "19",
+            "text": "第 19 章 通过积分计算面积",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "11519b2763874821",
+            "slug": "20",
+            "text": "第 20 章 技巧、陷阱",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "d390ae2e8901f9b8",
+            "slug": "21",
+            "text": "第 21 章 寻找一些解法",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "7a70f9e62dc443d1",
+            "slug": "epilogue",
+            "text": "尾声与寓言",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        },
+        {
+            "id": "a86c853234bef9f4",
+            "slug": "table",
+            "text": "常用函数导数与积分标准形式表",
+            "title": "",
+            "subtitle": "",
+            "children": []
+        }
+    ]
+}

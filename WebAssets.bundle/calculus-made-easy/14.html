@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易微积分14: (a) 复利与有机增长定律 | 优克 - 数学与计算机科学</title>
+    
+<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+<link rel="stylesheet" href="../css/katex.min.css"/>
+
+    <style>:root {
+    --color-teal: #0d7680;
+    --color-teal20: #052f33;
+    --color-teal30: #08474d;
+    --color-teal40: #0a5e66;
+    --color-teal50: #0d7680;
+    --color-teal60: #0f8e99;
+    --color-teal70: #12a5b3;
+    --color-teal80: #14bdcc;
+    --color-teal90: #17d4e6;
+    --color-teal100: #1aecff;
+    --color-emerald: #009b77;
+    --header-height: 60px;
+    --footer-height: 60px;
+    --radius: 8px;
+}
+body {
+    font-family: -apple-system, sans-serif;
+    font-size: 18px;
+    padding: 8px;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-x: hidden; /* Prevent horizontal scrolling of the whole page */
+}
+h1, h2, h3, h4 {
+    text-align: center;
+    margin: 1em 0;
+}
+figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+div.math {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap; /* Prevent breaking long formulas */
+}
+a {
+    color: var(--color-teal);
+    text-decoration: none;
+}
+.note {
+    border: 1px solid var(--color-teal);
+    border-radius: 0.375rem;
+    padding: 0.5em;
+}
+.bg-emerald {
+    background-color: var(--color-emerald);
+}
+.logo {
+    margin-inline-end: auto;
+    line-height: var(--header-height);
+}
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+}
+.logo a img {
+    display: inline;
+    vertical-align: middle;
+    pointer-events: none;
+    transform: translate(0, -10%);
+    border-radius: 6px;
+}
+.formula-section {
+    display: grid;
+    grid-template-columns: 1fr; /* 在小屏幕上变为单列 */
+    gap: 10px;
+}
+.formula-card {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .formula-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+html[data-bs-theme="dark"] #moon {
+    vertical-align: middle;
+    display: none;
+}
+html:not([data-bs-theme="dark"]) #sun {
+    display: none;
+}</style>
+    <style>pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #222222 }
+.highlight { background: #000000; color: #CCC }
+.highlight .c { color: #000080 } /* Comment */
+.highlight .err { color: #CCC; border: 1px solid #F00 } /* Error */
+.highlight .esc { color: #CCC } /* Escape */
+.highlight .g { color: #CCC } /* Generic */
+.highlight .k { color: #CDCD00 } /* Keyword */
+.highlight .l { color: #CCC } /* Literal */
+.highlight .n { color: #CCC } /* Name */
+.highlight .o { color: #39C } /* Operator */
+.highlight .x { color: #CCC } /* Other */
+.highlight .p { color: #CCC } /* Punctuation */
+.highlight .ch { color: #000080 } /* Comment.Hashbang */
+.highlight .cm { color: #000080 } /* Comment.Multiline */
+.highlight .cp { color: #000080 } /* Comment.Preproc */
+.highlight .cpf { color: #000080 } /* Comment.PreprocFile */
+.highlight .c1 { color: #000080 } /* Comment.Single */
+.highlight .cs { color: #CD0000; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #CD0000 } /* Generic.Deleted */
+.highlight .ge { color: #CCC; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #CCC; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #F00 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00CD00 } /* Generic.Inserted */
+.highlight .go { color: #888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #CCC; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #CDCD00 } /* Keyword.Constant */
+.highlight .kd { color: #00CD00 } /* Keyword.Declaration */
+.highlight .kn { color: #CD00CD } /* Keyword.Namespace */
+.highlight .kp { color: #CDCD00 } /* Keyword.Pseudo */
+.highlight .kr { color: #CDCD00 } /* Keyword.Reserved */
+.highlight .kt { color: #00CD00 } /* Keyword.Type */
+.highlight .ld { color: #CCC } /* Literal.Date */
+.highlight .m { color: #CD00CD } /* Literal.Number */
+.highlight .s { color: #CD0000 } /* Literal.String */
+.highlight .na { color: #CCC } /* Name.Attribute */
+.highlight .nb { color: #CD00CD } /* Name.Builtin */
+.highlight .nc { color: #00CDCD } /* Name.Class */
+.highlight .no { color: #CCC } /* Name.Constant */
+.highlight .nd { color: #CCC } /* Name.Decorator */
+.highlight .ni { color: #CCC } /* Name.Entity */
+.highlight .ne { color: #669; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #CCC } /* Name.Function */
+.highlight .nl { color: #CCC } /* Name.Label */
+.highlight .nn { color: #CCC } /* Name.Namespace */
+.highlight .nx { color: #CCC } /* Name.Other */
+.highlight .py { color: #CCC } /* Name.Property */
+.highlight .nt { color: #CCC } /* Name.Tag */
+.highlight .nv { color: #00CDCD } /* Name.Variable */
+.highlight .ow { color: #CDCD00 } /* Operator.Word */
+.highlight .pm { color: #CCC } /* Punctuation.Marker */
+.highlight .w { color: #CCC } /* Text.Whitespace */
+.highlight .mb { color: #CD00CD } /* Literal.Number.Bin */
+.highlight .mf { color: #CD00CD } /* Literal.Number.Float */
+.highlight .mh { color: #CD00CD } /* Literal.Number.Hex */
+.highlight .mi { color: #CD00CD } /* Literal.Number.Integer */
+.highlight .mo { color: #CD00CD } /* Literal.Number.Oct */
+.highlight .sa { color: #CD0000 } /* Literal.String.Affix */
+.highlight .sb { color: #CD0000 } /* Literal.String.Backtick */
+.highlight .sc { color: #CD0000 } /* Literal.String.Char */
+.highlight .dl { color: #CD0000 } /* Literal.String.Delimiter */
+.highlight .sd { color: #CD0000 } /* Literal.String.Doc */
+.highlight .s2 { color: #CD0000 } /* Literal.String.Double */
+.highlight .se { color: #CD0000 } /* Literal.String.Escape */
+.highlight .sh { color: #CD0000 } /* Literal.String.Heredoc */
+.highlight .si { color: #CD0000 } /* Literal.String.Interpol */
+.highlight .sx { color: #CD0000 } /* Literal.String.Other */
+.highlight .sr { color: #CD0000 } /* Literal.String.Regex */
+.highlight .s1 { color: #CD0000 } /* Literal.String.Single */
+.highlight .ss { color: #CD0000 } /* Literal.String.Symbol */
+.highlight .bp { color: #CD00CD } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #CCC } /* Name.Function.Magic */
+.highlight .vc { color: #00CDCD } /* Name.Variable.Class */
+.highlight .vg { color: #00CDCD } /* Name.Variable.Global */
+.highlight .vi { color: #00CDCD } /* Name.Variable.Instance */
+.highlight .vm { color: #00CDCD } /* Name.Variable.Magic */
+.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */</style>
+    
+</head>
+<body id="top">
+
+
+
+
+<main class="min-vh-100" role="main">
+    <div class="container">
+        
+<div class="row pt-3 justify-content-center">
+    <article class="col-12 col-md-8">
+        <h2 class="text-center"><span class="pe-2">第 14 章</span><span>(a) 复利与有机增长定律</span></h2>
+        <div><p>设有一个量，其增长方式是：在给定时间内，增长的增量总是与其自身的大小成正比。这种增长方式类似于按照某个固定利率计算的货币利息：本金越大，在给定时间内的利息也越多。</p>
+<p>现在，在计算中，我们必须明确区分两种情况，这取决于计算是按照“单利”进行的，还是按照“复利”进行的。因为在前一种情况下，本金保持不变；而在后一种情况下，利息被加入本金中，因此本金通过连续的累加而增长。</p>
+<p>(1) <strong>单利</strong></p>
+<p>考虑一个具体的例子。假设初始本金为 100，年利率为 10%。那么，本金的所有者每年都会获得 10 的增量。假设他每年提取利息并储存起来，例如放进一个袜子或锁在保险箱里。那么，如果他这样连续操作 10 年，到那时，他将收到 10 个 10 的增量，共计 100，加上最初的 100，总计 200。他的财产将在 10 年内翻倍。如果利率是 5%，他需要储存 20 年才能使财产翻倍。如果只有 2%，他需要储存 50 年。很容易看出，如果每年的利息是本金的 <span class="math">\(\dfrac{1}{n}\)</span>，那么他需要储存 <span class="math">\(n\)</span> 年才能使财产翻倍。</p>
+<p>如果 <span class="math">\(y\)</span> 表示初始本金，年利息是 <span class="math">\(\dfrac{y}{n}\)</span>，那么在 <span class="math">\(n\)</span> 年后，他的财产将为：</p>
+<div class="math">\[
+y + n\dfrac{y}{n} = 2y.
+\]</div>
+
+<p>(2) <strong>复利</strong></p>
+<p>和上面一样，假设所有者以 100 为本金，每年利率为 10%；但这次，他将利息加入本金中，这样本金逐年增长。于是，一年后，本金将增长到 110；第二年（仍为 10% 利率）这 110 将产生 11 的利息。他将在第三年开始时有 121，本金上的利息为 12.2，于是第四年开始时，他将拥有 133.2，如此类推。通过计算可以发现，在 10 年后，总本金将增长到 259.7。实际上，我们可以看到，每一年，每 1 元都将产生 <span class="math">\(\tfrac{1}{10}\)</span> 元的利息，并且如果利息总是被加入本金，那么每一年将本金乘以 <span class="math">\(\tfrac{11}{10}\)</span>，如果持续 10 年（即重复乘以该因子 10 次），本金将被乘以 <span class="math">\(2.59374\)</span>。用符号表示：设 <span class="math">\(y_0\)</span> 为初始本金，<span class="math">\(\dfrac{1}{n}\)</span> 为每次操作的增加比例，<span class="math">\(y_n\)</span> 为第 <span class="math">\(n\)</span> 次操作结束时的本金值。则：</p>
+<div class="math">\[
+y_n = y_0\left(1 + \frac{1}{n}\right)^n.
+\]</div>
+
+<p>然而，这种一年一算的复利算法并不完全公平；因为即使是在第一年内，这 100 本应一直在增长。例如，到半年末，本金至少应该是 105，若在接下来的半年中按 105 计算利息才更为合理。这相当于每半年 5% 的利率；如此，在 20 次操作中，每次操作本金将被乘以 <span class="math">\(\tfrac{21}{20}\)</span>。按照这种算法，10 年后本金将增长到 265.65；因为：</p>
+<div class="math">\[
+(1 + \tfrac{1}{20})^{20} = 2.653
+\]</div>
+
+<p>但即便如此，这个过程依然不够公平。例如，到了第一个月末，就应有一些利息产生，而半年一算的方式假设在六个月内本金保持不变。假如我们将一年分成 10 部分，每部分计算 1% 的月利率。那么在 10 年内将有 100 次操作：</p>
+<div class="math">\[
+y_n = ￥100 \left( 1 + \tfrac{1}{100} \right)^{100}
+\]</div>
+
+<p>计算结果为 270.95。</p>
+<p>即使如此，这还不是最终结果。假如将 10 年分成 1000 部分，每部分为一年的 <span class="math">\(\frac{1}{100}\)</span>，每部分计算 <span class="math">\(\frac{1}{10}\)</span>% 的利率，那么：</p>
+<div class="math">\[
+y_n = ￥100 \left( 1 + \tfrac{1}{1000} \right)^{1000}
+\]</div>
+
+<p>结果为 <span class="math">\(271.13\)</span>。</p>
+<p>若进一步细分，将 10 年分成 10,000 部分，每部分为一年的 <span class="math">\(\tfrac{1}{10000}\)</span>，则：</p>
+<div class="math">\[
+y_n = ￥100 \left( 1 + \tfrac{1}{10,000} \right)^{10,000}
+\]</div>
+
+<p>结果为 271.16。</p>
+<p>最终可以看出，我们实际上试图找到表达式 <span class="math">\(\left(1 + \dfrac{1}{n}\right)^n\)</span> 的极限值，我们会看到，该值大于2。随着 <span class="math">\(n\)</span> 越来越大，该表达式的值会越来越接近某个特定的极限值。无论 <span class="math">\(n\)</span> 多大，该表达式的值都越来越接近于：</p>
+<div class="math">\[
+2.71828\ldots
+\]</div>
+
+<p>这是一个永远值得铭记的数字。</p>
+<p>我们用几何图示来说明这些概念。在图36中，<span class="math">\(OP\)</span> 表示初始值，<span class="math">\(OT\)</span> 是数值增长所经历的整个时间。该时间被分为 10 个等间隔的时间段，每个时间段的增量相等。在这里，<span class="math">\(\dfrac{dy}{dx}\)</span> 是一个常数。如果每个增量是初始值 <span class="math">\(OP\)</span> 的 <span class="math">\(\frac{1}{10}\)</span>，那么通过 10 个这样的增量，数值的高度将加倍。如果我们分成 20 个增量，每个增量的高度是图中显示的一半，最后的高度仍然会恰好加倍。或者，分成 <span class="math">\(n\)</span> 个增量，每个增量是初始高度 <span class="math">\(OP\)</span> 的 <span class="math">\(\dfrac{1}{n}\)</span>，仍然可以使高度加倍。这就是单利的情况。这里是一个数值从 1 增长到 2。</p>
+<figure class="text-center"><img src="images/150a.pdf.png-1.png"></figure>
+
+<p>在图 37中，我们有一个几何级数的对应图示。每个连续纵坐标的高度是 <span class="math">\(1 + \dfrac{1}{n}\)</span>，即其前一纵坐标的 <span class="math">\(\dfrac{n+1}{n}\)</span> 倍。这些增量并不相等，因为现在每个增量是曲线该部分纵坐标的 <span class="math">\(\dfrac{1}{n}\)</span>。如果我们真的取 10 个增量，并以 <span class="math">\(\left(1 + \frac{1}{10} \right)\)</span> 作为增长因子，那么最终的总值将是：<span class="math">\((1 + \tfrac{1}{10})^{10}\)</span>，或者是原始值的 <span class="math">\(2.594\)</span> 倍。但如果我们将 <span class="math">\(n\)</span> 取得足够大（相应地 <span class="math">\(\dfrac{1}{n}\)</span> 足够小），那么 <span class="math">\(1\)</span> 最终将增长到 <span class="math">\(\left(1 + \dfrac{1}{n}\right)^n\)</span> 的值，而这个值将趋近于 <span class="math">\(2.71828\)</span>。</p>
+<figure class="text-center"><img src="images/151a.pdf.png-1.png"></figure>
+
+<p><strong>Epsilon</strong></p>
+<p>对于这个神秘的数字 <span class="math">\(2.7182818\)</span>...，数学家们用希腊字母 <span class="math">\(\epsilon\)</span>（读作 epsilon）来表示。所有学生都知道希腊字母 <span class="math">\(\pi\)</span>(读作<em>pi</em>)代表 <span class="math">\(3.141592\)</span>...，但有多少人知道<em>epsilon</em> 代表 <span class="math">\(2.71828\)</span> 呢？然而，这个数字甚至比 <span class="math">\(\pi\)</span> 更重要！</p>
+<p>那么，<em>epsilon</em>到底是什么呢？</p>
+<p>假设我们让 <span class="math">\(1\)</span> 按照单利增长，直到它变为 <span class="math">\(2\)</span>；然后，如果以相同的名义利率，并在相同的时间内，让 <span class="math">\(1\)</span> 按真正的复利增长而不是单利增长，它将增长到值 <em>epsilon</em>。</p>
+<p>有人把这种在每一时刻成比例地增长的过程称为<strong>对数增长速率</strong>。单位对数增长速率是在单位时间内能使 <span class="math">\(1\)</span> 增长为 <span class="math">\(2.718281\)</span> 的速率。这种增长方式也可以称为有机增长速率，因为有机增长的特征（在某些情况下）就是在给定时间内，生物体的增量与生物体本身的大小成正比。</p>
+<p>如果我们将 100% 作为速率单位，将任意固定时间作为时间单位，那么让 <span class="math">\(1\)</span> 以算术速率在单位时间内增长，结果是 <span class="math">\(2\)</span>；而让 <span class="math">\(1\)</span> 以对数速率在相同时间内增长，结果是 <span class="math">\(2.71828\ldots\)</span>。</p>
+<p><em>关于 Epsilon 的一点补充</em>我们已经看到，我们需要知道当 <span class="math">\(n\)</span> 变得无限大时，表达式 <span class="math">\(\left(1 + \dfrac{1}{n}\right)^n\)</span> 达到的值。算术上，我们可以通过一张普通的对数表，计算出 <span class="math">\(n = 2\)</span>，<span class="math">\(n = 5\)</span>，<span class="math">\(n = 10\)</span>，一直到 <span class="math">\(n = 10,000\)</span> 时的数值，并将其汇总成表格。</p>
+<div class="math">\begin{alignat*}{2}
+&(1 + \tfrac{1}{2})^2             &&= 2.25.    \\
+&(1 + \tfrac{1}{5})^5             &&= 2.488.   \\
+&(1 + \tfrac{1}{10})^{10}         &&= 2.594.   \\
+&(1 + \tfrac{1}{20})^{20}         &&= 2.653.   \\
+&(1 + \tfrac{1}{100})^{100}       &&= 2.705.   \\
+&(1 + \tfrac{1}{1000})^{1000}     &&= 2.7169.  \\
+&(1 + \tfrac{1}{10,000})^{10,000} &&= 2.7181.
+\end{alignat*}</div>
+
+<p>然而，可以用另一种方式来计算这个极其重要的数字。</p>
+<p>我们将利用二项式定理展开表达式 <span class="math">\(\left(1 + \dfrac{1}{n}\right)^n\)</span>。</p>
+<p>二项式定理的规则是：</p>
+<div class="math">\begin{align*}
+(a + b)^n &= a^n + n \dfrac{a^{n-1} b}{1!} + n(n - 1) \dfrac{a^{n-2} b^2}{2!} \\
+  & \phantom{= a^n\ } + n(n -1)(n - 2) \dfrac{a^{n-3} b^3}{3!} + \ldots \\
+\end{align*}</div>
+
+<p>将 <span class="math">\(a = 1\)</span>，<span class="math">\(b = \dfrac{1}{n}\)</span>，我们得到：</p>
+<div class="math">\begin{align*}
+\left(1 + \dfrac{1}{n}\right)^n
+  &= 1 + 1 + \dfrac{1}{2!} \left(\dfrac{n - 1}{n}\right) + \dfrac{1}{3!} \dfrac{(n - 1)(n - 2)}{n^2} \\
+  &\phantom{= 1 + 1\ } + \dfrac{1}{4!} \dfrac{(n - 1)(n - 2)(n - 3)}{n^3} + \ldots.
+\end{align*}</div>
+
+<p>现在，如果假设 <span class="math">\(n\)</span> 无限大，比如达到十亿，或者十亿的十亿倍，那么 <span class="math">\(n - 1\)</span>，<span class="math">\(n - 2\)</span>，<span class="math">\(n - 3\)</span> 等都可以近似看作 <span class="math">\(n\)</span>，于是这个级数变成：</p>
+<div class="math">\[
+\epsilon = 1 + 1 + \dfrac{1}{2!} + \dfrac{1}{3!} + \dfrac{1}{4!} + \ldots\ldots
+\]</div>
+
+<p>通过取这个快速收敛的级数的任意多项，我们可以将其求和至任意所需的精度。以下是用十项的计算结果：</p>
+<table class="table"><thead>
+<tr>
+  <th></th>
+  <th><span class="math">\(1.000000\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>除以 1</td>
+  <td><span class="math">\(1.000000\)</span></td>
+</tr>
+<tr>
+  <td>除以 2</td>
+  <td><span class="math">\(0.500000\)</span></td>
+</tr>
+<tr>
+  <td>除以 3</td>
+  <td><span class="math">\(0.166667\)</span></td>
+</tr>
+<tr>
+  <td>除以 4</td>
+  <td><span class="math">\(0.041667\)</span></td>
+</tr>
+<tr>
+  <td>除以 5</td>
+  <td><span class="math">\(0.008333\)</span></td>
+</tr>
+<tr>
+  <td>除以 6</td>
+  <td><span class="math">\(0.001389\)</span></td>
+</tr>
+<tr>
+  <td>除以 7</td>
+  <td><span class="math">\(0.000198\)</span></td>
+</tr>
+<tr>
+  <td>除以 8</td>
+  <td><span class="math">\(0.000025\)</span></td>
+</tr>
+<tr>
+  <td>除以 9</td>
+  <td><span class="math">\(0.000002\)</span></td>
+</tr>
+<tr>
+  <td>总计</td>
+  <td><span class="math">\(2.718281\)</span></td>
+</tr>
+</tbody>
+</table><p><span class="math">\(\epsilon\)</span> 是不可通约的，与 <span class="math">\(1\)</span> 无法整除，并且类似 <span class="math">\(\pi\)</span>，是一个无穷的、非循环的小数。</p>
+<p><strong>指数级数</strong></p>
+<p>我们还需要另一个级数。</p>
+<p>再次利用二项式定理展开 <span class="math">\(\left(1 + \dfrac{1}{n}\right)^{nx}\)</span>，当 <span class="math">\(n\)</span> 无限大时，这等同于 <span class="math">\(\epsilon^x\)</span>。</p>
+<div class="math">\begin{align*}
+\epsilon^x
+  &= 1^{nx} + nx \frac{1^{nx-1} \left(\dfrac{1}{n}\right)}{1!} + nx(nx - 1) \frac{1^{nx - 2} \left(\dfrac{1}{n}\right)^2}{2!} \\
+  & \phantom{= 1^{nx}\ } + nx(nx - 1)(nx - 2) \frac{1^{nx-3} \left(\dfrac{1}{n}\right)^3}{3!} + \ldots.\\
+  &= 1 + x + \frac{1}{2!} · \frac{n^2x^2 - nx}{n^2} + \frac{1}{3!} · \frac{n^3x^3 - 3n^2x^2 + 2nx}{n^3} + \ldots. \\
+  &= 1 + x + \frac{x^2 -\dfrac{x}{n}}{2!} + \frac{x^3 - \dfrac{3x^2}{n} + \dfrac{2x}{n^2}}{3!} + \ldots.
+\end{align*}</div>
+
+<p>当 <span class="math">\(n\)</span> 无限大时，这个表达式简化为：</p>
+<div class="math">\[
+\epsilon^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \dots
+\]</div>
+
+<p>这个级数称为指数级数。</p>
+<p><span class="math">\(\epsilon\)</span> 被认为重要的主要原因是 <span class="math">\(\epsilon^x\)</span> 具 有一种其他 <span class="math">\(x\)</span> 的函数所不具备的性质：它的微分值与其自身相同。换句话说，它的导数和原函数是一样的。这可以通过对 <span class="math">\(x\)</span> 求导立即看出：</p>
+<div class="math">\begin{align*}
+\frac{d(\epsilon^x)}{dx}
+  &= 0 + 1 + \frac{2x}{1 · 2} + \frac{3x^2}{1 · 2 · 3} + \frac{4x^3}{1 · 2 · 3 · 4} \\
+&\phantom{= 0 + 1 + \frac{2x}{1 · 2} + \frac{3x^2}{1 · 2 · 3}\ } + \frac{5x^4}{1 · 2 · 3 · 4 · 5} + \ldots.  \\
+  &= 1 + x + \frac{x^2}{1 · 2} + \frac{x^3}{1 · 2 · 3} + \frac{x^4}{1 · 2 · 3 · 4} + \ldots.,
+\end{align*}</div>
+
+<p>这个结果与原来的级数完全相同。</p>
+<p>现在我们也可以反过来思考：假设我们希望找到一个 <span class="math">\(x\)</span> 的函数，其导数与其本身相等。那么是否存在一个仅由 <span class="math">\(x\)</span> 的幂次项组成的表达式，在求导后保持不变？为此，我们假设一个一般表达式：</p>
+<div class="math">\[
+y = A + Bx + Cx^2 + Dx^3 + Ex^4 + \ldots
+\]</div>
+
+<p>(其中系数 <span class="math">\(A\)</span>，<span class="math">\(B\)</span>，<span class="math">\(C\)</span> 等需要确定），然后对其求导。</p>
+<div class="math">\[
+\dfrac{dy}{dx} = B + 2Cx + 3Dx^2 + 4Ex^3 + \ldots
+\]</div>
+
+<p>如果这个新的表达式确实与其原函数相同，那么很明显：<span class="math">\(A = B\)</span>，<span class="math">\(C=\dfrac{B}{2}=\dfrac{A}{1· 2}\)</span>，<span class="math">\(D = \dfrac{C}{3} = \dfrac{A}{1 · 2 · 3}\)</span>，<span class="math">\(E = \dfrac{D}{4} = \dfrac{A}{1 · 2 · 3 · 4}\)</span> ...</p>
+<p>因此变化规律是：</p>
+<div class="math">\[
+y = A\left(1 + \dfrac{x}{1} + \dfrac{x^2}{1 · 2} + \dfrac{x^3}{1 · 2 · 3} + \dfrac{x^4}{1 · 2 · 3 · 4} + \ldots\right).
+\]</div>
+
+<p>如果为了进一步简化取 <span class="math">\(A = 1\)</span>，我们得到：</p>
+<div class="math">\[
+y = 1 + \dfrac{x}{1} + \dfrac{x^2}{1 · 2} + \dfrac{x^3}{1 · 2 · 3} + \dfrac{x^4}{1 · 2 · 3 · 4} + \ldots
+\]</div>
+
+<p>不管求几次导数，都会得到相同的级数。</p>
+<p>如果我们取 <span class="math">\(A = 1\)</span> 的特殊情况，并计算这个级数，结果是：</p>
+<p>当 <span class="math">\(x = 1\)</span> 时，<span class="math">\(y = 2.718281\ldots\)</span>，即 <span class="math">\(y = \epsilon\)</span>；</p>
+<p>当 <span class="math">\(x = 2\)</span> 时，<span class="math">\(y =(2.718281 \ldots)^2\)</span>，即 <span class="math">\(y = \epsilon^2\)</span>；</p>
+<p>当 <span class="math">\(x = 3\)</span> 时，<span class="math">\(y =(2.718281 \ldots)^3\)</span>，即 <span class="math">\(y = \epsilon^3\)</span>；</p>
+<p>因此：当 <span class="math">\(x=x\)</span> 时，<span class="math">\(y=(2.718281 \ldots)^x\)</span>，即 <span class="math">\(y=\epsilon^x\)</span>。</p>
+<p>因此我们最终证明了：</p>
+<div class="math">\[
+\epsilon^x = 1 + \dfrac{x}{1} + \dfrac{x^2}{1·2} + \dfrac{x^3}{1· 2· 3} + \dfrac{x^4}{1· 2· 3· 4} + \ldots
+\]</div>
+
+<hr />
+<p><strong>如何阅读指数</strong></p>
+<p>对于没有导师指导的学习者来说，以下注释可能有用：“<span class="math">\(\epsilon^x\)</span>”读作“<em>epsilon</em> 的 <span class="math">\(x\)</span> 次幂”；也有人读作“指数 <span class="math">\(x\)</span>”。所以 <span class="math">\(\epsilon^{pt}\)</span> 读作 “epsilon的pt次幂”或“指数pt” 。例如，<span class="math">\(\epsilon^{-2}\)</span> 读作“<span class="math">\(\epsilon\)</span> 的负二次幂”或“指数负二”。类似地，<span class="math">\(\epsilon^{-ax}\)</span> 读作“<span class="math">\(\epsilon\)</span> 的负 <span class="math">\(a\)</span> 倍 <span class="math">\(x\)</span> 次幂”或“指数负 <span class="math">\(a\)</span> <span class="math">\(x\)</span>”。</p>
+<hr />
+<p>显然，<span class="math">\(\epsilon^y\)</span> 对 <span class="math">\(y\)</span> 求导时仍保持不变。而 <span class="math">\(\epsilon^{ax}\)</span> 等于 <span class="math">\((\epsilon^a)^x\)</span>，当对 <span class="math">\(x\)</span> 求导时，其结果是 <span class="math">\(a\epsilon^{ax}\)</span>，因为 <span class="math">\(a\)</span> 是常数。</p>
+<p><strong>自然对数或奈普尔对数</strong></p>
+<p><span class="math">\(\epsilon\)</span> 重要的另一个原因是，它被对数的发明者奈普尔用作其系统的基数。如果 <span class="math">\(y\)</span> 是 <span class="math">\(\epsilon^x\)</span> 的值，那么 <span class="math">\(x\)</span> 是以 <span class="math">\(\epsilon\)</span> 为底的 <span class="math">\(y\)</span> 的对数。也就是说：</p>
+<div class="math">\[
+y = \epsilon^x \\
+\]</div>
+
+<p>则</p>
+<div class="math">\[
+x = \log_\epsilon y
+\]</div>
+
+<p>这两个方程绘制的曲线见图38和图39中。</p>
+<p>计算出的点是：</p>
+<table class="table"><thead>
+<tr>
+  <th><span class="math">\(x\)</span></th>
+  <th><span class="math">\(0\)</span></th>
+  <th><span class="math">\(0.5\)</span></th>
+  <th><span class="math">\(1\)</span></th>
+  <th><span class="math">\(1.5\)</span></th>
+  <th><span class="math">\(2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="math">\(y\)</span></td>
+  <td><span class="math">\(1\)</span></td>
+  <td><span class="math">\(1.65\)</span></td>
+  <td><span class="math">\(2.71\)</span></td>
+  <td><span class="math">\(4.50\)</span></td>
+  <td><span class="math">\(7.39\)</span></td>
+</tr>
+</tbody>
+</table><p>对应图38</p>
+<figure class="text-center"><img src="images/158b.pdf.png-1.png"></figure>
+
+<table class="table"><thead>
+<tr>
+  <th><span class="math">\(y\)</span></th>
+  <th><span class="math">\(1\)</span></th>
+  <th><span class="math">\(2\)</span></th>
+  <th><span class="math">\(3\)</span></th>
+  <th><span class="math">\(4\)</span></th>
+  <th><span class="math">\(8\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="math">\(x\)</span></td>
+  <td><span class="math">\(0\)</span></td>
+  <td><span class="math">\(0.69\)</span></td>
+  <td><span class="math">\(1.10\)</span></td>
+  <td><span class="math">\(1.39\)</span></td>
+  <td><span class="math">\(2.08\)</span></td>
+</tr>
+</tbody>
+</table><p>对应图39</p>
+<figure class="text-center"><img src="images/158a.pdf.png-1.png"></figure>
+
+<p>可以看出，尽管计算得出的用于绘图的点不同，但结果实际上是相同的。这两个方程表达的是相同的含义。</p>
+<p>由于许多人使用的是以 <span class="math">\(10\)</span> 为底的普通对数，而不是以 <span class="math">\(\epsilon\)</span> 为底的“自然”对数，因此有必要对自然对数进行一些说明。普通对数中的规则——对数相加等于乘积的对数——在这里仍然适用，即：</p>
+<div class="math">\[
+\log_\epsilon a + \log_\epsilon b = \log_\epsilon ab.
+\]</div>
+
+<p>幂的规则也同样适用：</p>
+<div class="math">\[
+n × \log_\epsilon a = \log_\epsilon a^n.
+\]</div>
+
+<p>但是，由于基数不再是 <span class="math">\(10\)</span>，不能简单地通过在指数上加 <span class="math">\(2\)</span> 或 <span class="math">\(3\)</span> 来实现乘以 <span class="math">\(100\)</span> 或 <span class="math">\(1000\)</span>。可以通过将自然对数乘以 <span class="math">\(0.4343\)</span> 将其转换为普通对数，公式为：</p>
+<div class="math">\[
+\log_{10} x = 0.4343 × \log_{\epsilon} x,
+\]</div>
+
+<p>反之亦然：</p>
+<div class="math">\[
+\log_{\epsilon} x = 2.3026 × \log_{10} x.
+\]</div>
+
+<h2>一张有用的“奈普尔对数”表</h2>
+<p><em>(也称为自然对数或双曲对数)</em></p>
+<table class="table"><thead>
+<tr>
+  <th>Number</th>
+  <th><span class="math">\(\log_{\epsilon}\)</span></th>
+  <th></th>
+  <th>Number</th>
+  <th><span class="math">\(\log_{\epsilon}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="math">\(1 \)</span></td>
+  <td><span class="math">\(0.0000\)</span></td>
+  <td></td>
+  <td><span class="math">\(6\)</span></td>
+  <td><span class="math">\(1.7918\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(1.1\)</span></td>
+  <td><span class="math">\(0.0953\)</span></td>
+  <td></td>
+  <td><span class="math">\(7\)</span></td>
+  <td><span class="math">\(1.9459\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(1.2\)</span></td>
+  <td><span class="math">\(0.1823\)</span></td>
+  <td></td>
+  <td><span class="math">\(8\)</span></td>
+  <td><span class="math">\(2.0794\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(1.5\)</span></td>
+  <td><span class="math">\(0.4055\)</span></td>
+  <td></td>
+  <td><span class="math">\(9\)</span></td>
+  <td><span class="math">\(2.1972\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(1.7\)</span></td>
+  <td><span class="math">\(0.5306\)</span></td>
+  <td></td>
+  <td><span class="math">\(10\)</span></td>
+  <td><span class="math">\(2.3026\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(2.0\)</span></td>
+  <td><span class="math">\(0.6931\)</span></td>
+  <td></td>
+  <td><span class="math">\(20\)</span></td>
+  <td><span class="math">\(2.9957\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(2.2\)</span></td>
+  <td><span class="math">\(0.7885\)</span></td>
+  <td></td>
+  <td><span class="math">\(50\)</span></td>
+  <td><span class="math">\(3.9120\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(2.5\)</span></td>
+  <td><span class="math">\(0.9163\)</span></td>
+  <td></td>
+  <td><span class="math">\(100\)</span></td>
+  <td><span class="math">\(4.6052\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(2.7\)</span></td>
+  <td><span class="math">\(0.9933\)</span></td>
+  <td></td>
+  <td><span class="math">\(200\)</span></td>
+  <td><span class="math">\(5.2983\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(2.8\)</span></td>
+  <td><span class="math">\(1.0296\)</span></td>
+  <td></td>
+  <td><span class="math">\(500\)</span></td>
+  <td><span class="math">\(6.2146\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(3.0\)</span></td>
+  <td><span class="math">\(1.0986\)</span></td>
+  <td></td>
+  <td><span class="math">\(1000\)</span></td>
+  <td><span class="math">\(6.9078\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(3.5\)</span></td>
+  <td><span class="math">\(1.2528\)</span></td>
+  <td></td>
+  <td><span class="math">\(2000\)</span></td>
+  <td><span class="math">\(7.6009\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(4.0\)</span></td>
+  <td><span class="math">\(1.3863\)</span></td>
+  <td></td>
+  <td><span class="math">\(5000\)</span></td>
+  <td><span class="math">\(8.5172\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(4.5\)</span></td>
+  <td><span class="math">\(1.5041\)</span></td>
+  <td></td>
+  <td><span class="math">\(10 000\)</span></td>
+  <td><span class="math">\(9.2103\)</span></td>
+</tr>
+<tr>
+  <td><span class="math">\(5.0\)</span></td>
+  <td><span class="math">\(1.6094\)</span></td>
+  <td></td>
+  <td><span class="math">\(20 000\)</span></td>
+  <td><span class="math">\(9.9035\)</span></td>
+</tr>
+</tbody>
+</table><p><strong>指数和对数方程</strong></p>
+<p>现在，我们尝试对包含对数或指数的某些表达式进行微分。</p>
+<p>考虑以下方程：</p>
+<div class="math">\[
+y = \log_\epsilon x.
+\]</div>
+
+<p>首先将其变形为：</p>
+<div class="math">\[
+\epsilon^y = x,
+\]</div>
+
+<p>因此，由于 <span class="math">\(\epsilon^y\)</span> 对 <span class="math">\(y\)</span> 的微分仍然是原函数本身</p>
+<div class="math">\[
+\frac{dx}{dy} = \epsilon^y,
+\]</div>
+
+<p>然后从反函数返回到原函数：</p>
+<div class="math">\[
+\frac{dy}{dx} = \frac{1}{\ \dfrac{dx}{dy}\ } = \frac{1}{\epsilon^y} = \frac{1}{x}.
+\]</div>
+
+<p>这是一项非常奇特的结果。它可以写作：</p>
+<div class="math">\[
+\frac{d(\log_\epsilon x)}{dx} = x^{-1}.
+\]</div>
+
+<p>注意，这个 <span class="math">\(x^{-1}\)</span> 的结果是无法通过微分幂的规则得到的。该<a href="/4.html#multipow">规则</a>是用幂乘以系数，然后将幂减一。例如，微分 <span class="math">\(x^3\)</span> 得到 <span class="math">\(3x^2\)</span>，微分 <span class="math">\(x^2\)</span> 得到 <span class="math">\(2x^1\)</span>。但是，微分 <span class="math">\(x^0\)</span> 并不会得到 <span class="math">\(x^{-1}\)</span> 或 <span class="math">\(0 × x^{-1}\)</span>，因为 <span class="math">\(x^0 = 1\)</span>，是一个常数。我们将在积分一章中回到这个奇特的事实，即微分 <span class="math">\(\log_\epsilon x\)</span> 得到 <span class="math">\(\dfrac{1}{x}\)</span>。</p>
+<hr />
+<p>现在，尝试对以下函数求导：</p>
+<div class="math">\[
+y = \log_\epsilon(x+a),
+\]</div>
+
+<p>即</p>
+<div class="math">\[
+\epsilon^y = x+a;
+\]</div>
+
+<p>因此，有：<span class="math">\(\dfrac{d(x+a)}{dy} = \epsilon^y\)</span>，因为 <span class="math">\(\epsilon^y\)</span> 的导数仍然是 <span class="math">\(\epsilon^y\)</span>。这就得出：</p>
+<div class="math">\[
+\frac{dx}{dy} = \epsilon^y = x+a;
+\]</div>
+
+<p>因此，返回到原函数，我们得到：</p>
+<div class="math">\[
+\frac{dy}{dx} = \frac{1}{\dfrac{dx}{dy}} = \frac{1}{x+a}.
+\]</div>
+
+<hr />
+<p>接下来，尝试：</p>
+<div class="math">\[
+y = \log_{10} x.
+\]</div>
+
+<p>首先，通过乘以模数 <span class="math">\(0.4343\)</span> 将其转化为自然对数。这给出：</p>
+<div class="math">\[
+y = 0.4343 \log_\epsilon x;
+\]</div>
+
+<p>因此：</p>
+<div class="math">\[
+\frac{dy}{dx} = \frac{0.4343}{x}.
+\]</div>
+
+<hr />
+<p>下一步稍微复杂一些。尝试以下函数：</p>
+<div class="math">\[
+y = a^x.
+\]</div>
+
+<p>对两边取对数，得到：</p>
+<div class="math">\begin{align*}
+\log_\epsilon y &= x \log_\epsilon a, \\
+x  = \frac{\log_\epsilon y}{\log_\epsilon a}
+  &= \frac{1}{\log_\epsilon a} × \log_\epsilon y.
+\end{align*}</div>
+
+<p>因为 <span class="math">\(\dfrac{1}{\log_\epsilon a}\)</span> 是一个常数，因此：</p>
+<div class="math">\[
+\frac{dx}{dy} = \frac{1}{\log_\epsilon a} × \frac{1}{y} = \frac{1}{a^x × \log_\epsilon a};
+\]</div>
+
+<p>因此，返回到原函数：</p>
+<div class="math">\[
+\frac{dy}{dx} = \frac{1}{\dfrac{dx}{dy}} = a^x × \log_\epsilon a.
+\]</div>
+
+<p>我们看到，由于：</p>
+<div class="math">\begin{align*}
+\frac{dx}{dy} × \frac{dy}{dx} &= 1 \\
+\frac{dx}{dy} &= \frac{1}{y} × \frac{1}{\log_\epsilon a}, \\
+\frac{1}{y} × \frac{dy}{dx} &= \log_\epsilon a.
+\end{align*}</div>
+
+<p>我们会发现，只要有一个类似于 <span class="math">\(\log_\epsilon y =\)</span> 一个关于 <span class="math">\(x\)</span> 的函数的表达式时，总有：<span class="math">\(\dfrac{1}{y}\, \dfrac{dy}{dx} =\)</span> 该函数关于 x 的导数，因此我们可以直接从：<span class="math">\(\log_\epsilon y = x \log_\epsilon a\)</span> 写出：</p>
+<div class="math">\begin{align*}
+\frac{1}{y}\, \frac{dy}{dx} &= \log_\epsilon a \\
+\frac{dy}{dx} &= a^x \log_\epsilon a.
+\end{align*}</div>
+
+<hr />
+<p>现在我们尝试更多的例子。</p>
+<p><strong>例子</strong></p>
+<p>(1) <span class="math">\(y=\epsilon^{-ax}\)</span>.令 <span class="math">\(-ax=z\)</span>，则 <span class="math">\(y=\epsilon^z\)</span>。</p>
+<div class="math">\begin{align*}
+\frac{dy}{dz} &= \epsilon^z;\\
+\frac{dz}{dx} &= -a;\\
+\frac{dy}{dx} &= -a\epsilon^{-ax}.
+\end{align*}</div>
+
+<p>因此：</p>
+<div class="math">\begin{align*}
+\log_\epsilon y &= -ax;\\
+\frac{1}{y}\, \frac{dy}{dx} &= -a;\\
+\frac{dy}{dx} = -ay &= -a\epsilon^{-ax}.
+\end{align*}</div>
+
+<p>(2) <span class="math">\(y=\epsilon^{\frac{x^2}{3}}\)</span>，令 <span class="math">\(\dfrac{x^2}{3}=z\)</span>，即 <span class="math">\(y=\epsilon^z\)</span>。</p>
+<div class="math">\begin{align*}
+\frac{dy}{dz} &= \epsilon^z; \\
+\frac{dz}{dx} &= \frac{2x}{3}; \\
+\frac{dy}{dx} &= \frac{2x}{3}\, \epsilon^{\frac{x^2}{3}}.
+\end{align*}</div>
+
+<p>因此：</p>
+<div class="math">\begin{align*}
+\log_\epsilon y &= \frac{x^2}{3}; \\
+\frac{1}{y}\, \frac{dy}{dx} &= \frac{2x}{3}; \\
+\frac{dy}{dx} &= \frac{2x}{3}\, \epsilon^{\frac{x^2}{3}}.
+\end{align*}</div>
+
+<p>(3) <span class="math">\(y = \epsilon^{\frac{2x}{x+1}}\)</span>。</p>
+<div class="math">\begin{align*}
+\log_\epsilon y &= \frac{2x}{x+1},\quad
+\frac{1}{y}\, \frac{dy}{dx} = \frac{2(x+1)-2x}{(x+1)^2}; \\
+\frac{dy}{dx} &= \frac{2}{(x+1)^2} \epsilon^{\frac{2x}{x+1}}.
+\end{align*}</div>
+
+<p>通过令 <span class="math">\(\dfrac{2x}{x+1}=z\)</span> 来验证。</p>
+<p>(4) <span class="math">\(y=\epsilon^{\sqrt{x^2+a}}\)</span>. <span class="math">\(\log_\epsilon y=(x^2+a)^{\frac{1}{2}}\)</span>.</p>
+<div class="math">\begin{align*}
+\frac{1}{y}\, \frac{dy}{dx} &= \frac{x}{(x^2+a)^{\frac{1}{2}}} \\
+\frac{dy}{dx} &= \frac{x × \epsilon^{\sqrt{x^2+a}}}{(x^2+a)^{\frac{1}{2}}}.
+\end{align*}</div>
+
+<p>如果设 <span class="math">\((x^2+a)^{\frac{1}{2}}=u\)</span>，<span class="math">\(x^2+a=v\)</span>，则 <span class="math">\(u=v^{\frac{1}{2}}\)</span>,</p>
+<div class="math">\begin{align*}
+\frac{du}{dv} &= \frac{1}{{2v}^{\frac{1}{2}}}; \\
+\frac{dv}{dx} &= 2x; \\
+\frac{du}{dx} &= \frac{x}{(x^2+a)^{\frac{1}{2}}}.
+\end{align*}</div>
+
+<p>令 <span class="math">\(\sqrt{x^2+a}=z\)</span> 来验证。</p>
+<p>(5) <span class="math">\(y=\log(a+x^3)\)</span>.</p>
+<p>令 <span class="math">\((a+x^3)=z\)</span>，则 <span class="math">\(y=\log_\epsilon z\)</span>。</p>
+<div class="math">\begin{align*}
+\frac{dy}{dz} &= \frac{1}{z};\\
+\frac{dz}{dx} &= 3x^2; \\
+\frac{dy}{dx} &= \frac{3x^2}{a+x^3}.
+\end{align*}</div>
+
+<p>(6) <span class="math">\(y=\log_\epsilon\{{3x^2+\sqrt{a+x^2}}\}\)</span>.</p>
+<p>令 <span class="math">\(3x^2 + \sqrt{a+x^2}=z\)</span>，则 <span class="math">\(y=\log_\epsilon z\)</span>。</p>
+<div class="math">\begin{align*}
+\frac{dy}{dz}
+  &= \frac{1}{z};\quad \frac{dz}{dx} = 6x + \frac{x}{\sqrt{x^2+a}}; \\
+\frac{dy}{dx}
+  &= \frac{6x + \dfrac{x}{\sqrt{x^2+a}}}{3x^2 + \sqrt{a+x^2}}
+   = \frac{x(1 + 6\sqrt{x^2+a})}{(3x^2 + \sqrt{x^2+a}) \sqrt{x^2+a}}.
+\end{align*}</div>
+
+<p>(7) <span class="math">\(y=(x+3)^2 \sqrt{x-2}\)</span>.</p>
+<div class="math">\begin{align*}
+\log_\epsilon y
+  &= 2 \log_\epsilon(x+3)+ \tfrac{1}{2} \log_\epsilon(x-2). \\
+\frac{1}{y}\, \frac{dy}{dx}
+  &= \frac{2}{(x+3)} + \frac{1}{2(x-2)}; \\
+\frac{dy}{dx}
+  &= (x+3)^2 \sqrt{x-2} \left\{\frac{2}{x+3} + \frac{1}{2(x-2)}\right\}.
+\end{align*}</div>
+
+<p>(8) <span class="math">\(y=(x^2+3)^3(x^3-2)^{\frac{2}{3}}\)</span>。</p>
+<div class="math">\begin{align*}
+\log_\epsilon y
+  &= 3 \log_\epsilon(x^2+3) + \tfrac{2}{3} \log_\epsilon(x^3-2); \\
+\frac{1}{y}\, \frac{dy}{dx}
+  &= 3 \frac{2x}{(x^2+3)} + \frac{2}{3} \frac{3x^2}{x^3-2}
+   = \frac{6x}{x^2+3} + \frac{2x^2}{x^3-2}.
+\end{align*}</div>
+
+<p>如果 <span class="math">\(y=\log_\epsilon(x^2+3)\)</span>，令 <span class="math">\(x^2+3=z\)</span>，则 <span class="math">\(u=\log_\epsilon z\)</span>。</p>
+<div class="math">\begin{align*}
+\frac{du}{dz} &= \frac{1}{z}; \\
+\frac{dz}{dx} &= 2x; \\
+\frac{du}{dx} &= \frac{2x}{x^2+3}.
+\end{align*}</div>
+
+<p>同样，如果 <span class="math">\(v=\log_\epsilon(x^3-2)\)</span>，<span class="math">\(\dfrac{dv}{dx} = \dfrac{3x^2}{x^3-2}\)</span> 且</p>
+<div class="math">\[
+\frac{dy}{dx}
+  = (x^2+3)^3(x^3-2)^{\frac{2}{3}}
+    \left\{ \frac{6x}{x^2+3} + \frac{2x^2}{x^3-2} \right\}.
+\]</div>
+
+<p>(9) <span class="math">\(y=\dfrac{\sqrt[2]{x^2+a}}{\sqrt[3]{x^3-a}}\)</span>.</p>
+<div class="math">\begin{align*}
+\log_\epsilon y
+  &= \frac{1}{2} \log_\epsilon(x^2+a) - \frac{1}{3} \log_\epsilon(x^3-a). \\
+\frac{1}{y}\, \frac{dy}{dx}
+  &= \frac{1}{2}\, \frac{2x}{x^2+a} - \frac{1}{3}\, \frac{3x^2}{x^3-a}
+   = \frac{x}{x^2+a} - \frac{x^2}{x^3-a} \\
+\frac{dy}{dx}
+  &= \frac{\sqrt[2]{x^2+a}}{\sqrt[3]{x^3-a}}
+     \left\{ \frac{x}{x^2+a} - \frac{x^2}{x^3-a} \right\}.
+\end{align*}</div>
+
+<p>(10) <span class="math">\(y=\dfrac{1}{\log_\epsilon x}\)</span></p>
+<div class="math">\begin{align*}
+\frac{dy}{dx}
+  &= \frac{\log_\epsilon x × 0 - 1 × \dfrac{1}{x}}
+         {\log_\epsilon^2 x} \\
+  &= -\frac{1}{x \log_\epsilon^2x}.
+\end{align*}</div>
+
+<p>(11) <span class="math">\(y=\sqrt[3]{\log_\epsilon x} = (\log_\epsilon x)^{\frac{1}{3}}\)</span></p>
+<p>令 <span class="math">\(z=\log_\epsilon x\)</span>; <span class="math">\(y=z^{\frac{1}{3}}\)</span>。</p>
+<div class="math">\begin{align*}
+\frac{dy}{dz} &= \frac{1}{3} z^{-\frac{2}{3}};\\
+\frac{dz}{dx} &= \frac{1}{x};\\
+\frac{dy}{dx} &= \frac{1}{3x \sqrt[3]{\log_\epsilon^2 x}}.
+\end{align*}</div>
+
+<p>(12) <span class="math">\(y=\left(\dfrac{1}{a^x}\right)^{ax}\)</span>。</p>
+<div class="math">\begin{align*}
+\log y &= -ax \log a^{x} = -ax^{2} \cdot \log a.\\
+\frac{1}{y} \frac{dy}{dx} &= -2ax \cdot \log a\\
+\frac{dy}{dx} &= -2ax\left(\frac{1}{a^{x}}\right)^{ax} \cdot \log a = -2x a^{1-ax^{2}} \cdot \log a. 
+\end{align*}</div>
+
+<hr />
+</div>
+    </article>
+</div>
+
+    </div>
+</main>
+
+
+
+
+<script defer src="../js/katex.min.js"></script>
+<script defer src="../js/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: "\\begin{align*}", right: "\\end{align*}", display: true}
+        ]
+    });
+});
+</script>
+
+</body>
+</html>
