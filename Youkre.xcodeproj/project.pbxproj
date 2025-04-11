@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D74FD1452D81B3A4004C6C8E /* WebAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D74FD1442D81B3A4004C6C8E /* WebAssets.bundle */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		D7F8B1F42D7C8CB60096AB80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D74FD1442D81B3A4004C6C8E /* WebAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WebAssets.bundle; sourceTree = "<group>"; };
 		D7F8B1E32D7C8CB30096AB80 /* Youkre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Youkre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F8B1F32D7C8CB60096AB80 /* YoukreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoukreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7F8B1FD2D7C8CB60096AB80 /* YoukreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoukreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,12 +77,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D70C4E582D7CF40E00304EDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D7F8B1DA2D7C8CB30096AB80 = {
 			isa = PBXGroup;
 			children = (
+				D74FD1442D81B3A4004C6C8E /* WebAssets.bundle */,
 				D7F8B1E52D7C8CB30096AB80 /* Youkre */,
 				D7F8B1F62D7C8CB60096AB80 /* YoukreTests */,
 				D7F8B2002D7C8CB60096AB80 /* YoukreUITests */,
+				D70C4E582D7CF40E00304EDD /* Frameworks */,
 				D7F8B1E42D7C8CB30096AB80 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -195,6 +209,8 @@
 			);
 			mainGroup = D7F8B1DA2D7C8CB30096AB80;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D7F8B1E42D7C8CB30096AB80 /* Products */;
 			projectDirPath = "";
@@ -212,6 +228,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D74FD1452D81B3A4004C6C8E /* WebAssets.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,8 +413,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Youkre/Preview Content\"";
+				DEVELOPMENT_TEAM = T3F334GPBV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "优克";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -424,8 +444,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Youkre/Preview Content\"";
+				DEVELOPMENT_TEAM = T3F334GPBV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "优克";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
