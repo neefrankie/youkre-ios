@@ -19,7 +19,7 @@ struct ContentView: View {
                     )
                 }
             
-            MeView()
+            SettingsView()
                 .tabItem {
                     Label(
                         "我的",
@@ -31,5 +31,9 @@ struct ContentView: View {
 }
 
 #Preview {
+    var settings = ThemeManager.shared.withLightMode()
+    
     ContentView()
+        .environmentObject(settings)
+        .preferredColorScheme(settings.preferredColorScheme)
 }
