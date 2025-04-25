@@ -34,5 +34,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    PreviewWrapperView {
+        HomeView()
+    }
 }
