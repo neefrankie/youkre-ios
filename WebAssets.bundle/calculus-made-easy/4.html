@@ -35,7 +35,7 @@ body {
 }
 h1, h2, h3, h4 {
     text-align: center;
-    margin: 1em 0;
+    margin-bottom: 1em;
 }
 figure img {
     max-width: 100%;
@@ -197,100 +197,101 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         
 <div class="row pt-3 justify-content-center">
     <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="pe-2">第 4 章</span><span>最简单的情况</span></h2>
-        <div><p>现在，我们从最基本的原则出发，来看一下如何对一些简单的代数表达式求导。</p>
-<h3>情况 1</h3>
-<p>先从一个简单的表达式 <span class="math">\(y=x^2\)</span> 开始。请记住，微积分的基本概念是<strong>增长</strong>的概念。数学家称之为<strong>变化</strong>。既然 <span class="math">\(y\)</span> 和 <span class="math">\(x^2\)</span> 相等，很明显，如果 <span class="math">\(x\)</span> 增长，<span class="math">\(x^2\)</span> 也会增长。而如果 <span class="math">\(x^2\)</span> 增长，那么 <span class="math">\(y\)</span> 也会增长。我们需要找出的是 <span class="math">\(y\)</span> 的增长和 <span class="math">\(x\)</span> 的增长之间的比例。换句话说，我们的任务是找出 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 之间的比率，或者简而言之，求出 <span class="math">\(\dfrac{dy}{dx}\)</span> 的值。</p>
-<p>让 <span class="math">\(x\)</span> 增加一点变为 <span class="math">\(x + dx\)</span>；相应地，<span class="math">\(y\)</span> 也会增加一点，变为 <span class="math">\(y + dy\)</span>。那么，增大的 <span class="math">\(y\)</span> 将等于增大的 <span class="math">\(x\)</span> 的平方，这显然是成立的。写下这个关系，我们有：</p>
-<div class="math">\[
+        <h2 class="text-center"><span class="pe-2">第 4 章</span><span>最简单的情形</span></h2>
+        <div><p>我们来看看，从基本原理出发，如何对一些简单的代数式求导。</p>
+<h2>情形 1</h2>
+<p>我们先从一个简单的表达式 <span class="math">\(y=x^2\)</span> 开始。要记住，微积分的核心概念是“变化”，数学家称之为“变动”。既然 <span class="math">\(y\)</span> 和 <span class="math">\(x^2\)</span> 是相等的，那么很明显，如果 <span class="math">\(x\)</span> 变化了，<span class="math">\(x^2\)</span> 也会随之变化；而 <span class="math">\(x^2\)</span> 一变，<span class="math">\(y\)</span> 也一定会变。我们要做的，就是找出 <span class="math">\(y\)</span> 的变化量和 <span class="math">\(x\)</span> 的变化量之间的比例关系。换句话说，我们的任务是求出 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 的比值，也就是 <span class="math">\(\dfrac{dy}{dx}\)</span>。</p>
+<p>假设 <span class="math">\(x\)</span> 增加了一点，变成 <span class="math">\(x + dx\)</span>；同理，<span class="math">\(y\)</span> 也会增加一点，变成 <span class="math">\(y + dy\)</span>。显然，扩大后的 <span class="math">\(y\)</span> 仍等于扩大后的 <span class="math">\(x\)</span> 的平方。于是我们可以写出：</p>
+<div class="math"><div class="math">\[
 y + dy = (x + dx)^2.
-\]</div>
+\]</div></div>
 
-<p>展开平方，我们得到：</p>
-<div class="math">\[
+<p>展开右边得到：</p>
+<div class="math"><div class="math">\[
 y + dy = x^2 + 2x · dx+(dx)^2.
-\]</div>
+\]</div></div>
 
-<p><span class="math">\((dx)^2\)</span> 的意义是什么？请记住，<span class="math">\(dx\)</span> 代表 <span class="math">\(x\)</span> 的一小部分。那么 <span class="math">\((dx)^2\)</span> 就意味着 <span class="math">\(x\)</span> 的微小部分的微小部分；即如前面所解释的那样（参见第2章），它是第二阶微小的量。因此，与其他项相比，可以被忽略不计。将它舍去，我们就得到：</p>
-<div class="math">\[
+<p>这里的 <span class="math">\((dx)^2\)</span> 是什么意思呢？记得 <span class="math">\(dx\)</span> 表示的是一个很小的量——一点点 <span class="math">\(x\)</span>。那 <span class="math">\((dx)^2\)</span> 就是一点点的一点点，也就是一个更小的小量，称为二阶小量。这种量和其他项相比几乎可以忽略不计，因此可以把它舍去。于是就剩下：</p>
+<div class="math"><div class="math">\[
 y + dy = x^2 + 2x · dx.
-\]</div>
+\]</div></div>
 
-<p>现在 <span class="math">\(y=x^2\)</span>，从原方程中减去，剩下：</p>
-<div class="math">\[
+<p>又因为 <span class="math">\(y = x^2\)</span>，用这个式子去减上面的等式，得到：</p>
+<div class="math"><div class="math">\[
 dy = 2x · dx.
-\]</div>
+\]</div></div>
 
-<p>两边都除以 <span class="math">\(dx\)</span>，我们得到：</p>
-<div class="math">\[
+<p>两边同时除以 <span class="math">\(dx\)</span>，得：</p>
+<div class="math"><div class="math">\[
 \frac{dy}{dx} = 2x.
-\]</div>
+\]</div></div>
 
-<p>这就是我们要找的答案。在此例中，<span class="math">\(y\)</span> 的增长与 <span class="math">\(x\)</span> 的增长之比是 <span class="math">\(2x\)</span>。</p>
-<div class="note"><p><strong>注</strong>：这个比率 <span class="math">\(\dfrac{dy}{dx}\)</span> 是 <span class="math">\(y\)</span> 关于 <span class="math">\(x\)</span> 的求导结果。求导就是找出微分系数即导数。假设有另一个 <span class="math">\(x\)</span> 的函数，例如 <span class="math">\(u = 7x^2 + 3\)</span>。如果我们要求它关于 <span class="math">\(x\)</span> 导数，就是求解 <span class="math">\(\dfrac{du}{dx}\)</span>，或等价于求 <span class="math">\(\dfrac{d(7x^2 + 3)}{dx}\)</span>。另一方面，我们可能遇到一个独立变量是时间的情况（参加第3章），例如：<span class="math">\(y = b + \frac{1}{2} at^2\)</span>。那么，对该函数的求导就是必须找到它关于 <span class="math">\(t\)</span> 的导数。因此，我们的任务就是求 <span class="math">\(\dfrac{dy}{dt}\)</span>，即求 <span class="math">\(\dfrac{d(b + \frac{1}{2} at^2)}{dt}\)</span>。</p></div>
-<h4>数值示例</h4>
-<p>假设 <span class="math">\(x=100\)</span>，<span class="math">\(y=10,000\)</span>。然后让 <span class="math">\(x\)</span> 增长到 <span class="math">\(101\)</span>（即让 <span class="math">\(dx=1\)</span>）。那么增大的 <span class="math">\(y\)</span> 将是 <span class="math">\(101 \times 101 = 10,201\)</span>。但是如果我们同意可以忽略二阶小量，则可以舍去 <span class="math">\(1\)</span>，因为它相对于 <span class="math">\(10,000\)</span> 是微不足道的；因此可以将增大的 <span class="math">\(y\)</span> 取为 <span class="math">\(10,200\)</span>。<span class="math">\(y\)</span> 从 <span class="math">\(10,000\)</span> 增长到 <span class="math">\(10,200\)</span>；增加的部分是 <span class="math">\(dy\)</span>，即 <span class="math">\(200\)</span>。</p>
-<div class="math">\[
+<p>这就是我们想要找的结果。在这个例子中，<span class="math">\(y\)</span> 随 <span class="math">\(x\)</span> 变化的速率是 <span class="math">\(2x\)</span>。</p>
+<div class="note"><p><strong>注意</strong>：这个比值 <span class="math">\(\dfrac{dy}{dx}\)</span> 就是对 <span class="math">\(y\)</span> 关于 <span class="math">\(x\)</span> 求导的结果。“求导”就是求微分系数，即导数。假设有另一个关于 <span class="math">\(x\)</span> 的函数，例如 <span class="math">\(u = 7x^2 + 3\)</span>。如果我们被要求对它求导，就是要算 <span class="math">\(\dfrac{du}{dx}\)</span>，也就是 <span class="math">\(\dfrac{d(7x^2 + 3)}{dx}\)</span>。有时候自变量不是 <span class="math">\(x\)</span>，而是时间 <span class="math">\(t\)</span>，例如：<span class="math">\(y = b + \frac{1}{2} at^2\)</span>。这时如果要求对 <span class="math">\(t\)</span> 求导，就是要找到它的导数 <span class="math">\(\dfrac{dy}{dt}\)</span>，也就是 <span class="math">\(\dfrac{d(b + \frac{1}{2} at^2)}{dt}\)</span>。
+{class=&quot;note&quot;}</p></div>
+<h3>数值例子</h3>
+<p>设 <span class="math">\(x=100\)</span>，则 <span class="math">\(y=10,000\)</span>。现在让 <span class="math">\(x\)</span> 增加到 101，即 <span class="math">\(dx = 1\)</span>。那么新的 <span class="math">\(y\)</span> 就是 <span class="math">\(101 × 101 = 10,201\)</span>。如果我们忽略掉二阶小量，就可以舍去 <span class="math">\(1\)</span>，因为它相对于 <span class="math">\(10,000\)</span> 是微不足道的，因此可以把变化后的 <span class="math">\(y\)</span> 近似为 <span class="math">\(10,200\)</span>。这样，<span class="math">\(y\)</span> 从 10,000 增加到了 10,200，增加了 200，也就是 <span class="math">\(dy = 200\)</span>。</p>
+<div class="math"><div class="math">\[
 \dfrac{dy}{dx} = \dfrac{200}{1} = 200
-\]</div>
+\]</div></div>
 
-<p>根据前述的代数操作，我们得到 <span class="math">\(\dfrac{dy}{dx} = 2x\)</span>。确实如此，因为 <span class="math">\(x=100\)</span> 且 <span class="math">\(2x=200\)</span>。</p>
-<p>你可能会说，我们忽略了一个完整的单位。</p>
-<p>好，再试一次，让 <span class="math">\(dx\)</span> 取更小的量。</p>
-<p>试试 <span class="math">\(dx=\frac{1}{10}\)</span>。那么 <span class="math">\(x+dx=100.1\)</span>，并且</p>
-<div class="math">\[
+<p>根据前面推导的公式 <span class="math">\(\dfrac{dy}{dx} = 2x\)</span>，带入 <span class="math">\(x = 100\)</span> 得到结果也是 200，完全一致。</p>
+<p>你可能会说，我们忽略了整整一个单位！</p>
+<p>那我们就再试一次，这次让 <span class="math">\(dx\)</span> 更小一些。</p>
+<p>取 <span class="math">\(dx=\frac{1}{10}\)</span>。那么 <span class="math">\(x+dx=100.1\)</span>，计算得：</p>
+<div class="math"><div class="math">\[
 (x+dx)^2 = 100.1 × 100.1 = 10,020.01.
-\]</div>
+\]</div></div>
 
-<p>现在最后一位数字 <span class="math">\(1\)</span> 只是 <span class="math">\(10,000\)</span> 的百万分之一，非常微小，可以忽略不计；所以我们可以取 <span class="math">\(10,020\)</span> 而忽略末尾的小数。这样得到 <span class="math">\(dy=20\)</span>，并且 <span class="math">\(\dfrac{dy}{dx} = \dfrac{20}{0.1} = 200\)</span>，仍然与 <span class="math">\(2x\)</span> 相同。</p>
-<h3>情况 2</h3>
-<p>试着以同样的方式求 <span class="math">\(y = x^3\)</span> 的导数。</p>
-<p>让 <span class="math">\(y\)</span> 增长到 <span class="math">\(y+dy\)</span>，同时 <span class="math">\(x\)</span> 增长到 <span class="math">\(x+dx\)</span>。</p>
-<p>那么有</p>
-<div class="math">\[
+<p>其中最后一位小数 0.01 相对于 10,000 来说几乎可以忽略不计，所以我们可以近似地认为结果是 10,020。于是 <span class="math">\(dy = 20\)</span>，<span class="math">\(\dfrac{dy}{dx} = \dfrac{20}{0.1} = 200\)</span>，仍然等于 <span class="math">\(2x\)</span>。</p>
+<h2>情形 2</h2>
+<p>我们再来用同样的方法对 <span class="math">\(y = x^3\)</span> 求导。</p>
+<p>让 <span class="math">\(y\)</span> 增加到 <span class="math">\(y + dy\)</span>，同时 <span class="math">\(x\)</span> 增加到 <span class="math">\(x + dx\)</span>。</p>
+<p>于是有：</p>
+<div class="math"><div class="math">\[
 y + dy = (x + dx)^3.
-\]</div>
+\]</div></div>
 
-<p>展开立方得到：</p>
-<div class="math">\[
+<p>展开立方项得：</p>
+<div class="math"><div class="math">\[
 y + dy = x^3 + 3x^2 · dx + 3x(dx)^2+(dx)^3.
-\]</div>
+\]</div></div>
 
-<p>现在我们知道可以忽略二阶和三阶的微小量，因为当 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 都趋于无限小的时候，<span class="math">\((dx)^2\)</span> 和 <span class="math">\((dx)^3\)</span> 相比之下会变得更小。因此，将它们视为可忽略不计，剩下：</p>
-<div class="math">\[
+<p>我们知道，二阶和三阶的小量是可以忽略的。因为当 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 都无限小的时候，<span class="math">\((dx)^2\)</span> 和 <span class="math">\((dx)^3\)</span> 会更小得多。所以可以把这些项舍去，剩下：</p>
+<div class="math"><div class="math">\[
 y + dy=x^3+3x^2 · dx.
-\]</div>
+\]</div></div>
 
-<p>由于 <span class="math">\(y = x^3\)</span>，减去这一项，得到：</p>
-<div class="math">\begin{align*}
+<p>又因原式是 <span class="math">\(y = x^3\)</span>，将它从上式中减去，得到：</p>
+<div class="math"><div class="math">\begin{align*}
 dy &= 3x^2 · dx, \\
 \frac{dy}{dx} &= 3x^2.
-\end{align*}</div>
+\end{align*}</div></div>
 
-<h3>情况 3</h3>
-<p>试着求 <span class="math">\(y = x^4\)</span> 的导数。像之前一样，让 <span class="math">\(y\)</span> 和 <span class="math">\(x\)</span> 都增长一些，得到：</p>
-<div class="math">\[
+<h2>情形 3</h2>
+<p>再来看 <span class="math">\(y = x^4\)</span> 的求导。同样地，让 <span class="math">\(y\)</span> 和 <span class="math">\(x\)</span> 各增加一点，得：</p>
+<div class="math"><div class="math">\[
 y + dy = (x+dx)^4.
-\]</div>
+\]</div></div>
 
-<p>计算出四次方，得到：</p>
-<div class="math">\[
+<p>展开四次方项，得：</p>
+<div class="math"><div class="math">\[
 y + dy = x^4 + 4x^3 dx + 6x^2(dx)^2 + 4x(dx)^3+(dx)^4.
-\]</div>
+\]</div></div>
 
 <p>然后，将所有包含更高次幂 <span class="math">\(dx\)</span> 的项去掉，因为它们相比之下可以忽略不计，得到：</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 y + dy = x^4+4x^3 dx.
-\]</div>
+\]</div></div>
 
-<p>减去原始的 <span class="math">\(y = x^4\)</span>，剩下：</p>
-<div class="math">\begin{align*}
+<p>再减去原来的 <span class="math">\(y = x^4\)</span>，得：</p>
+<div class="math"><div class="math">\begin{align*}
 dy &= 4x^3\, dx, \\
 \frac{dy}{dx} &= 4x^3.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <hr />
-<p>现在，所有这些情况都相当简单。我们把结果整理出来，看能否推导出一般规则。将它们放入两列中，一列是 <span class="math">\(y\)</span> 的值，另一列是相应的 <span class="math">\(\dfrac{dy}{dx}\)</span> 值，如下所示：</p>
+<p>现在我们已经看到了这几个例子的求导过程都很简单。接下来，我们把结果整理一下，看看能不能发现什么规律。将 <span class="math">\(y\)</span> 的表达式和对应的导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 列成两列：</p>
 <table class="table"><thead>
 <tr>
   <th><span class="math">\(y\)</span></th>
@@ -311,94 +312,97 @@ dy &= 4x^3\, dx, \\
   <td><span class="math">\(4x^3\)</span></td>
 </tr>
 </tbody>
-</table><p>只需看看这些结果：求导操作似乎使 <span class="math">\(x\)</span> 的幂次减少了 <span class="math">\(1\)</span>（例如在最后一个例子中，将 <span class="math">\(x^4\)</span> 减少到 <span class="math">\(x^3\)</span>），同时乘以一个数（实际上就是最初作为幂次出现的那个数）。现在，一旦你看到这一点，可能很容易猜测其他情况的结果。例如，你会期望对 <span class="math">\(x^5\)</span> 求导得到 <span class="math">\(5x^4\)</span>，或者对 <span class="math">\(x^6\)</span> 求导得到 <span class="math">\(6x^5\)</span>。如果你犹豫了，可以试试其中一个，看看推测是否正确。</p>
-<p>试试 <span class="math">\(y = x^5\)</span>。</p>
-<div class="math">\begin{align*}
+</table><p>仔细看一下这些结果：求导操作似乎总是让 <span class="math">\(x\)</span> 的指数减了 1（比如最后一个是 <span class="math">\(x^4\)</span> 变成了 <span class="math">\(x^3\)</span>），同时还乘上了一个数字——这个数字正好就是原来的指数。一旦注意到这一点，就能很容易猜出其他情况的结果。比如对 <span class="math">\(x^5\)</span> 求导应该得到 <span class="math">\(5x^4\)</span>，对 <span class="math">\(x^6\)</span> 求导应该得到 <span class="math">\(6x^5\)</span>。如果还有点怀疑，可以试一试其中一个，看猜测是否正确。</p>
+<p>我们来试试 <span class="math">\(y = x^5\)</span>。</p>
+<div class="math"><div class="math">\begin{align*}
 y+dy &= (x+dx)^5 \\
      &= x^5 + 5x^4\, dx + 10x^3(dx)^2  + 10x^2(dx)^3 \\
      &\phantom{{}= x^5 + 5x^4\, dx} + 5x(dx)^4 + (dx)^5.
-\end{align*}</div>
+\end{align*}</div></div>
 
-<p>忽略所有包含更高次小量的项，剩下：</p>
-<div class="math">\[
+<p>忽略掉所有高阶小量项后，剩下：</p>
+<div class="math"><div class="math">\[
 y + dy = x^5 + 5x^4 dx
-\]</div>
+\]</div></div>
 
-<p>然后减去</p>
-<div class="math">\[
+<p>再减去原来的</p>
+<div class="math"><div class="math">\[
 y = x^5
-\]</div>
+\]</div></div>
 
-<p>剩下</p>
-<div class="math">\[
+<p>就得到：</p>
+<div class="math"><div class="math">\[
 dy = 5x^4 dx
-\]</div>
+\]</div></div>
 
-<p>因此</p>
-<div class="math">\[
+<p>所以：</p>
+<div class="math"><div class="math">\[
 \frac{dy}{dx} = 5x^4
-\]</div>
+\]</div></div>
 
-<p>正如我们所预想的那样。</p>
+<p>正如我们所料。</p>
 <hr />
-<p>根据我们的观察逻辑推论可以得出，如果想处理任何更高次幂——称其为 <span class="math">\(n\)</span>——可以用相同的方法处理。</p>
-<p>令 <span class="math">\(y = x^n\)</span></p>
-<p>那么，应该可以得到：</p>
-<div class="math">\[
+<p>根据上面的观察，我们可以逻辑地得出结论：如果想对任意一个更高次幂进行求导——设它为 <span class="math">\(n\)</span> 次幂——也可以用同样的方法处理。</p>
+<p>假设 <span class="math">\(y = x^n\)</span></p>
+<p>那么预期会得到：</p>
+<div class="math"><div class="math">\[
 \frac{dy}{dx} = nx^{(n-1)}
-\]</div>
+\]</div></div>
 
-<p>例如，令 <span class="math">\(n=8\)</span>，则 <span class="math">\(y=x^8\)</span>；求导的结果将是 <span class="math">\(\dfrac{dy}{dx} = 8x^7\)</span>。</p>
-<p>对 <span class="math">\(x^n\)</span> 求导得到的结果为 <span class="math">\(nx^{n-1}\)</span>，这一规则实际上适用于所有 <span class="math">\(n\)</span> 为正整数的情况。[通过展开 <span class="math">\((x + dx)^n\)</span> 的二项式定理，可以立即验证这一点。]但当 <span class="math">\(n\)</span> 为负数或分数时，这一结论是否成立还需要进一步探讨。</p>
-<h3>负幂的情况</h3>
-<p>令 <span class="math">\(y = x^{-2}\)</span>然后按之前的步骤进行：</p>
-<div class="math">\begin{align*}
+<p>举个例子，如果 <span class="math">\(n=8\)</span>，那么 <span class="math">\(y=x^8\)</span>，它的导数就是：<span class="math">\(\dfrac{dy}{dx} = 8x^7\)</span>。</p>
+<p>事实上，这条规则对所有 <strong>正整数次幂</strong> 都成立。也就是说，对 <span class="math">\(x^n\)</span> 求导的结果是 <span class="math">\(n x^{n-1}\)</span>。（用二项式定理展开 <span class="math">\((x + dx)^n\)</span> 就能立刻验证这一点。）不过，这条规则是否也适用于 <strong>负数次幂或分数次幂</strong> 的情况，还需要进一步探讨。</p>
+<h2>负指数的情形</h2>
+<p>设 <span class="math">\(y = x^{-2}\)</span>，我们仍按之前的方法进行推导：</p>
+<div class="math"><div class="math">\begin{align*}
 y+dy &= (x+dx)^{-2} \\
      &= x^{-2} \left(1 + \frac{dx}{x}\right)^{-2}.
-\end{align*}</div>
+\end{align*}</div></div>
 
-<p>通过二项式定理展开，得到：</p>
-<div class="math">\begin{align*}
+<p>利用二项式定理展开，得到：</p>
+<div class="math"><div class="math">\begin{align*}
 &=x^{-2} \left[1 - \frac{2\, dx}{x} +
     \frac{2(2+1)}{1×2} \left(\frac{dx}{x}\right)^2 -
     \text{etc.}\right]  \\
 &=x^{-2} - 2x^{-3} · dx + 3x^{-4}(dx)^2 - 4x^{-5}(dx)^3 + \ldots \\
-\end{align*}</div>
+\end{align*}</div></div>
 
-<p>忽略高次微量项，得到：</p>
-<div class="math">\[
+<p>忽略掉高阶小量后，剩下：</p>
+<div class="math"><div class="math">\[
 y + dy = x^{-2} - 2x^{-3} · dx.
-\]</div>
+\]</div></div>
 
-<p>减去原来的 <span class="math">\(y = x^{-2}\)</span>，得到：</p>
-<div class="math">\begin{align*}
+<p>再减去原来的 <span class="math">\(y = x^{-2}\)</span>，得：</p>
+<div class="math"><div class="math">\begin{align*}
            dy &= -2x^{-3}dx,   \\
 \frac{dy}{dx} &= -2x^{-3}.
-\end{align*}</div>
+\end{align*}</div></div>
 
-<p>这仍然符合上面推导的规则。</p>
-<h3>分数幂的情况</h3>
-<p>令 <span class="math">\(y = x^{\frac{1}{2}}\)</span>。然后，像之前一样，</p>
-<div class="math">\begin{align*}
+<p>这与我们前面总结的规律完全一致。</p>
+<h2>分数指数的情形</h2>
+<p>设 <span class="math">\(y = x^{\frac{1}{2}}\)</span>。同样地，我们有：</p>
+<div class="math"><div class="math">\begin{align*}
 y+dy &= (x+dx)^{\frac{1}{2}} = x^{\frac{1}{2}} (1 + \frac{dx}{x} )^{\frac{1}{2}} \\
      &= \sqrt{x} + \frac{1}{2} \frac{dx}{\sqrt{x}} - \frac{1}{8}
-        \frac{(dx)^2}{x\sqrt{x}} + \text{}
-\end{align*}</div>
+        \frac{(dx)^2}{x\sqrt{x}} + \text{更高次幂的项。}
+\end{align*}</div></div>
 
-<p>减去原始的 <span class="math">\(y = x^{\frac{1}{2}}\)</span>，并忽略高次项，得到：</p>
-<div class="math">\[
+<p>减去原来的 <span class="math">\(y = x^{\frac{1}{2}}\)</span>，并忽略高阶小量后，得到：</p>
+<div class="math"><div class="math">\[
 dy = \frac{1}{2} \frac{dx}{\sqrt{x}} = \frac{1}{2} x^{-\frac{1}{2}} · dx,
-\]</div>
+\]</div></div>
 
-<p>所以</p>
-<div class="math">\[
+<p>因此：</p>
+<div class="math"><div class="math">\[
 \dfrac{dy}{dx} = \dfrac{1}{2} x^{-\frac{1}{2}}
-\]</div>
+\]</div></div>
 
-<p>这也符合一般规则。</p>
-<h3>总结</h3>
-<p>看看我们取得了多大进展。我们已经得出以下规则：对 <span class="math">\(x^n\)</span> 求导，乘以它的幂次，然后幂次减一，得到 <span class="math">\(nx^{n-1}\)</span> 作为结果。</p>
-<hr />
+<p>这也符合我们总结的一般规律。</p>
+<h2>小结</h2>
+<p>到目前为止，我们已经得出一个通用规则：要对 <span class="math">\(x^n\)</span> 求导，只需将原指数 <span class="math">\(n\)</span> 乘到前面，再将指数减一，结果就是：</p>
+<div class="math"><div class="math">\[
+\frac{d}{dx} x^n = nx^{n-1}
+\]</div></div>
+
 </div>
     </article>
 </div>

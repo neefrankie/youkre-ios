@@ -35,7 +35,7 @@ body {
 }
 h1, h2, h3, h4 {
     text-align: center;
-    margin: 1em 0;
+    margin-bottom: 1em;
 }
 figure img {
     max-width: 100%;
@@ -207,51 +207,51 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>让 <span class="math">\(y\)</span> 表示金钱，<span class="math">\(t\)</span> 表示时间。</p>
 <p>如果你在花钱，且在短时间 <span class="math">\(dt\)</span> 内花费的金额为 <span class="math">\(dy\)</span>，那么花钱的速率就是 <span class="math">\(\dfrac{dy}{dt}\)</span>，或者应该写成带负号的形式，<span class="math">\(-\dfrac{dy}{dt}\)</span>，因为 <span class="math">\(dy\)</span> 是减少量，不是增加量。然而，金钱并不是微积分的好例子，因为它通常是跳跃性变化的，而不是连续流动的——你可能一年赚200英镑，但它不是整天在细流中不停流入，而是按周、月或季度发放；你的支出也通常是一次性支付。</p>
 <p>一个更合适的速率例子是运动物体的速度。伦敦（尤斯顿车站）到利物浦的距离是200英里。如果一列火车从伦敦出发，7点钟出发，11点钟到达利物浦，那么你知道，它在4小时内行驶了200英里，因此它的平均速率必须是每小时50英里，因为 <span class="math">\(\frac{200}{4} = \frac{50}{1}\)</span>。在这里，你实际上是在进行一种心理上的比较，比较的是行驶的距离与所花的时间。你是在将两者相除。如果 <span class="math">\(y\)</span> 是总距离，<span class="math">\(t\)</span> 是总时间，那么显然平均速率是 <span class="math">\(\dfrac{y}{t}\)</span>。然而，速度在整个旅程中并不恒定：起始时和结束时减速时，速度较慢。可能在某个下坡的部分，速度超过60英里每小时。如果在某段时间元素 <span class="math">\(dt\)</span> 内，行驶的相应距离元素为 <span class="math">\(dy\)</span>，那么在该段旅程中，速度就是 <span class="math">\(\dfrac{dy}{dt}\)</span>。此时，一个量（在当前例子中是距离）相对于另一个量（在此情况下是时间）变化的速率，应该通过一个微分系数来表示。科学上表达的<strong>速度</strong>是某个方向上非常小的距离单位时间内的通过速率，因此可以写作：</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 v = \dfrac{dy}{dt}.
-\]</div>
+\]</div></div>
 
 <p>但如果速度 <span class="math">\(v\)</span> 不是恒定的，那么它要么在增加，要么在减少。速度增加的速率称为加速度。如果一个运动物体在某一瞬间，每单位时间 <span class="math">\(dt\)</span> 内获得了一个额外的速度 <span class="math">\(dv\)</span>，那么加速度 <span class="math">\(a\)</span> 可以表示为：</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 a = \dfrac{dv}{dt};
-\]</div>
+\]</div></div>
 
 <p>但 <span class="math">\(dv\)</span> 本身就是 <span class="math">\(d\left( \dfrac{dy}{dt} \right)\)</span> 的微分。因此我们可以写成：</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 a = \frac{d\left( \dfrac{dy}{dt} \right)}{dt};
-\]</div>
+\]</div></div>
 
 <p>通常写作 <span class="math">\(a = \dfrac{d^2y}{dt^2}\)</span>；即加速度是距离相对于时间的二阶微分。加速度通常表示为单位时间内速度的变化，例如可以表示为每秒几米每秒，即 <em>米 ÷ 秒<sup>2</sup></em>。</p>
 <p>当一列火车刚开始移动时，它的速度 <span class="math">\(v\)</span> 很小；但它的速度在增加——它正被引擎的推力加速。因此，它的 <span class="math">\(\dfrac{d^2y}{dt^2}\)</span> 很大。当达到最高速度时，它不再加速，因此此时 <span class="math">\(\dfrac{d^2y}{dt^2}\)</span> 降为零。但当它接近停站时，速度开始减慢；如果刹车被使用，速度可能会非常迅速地减慢，在这种减速或放慢速度的过程中，<span class="math">\(\dfrac{dv}{dt}\)</span>，即 <span class="math">\(\dfrac{d^2y}{dt^2}\)</span> 的值将是负的。</p>
 <p>加速一个质量 <span class="math">\(m\)</span> 需要持续施加力。加速一个物体所需的力与物体的质量成正比，同时也与加速度成正比。因此，我们可以写出力 <span class="math">\(f\)</span> 的表达式：</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 f &= ma;\\
 f &= m \frac{dv}{dt}; \\
 f &= m \frac{d^2y}{dt^2}.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>质量与速度的乘积称为动量，用符号表示为 <span class="math">\(mv\)</span>。如果我们对动量对时间进行微分，我们会得到 <span class="math">\(\dfrac{d(mv)}{dt}\)</span>，这就是动量变化的速率。但由于 <span class="math">\(m\)</span> 是一个常量，可以将其写成 <span class="math">\(m \dfrac{dv}{dt}\)</span>，我们上面看到这与 <span class="math">\(f\)</span> 是一样的。换句话说，力可以表示为质量乘以加速度，也可以表示为动量变化的速率。</p>
 <p>再者，如果施加一个力来推动某物（对抗一个等大小的反向力），它就做了功；功的大小通过力与物体在力的方向上所移动的距离的乘积来衡量。所以，如果一个力 <span class="math">\(f\)</span> 推动物体在长度 <span class="math">\(y\)</span> 上移动，那么所做的功（我们可以称其为 <span class="math">\(w\)</span>）将是：</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 w = f × y;
-\]</div>
+\]</div></div>
 
 <p>这里我们假设力 <span class="math">\(f\)</span> 是恒定的。如果力在 <span class="math">\(y\)</span> 的不同部分变化，那么我们必须找到力在每个点的表达式。如果 <span class="math">\(f\)</span> 是沿着小段长度 <span class="math">\(dy\)</span> 的力，那么所做的功将是 <span class="math">\(f × dy\)</span>。但是由于 <span class="math">\(dy\)</span> 只是长度一点点，因此所做的功也只是一个微小的量。如果我们用 <span class="math">\(w\)</span> 表示功，那么一个功的微量将是 <span class="math">\(dw\)</span>；于是有：</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 dw = f × dy;
-\]</div>
+\]</div></div>
 
 <p>可以写成：</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 dw &= ma·dy; \\
 dw &= m \frac{d^2y}{dt^2}· dy; \\
 dw &= m \frac{dv}{dt}· dy.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>进一步地，我们可以转换这个表达式，写成：</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 \frac{dw}{dy} = f.
-\]</div>
+\]</div></div>
 
 <p>这给了我们力的第三种定义；即如果力用来产生某个方向上的位移，那么该方向上的力等于单位长度在该方向上做功的速率。在这个最后的句子中，速率显然不是按时间的意义来使用的，而是作为比例或比率的意思。</p>
 <p>艾萨克·牛顿是微积分方法的发明者之一（莱布尼茨也独立发明了微积分），他将所有变化的量视为流动的；而我们今天所称的微分系数，牛顿称之为流动的速率，或该量的流率（fluxion）。他没有使用 <span class="math">\(dy\)</span>、<span class="math">\(dx\)</span>、<span class="math">\(dt\)</span> 的符号（这些是莱布尼茨的贡献），而是使用了他自己的符号。如果 <span class="math">\(y\)</span> 是一个变化或“流动”的量，那么他表示其变化速率（或“流率”）的符号是 <span class="math">\(\dot{y}\)</span>。如果 <span class="math">\(x\)</span> 是变量，那么它的流率被称为 <span class="math">\(\dot{x}\)</span>。字母上方的点表示它已经被微分。然而，这个符号并没有告诉我们所微分的独立变量是什么。如果我们看到 <span class="math">\(\dfrac{dy}{dt}\)</span>，我们知道 <span class="math">\(y\)</span> 是对 <span class="math">\(t\)</span> 进行微分。但如果我们只看到 <span class="math">\(\dot{y}\)</span>，没有上下文的话，我们无法知道它是表示 <span class="math">\(\dfrac{dy}{dx}\)</span>，还是 <span class="math">\(\dfrac{dy}{dt}\)</span> 还是 <span class="math">\(\dfrac{dy}{dt}\)</span>，或者 <span class="math">\(\dfrac{dy}{dz}\)</span>，或其他什么变量。因此，这种流率符号比微分符号提供的信息要少，因此在使用上逐渐被淘汰了。但只要我们仅用于时间作为独立变量的情况，它的简洁性有一个优势。在这种情况下,<span class="math">\(\dot{y}\)</span> 将表示 <span class="math">\(\dfrac{dy}{dt}\)</span>，而 <span class="math">\(\dot{u}\)</span> 将表示 <span class="math">\(\dfrac{du}{dt}\)</span>；<span class="math">\(\ddot{x}\)</span> 将表示 <span class="math">\(\dfrac{d^2x}{dt^2}\)</span>。</p>
@@ -283,74 +283,74 @@ dw &= m \frac{dv}{dt}· dy.
 </table><hr />
 <p><strong>例子</strong></p>
 <p>(1) 一个物体移动，其从某一点 <span class="math">\(O\)</span> 起的距离 <span class="math">\(x\)</span>（单位为米）由关系式 <span class="math">\(x = 0.2t^2 + 10.4\)</span> 给出，其中 <span class="math">\(t\)</span> 是自某一时刻以来的时间（单位为秒）。求该物体开始运动后 <span class="math">\(5\)</span> 秒时的速度和加速度，并求移动的距离为 <span class="math">\(100\)</span> 米时的相应值。同时，求其运动的前 <span class="math">\(10\)</span> 秒中的平均速度。(假设距离和向右的运动为正方向。）现在</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 x &= 0.2t^2 + 10.4 \\
 v &= \dot{x}  = \frac{dx}{dt} = 0.4t;
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>且</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 a = \ddot{x} = \frac{d^2x}{dt^2} = 0.4 = \text{常数}
-\]</div>
+\]</div></div>
 
 <p>当 <span class="math">\(t = 0\)</span> 时，<span class="math">\(x = 10.4\)</span>，<span class="math">\(v = 0\)</span>。该物体从点 <span class="math">\(O\)</span> 右侧 <span class="math">\(10.4\)</span> 米的位置开始运动；时间从物体开始运动的时刻开始计算。</p>
 <p>当 <span class="math">\(t = 5\)</span> 时，<span class="math">\(v = 0.4 × 5 = 2 \text{米/秒}\)</span>；<span class="math">\(a = 0.4 \text{米/秒}^2\)</span>。</p>
 <p>当 <span class="math">\(x = 100\)</span> 时，<span class="math">\(100 = 0.2t^2 + 10.4\)</span>，或 <span class="math">\(t^2 = 448\)</span>，于是 <span class="math">\(t = 21.17\)</span> 秒；<span class="math">\(v = 0.4 × 21.17 = 8.468\)</span> 米/秒</p>
 <p>当 <span class="math">\(t = 10\)</span>,</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 \text{行驶的距离} &= 0.2 × 10^2 + 10.4 - 10.4 = 20 \text{m} \\
 \text{平均速度} &= \tfrac{20}{10} = 2 \text{米/秒}
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>（平均速度与 <span class="math">\(t = 5\)</span> 时的速度相同；因为加速度是常数，速度从 <span class="math">\(t = 0\)</span> 时的零均匀变化到 <span class="math">\(t = 10\)</span> 时的 <span class="math">\(4 \text{米/秒}\)</span>。 )</p>
 <p>(2) 在上述问题中，假设</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 x &= 0.2t^2 + 3t + 10.4.\\
 v &= \dot{x} = \dfrac{dx}{dt} = 0.4t + 3; \\
 a &= \ddot{x} = \frac{d^2x}{dt^2} = 0.4 = \text{常数}.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>当 <span class="math">\(t = 0\)</span> 时，<span class="math">\(x = 10.4\)</span> 且 <span class="math">\(v = 3\)</span> 米/秒，时间从物体经过距点 <span class="math">\(O\)</span>10.4米处的那一刻开始计时，此时速度已为 <span class="math">\(3\)</span> 米/秒。要找到它开始移动以来经过的时间，让 <span class="math">\(v = 0\)</span>；则 <span class="math">\(0.4t + 3 = 0\)</span>,<span class="math">\(t= -\frac{3}{.4} = -7.5\)</span> 秒。物体在计时开始之前的 <span class="math">\(7.5\)</span> 秒开始移动；此后 <span class="math">\(5\)</span> 秒即 <span class="math">\(t = -2.5\)</span>，且 <span class="math">\(v = 0.4 × -2.5 + 3 = 2\)</span> 米/秒。</p>
 <p>当 <span class="math">\(x = 100\)</span> 米时，</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 100 = 0.2t^2 + 3t + 10.4;
-\]</div>
+\]</div></div>
 
 <p>即</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 t^2 + 15t - 448 = 0;
-\]</div>
+\]</div></div>
 
 <p>所以 <span class="math">\(t = 14.95\)</span> 秒，<span class="math">\(v = 0.4 × 14.95 + 3 = 8.98\)</span> 米/秒。</p>
 <p>要找到运动的前 <span class="math">\(10\)</span> 秒内行驶的距离，需要知道物体起始时距点 <span class="math">\(O\)</span> 的距离。</p>
 <p>当 <span class="math">\(t = -7.5\)</span> 时，</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 x = 0.2 × (-7.5)^2 - 3 × 7.5 + 10.4 = -0.85 \text{米}
-\]</div>
+\]</div></div>
 
 <p>即距点 <span class="math">\(O\)</span> 左侧 <span class="math">\(0.85\)</span> 米。</p>
 <p>现在，当 <span class="math">\(t = 2.5\)</span> 时，</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 x = 0.2 × 2.5^2 + 3 × 2.5 + 10.4 = 19.15.
-\]</div>
+\]</div></div>
 
 <p>所以，在 <span class="math">\(10\)</span> 秒内，行驶的距离为 <span class="math">\(19.15 + 0.85 = 20\)</span> 米，且</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 \text{ } = \tfrac{20}{10} = 2 \text{ 米/秒}
-\]</div>
+\]</div></div>
 
 <p>(3) 考虑一个类似的问题，其中距离由 <span class="math">\(x = 0.2t^2 - 3t + 10.4\)</span> 给出。则 <span class="math">\(v = 0.4t - 3\)</span>，<span class="math">\(a = 0.4\)</span> 是<em>常数</em>。当 <span class="math">\(t = 0\)</span> 时，<span class="math">\(x = 10.4\)</span> 且 <span class="math">\(v = -3\)</span>；因此物体的运动方向与之前的情况相反。然而，由于加速度是正的，我们可以看到，随着时间推移，这个速度将会减少，直到 <span class="math">\(v = 0\)</span> 或 <span class="math">\(0.4t - 3 = 0\)</span>，即 <span class="math">\(t = 7.5\)</span> 秒。之后，速度变为正数；在物体开始运动后 <span class="math">\(5\)</span> 秒，即 <span class="math">\(t = 12.5\)</span> 时，</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 v = 0.4 × 12.5 - 3 = 2 \text{ 米/秒}.
-\]</div>
+\]</div></div>
 
 <p>当 <span class="math">\(x = 100\)</span> 时，<span class="math">\(100 = 0.2t^2 - 3t + 10.4\)</span>，即 <span class="math">\(t^2 - 15t - 448 = 0\)</span>，所以 <span class="math">\(t = 29.95, v = 0.4 × 29.95 - 3 = 8.98\)</span> 米/秒。</p>
 <p>当 <span class="math">\(v = 0\)</span> 时，<span class="math">\(x = 0.2 × 7.5^2 - 3 × 7.5 + 10.4 = -0.85\)</span>，表明物体在停下之前移回到点 <span class="math">\(O\)</span> 以外 <span class="math">\(0.85\)</span> 米的位置。10秒后</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 t &= 17.5 \\
 x &= 0.2 × 17.5^2 - 3 × 17.5 + 10.4 \\
  &= 19.15.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>行驶的距离 = .85 + 19.15 = 20.0，平均速度为 2米/秒。</p>
 <p>(4) 考虑另一个类似的问题，<span class="math">\(x = 0.2t^3 - 3t^2 + 10.4\)</span>，<span class="math">\(v = 0.6t^2 - 6t\)</span>，<span class="math">\(a = 1.2t - 6\)</span>。加速度不再是常数。</p>
@@ -361,39 +361,39 @@ x &= 0.2 × 17.5^2 - 3 × 17.5 + 10.4 \\
 <p>可以看出，运动的条件总是可以从时间-距离方程及其一阶和二阶导数中立即确定。在最后两个例子中，由于速度不再均匀增加，加速度不再是常数，因此在前 <span class="math">\(10\)</span> 秒中的平均速度和开始运动后 <span class="math">\(5\)</span> 秒的速度将不再相同。</p>
 <p>(6) 车轮旋转的角度 <span class="math">\(\theta\)</span>(弧度)由 <span class="math">\(\theta = 3 + 2t - 0.1t^3\)</span> 给出，其中 <span class="math">\(t\)</span> 是从某一时刻开始的时间；求出在(a) <span class="math">\(1\)</span> 秒后和(b) 车轮完成一周后的角速度 <span class="math">\(\omega\)</span> 和角加速度 <span class="math">\(\alpha\)</span>。求车轮何时静止，并在该时刻之前完成了多少周。</p>
 <p>角加速度</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 \omega &=  \dot{\theta} = \dfrac{d\theta}{dt} = 2 - 0.3t^2,\\
 \alpha &= \ddot{\theta} = \dfrac{d^2\theta}{dt^2} = -0.6t.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>当 <span class="math">\(t = 0\)</span> 时，<span class="math">\(\theta = 3\)</span>；<span class="math">\(\omega = 2\)</span> 弧度/秒；<span class="math">\(\alpha = 0\)</span>。</p>
 <p>当 <span class="math">\(t = 1\)</span> 时，<span class="math">\(\omega = 2 - 0.3 = 1.7\)</span> 弧度/秒；<span class="math">\(\alpha = -0.6\)</span> 弧度/秒<sup>2</sup>。</p>
 <p>这是一种减速；车轮正在减速。</p>
 <p>在完成一周后，</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 \theta &= 2\pi = 6.28; \\
 6.28 &= 3 + 2t - 0.1t^3.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>通过绘制 <span class="math">\(\theta = 3 + 2t - 0.1t^3\)</span> 的图，我们可以得到 <span class="math">\(\theta = 6.28\)</span> 时 <span class="math">\(t\)</span> 的值，这些值是 <span class="math">\(2.11\)</span> 和 <span class="math">\(3.03\)</span>(还有一个负值)。</p>
 <p>当 <span class="math">\(t = 2.11\)</span> 时，</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 \theta &= 6.28; \\
 \omega &= 2 - 1.34 = 0.66 \text{ 弧度/秒}; \\
 \alpha &= -1.27 \text{ rad./sec}^2.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>当 <span class="math">\(t = 3.03\)</span>,</p>
-<div class="math">\begin{align*}
+<div class="math"><div class="math">\begin{align*}
 \theta &= 6.28; \\
 \omega &= 2 - 2.754 = -0.754 \text{ 弧度/秒}; \\
 \alpha &= -1.82 \text{ rad./sec}^2.
-\end{align*}</div>
+\end{align*}</div></div>
 
 <p>速度发生了反转。显然，车轮在这两个时刻之间处于静止状态；当 <span class="math">\(\omega = 0\)</span> 时，即 <span class="math">\(0 = 2 - 0.3t^3\)</span>，或 <span class="math">\(t = 2.58\)</span> 秒时，车轮已完成</p>
-<div class="math">\[
+<div class="math"><div class="math">\[
 \frac{\theta}{2\pi} = \frac{3 + 2 × 2.58 - 0.1 × 2.58^3}{6.28} = 1.025 \text{ 转}.
-\]</div>
+\]</div></div>
 
 <hr />
 </div>
