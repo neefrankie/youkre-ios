@@ -92,38 +92,14 @@ struct BottomBar: View {
 }
  
 
-#if DEBUG
-struct PreviewBottomBar: View {
-    @EnvironmentObject var themeManager: ThemeManager
-    @State private var isBottomBarVisible = false
-    
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            Color.red // Your background or main content
-                .ignoresSafeArea()
-                .onTapGesture {
-                    withAnimation {
-                        isBottomBarVisible.toggle()
-                    }
-                }
-
-            if isBottomBarVisible {
-                BottomBar(
-                    themeManager: themeManager,
-                    hasPreviousChapter: true,
-                    hasNextChapter: true,
-                ) { direction in
-                    print("Clicked \(direction)")
-                }
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
-        }
-    }
-}
-#endif
-
 #Preview {
-    PreviewWrapperView {
-        PreviewBottomBar()
+    
+    BottomBar(
+        themeManager: ThemeManager.shared,
+        hasPreviousChapter: true,
+        hasNextChapter: true,
+    ) { direction in
+        print("Clicked \(direction)")
     }
+    .transition(.move(edge: .bottom).combined(with: .opacity))
 }
