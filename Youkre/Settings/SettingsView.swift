@@ -80,8 +80,11 @@ struct SettingsView: View {
     }
 }
 
+
 #Preview {
-    PreviewWrapperView {
-        SettingsView()
-    }
+    var themeManager = ThemeManager.shared
+    
+    SettingsView()
+        .environmentObject(themeManager)
+        .preferredColorScheme(themeManager.preferredColorScheme)
 }
