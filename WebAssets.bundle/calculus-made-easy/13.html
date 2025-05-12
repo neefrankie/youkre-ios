@@ -204,211 +204,211 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><strong>情况 I</strong></p>
 <p>如果对多个分母中只包含 <span class="math">\(x\)</span> 的一次项（没有 <span class="math">\(x^2\)</span>、<span class="math">\(x^3\)</span> 或更高次项）的分式进行相加运算，我们总是会发现，最终分式的分母是组成该分式的各分母的乘积。因此，通过对最终分式的分母进行因式分解，我们可以找到组成该分式的部分分式的所有分母。</p>
 <p>假设我们希望将 <span class="math">\(\dfrac{3x+1}{x^2-1}\)</span> 分解为已知的 <span class="math">\(\dfrac{1}{x+1}\)</span> 和 <span class="math">\(\dfrac{2}{x-1}\)</span> 的形式。如果不知道这些成分是什么，可以通过如下方式准备：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{3x+1}{x^2-1} = \frac{3x+1}{(x+1)(x-1)} = \frac{}{x+1} + \frac{}{x-1}
-\]</div></div>
+\]</div>
 
 <p>先将分母写出，并在分子位置留空，直到知道应该填入什么为止。我们总是假设部分分式之间的符号是加号，因为如果符号是减号，把相应的分子当作负数即可。由于部分分式是真分式，其分子不会包含 <span class="math">\(x\)</span>，只是常数，我们可以用 <span class="math">\(A\)</span>，<span class="math">\(B\)</span>，<span class="math">\(C\)</span> 等符号表示它们。因此，在此例中，我们可以写为：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{3x+1}{x^2-1} = \frac{A}{x+1} + \frac{B}{x-1}.
-\]</div></div>
+\]</div>
 
 <p>现在，如果将这两个部分分式相加，会得到：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \dfrac{A(x-1)+B(x+1)}{(x+1)(x-1)}
-\]</div></div>
+\]</div>
 
 <p>这必然等于</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \dfrac{3x+1}{(x+1)(x-1)}
-\]</div></div>
+\]</div>
 
 <p>由于这两个表达式的分母相同，其分子必须相等，因此：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 3x + 1 = A(x-1) + B(x + 1).
-\]</div></div>
+\]</div>
 
 <p>这是一个含两个未知数的方程，似乎我们需要另一个方程才能解出 <span class="math">\(A\)</span> 和 <span class="math">\(B\)</span>。然而，还有一种更简单的方法来解决这个问题。这个方程对于 <span class="math">\(x\)</span> 的所有取值都成立；因此，它也必须对使 <span class="math">\(x-1\)</span> 和 <span class="math">\(x+1\)</span> 变为零的 <span class="math">\(x\)</span> 值成立，即 <span class="math">\(x=1\)</span> 和 <span class="math">\(x=-1\)</span>。当 <span class="math">\(x=1\)</span> 时： <span class="math">\(4 = (A × 0)+(B × 2)\)</span>，因此 <span class="math">\(B=2\)</span>。当 <span class="math">\(x=-1\)</span> 时：<span class="math">\(-2 = (A × -2) + (B × 0)\)</span>，因此 <span class="math">\(A=1\)</span>。将部分分式的 <span class="math">\(A\)</span> 和 <span class="math">\(B\)</span> 替换为这些值，得到： <span class="math">\(\dfrac{1}{x+1}\)</span> 和 <span class="math">\(\dfrac{2}{x-1}\)</span>，这就是所求的分解结果。</p>
 <p>再看一个例子，设有分式</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \dfrac{4x^2 + 2x - 14}{x^3 + 3x^2 - x - 3}
-\]</div></div>
+\]</div>
 
 <p>分母在 <span class="math">\(x=1\)</span> 时变为零，因此 <span class="math">\(x-1\)</span> 是其一个因式；显然，另一个因式是 <span class="math">\(x^2 + 4x + 3\)</span>。对其继续因式分解，得 <span class="math">\((x+1)(x+3)\)</span>。于是，分式可以写为：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{4x^2 + 2x - 14}{x^3 + 3x^2 - x - 3} = \frac{A}{x+1} + \frac{B}{x-1} + \frac{C}{x+3}
-\]</div></div>
+\]</div>
 
 <p>表示为三个部分分式。</p>
 <p>按照前述方法，展开并将等式两边分子相等：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 4x^2 + 2x - 14 = A(x-1)(x+3) + B(x+1)(x+3) + C(x+1)(x-1).
-\]</div></div>
+\]</div>
 
 <p>当 <span class="math">\(x=1\)</span> 时：</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 -8 &= (A × 0) + B(2 × 4) + (C × 0); \\
 B &= -1.
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>当 <span class="math">\(x=-1\)</span> 时：</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 -12 &= A(-2 × 2) + (B × 0) + (C × 0); \\
 A &= 3.
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>当 <span class="math">\(x=-3\)</span> 时：</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 16 &= (A × 0) + (B × 0) + C(-2 × -4); \\
 C &= 2.
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>部分分式分解为：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{3}{x+1} - \frac{1}{x-1} + \frac{2}{x+3}
-\]</div></div>
+\]</div>
 
 <p>这比原来的复杂表达式更容易对 <span class="math">\(x\)</span> 求导。</p>
 <p><strong>情况 II</strong></p>
 <p>如果分母的一些因式包含 <span class="math">\(x^2\)</span> 项，且无法方便地进一步因式分解，则对应的分子可能包含一个 <span class="math">\(x\)</span> 项以及一个常数项；因此需要将未知分子表示为 <span class="math">\(Ax + B\)</span>，而不是用符号 <span class="math">\(A\)</span>，其余计算过程与之前一致。例如，考虑以下分式：</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \frac{-x^2 - 3}{(x^2+1)(x+1)}. \\
 \frac{-x^2 - 3}{(x^2+1)(x+1)} &= \frac{Ax+B}{x^2+1} + \frac{C}{x+1};\\
 -x^2 - 3 &= (Ax + B)(x+1) + C(x^2+1).
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>令 <span class="math">\(x= -1\)</span>，得到 <span class="math">\(-4 = C × 2\)</span>，即 <span class="math">\(C = -2\)</span>；因此</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 -x^2 - 3 &= (Ax + B)(x + 1) - 2x^2 - 2; \\
 x^2 - 1 &= Ax(x+1) + B(x+1).
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>令 <span class="math">\(x = 0\)</span>，得到 <span class="math">\(-1 = B\)</span>，因此</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 x^2 - 1 &= Ax(x + 1) - x - 1; \\
 x^2 + x &= Ax(x+1); \\
 x+1 &= A(x+1)
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>所以 <span class="math">\(A=1\)</span>，分解后的部分分式为：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{x-1}{x^2+1} - \frac{2}{x+1}.
-\]</div></div>
+\]</div>
 
 <p>再看另一个例子：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{x^3-2}{(x^2+1)(x^2+2)}.
-\]</div></div>
+\]</div>
 
 <p>我们可以写为：</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \frac{x^3-2}{(x^2+1)(x^2+2)}
   &= \frac{Ax+B}{x^2+1} + \frac{Cx+D}{x^2+2}\\
   &= \frac{(Ax+B)(x^2+2)+(Cx+D)(x^2+1)}{(x^2+1)(x^2+2)}.
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>在这种情况下，确定 <span class="math">\(A\)</span>、<span class="math">\(B\)</span>、<span class="math">\(C\)</span>、<span class="math">\(D\)</span> 并不那么容易。可以按照以下方法简化：由于给定的分式与通过相加部分分式得到的分式是相等的，并且它们具有相同的分母，因此分子的形式也必须完全相同。在这种情况下，对于我们正在处理的此类代数表达式，相同次幂的 <span class="math">\(x\)</span> 的系数必须相等且符号相同。</p>
 <p>因此我们有：</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 x^3-2
   &= (Ax+B)(x^2+2) + (Cx+D)(x^2+1) \\
   &= (A+C)x^3 + (B+D)x^2 + (2A+C)x + 2B+D,
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>得到：<span class="math">\(1=A+C\)</span>；<span class="math">\(0=B+D\)</span>(左边表达式中的 <span class="math">\(x^2\)</span> 系数为零)；<span class="math">\(0=2A+C\)</span>; 和 <span class="math">\(-2=2B+D\)</span>。这里有四个方程式，很容易解得 <span class="math">\(A=-1\)</span>，<span class="math">\(B=-2\)</span>，<span class="math">\(C=2\)</span>，<span class="math">\(D=0\)</span>，分解的部分分式为</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \dfrac{2(x+1)}{x^2+2} - \dfrac{x+2}{x^2+1}
-\]</div></div>
+\]</div>
 
 <p>这种方法适用于所有情况；但当分母只包含 <span class="math">\(x\)</span> 的一次项时，前述方法通常更快速。</p>
 <p><strong>情况 III</strong></p>
 <p>如果分母的某些因式被提升到某次幂，则需要考虑可能存在以这些因式的不同次幂为分母的部分分式。例如，在分拆分式 <span class="math">\(\dfrac{3x^2-2x+1}{(x+1)^2(x-2)}\)</span> 时，必须考虑可能的分母包括 <span class="math">\(x+1\)</span>，<span class="math">\((x+1)^2\)</span> 和 <span class="math">\((x-2)\)</span>。</p>
 <p>此外，由于分母为 <span class="math">\((x+1)^2\)</span> 的分式的分子可能包含 <span class="math">\(x\)</span> 项，需写成 <span class="math">\(Ax+B\)</span> 的形式，因此：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{3x^2 - 2x + 1}{(x+1)^2(x-2)} = \frac{Ax+B}{(x+1)^2} + \frac{C}{x+1} + \frac{D}{x-2}.
-\]</div></div>
+\]</div>
 
 <p>如果在上述情况下尝试求解 <span class="math">\(A\)</span>、<span class="math">\(B\)</span>、<span class="math">\(C\)</span> 和 <span class="math">\(D\)</span>，我们会失败，因为未知数有四个，而仅有三个方程约束它们。然而：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{3x^2 - 2x + 1}{(x+1)^2(x-2)} = \frac{x-1}{(x+1)^2} + \frac{1}{x+1} + \frac{1}{x-2}.
-\]</div></div>
+\]</div>
 
 <p>如果写成：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{3x^2 - 2x + 1}{(x+1)^2(x-2)} = \frac{A}{(x+1)^2} + \frac{B}{x+1} + \frac{C}{x-2}
-\]</div></div>
+\]</div>
 
 <p>则有：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 3x^2 - 2x+1 = A(x-2) + B(x+1)(x-2) + C(x+1)^2
-\]</div></div>
+\]</div>
 
 <p>令 <span class="math">\(x=2\)</span>，得到 <span class="math">\(C=1\)</span>。用该值代替 <span class="math">\(C\)</span>，并整理、合并同类项后除以 <span class="math">\(x-2\)</span>，得到：<span class="math">\(-2x= A+B(x+1)\)</span>，令 <span class="math">\(x = -1\)</span>，得到 <span class="math">\(A = -2\)</span>。用该值代替 <span class="math">\(A\)</span>，进一步化简：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 2x = -2+B(x+1).
-\]</div></div>
+\]</div>
 
 <p>因此，<span class="math">\(B = 2\)</span>；部分分式为：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{2}{x+1} - \frac{2}{(x+1)^2} + \frac{1}{x-2}
-\]</div></div>
+\]</div>
 
 <p>而不是之前提到的分式 <span class="math">\(\dfrac{1}{x+1} + \dfrac{x-1}{(x+1)^2} + \dfrac{1}{x-2}\)</span>。这种差异的原因在于，<span class="math">\(\dfrac{x-1}{(x+1)^2}\)</span> 本身可以进一步分解为 <span class="math">\(\dfrac{1}{x+1} - \dfrac{2}{(x+1)^2}\)</span>，因此原分式实际上等价于：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{1}{x+1} + \frac{1}{x+1} - \frac{2}{(x+1)^2} + \frac{1}{x-2} = \frac{2}{x+1} - \frac{2}{(x+1)^2} + \frac{1}{x-2}
-\]</div></div>
+\]</div>
 
 <p>这与部分分式分解的最终结果一致。</p>
 <p>由此可见，只需在每个分子中考虑一个数值项，就足以得到最终的部分分式。</p>
 <p>然而，如果分母包含 <span class="math">\(x^2\)</span> 的幂因式，则对应的分子必须采用 <span class="math">\(Ax + B\)</span> 的形式。例如：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{3x-1}{(2x^2-1)^2(x+1)} = \frac{Ax+B}{(2x^2-1)^2} + \frac{Cx+D}{2x^2-1} + \frac{E}{x+1}
-\]</div></div>
+\]</div>
 
 <p>由此得：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 3x - 1 = (Ax + B)(x + 1) + (Cx + D)(x + 1)(2x^2 - 1) + E(2x^2 - 1)^2.
-\]</div></div>
+\]</div>
 
 <p>令 <span class="math">\(x = -1\)</span>，得到 <span class="math">\(E = -4\)</span>。用该值代替 <span class="math">\(E\)</span>，整理并合并同类项后除以 <span class="math">\(x + 1\)</span>，得到：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 16x^3 - 16x^2 + 3 = 2Cx^3 + 2Dx^2 + x(A - C) + (B - D).
-\]</div></div>
+\]</div>
 
 <p>比较系数，得到：<span class="math">\(2C = 16\)</span>，即 <span class="math">\(C = 8\)</span>；<span class="math">\(2D = -16\)</span>，即 <span class="math">\(D = -8\)</span>；<span class="math">\(A - C = 0\)</span> 即 <span class="math">\(A - 8 = 0\)</span>，<span class="math">\(A = 8\)</span>，最后 <span class="math">\(B - D = 3\)</span>，即 <span class="math">\(B = -5\)</span>。因此部分分式分解为：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{(8x - 5)}{(2x^2 - 1)^2} + \frac{8(x - 1)}{2x^2 - 1} - \frac{4}{x + 1}
-\]</div></div>
+\]</div>
 
 <p>验证结果是有用的。最简单的方法是将 <span class="math">\(x\)</span> 替换为一个具体值（例如 <span class="math">\(+1\)</span>），分别代入原表达式和分解后的部分分式。</p>
 <p>当分母仅包含单一因式的幂时，可以采用一种快速方法：</p>
 <p>以 <span class="math">\(\dfrac{4x + 1}{(x + 1)^3}\)</span> 为例，令 <span class="math">\(x + 1 = z\)</span>，则 <span class="math">\(x = z - 1\)</span>。</p>
 <p>替换后得到：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{4(z - 1) + 1}{z^3} = \frac{4z - 3}{z^3} = \frac{4}{z^2} - \frac{3}{z^3}
-\]</div></div>
+\]</div>
 
 <p>因此部分分式为：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{4}{(x + 1)^2} - \frac{3}{(x + 1)^3}
-\]</div></div>
+\]</div>
 
 <p>应用于微分。例如需要对 <span class="math">\(y = \dfrac{5-4x}{6x^2 + 7x - 3}\)</span> 求导：</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \frac{dy}{dx}
   &= -\frac{(6x^2+7x-3) × 4 + (5 - 4x)(12x + 7)}{(6x^2 + 7x - 3)^2}\\
   &=  \frac{24x^2 - 60x - 23}{(6x^2 + 7x - 3)^2}
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>如果将原表达式分解为：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{1}{3x-1} - \frac{2}{2x+3}
-\]</div></div>
+\]</div>
 
 <p>求导后得到：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{dy}{dx} = -\frac{3}{(3x-1)^2} + \frac{4}{(2x+3)^2}
-\]</div></div>
+\]</div>
 
 <p>这实际上与上述分式求导后结果相同，只是形式不同。很容易看出来，如果在求导后分解，会更加复杂。当处理类似表达式的积分时，我们会发现部分分式分解是一种非常有用的工具。</p>
 <hr />

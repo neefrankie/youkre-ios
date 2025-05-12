@@ -201,34 +201,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <div><p>让我们尝试重复多次对一个函数进行求导操作的效果。们从一个具体的例子开始。</p>
 <p>设 <span class="math">\(y = x^5\)</span>。</p>
 <p>第一次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 5x^4.
-\]</div></div>
+\]</div>
 
 <p>第二次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 5 × 4x^3 = 20x^3.
-\]</div></div>
+\]</div>
 
 <p>第三次求导,：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 5 × 4 × 3x^2 = 60x^2.
-\]</div></div>
+\]</div>
 
 <p>第四次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 5 × 4 × 3 × 2x = 120x.
-\]</div></div>
+\]</div>
 
 <p>第五次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 5 × 4 × 3 × 2 × 1 = 120.
-\]</div></div>
+\]</div>
 
 <p>第六次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 = 0.
-\]</div></div>
+\]</div>
 
 <p>有一种我们已经熟悉的记号，一些作者会使用它，因为非常方便。这个记号是使用一般符号 <span class="math">\(f(x)\)</span> 表示任意 <span class="math">\(x\)</span> 的函数。在这里符号 <span class="math">\(f( )\)</span> 表示“函数”，不需要说明具体是哪个函数。因此，表达式 <span class="math">\(y=f(x)\)</span> 仅仅说明 <span class="math">\(y\)</span> 是 <span class="math">\(x\)</span> 的一个函数，可能是 <span class="math">\(x^2\)</span> 或 <span class="math">\(ax^n\)</span>，或 <span class="math">\(\cos x\)</span>，或任何其他关于 <span class="math">\(x\)</span> 的复杂函数。</p>
 <p>对应的导数符号是 <span class="math">\(f'(x)\)</span>，它比 <span class="math">\(\dfrac{dy}{dx}\)</span> 更简洁。这被称为 <span class="math">\(x\)</span> 的“导函数”。</p>
@@ -236,75 +236,75 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>现在我们来进行推广。</p>
 <p>设 <span class="math">\(y = f(x) = x^n\)</span>。</p>
 <p>第一次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 f'(x) = nx^{n-1}.
-\]</div></div>
+\]</div>
 
 <p>第二次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 f''(x) = n(n-1)x^{n-2}.
-\]</div></div>
+\]</div>
 
 <p>第三次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 f'''(x) = n(n-1)(n-2)x^{n-3}.
-\]</div></div>
+\]</div>
 
 <p>第四次求导：</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 f''''(x) = n(n-1)(n-2)(n-3)x^{n-4}.
-\]</div></div>
+\]</div>
 
 <p>等等，以此类推。</p>
 <p>但是，这不是表示连续求导的唯一方法。</p>
 <p>如果原始函数是</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 y = f(x);
-\]</div></div>
+\]</div>
 
 <p>一次求导得到</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{dy}{dx} = f'(x);
-\]</div></div>
+\]</div>
 
 <p>二次求导得到</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{d\left(\dfrac{dy}{dx}\right)}{dx} = f''(x);
-\]</div></div>
+\]</div>
 
 <p>这更方便地写为</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \dfrac{d^2y}{(dx)^2}
-\]</div></div>
+\]</div>
 
 <p>或者更常见的是写成</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \dfrac{d^2y}{dx^2}
-\]</div></div>
+\]</div>
 
 <p>类似地，我们可以写出三次求导的结果</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \dfrac{d^3y}{dx^3} = f'''(x)
-\]</div></div>
+\]</div>
 
 <hr />
 <p><strong>例子</strong></p>
 <p>现在让我们尝试 <span class="math">\(y = f(x) = 7x^4 + 3.5x^3 - \frac{1}{2}x^2 + x - 2\)</span>。</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \frac{dy}{dx}     &= f'(x) = 28x^3 + 10.5x^2 - x + 1, \\
 \frac{d^2y}{dx^2} &= f''(x) = 84x^2 + 21x - 1,        \\
 \frac{d^3y}{dx^3} &= f'''(x) = 168x + 21,             \\
 \frac{d^4y}{dx^4} &= f''''(x) = 168,                  \\
 \frac{d^5y}{dx^5} &= f'''''(x) = 0.
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>以类似的方式，如果 <span class="math">\(y = \phi(x) = 3x(x^2 - 4)\)</span>,</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \phi'(x)    &= \frac{dy}{dx} = 3\bigl[x × 2x + (x^2 - 4) × 1\bigr] = 3(3x^2 - 4), \\
 \phi''(x)   &= \frac{d^2y}{dx^2} = 3 × 6x = 18x, \\
 \phi'''(x)  &= \frac{d^3y}{dx^3} = 18, \\
 \phi''''(x) &= \frac{d^4y}{dx^4} = 0.
-\end{align*}</div></div>
+\end{align*}</div>
 
 <hr />
 </div>

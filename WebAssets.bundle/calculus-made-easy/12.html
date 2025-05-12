@@ -214,69 +214,69 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>现在回到上一章的例子，用这种方法验证在特定情况下的结论是最大值还是最小值。你会在下面找到一些完整的例子。</p>
 <hr />
 <p>(1) 求以下函数的最大值或最小值，</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \text{(a)}\quad y &= 4x^2-9x-6; \\
 \text{(b)}\quad y &= 6 + 9x-4x^2; \\
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>并判断其为最大值还是最小值。</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \dfrac{dy}{dx}
   &= 8x-9=0;\quad x=1\tfrac{1}{8}, y = -11.065.\\
 \dfrac{d^2y}{dx^2}
   &= 8
-\end{align*}</div></div>
+\end{align*}</div>
 
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 {\dfrac{dy}{dx}}
   &= 9-8x=0;\quad x = 1\tfrac{1}{8}; y = +11.065.\\
 \dfrac{d^2y}{dx^2}
   &= -8;
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>(2) 求函数 <span class="math">\(y = x^3-3x+16\)</span> 的极大值和极小值。</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \dfrac{dy}{dx}
   &= 3x^2 - 3 = 0;\quad x^2 = 1; x = ±1.\\
 \dfrac{d^2y}{dx^2}
   &= 6x;
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p><span class="math">\(x = 1\)</span> 时为正值，因此，<span class="math">\(x=1\)</span> 对应于最小值 <span class="math">\(y=14\)</span>。<span class="math">\(x=-1\)</span> 时为负值，因此 <span class="math">\(x=-1\)</span> 对应于最大值 <span class="math">\(y=+18\)</span>。</p>
 <p>(3) 求函数 <span class="math">\(y=\dfrac{x-1}{x^2+2}\)</span> 的极大值和极小值。</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \frac{dy}{dx} &= \frac{(x^2+2) × 1 - (x-1) × 2x}{(x^2+2)^2} \\
   &= \frac{2x - x^2 + 2}{(x^2 + 2)^2} \\
   &= 0;
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>即 <span class="math">\(x^2 - 2x - 2 = 0\)</span>，其解为 <span class="math">\(x =+2.73\)</span> 和 <span class="math">\(x=-0.73\)</span>。</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 \dfrac{d^2y}{dx^2}
   &= - \frac{(x^2 + 2)^2 × (2x-2) - (x^2 - 2x - 2)(4x^3 + 8x)}{(x^2 + 2)^4} \\
   &= - \frac{2x^5 - 6x^4 - 8x^3 - 8x^2 - 24x + 8}{(x^2 + 2)^4}.
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>分母始终为正，仅需确定分子的符号。</p>
 <p>当 <span class="math">\(x = 2.73\)</span>，分子为负，对应最大值 <span class="math">\(y = 0.183\)</span>。</p>
 <p>当 <span class="math">\(x=-0.73\)</span> 分子为正，对应最小值 <span class="math">\(y=-0.683\)</span> 。</p>
 <p>(4) 某工厂产品的产品处理成本 <span class="math">\(C\)</span> 随周产量 <span class="math">\(P\)</span> 的关系为 <span class="math">\(C = aP + \dfrac{b}{c+P} + d\)</span>，其中 <span class="math">\(a\)</span>、<span class="math">\(b\)</span>、<span class="math">\(c\)</span>、<span class="math">\(d\)</span> 均为正常数。求成本最小时的产量。</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \dfrac{dC}{dP} = a - \frac{b}{(c+P)^2} = 0
-\]</div></div>
+\]</div>
 
 <p>最高或最低。</p>
 <p>因此 <span class="math">\(a = \dfrac{b}{(c+P)^2}\)</span>，<span class="math">\(P = ±\sqrt{\dfrac{b}{a}} - c\)</span>。</p>
 <p>由于产量不能为负，故 <span class="math">\(P=+\sqrt{\dfrac{b}{a}} - c\)</span> 。</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{d^2C}{dP^2} = + \frac{b(2c + 2P)}{(c + P)^4},
-\]</div></div>
+\]</div>
 
 <p>对所有 <span class="math">\(P\)</span> 为正，因此 <span class="math">\(P = +\sqrt{\dfrac{b}{a}} - c\)</span> 对应于最小值。</p>
 <p>(5) 一栋建筑使用 <span class="math">\(N\)</span> 盏灯具照明的总成本为每小时 <span class="math">\(C\)</span>。</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 C = N\left(\frac{C_l}{t} + \frac{EPC_e}{1000}\right),
-\]</div></div>
+\]</div>
 
 <p>其中</p>
 <ul>
@@ -289,28 +289,28 @@ C = N\left(\frac{C_l}{t} + \frac{EPC_e}{1000}\right),
 <p>灯泡的平均寿命 <span class="math">\(t\)</span> 与其商用效率 <span class="math">\(E\)</span> 的关系为 <span class="math">\(t = mE^n\)</span>，其中 <span class="math">\(m\)</span> 和 <span class="math">\(n\)</span> 为灯泡的特性常数。</p>
 <p>求使照明总成本最低的商用效率。</p>
 <p>我们有</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 C &= N\left(\frac{C_l}{m} E^{-n} + \frac{PC_e}{1000} E\right), \\
 \dfrac{dC}{dE}
   &= \frac{PC_e}{1000} - \frac{nC_l}{m} E^{-(n+1)} = 0
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>时取最大值或最小值。</p>
-<div class="math"><div class="math">\begin{align*}
+<div class="math">\begin{align*}
 E^{n+1} &= \frac{1000 × nC_l}{mPC_e} \\
 E &= \sqrt[n+1]{\frac{1000 × nC_l}{mPC_e}}.
-\end{align*}</div></div>
+\end{align*}</div>
 
 <p>显然，这是最小值，因为</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 \frac{d^2C}{dE^2} = (n + 1) \frac{nC_l}{m} E^{-(n+2)},
-\]</div></div>
+\]</div>
 
 <p>对正值 <span class="math">\(E\)</span> 为正。</p>
 <p>对于一种 <span class="math">\(16\)</span> 烛光功率灯，<span class="math">\(C_l= 17\)</span>，<span class="math">\(C_e=5\)</span>，<span class="math">\(m=10\)</span>，<span class="math">\(n=3.6\)</span>。</p>
-<div class="math"><div class="math">\[
+<div class="math">\[
 E = \sqrt[4.6]{\frac{1000 × 3.6 × 17}{10 × 16 × 5}} = 2.6\text{ 瓦/每盏功率}.
-\]</div></div>
+\]</div>
 
 <hr />
 </div>
