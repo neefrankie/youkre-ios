@@ -5,9 +5,10 @@
 //  Created by Weiguo Ni on 2025/4/15.
 //
 
+#if DEBUG
+
 import SwiftUI
 
-#if DEBUG
 struct PreviewWrapperView<Content: View>: View {
     @StateObject private var themeManager = ThemeManager.shared
     let content: () -> Content
@@ -16,18 +17,6 @@ struct PreviewWrapperView<Content: View>: View {
         content()
             .environmentObject(themeManager)
             .preferredColorScheme(themeManager.preferredColorScheme)
-    }
-}
-
-#Preview {
-    PreviewWrapperView {
-        HomeView()
-    }
-}
-
-#Preview {
-    PreviewWrapperView {
-        SettingsView()
     }
 }
 
@@ -62,6 +51,18 @@ struct PreviewBottomBar: View {
 #Preview {
     PreviewWrapperView {
         PreviewBottomBar()
+    }
+}
+
+#Preview {
+    PreviewWrapperView {
+        HomeView()
+    }
+}
+
+#Preview {
+    PreviewWrapperView {
+        SettingsView()
     }
 }
 
