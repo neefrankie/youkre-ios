@@ -309,6 +309,7 @@ struct ChapterView: View {
     }
 }
 
+
 #Preview {
     let toc = [
         TocEntry(
@@ -334,14 +335,12 @@ struct ChapterView: View {
         )
     ]
     
-    PreviewWrapperView {
-        ChapterView(
-            params: ChapterParams(
-                book: DataStore.bookList[0],
-                toc: toc,
-                currentIndex: 1,
-                currentEntry: toc[1]
-            )
-        )
-    }
+    var themeManager = ThemeManager.shared
+    
+    ChapterView(params: ChapterParams(
+        book: DataStore.bookList[0],
+        toc: toc,
+        currentIndex: 1,
+        currentEntry: toc[1]
+    ))
 }
