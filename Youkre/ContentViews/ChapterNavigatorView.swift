@@ -84,19 +84,14 @@ struct ChapterNavigatorView: View {
 }
 
 
-#Preview {
-    VStack {
-        ThemePicker(themeManager: ThemeManager.shared)
-            .pickerStyle(.segmented)
-        
-        ChapterNavigatorView(
-            hasPrevious: false,
-            hasNext: true,
-            onChapterNavigate: { direction in
-                print(direction)
-            }
-        )
-    }
+#Preview {    
+    ChapterNavigatorView(
+        hasPrevious: false,
+        hasNext: true,
+        onChapterNavigate: { direction in
+            print(direction)
+        }
+    )
     .background(.ultraThinMaterial)
     .preferredColorScheme(.light)
 }
