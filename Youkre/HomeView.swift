@@ -33,8 +33,11 @@ struct HomeView: View {
     }
 }
 
+
 #Preview {
-    PreviewWrapperView {
-        HomeView()
-    }
+    var themeManager = ThemeManager.shared
+    
+    HomeView()
+        .environmentObject(themeManager)
+        .preferredColorScheme(themeManager.preferredColorScheme)
 }
