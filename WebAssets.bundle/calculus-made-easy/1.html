@@ -33,29 +33,9 @@ body {
     word-wrap: break-word;
     overflow-x: hidden; /* Prevent horizontal scrolling of the whole page */
 }
-h1, h2, h3, h4 {
-    text-align: center;
-    margin-bottom: 1em;
-}
-figure img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-div.math {
-    overflow-x: auto;
-    max-width: 100%;
-    white-space: nowrap; /* Prevent breaking long formulas */
-}
 a {
     color: var(--color-teal);
     text-decoration: none;
-}
-.note {
-    border: 1px solid var(--color-teal);
-    border-radius: 0.375rem;
-    padding: 0.5em;
 }
 .bg-emerald {
     background-color: var(--color-emerald);
@@ -75,6 +55,35 @@ a {
     transform: translate(0, -10%);
     border-radius: 6px;
 }
+html[data-bs-theme="dark"] #moon {
+    vertical-align: middle;
+    display: none;
+}
+html:not([data-bs-theme="dark"]) #sun {
+    display: none;
+}</style>
+    
+    <style>
+    h1, h2, h3, h4 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+div.math {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap; /* Prevent breaking long formulas */
+}
+.note {
+    border: 1px solid var(--color-teal);
+    border-radius: 0.375rem;
+    padding: 0.5em;
+}
 .formula-section {
     display: grid;
     grid-template-columns: 1fr; /* 在小屏幕上变为单列 */
@@ -93,14 +102,7 @@ a {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-html[data-bs-theme="dark"] #moon {
-    vertical-align: middle;
-    display: none;
-}
-html:not([data-bs-theme="dark"]) #sun {
-    display: none;
-}</style>
-    <style>pre { line-height: 125%; }
+    pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
 td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
@@ -184,7 +186,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .vg { color: #00CDCD } /* Name.Variable.Global */
 .highlight .vi { color: #00CDCD } /* Name.Variable.Instance */
 .highlight .vm { color: #00CDCD } /* Name.Variable.Magic */
-.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */</style>
+.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */
+    </style>
+    
     
 </head>
 <body id="top">
@@ -198,7 +202,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="row pt-3 justify-content-center">
     <article class="col-12 col-md-8">
         <h2 class="text-center"><span class="pe-2">第 1 章</span><span>摆脱恐惧</span></h2>
-        <div><p>微积分一开始就让人恐惧，以至于大多数中学读到最后一年的学生，甚至都不敢尝试去学习一下。其实用通俗易懂的话简单地解释微积分中使用的两个主要符号的意义，就能一次性消除这种恐惧。</p>
+        <div><p>很多人在初次接触微积分时留下了可怕的阴影，甚至吓得再也不敢尝试去学习一下。其实用通俗易懂的话解释一下微积分中使用的两个主要符号的意义，就能一次性消除这种恐惧。</p>
 <p>这两个可怕的符号是：</p>
 <p>(1) <span class="math">\(d\)</span> 仅仅表示“一点点”。</p>
 <p>因此，<span class="math">\(dx\)</span> 指的是 <span class="math">\(x\)</span> 的一点点；<span class="math">\(du\)</span> 表示 <span class="math">\(u\)</span> 的一点点。普通数学家认为，说“一个元素”(an element of)比“一点点”更礼貌。怎么称呼都可以，不过你会发现这些小块（或元素）可以被认为是无限小的。</p>
