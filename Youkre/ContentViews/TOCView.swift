@@ -24,15 +24,7 @@ class TOCViewModel: ObservableObject {
         case .success(let decodedToc):
             await MainActor.run {
                 self.tocItems = Array(decodedToc.items[0...4])
-                self.tocItems?.append(
-                    TocEntry(
-                        id: "",
-                        slug: "",
-                        text: "未完待续...",
-                        title: "",
-                        subtitle: ""
-                    )
-                )
+                self.tocItems?.append(TocEntry.continued)
                 self.isLoading = false
             }
         case .failure(let error):
@@ -80,7 +72,6 @@ struct TOCView: View {
                             )
                         }
                     }
-                    
                 }
                 .navigationDestination(
                     for: ChapterParams.self
