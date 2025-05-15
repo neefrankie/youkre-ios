@@ -33,6 +33,14 @@ struct TocEntry: Identifiable, Codable, Hashable {
     let text: String
     let title: String
     let subtitle: String
+    
+    static var continued = TocEntry(
+        id: "to-be-continued",
+        slug: "",
+        text: "未完待续...",
+        title: "",
+        subtitle: ""
+    )
 }
 
 struct ChapterParams: Hashable {
@@ -49,8 +57,11 @@ struct ChapterParams: Hashable {
         if toc.isEmpty {
             return false
         }
-        
-        return currentIndex >= 0 && currentIndex < toc.count-1
+        var lastIdx = toc.count - 1
+        if toc.last == TocEntry.continued {
+            lastIdx = lastIdx - 1
+        }
+        return currentIndex >= 0 && currentIndex < lastIdx
     }
     
     var hasPrevious: Bool {
