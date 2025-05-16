@@ -417,7 +417,6 @@
 				DEVELOPMENT_TEAM = T3F334GPBV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Youkre/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "优克";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
@@ -453,7 +452,6 @@
 				DEVELOPMENT_TEAM = T3F334GPBV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Youkre/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "优克";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
