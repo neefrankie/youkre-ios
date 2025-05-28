@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D74FD1452D81B3A4004C6C8E /* WebAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D74FD1442D81B3A4004C6C8E /* WebAssets.bundle */; };
+		D7775E532DE70C2900E02804 /* LaTeXSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D7775E522DE70C2900E02804 /* LaTeXSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7775E532DE70C2900E02804 /* LaTeXSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +128,7 @@
 			);
 			name = Youkre;
 			packageProductDependencies = (
+				D7775E522DE70C2900E02804 /* LaTeXSwiftUI */,
 			);
 			productName = Youkre;
 			productReference = D7F8B1E32D7C8CB30096AB80 /* Youkre.app */;
@@ -210,6 +213,7 @@
 			mainGroup = D7F8B1DA2D7C8CB30096AB80;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				D7775E4E2DE70B3500E02804 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D7F8B1E42D7C8CB30096AB80 /* Products */;
@@ -583,6 +587,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D7775E4E2DE70B3500E02804 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/colinc86/LaTeXSwiftUI";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D7775E522DE70C2900E02804 /* LaTeXSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7775E4E2DE70B3500E02804 /* XCRemoteSwiftPackageReference "LaTeXSwiftUI" */;
+			productName = LaTeXSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D7F8B1DB2D7C8CB30096AB80 /* Project object */;
 }
