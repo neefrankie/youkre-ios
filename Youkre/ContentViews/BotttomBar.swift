@@ -9,17 +9,11 @@ import SwiftUI
 
 struct BottomBar: View {
     @State private var isThemePickerVisible = false
-    @State private var isChapterVisible = false
     @ObservedObject var themeManager: ThemeManager
-    
-    var hasPreviousChapter: Bool
-    var hasNextChapter: Bool
-    
-    var onChapterNavigate: (_ direction: ChapterDirection) -> Void
-    var onPresentToc: (() -> Void)? = nil
-    
+        
     var body: some View {
         VStack {
+            // If theme toggle button is clicked, show the picker above the button
             if isThemePickerVisible {
                 ThemePicker(
                     themeManager: themeManager
@@ -29,50 +23,11 @@ struct BottomBar: View {
                 .pickerStyle(.segmented)
             }
             
-            if isChapterVisible {
-                ChapterNavigatorView(
-                    hasPrevious: hasPreviousChapter,
-                    hasNext: hasNextChapter,
-                    onChapterNavigate: onChapterNavigate
-                )
-                .padding(.top)
-            }
-            
             HStack {
-                if onPresentToc != nil {
-                    Button(action: {
-                        onPresentToc?()
-                    }) {
-                        Image(
-                            systemName: "list.bullet"
-                        )
-                        .padding()
-                    }
-                    .buttonStyle(.plain)
-                }
-                
                 
                 Spacer()
-                
-                // Chapter navigator toggler
-                if hasPreviousChapter || hasNextChapter {
-                    Button(action: {
-                        isThemePickerVisible = false
-                        isChapterVisible.toggle()
-                    }) {
-                        Image(
-                            systemName: "books.vertical"
-                        )
-                            .padding()
-                    }
-                    .buttonStyle(.plain)
-                    
-                    Spacer()
-                }
-                
                 // Theme toggler
                 Button(action: {
-                    isChapterVisible = false
                     isThemePickerVisible.toggle()
                 }) {
                     Image(
@@ -93,13 +48,12 @@ struct BottomBar: View {
  
 
 #Preview {
+    @Previewable @StateObject var themeManager = ThemeManager.shared
     
     BottomBar(
         themeManager: ThemeManager.shared,
-        hasPreviousChapter: true,
-        hasNextChapter: true,
-    ) { direction in
-        print("Clicked \(direction)")
-    }
+    )
     .transition(.move(edge: .bottom).combined(with: .opacity))
+    .environmentObject(themeManager)
+    .preferredColorScheme(themeManager.preferredColorScheme)
 }
