@@ -52,7 +52,6 @@ struct SegmentedButton: View {
 }
 
 struct ChapterNavigatorView: View {
-    @Environment(\.colorScheme) private var colorScheme
     var hasPrevious: Bool
     var hasNext: Bool
     
