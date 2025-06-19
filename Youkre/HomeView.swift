@@ -24,7 +24,7 @@ struct HomeView: View {
                 }
             }
             .navigationDestination(for: Book.self) { book in
-                TOCView(book: book)
+                TocView(book: book)
             }
             .navigationTitle(Config.appName)
             .navigationBarTitleDisplayMode(.inline)
@@ -35,7 +35,7 @@ struct HomeView: View {
 
 
 #Preview {
-    var themeManager = ThemeManager.shared
+    @Previewable @StateObject var themeManager = ThemeManager.shared
     
     HomeView()
         .environmentObject(themeManager)
