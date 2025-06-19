@@ -237,7 +237,7 @@ struct ChapterView: View {
         ZStack(alignment: .bottom) {
             LocalWebView(
                 bookSlug: params.book.slug,
-                fileName: params.currentEntry.slug,
+                fileName: params.current.slug,
                 themeManager: settings,
                 isLoading: $isLoading,
                 onTap: {
@@ -261,9 +261,6 @@ struct ChapterView: View {
             if isBottomBarVisible {
                 BottomBar(
                     themeManager: settings,
-                    hasPreviousChapter: params.hasPrevious,
-                    hasNextChapter: params.hasNext,
-                    onChapterNavigate: navigateChapter
                 )
                 .transition(
                     .move(edge: .bottom)
@@ -287,30 +284,13 @@ struct ChapterView: View {
         }
     }
     
-    func navigateChapter(direction: ChapterDirection) {
-        print("Chapter navigate: \(direction)")
-        switch direction {
-        case .previous:
-            if let prev = params.previousChapter() {
-                shouldReload = true
-                params = prev
-            }
-            
-        case .next:
-            if let nxt = params.nextChapter() {
-                shouldReload = true
-                params = nxt
-            }
-        }
-    }
-    
-    func presentToc() {
-        
-    }
+
 }
 
 
 #Preview {
+    @Previewable @StateObject var themeManager = ThemeManager.shared
+    
     let toc = [
         TocEntry(
             id: "ace1f71919520c90",
@@ -335,12 +315,10 @@ struct ChapterView: View {
         )
     ]
     
-    var themeManager = ThemeManager.shared
-    
     ChapterView(params: ChapterParams(
         book: DataStore.bookList[0],
-        toc: toc,
-        currentIndex: 1,
-        currentEntry: toc[1]
+        current: toc[1]
     ))
+    .environmentObject(themeManager)
+    .preferredColorScheme(themeManager.preferredColorScheme)
 }
