@@ -1,49 +1,70 @@
-# Xcode
+# Xcode project files (project.pbxproj should be committed, but user-specific parts shouldn't)
+*.xcworkspace
+!default.xcworkspace # 可选：如果你有固定的工作区配置
+
+# User-specific data and settings
+*.xcuserstate
+*.pbxuser
+*.mode1v3
+*.mode2v3
+xcuserdata/
+
+# Build products
 build/
 DerivedData/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata/
+Products/
+
+# Logs and misc
+*.log
+*.sqldb
+*.sym
+*.swp
+*~
+.#*
 
 # CocoaPods
 Pods/
 Podfile.lock
-
-# Swift Package Manager
-build/
-Packages/
-Package.pins
-Package.resolved
+!Podfile
 
 # Carthage
 Carthage/Build/
 Carthage/Checkouts/
 
+# Swift Package Manager
+.swiftpm/xcode-backup/
+
 # Fastlane
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
+fastlane/logs/
 
-# Miscellaneous
-*.xcworkspace
-*.hmap
-*.ipa
-*.dSYM.zip
-*.dSYM
+# xcresult bundles
+*.xcresult
 
-# macOS specific files
-DS_Store
+# Documentation & playgrounds
+*.playgroundbook
+*.playground
+Documentation/
 
-# Playgrounds
-timeline.xctimeline
-playground.xcworkspace
+# Simulator logs
+Library/Developer/CoreSimulator
 
-# Code Injection (Xcode plugin)
-iOSInjectionProject/
+# App Store Connect API keys (if any)
+private_keys/
+
+# Environment files (used for config, e.g. .env)
+.env*
+!.env.example
+
+# Other IDEs / editor files
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# macOS system files
+.DS_Store
+Icon?
+._*
+.Spotlight-V100
+.Trashes
