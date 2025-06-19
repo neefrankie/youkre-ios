@@ -43,14 +43,11 @@ struct CardView: View {
                 
                 Text(subtitle)
                     .font(.subheadline)
-                    // .lineLimit(3)
-                    // .foregroundColor(.secondary)
             }
             .padding()
         }
-        .background(Color(.systemBackground))
-        .cornerRadius(12)
-        .shadow(radius: 12)
+        .modifier(CardStyle())
+        .shadow(radius: 6)
         .padding(.horizontal)
     }
 }
