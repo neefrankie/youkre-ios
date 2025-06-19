@@ -16,6 +16,7 @@ struct YoukreApp: App {
             ContentView()
                 .environmentObject(themeManager)
                 .preferredColorScheme(themeManager.preferredColorScheme)
+                .background(AppColors.background)
         }
     }
 }
