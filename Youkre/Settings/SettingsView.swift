@@ -82,7 +82,7 @@ struct SettingsView: View {
 
 
 #Preview {
-    var themeManager = ThemeManager.shared
+    @Previewable @StateObject var themeManager = ThemeManager.shared
     
     SettingsView()
         .environmentObject(themeManager)
