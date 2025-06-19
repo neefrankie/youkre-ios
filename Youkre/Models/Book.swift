@@ -45,56 +45,9 @@ struct TocEntry: Identifiable, Codable, Hashable {
 
 struct ChapterParams: Hashable {
     let book: Book
-    let toc: [TocEntry]
-    let currentIndex: Int
-    let currentEntry: TocEntry
+    let current: TocEntry
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(currentEntry.slug)
-    }
-    
-    var hasNext: Bool {
-        if toc.isEmpty {
-            return false
-        }
-        var lastIdx = toc.count - 1
-        if toc.last == TocEntry.continued {
-            lastIdx = lastIdx - 1
-        }
-        return currentIndex >= 0 && currentIndex < lastIdx
-    }
-    
-    var hasPrevious: Bool {
-        if toc.isEmpty {
-            return false
-        }
-        
-        return currentIndex > 0 && currentIndex < toc.count
-    }
-    
-    func nextChapter() -> ChapterParams? {
-        if !hasNext {
-            return nil
-        }
-        
-        return ChapterParams(
-            book: book,
-            toc: toc,
-            currentIndex: currentIndex+1,
-            currentEntry: toc[currentIndex+1]
-        )
-    }
-    
-    func previousChapter() -> ChapterParams? {
-        if !hasPrevious {
-            return nil
-        }
-        
-        return ChapterParams(
-            book: book,
-            toc: toc,
-            currentIndex: currentIndex-1,
-            currentEntry: toc[currentIndex-1]
-        )
+        hasher.combine(current.slug)
     }
 }
