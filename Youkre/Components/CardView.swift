@@ -32,7 +32,7 @@ struct CardView: View {
             
             VStack(
                 alignment: .leading,
-                spacing: 8
+                spacing: 16
             ) {
                 Text(title)
                     .font(.headline)
@@ -40,14 +40,14 @@ struct CardView: View {
                         maxWidth: .infinity,
                         alignment: .center
                     )
-                
-                Text(subtitle)
-                    .font(.subheadline)
+                if !subtitle.isEmpty {
+                    Text(subtitle)
+                        .font(.subheadline)
+                }
             }
             .padding()
         }
         .modifier(CardStyle())
-        .shadow(radius: 6)
         .padding(.horizontal)
     }
 }
@@ -58,6 +58,6 @@ struct CardView: View {
     CardView(
         image: Image(book.slug),
         title: book.title,
-        subtitle: book.text
+        subtitle: ""
     )
 }
