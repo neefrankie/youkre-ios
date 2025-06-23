@@ -8,13 +8,18 @@
 import SwiftUI
 import Combine
 
-class TOCViewModel: ObservableObject {
+class TocViewModel: ObservableObject {
     @Published var tocItems: [TocEntry]?
     @Published var isLoading: Bool = true
     @Published var error: String? = nil
     private var hasLoaded = false
+    private var bookSlug: String
     
-    func loadData(slug: String) async {
+    init(bookSlug: String) {
+        self.bookSlug = bookSlug
+    }
+    
+    func loadData() async {
         guard !hasLoaded else {
             return
         }
@@ -24,7 +29,7 @@ class TOCViewModel: ObservableObject {
             self.error = nil
         }
         
-        let result = await Bundle.main.decodeToc(of: slug)
+        let result = await Bundle.main.decodeToc(of: bookSlug)
         
         await MainActor.run {
             switch result {
@@ -49,7 +54,7 @@ struct TocListView: View {
     
     var body: some View {
         List {
-            ForEach(tocItems, id: \.self) { entry in
+            ForEach(tocItems) { entry in
                 if entry.slug.isEmpty {
                     Text(entry.text)
                 } else {
@@ -63,48 +68,41 @@ struct TocListView: View {
                 }
             }
         }
+        .navigationDestination(
+            for: ChapterParams.self
+        ) { params in
+            ChapterView(params: params)
+        }
     }
 }
 
 struct TocView: View {
-    var book: Book
-
-    @StateObject private var viewModel = TOCViewModel()
+    private let book: Book
+    @StateObject private var viewModel: TocViewModel
+    
+    init(book: Book) {
+        self.book = book
+        _viewModel = StateObject(
+            wrappedValue: TocViewModel(bookSlug: book.slug)
+        )
+    }
     
     var body: some View {
         VStack {
             if viewModel.isLoading {
                 ProgressView()
             } else if let items = viewModel.tocItems {
-                List {
-                    ForEach(items, id: \.self) { entry in
-                        if entry.slug.isEmpty {
-                            Text(entry.text)
-                        } else {
-                            NavigationLink(
-                                entry.text,
-                                value: ChapterParams(
-                                    book: book,
-                                    current: entry
-                                )
-                            )
-                        }
-                    }
-                }
-                .navigationDestination(
-                    for: ChapterParams.self
-                ) { params in
-                    ChapterView(params: params)
-                }
-                .navigationTitle(book.title)
+                TocListView(
+                    book: book,
+                    tocItems: items,
+                )
             } else if let error = viewModel.error {
                 Text(error)
             }
-
         }
         .toolbar(.hidden, for: .tabBar)
         .task {
-            await viewModel.loadData(slug: book.slug)
+            await viewModel.loadData()
         }
     }
 }
