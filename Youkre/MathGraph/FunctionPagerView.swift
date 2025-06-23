@@ -10,11 +10,7 @@ import SwiftUI
 struct FunctionPagerView: View {
     @State private var currentPage: Int = 0
     
-    let definitions: [FunctionDefinition] = [
-        FunctionDefinition.example,
-        FunctionDefinition.sine,
-        FunctionDefinition.exponent,
-    ]
+    let definitions = FunctionDefinition.standardForm
     
     var body: some View {
         VStack(spacing: 0) {
@@ -29,7 +25,7 @@ struct FunctionPagerView: View {
                                     proxy.scrollTo(index, anchor: .center)
                                 }
                             }) {
-                                Text(def.title)
+                                Text(def.name)
                                     .font(.system(size: 14, weight: .medium, design: .rounded))
                                     .padding(.horizontal, 6)
                                     .padding(.vertical, 6)
