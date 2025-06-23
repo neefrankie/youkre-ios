@@ -57,8 +57,5 @@ struct PlaybackControlView: View {
 }
 
 #Preview {
-    PlaybackControlView(model: FunctionModel(
-        f: {$0 * $0 },
-        df: { 2 * $0 },
-    ))
+    PlaybackControlView(model: FunctionModel())
 }
