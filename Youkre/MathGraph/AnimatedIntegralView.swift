@@ -12,7 +12,7 @@ struct AnimatedIntegralView: View {
     let isActive: Bool
     
     @StateObject private var model: FunctionModel
-    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.horizontalSizeClass) private var hSizeClass
     
     init(definition: FunctionDefinition, isActive: Bool) {
         self.definition = definition
@@ -20,10 +20,7 @@ struct AnimatedIntegralView: View {
         
         _model = StateObject(
             wrappedValue: FunctionModel(
-                f: definition.f,
-                df: definition.df,
-                a: definition.a,
-                b: definition.b,
+                bounds: definition.bounds,
             )
         )
     }
@@ -33,48 +30,54 @@ struct AnimatedIntegralView: View {
     var timer = Timer.publish(every: 0.016, on: .main, in: .common).autoconnect()
 
     var body: some View {
-        GeometryReader { geometry in
-            let size = min(geometry.size.width, geometry.size.height)
-            
-            VStack {
-                MathView(
-                    equation: definition.latex
-                )
-                
-                FunctionGraph(
-                    f: model.f,
-                    df: model.df,
-                    currentX: model.currentX,
-                    scale: scale,
-                    showTangent: true,
-                    showIntegral: true,
-                    xRange: (model.a, model.b)
-                )
-                .modifier(CardStyle())
-                .frame(width: size, height: size)
-                .aspectRatio(1, contentMode: .fit)
-                
-                PlaybackControlView(
-                    model: model
-                )
-                .modifier(CardStyle())
-                
-                VStack(spacing: 12) {
-                    LabeledFormulaView(
-                        title: "导数",
-                        latex: definition.derivativeLatex,
-                    )
-                    Divider()
+        // Views under GemometryReader is not vertically or horizontally centered.
+        Group {
+            if hSizeClass == .regular {
+                HStack(alignment: .center, spacing: 24) {
+                    graphSection()
+                    // Ensure enqual height
+                    .frame(maxHeight: .infinity)
                     
-                    LabeledFormulaView(
-                        title: "积分",
-                        latex: definition.integralLatex,
-                    )
+                    VStack {
+                        functionTitle
+                        
+                        extraInfoSection
+                        
+                    }
+                    // Ensure equal height
+                    .frame(maxHeight: .infinity)
+                    .modifier(PaddedCardStyle())
                 }
-                .modifier(CardStyle())
+                // Ensure sub-views equal height
+                .fixedSize(horizontal: false, vertical: true)
+                // Ensure vertically centered.
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .center
+                )
+                .padding()
+                
+            } else {
+                GeometryReader { proxy in
+                    let size = min(proxy.size.width, proxy.size.height)
+                    ScrollView {
+                        VStack {
+                            Group {
+                                functionTitle
+                                
+                                graphSection(maxWidth: size)
+                                
+                                extraInfoSection
+                                    .modifier(PaddedCardStyle())
+                            }
+                            .frame(maxWidth: 500)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                }
             }
         }
-        
         .onReceive(timer) { _ in
             if isActive {
                 model.tick()
@@ -88,13 +91,69 @@ struct AnimatedIntegralView: View {
         }
         
     }
+    
+    var functionTitle: some View {
+        VStack {
+            Text("函数的导数和积分")
+                .font(.title)
+            MathView(
+                equation: definition.latex,
+                fontSize: 40
+            )
+            .fixedSize()
+        }
+        .padding()
+    }
+    
+    func graphSection(maxWidth: CGFloat? = nil) -> some View {
+        VStack {
+            if let function = definition.function {
+                FunctionGraph(
+                    f: function.f,
+                    df: function.df,
+                    currentX: model.currentX,
+                    scale: scale,
+                    showTangent: true,
+                    showIntegral: true,
+                    xRange: model.bounds
+                )
+                .modifier(PaddedCardStyle())
+                
+                controlSection
+            } else if let image = definition.image {
+                Image(image)
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                    .modifier(PaddedCardStyle())
+            }
+        }
+    }
+    
+    var controlSection: some View {
+        PlaybackControlView(
+            model: model
+        )
+        .modifier(PaddedCardStyle())
+    }
+    
+    @ViewBuilder
+    var extraInfoSection: some View {
+        StandardFormView(
+            derivative: definition.derivativeLatex,
+            integral: definition.integralLatex,
+        )
+    }
 }
 
 #Preview {
     AnimatedIntegralView(
-        definition: .example,
+        definition: FunctionDefinition.standardForm[6],
         isActive: true,
     )
     .padding()
     .background(AppColors.background)
 }
+
+
+
