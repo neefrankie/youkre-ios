@@ -19,6 +19,14 @@ struct ContentView: View {
                     )
                 }
             
+            FunctionPagerView()
+                .tabItem {
+                    Label(
+                        "图式",
+                        systemImage: "function"
+                    )
+                }
+            
             SettingsView()
                 .tabItem {
                     Label(
