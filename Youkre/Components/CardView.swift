@@ -10,12 +10,12 @@ import SwiftUI
 struct CardView: View {
     let image: Image?
     let title: String
-    let subtitle: String
+    let subtitle: String?
     
     init(
         image: Image? = nil,
         title: String = "",
-        subtitle: String = ""
+        subtitle: String? = nil
     ) {
         self.image = image
         self.title = title
@@ -40,7 +40,7 @@ struct CardView: View {
                         maxWidth: .infinity,
                         alignment: .center
                     )
-                if !subtitle.isEmpty {
+                if let subtitle = subtitle {
                     Text(subtitle)
                         .font(.subheadline)
                 }
