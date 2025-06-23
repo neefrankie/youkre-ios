@@ -17,7 +17,7 @@ struct HomeView: View {
                         CardView(
                             image: Image(book.slug),
                             title: book.title,
-                            subtitle: book.text
+                            subtitle: ""
                         )
                     }
                     .buttonStyle(.plain)
@@ -40,4 +40,5 @@ struct HomeView: View {
     HomeView()
         .environmentObject(themeManager)
         .preferredColorScheme(themeManager.preferredColorScheme)
+        .background(AppColors.background)
 }
