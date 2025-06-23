@@ -8,10 +8,8 @@
 import SwiftUI
 
 class FunctionModel: ObservableObject {
-    @Published var f: (Double) -> Double
-    @Published var df: (Double) -> Double
-    @Published var a: Double
-    @Published var b: Double
+    let bounds: (Double, Double)
+    
     @Published var currentX: Double
     @Published var isPlaying: Bool
     @Published var playbackSpeed: Double = 1.0
@@ -19,38 +17,27 @@ class FunctionModel: ObservableObject {
     let animationDuration: Double
     
     private var step: Double {
-        (b - a) / (animationDuration * 60) * playbackSpeed // ~60 FPS
-    }
-    
-    var showTangent: Bool {
-        currentX > a && currentX < b
+        (bounds.1 - bounds.0) / (animationDuration * 60) * playbackSpeed // ~60 FPS
     }
     
     init(
-        f: @escaping (Double) -> Double,
-        df: @escaping (Double) -> Double,
-        a: Double = -5,
-        b: Double = 5,
-        title: String = "",
+        bounds: (Double, Double) = (-5, 5),
         animationDuration: Double = 4.0
     ) {
-        self.f = f
-        self.df = df
-        self.a = a
-        self.b = b
+        self.bounds = bounds
         self.animationDuration = animationDuration
-        self.currentX = a
+        self.currentX = bounds.0
         self.isPlaying = true
     }
     
     func reset() {
-        currentX = a
+        currentX = bounds.0
         isPlaying = false
     }
     
     func setPlaying(_ shouldPlay: Bool) {
         if shouldPlay {
-            if currentX >= b {
+            if currentX >= bounds.1 {
                 reset()
             }
             isPlaying = true
@@ -60,12 +47,13 @@ class FunctionModel: ObservableObject {
     }
 
     func togglePlay() {
-        if currentX >= b { currentX = a }
+        if currentX >= bounds.1 { currentX = bounds.0 }
+        
         isPlaying.toggle()
     }
     
     func resetCurrentX() {
-        currentX = a
+        currentX = bounds.0
     }
     
     func stopPlaying() {
@@ -73,13 +61,13 @@ class FunctionModel: ObservableObject {
     }
     
     func tick() {
-        guard isPlaying, currentX < b else {
+        guard isPlaying, currentX < bounds.1 else {
             return
         }
         withAnimation(.linear(duration: 0.016)) {
             currentX += step
             // Turn isPlaying after auto-play finished.
-            if currentX >= b {
+            if currentX >= bounds.1 {
                 stopPlaying()
             }
         }
