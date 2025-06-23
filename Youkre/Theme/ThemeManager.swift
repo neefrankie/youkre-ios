@@ -56,11 +56,6 @@ class ThemeManager: ObservableObject {
         selectedScheme.colorScheme
     }
     
-    private init() {
-        let rawValue = UserDefaults.standard.string(forKey: schemeKey)
-        selectedScheme = AppColorScheme(rawValue: rawValue ?? "") ?? .system
-    }
-    
     var resolvedTheme: String {
         switch selectedScheme {
         case .system:
@@ -79,6 +74,23 @@ class ThemeManager: ObservableObject {
     
     var jsThemeScript: String {
         return "document.documentElement.setAttribute('data-bs-theme', '\(resolvedTheme)')"
+    }
+    
+    var isDark: Bool {
+        return selectedScheme == .dark
+    }
+    
+    private init() {
+        let rawValue = UserDefaults.standard.string(forKey: schemeKey)
+        selectedScheme = AppColorScheme(rawValue: rawValue ?? "") ?? .system
+    }
+    
+    func toggle() {
+        if selectedScheme == .dark {
+            selectedScheme = .light
+        } else {
+            selectedScheme = .dark
+        }
     }
     
     func withDarkMode() -> ThemeManager {
