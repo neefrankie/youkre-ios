@@ -79,6 +79,7 @@ struct PrivacyView: View {
     
     var body: some View {
         MarkdownView(markdown: privacyPolicy)
+            .padding()
     }
 
 }
