@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct FunctionPlot {
-    static func plot(f: (Double) -> Double, center: CGPoint, size: CGSize, scale: CGFloat) -> Path {
+    static func plot(
+        f: (Double) -> Double,
+        center: CGPoint,
+        size: CGSize,
+        scale: CGFloat
+    ) -> Path {
         var path = Path()
         let step = 1.0
         var first = true
@@ -20,6 +25,9 @@ struct FunctionPlot {
                 scale: scale
             )
             let y = f(x)
+            if y.isInfinite || y.isNaN {
+                continue
+            }
             
             let point = CGPoint(
                 x: screenX,
@@ -39,10 +47,8 @@ struct FunctionPlot {
         
         return path
     }
-}
-
-struct TangentLine {
-    static func plot(
+    
+    static func tangentLine(
         f: (Double) -> Double,
         df: (Double) -> Double,
         x: Double,
@@ -50,6 +56,10 @@ struct TangentLine {
         scale: CGFloat,
     ) -> (Path, Path) {
         let y = f(x)
+        if y.isInfinite || y.isNaN {
+            return (Path(), Path())
+        }
+        
         let slope = df(x)
         let lineLength: Double = 2.0
         
@@ -109,18 +119,17 @@ struct TangentLine {
         
         return (tangent, circle)
     }
-}
-
-struct IntegralArea {
-    static func plot(
+    
+    static func integralArea(
         from x0: Double,
-        to x1: Double,
+        to x1: Double, // This value changes.
         f: (Double) -> Double,
         center: CGPoint,
         scale: CGFloat,
     ) -> Path {
         // Shaded area under curve from a to currentX
         var shaded = Path()
+        // Move to starting point on x axis.
         shaded.move(
             to: CGPoint(
                 x: GraphUtils.toScreenX(
@@ -134,6 +143,10 @@ struct IntegralArea {
 
         for x in stride(from: x0, through: x1, by: 0.1) {
             let y = f(x)
+            if y.isInfinite || y.isNaN {
+                continue
+            }
+            
             let screenX = GraphUtils.toScreenX(
                 x: x,
                 center: center,
@@ -144,6 +157,7 @@ struct IntegralArea {
                 center: center,
                 scale: scale,
             )
+            // Moving along the curve
             shaded.addLine(
                 to: CGPoint(
                     x: screenX,
@@ -151,7 +165,8 @@ struct IntegralArea {
                 )
             )
         }
-
+        
+        // Move to closing point (which is moving) on the axis.
         shaded.addLine(
             to: CGPoint(
                 x: GraphUtils.toScreenX(
@@ -166,4 +181,35 @@ struct IntegralArea {
         
         return shaded
     }
+    
+    static func createAxes(center: CGPoint, size: CGSize) -> Path {
+        var axes = Path()
+        axes.move(
+            to: CGPoint(
+                x: 0,
+                y: center.y
+            )
+        )
+        axes.addLine(
+            to: CGPoint(
+                x: size.width,
+                y: center.y,
+            )
+        )
+        axes.move(
+            to: CGPoint(
+                x: center.x,
+                y: 0
+            )
+        )
+        axes.addLine(
+            to: CGPoint(
+                x: center.x,
+                y: size.height
+            )
+        )
+        
+        return axes
+    }
 }
+
