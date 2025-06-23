@@ -8,40 +8,25 @@
 import SwiftUI
 
 struct BottomBar: View {
-    @State private var isThemePickerVisible = false
     @ObservedObject var themeManager: ThemeManager
         
     var body: some View {
         VStack {
-            // If theme toggle button is clicked, show the picker above the button
-            if isThemePickerVisible {
-                ThemePicker(
-                    themeManager: themeManager
-                )
-                .padding(.top)
-                .padding(.horizontal)
-                .pickerStyle(.segmented)
-            }
-            
             HStack {
-                
-                Spacer()
                 // Theme toggler
                 Button(action: {
-                    isThemePickerVisible.toggle()
+                    themeManager.toggle()
                 }) {
                     Image(
-                        systemName: "circle.lefthalf.filled"
+                        systemName: themeManager.isDark ? "sun.min" : "moon"
                     )
-                        .padding()
+                    .padding()
                 }
                 .buttonStyle(.plain)
-                
-                Spacer()
             }
+            .frame(maxWidth: .infinity)
         }
-//        .background(.ultraThinMaterial)
-        .background(Color(UIColor.systemBackground))
+        .background(AppColors.contentBackground)
         .shadow(radius: 10)
     }
 }
@@ -50,10 +35,14 @@ struct BottomBar: View {
 #Preview {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
-    BottomBar(
-        themeManager: ThemeManager.shared,
-    )
-    .transition(.move(edge: .bottom).combined(with: .opacity))
-    .environmentObject(themeManager)
-    .preferredColorScheme(themeManager.preferredColorScheme)
+    ZStack(alignment: .bottom) {
+        Color.clear
+        BottomBar(
+            themeManager: ThemeManager.shared,
+        )
+        .transition(.move(edge: .bottom).combined(with: .opacity))
+        .environmentObject(themeManager)
+        .preferredColorScheme(themeManager.preferredColorScheme)
+    }
+    
 }
