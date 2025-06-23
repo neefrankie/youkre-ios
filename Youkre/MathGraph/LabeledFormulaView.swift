@@ -12,9 +12,7 @@ struct LabeledFormulaView: View {
     let latex: String
     
     var body: some View {
-        VStack(
-            spacing: 4
-        ) {
+        VStack(spacing: 12) {
             Text(title)
                 .font(.headline)
                 .foregroundColor(Color(UIColor.secondaryLabel))
@@ -23,11 +21,11 @@ struct LabeledFormulaView: View {
                     alignment: .leading
                 )
             
-            MathView(
-                equation: latex
+            MarkdownListView(
+                markdown: latex
             )
+            
         }
-        
     }
 }
 
@@ -36,6 +34,9 @@ struct LabeledFormulaView: View {
 #Preview {
     LabeledFormulaView(
         title: "导数",
-        latex: "y = x^2",
+        latex: "\\[ y = x^2 \\]",
     )
+        .modifier(PaddedCardStyle())
+        .padding()
+        .background(AppColors.background)
 }
