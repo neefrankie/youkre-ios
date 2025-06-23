@@ -148,7 +148,7 @@ struct AnimatedIntegralView: View {
 
 #Preview {
     AnimatedIntegralView(
-        definition: FunctionDefinition.standardForm[6],
+        definition: StandardForm.list[6],
         isActive: true,
     )
     .padding()

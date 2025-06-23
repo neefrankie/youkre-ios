@@ -10,7 +10,7 @@ import SwiftUI
 struct FunctionPagerView: View {
     @State private var currentPage: Int = 0
     
-    let definitions = FunctionDefinition.standardForm
+    let definitions = StandardForm.list
     
     var body: some View {
         VStack(spacing: 0) {

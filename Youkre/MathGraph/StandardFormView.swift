@@ -28,7 +28,7 @@ struct StandardFormView: View {
 }
 
 #Preview {
-    let definition = FunctionDefinition.standardForm[5]
+    let definition = StandardForm.list[5]
     StandardFormView(
         derivative: definition.derivativeLatex,
         integral: definition.integralLatex,
