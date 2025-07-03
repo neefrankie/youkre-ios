@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>简易微积分3: 相对增长 | 优克 - 数学与计算机科学</title>
+    <title>简易微积分3: 导数是什么 | 优克 - 数学与计算机科学</title>
     
 <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+
 <link rel="stylesheet" href="../css/katex.min.css"/>
+
 
     <style>:root {
     --color-teal: #0d7680;
@@ -21,6 +23,10 @@
     --color-teal90: #17d4e6;
     --color-teal100: #1aecff;
     --color-emerald: #009b77;
+    --color-bs-dark: #212529;
+    --color-youkre-yellow: #cabdab;
+    --color-youkre-cyan: #71a9be;
+    --color-bg-gray: #EEEDF1;
     --header-height: 60px;
     --footer-height: 60px;
     --radius: 8px;
@@ -201,73 +207,108 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         
 <div class="row pt-3 justify-content-center">
     <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="pe-2">第 3 章</span><span>相对增长</span></h2>
+        <h2 class="text-center"><span>3.</span><span class="ps-2">导数是什么</span></h2>
         <div><p>在微积分中，处理的都是正在增长的量及其增长率。我们将所有量分为两类：<strong>常量</strong>和<strong>变量</strong>。那些我们认为值固定不变的量称为<strong>常量</strong>，通常用字母表开头的字母如 <span class="math">\(a\)</span>、<span class="math">\(b\)</span> 或 <span class="math">\(c\)</span> 表示；而那些我们认为能够增长或变化的量，则用字母表末尾的字母如 <span class="math">\(x\)</span>、<span class="math">\(y\)</span>、<span class="math">\(z\)</span>、<span class="math">\(u\)</span>、<span class="math">\(v\)</span>、<span class="math">\(w\)</span>，有时也用 <span class="math">\(t\)</span> 表示。</p>
+
 <p>此外，我们通常同时处理多个变量。考虑一个变量如何依赖于另一个变量：例如，炮弹达到的高度依赖于到达该高度的时间。或者考虑一个给定面积的矩形，探究其长度增加如何导致宽度相应减少。又或者思考梯子的倾斜角度变化如何影响它能达到的高度。</p>
+
 <p>假设有两个这样相互依赖的变量。其中一个变量的变化会导致另一个变量随之变化。设其中一个变量为 <span class="math">\(x\)</span>，依赖于它的另一个变量为 <span class="math">\(y\)</span>。</p>
+
 <p>假设我们让 <span class="math">\(x\)</span> 变化，也就是说，让它增加一点，记为 <span class="math">\(dx\)</span>。这样 <span class="math">\(x\)</span> 就变成了 <span class="math">\(x + dx\)</span>。由于 <span class="math">\(x\)</span> 发生了变化，<span class="math">\(y\)</span> 也会随之变化，变成 <span class="math">\(y + dy\)</span>。这里 <span class="math">\(dy\)</span> 在某些情况下可能是正值，在另一些情况下是负值，并且除非特殊情况，否则不会与 <span class="math">\(dx\)</span> 大小相同。</p>
-<figure><img src="images/022a.pdf.png-1.png" alt="" /></figure>
-<p><strong>举两个例子说明。</strong></p>
-<p>（1）设 <span class="math">\(x\)</span> 和 <span class="math">\(y\)</span> 分别为直角三角形（图4）的底边和高，斜边的倾斜角度固定为 <span class="math">\(30°\)</span>。如果假设这个三角形扩大但仍保持最初的角度，那么当底边变为 <span class="math">\(x + dx\)</span> 时，高则变为 <span class="math">\(y + dy\)</span>。这里 <span class="math">\(x\)</span> 的增加导致了 <span class="math">\(y\)</span> 的增加。新形成的三角形，其高为 <span class="math">\(dy\)</span>，底为<span class="math">\(dx\)</span>，与原三角形相似，显然<span class="math">\(\dfrac{dy}{dx}\)</span>的值等于<span class="math">\(\dfrac{y}{x}\)</span>的值。由于角度是 <span class="math">\(30°\)</span>，可以看到：</p>
+
+<h2>举两个例子说明</h2>
+
+<p>（1）设 <span class="math">\(x\)</span> 和 <span class="math">\(y\)</span> 分别为直角三角形（图4）的底边和高，斜边的倾斜角度固定为 <span class="math">\(30°\)</span>。如果假设这个三角形扩大但仍保持最初的角度，那么当底边变为 <span class="math">\(x + dx\)</span> 时，高则变为 <span class="math">\(y + dy\)</span>。这里 <span class="math">\(x\)</span> 的增加导致了 <span class="math">\(y\)</span> 的增加。新形成的三角形，其高为 <span class="math">\(dy\)</span>，底为 <span class="math">\(dx\)</span>，与原三角形相似，显然 <span class="math">\(\dfrac{dy}{dx}\)</span> 的值等于 <span class="math">\(\dfrac{y}{x}\)</span> 的值。</p>
+
+<figure class="text-center">
+
+<figure><img alt="" src="images/cme-fig-4.svg"/></figure>
+<figcaption>图 4</figcaption>
+</figure>
+
+<p>由于角度是 <span class="math">\(30°\)</span>，根据三角函数，<span class="math">\(\tan 30^\circ = \frac{1}{\sqrt{3}}\)</span>：</p>
+
 <div class="math">\[
-\frac{dy}{dx} = \frac{1}{1.73}
+\frac{dy}{dx} = \frac{1}{\sqrt{3}}
 \]</div>
 
 <p>（2）设 <span class="math">\(x\)</span> 代表从墙到梯子底端的距离（图5），<span class="math">\(AB\)</span>为梯子的固定长度，<span class="math">\(y\)</span> 是梯子沿墙的高度。很明显<span class="math">\(y\)</span>依赖于<span class="math">\(x\)</span>。如果将底部 <span class="math">\(A\)</span> 拉离墙一些，顶部 <span class="math">\(B\)</span> 就会下降一点。用科学的语言来说，如果把 <span class="math">\(x\)</span> 增加到 <span class="math">\(x + dx\)</span>，那么 <span class="math">\(y\)</span> 会变成 <span class="math">\(y - dy\)</span>；也就是说，当<span class="math">\(x\)</span>有一个正增量时，<span class="math">\(y\)</span>的增量却是负的。</p>
-<figure><img src="images/023a.pdf.png-1.png" alt="" /></figure>
+
+<figure class="text-center">
+
+<figure><img alt="" src="images/cme-fig-5.svg"/></figure>
+<figcaption>图 5</figcaption>
+</figure>
+
 <p>那么具体是多少呢？比如，假设梯子足够长，当底部 <span class="math">\(A\)</span> 距离墙 <span class="math">\(19\)</span> 厘米时，顶部 <span class="math">\(B\)</span> 刚好离地 <span class="math">\(1.8\)</span> 米。现在如果把将底部往外多拉 <span class="math">\(1\)</span> 厘米，顶部会下降多少？全部转换成厘米单位：<span class="math">\(x = 19\)</span> 厘米，<span class="math">\(y = 180\)</span> 厘米。增量 <span class="math">\(dx\)</span> 为 <span class="math">\(1\)</span> 厘米，即 <span class="math">\(x + dx = 20\)</span> 厘米。</p>
+
 <p><span class="math">\(y\)</span> 会减少多少？新的高度将为 <span class="math">\(y - dy\)</span>。根据勾股定理计算出 <span class="math">\(dy\)</span> 的新高度能够帮助我们找到 <span class="math">\(dy\)</span> 是多少。梯子的长度为</p>
+
 <div class="math">\[
-\sqrt{ (180)^2 + (19)^2 } = 181 \text{ 厘米}
+\sqrt{ (180)^2 + (19)^2 } = 181 \text{厘米}
 \]</div>
 
 <p>显然，新的高度，即 <span class="math">\(y - dy\)</span>，满足：</p>
+
 <div class="math">\begin{align*}
-(y - dy)^2 &= (181)^2 - (20)^2 \\
-&= 32761 - 400 \\
-&= 32361,   \\
-y - dy     &= \sqrt{32361} \\
-&= 179.89 \text{ 厘米}.
+(y - dy)^2 &amp;= (181)^2 - (20)^2 \\
+&amp;= 32761 - 400 \\
+&amp;= 32361,   \\
+y - dy     &amp;= \sqrt{32361} \\
+&amp;= 179.89 \text{ 厘米}.
 \end{align*}</div>
 
 <p>既然 <span class="math">\(y\)</span> 是 <span class="math">\(180\)</span> 厘米，所以 <span class="math">\(dy\)</span> 就是 <span class="math">\(180 - 179.89 = 0.11\)</span> 厘米。</p>
+
 <p>因此，我们看到 <span class="math">\(dx\)</span> 增加 <span class="math">\(1\)</span> 厘米导致了 <span class="math">\(dy\)</span> 减少了 <span class="math">\(0.11\)</span> 厘米。</p>
+
 <p><span class="math">\(dy\)</span> 与 <span class="math">\(dx\)</span> 的比例可以这样表示：</p>
+
 <div class="math">\[
 \frac{dy}{dx} = - \frac{0.11}{1}
 \]</div>
 
 <p>很容易看出（除了某个特定位置外），<span class="math">\(dy\)</span> 的大小通常不同于 <span class="math">\(dx\)</span>。</p>
+
 <p>贯穿整个微分学，我们一直在寻找一种奇特的东西，即 <span class="math">\(dy\)</span> 相对于 <span class="math">\(dx\)</span> 的比例，尤其是在两者都无限接近零时的比例。</p>
+
 <p>需要注意的是，只有当 <span class="math">\(y\)</span> 和 <span class="math">\(x\)</span> 之间存在某种关系时，才能求出比例 <span class="math">\(\dfrac{dy}{dx}\)</span>。也就是说，只要 <span class="math">\(x\)</span> 发生变化，<span class="math">\(y\)</span> 也会随之变化。例如，在前面的第一个例子中，如果三角形的底边 <span class="math">\(x\)</span> 变长了，那么三角形的高 <span class="math">\(y\)</span> 也随之增加；在第二个例子中，如果梯子底部离墙的距离 <span class="math">\(x\)</span> 增大，那么梯子所能到达的高度 <span class="math">\(y\)</span> 就会相应减小，起初变化较慢，但随着 <span class="math">\(x\)</span> 越来越大，变化也越来越快。在这两种情况下，<span class="math">\(x\)</span> 和 <span class="math">\(y\)</span> 的关系是明确的，可以用数学表达式表示，分别是 <span class="math">\(\dfrac{y}{x} = \tan 30°\)</span> 和 <span class="math">\(x^2 + y^2 = l^2\)</span>（其中 <span class="math">\(l\)</span> 是梯子的长度）。</p>
+
 <p>但如果 <span class="math">\(x\)</span> 仍代表梯子底部离墙的距离，而 <span class="math">\(y\)</span> 却不是梯子的高度，而是墙的水平长度、墙中的砖块数量，或是墙建成以来的年数，那么对 <span class="math">\(x\)</span> 的任何改变自然不会引起 <span class="math">\(y\)</span> 的任何变化。在这种情况下，<span class="math">\(\dfrac{dy}{dx}\)</span> 完全没有意义，也无法写出它的表达式。每当我们使用微分 <span class="math">\(dx\)</span>、<span class="math">\(dy\)</span>、<span class="math">\(dz\)</span> 等时，就意味着 <span class="math">\(x\)</span>、<span class="math">\(y\)</span>、<span class="math">\(z\)</span> 等之间存在某种关系，这种关系被称为关于 <span class="math">\(x\)</span>、<span class="math">\(y\)</span>、<span class="math">\(z\)</span> 等的“函数”。比如上面给出的两个表达式：<span class="math">\(\dfrac{y}{x} = \tan 30°\)</span> 和 <span class="math">\(x^2 + y^2 = l^2\)</span>，就是关于 <span class="math">\(x\)</span> 和 <span class="math">\(y\)</span> 的函数。这类表达式隐含地（也就是未明显地）给出了用 <span class="math">\(y\)</span> 表示 <span class="math">\(x\)</span> 或者用 <span class="math">\(x\)</span> 表示 <span class="math">\(y\)</span> 的方法，因此它们被称为 <span class="math">\(x\)</span> 和 <span class="math">\(y\)</span> 的<strong>隐函数</strong>。它们可以分别改写为以下形式：</p>
+
 <div class="math">\begin{align*}
-y &= x \tan 30°\\
-x &= \frac{y}{\tan 30°}
+y &amp;= x \tan 30°\\
+x &amp;= \frac{y}{\tan 30°}
 \end{align*}</div>
 
 <p>以及</p>
+
 <div class="math">\begin{align*}
-y &= \sqrt{ l^2 - x^2} \\
-x &= \sqrt{ l^2 - y^2}
+y &amp;= \sqrt{ l^2 - x^2} \\
+x &amp;= \sqrt{ l^2 - y^2}
 \end{align*}</div>
 
 <p>这些最后列出的表达式清楚地给出了 <span class="math">\(y\)</span> 用 <span class="math">\(x\)</span> 表示，或 <span class="math">\(x\)</span> 用 <span class="math">\(y\)</span> 表示的形式，因此它们被称为 <span class="math">\(x\)</span> 或 <span class="math">\(y\)</span> 的<strong>显函数</strong>。例如，<span class="math">\(x^2 + 3 = 2y - 7\)</span> 是一个关于 <span class="math">\(x\)</span> 和 <span class="math">\(y\)</span> 的隐函数；它可以写成 <span class="math">\(y = \dfrac{x^2 + 10}{2}\)</span>（即 <span class="math">\(y\)</span> 关于 <span class="math">\(x\)</span> 的显函数），或者写成 <span class="math">\(x = \sqrt{2y - 10}\)</span>（即 <span class="math">\(x\)</span> 关于 <span class="math">\(y\)</span> 的显函数）。可以看出，一个关于 <span class="math">\(x\)</span>、<span class="math">\(y\)</span>、<span class="math">\(z\)</span> 等的显函数，其实就是某个量，它的值会随着 <span class="math">\(x\)</span>、<span class="math">\(y\)</span>、<span class="math">\(z\)</span> 等变量一个或多个的变化而变化。正因为如此，这个显函数的值被称为<strong>因变量</strong>，因为它依赖于函数中其他变量的值；而这些其他变量则被称为<strong>自变量</strong>，因为它们的值不是由函数本身决定的。比如说，在 <span class="math">\(u = x^2 \sin \theta\)</span> 中，<span class="math">\(x\)</span> 和 <span class="math">\(\theta\)</span> 是自变量，<span class="math">\(u\)</span> 是因变量。</p>
+
 <p>有时，我们并不知道几个量 <span class="math">\(x\)</span>、<span class="math">\(y\)</span>、<span class="math">\(z\)</span> 之间的精确关系，或者不方便表达；只知道这些变量之间存在某种关系，也就是说，如果不影响其他量，就不能单独改变其中任何一个量（<span class="math">\(x\)</span>、<span class="math">\(y\)</span> 或 <span class="math">\(z\)</span>）。这种情况下，就说它们之间存在一个关于 <span class="math">\(x\)</span>、<span class="math">\(y\)</span>、<span class="math">\(z\)</span> 的函数。这种函数可以用记号 <span class="math">\(F(x, y, z)\)</span> 来表示（隐函数），或者写成 <span class="math">\(x = F(y, z)\)</span>、<span class="math">\(y = F(x, z)\)</span>、或 <span class="math">\(z = F(x, y)\)</span>（显函数）。有时候也用字母 <span class="math">\(f\)</span> 或 <span class="math">\(\phi\)</span> 来代替 <span class="math">\(F\)</span>，比如 <span class="math">\(y = F(x)\)</span>、<span class="math">\(y = f(x)\)</span> 和 <span class="math">\(y = \phi(x)\)</span> 其实是一回事，都表示 <span class="math">\(y\)</span> 的值在某种方式下依赖于 <span class="math">\(x\)</span>，只是具体依赖关系没有说明。</p>
-<p>我们把 <span class="math">\(\dfrac{dy}{dx}\)</span> 称为“<span class="math">\(y\)</span> 关于 <span class="math">\(x\)</span> 的导数”。导数实际上是一个函数，也是一个关于 <span class="math">\(x\)</span> 的函数，用来描述原函数在每个点上的瞬时变化率。对于定义域内的每一个 <span class="math">\(x\)</span>，导数给出了原函数在该点处的斜率，即随着 <span class="math">\(x\)</span> 的微小变化，原函数变化的速率。这使得我们可以通过研究导数函数来了解原始函数的性质，比如在哪里增加或减少、凹凸性等。</p>
-<p>在学校学过的普通代数中，总是在寻找某个未知量，它被称作 <span class="math">\(x\)</span> 或 <span class="math">\(y\)</span>；有时候要同时找出两个未知量。现在你要学会一种新的“捕猎”方式。这次不是去抓 <span class="math">\(x\)</span> 或 <span class="math">\(y\)</span>，而是去寻找一个叫 <span class="math">\(\dfrac{dy}{dx}\)</span> 的函数。求出 <span class="math">\(\dfrac{dy}{dx}\)</span> 的过程叫做“求导”。但请记住：我们要的是函数在某个点附近的变化 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 都无限小的时候，在该点的变化比例。导数在某一点的真正值，是在 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 都趋于无穷小的极限情况下所趋近的那个值。</p>
-<p>现在，我们就来学习如何寻找 <span class="math">\(\dfrac{dy}{dx}\)</span>。</p>
-<h3>第3章注 如何读微分符号</h3>
-<p>千万不要犯一些初学者的错误，把 <span class="math">\(dx\)</span> 看成是 <span class="math">\(d\)</span> 乘以 <span class="math">\(x\)</span>。这里的 <span class="math">\(d\)</span> 并不是一个因子，它的意思是“……的一个微小部分”或“……的一个微量”。所以 <span class="math">\(dx\)</span> 应该读作“dee-eks”。</p>
-<p>如果读者没有人指导这类问题，这里简单说明一下导数的读法。<span class="math">\(\dfrac{dy}{dx}\)</span> 读作 y 关于 x 的导数。同样，<span class="math">\(\dfrac{du}{dt}\)</span> 表示 u 关于 t 的导数。</p>
-<p>后面还会遇到二阶导数，形式如下： <span class="math">\(\dfrac{d^2 y}{dx^2}\)</span>，意思是对 <span class="math">\(y\)</span> 关于 <span class="math">\(x\)</span> 的求导运算已经（或将要）进行两次。</p>
-<p>还有一种表示函数已被求导的方式是在函数符号上加一个撇号（'）。例如，如果 <span class="math">\(y=F(x)\)</span> 表示 <span class="math">\(y\)</span> 是 <span class="math">\(x\)</span> 的某个未指明的函数，那么我们可以用  <span class="math">\(F'(x)\)</span> 来代替 <span class="math">\(\dfrac{d\bigl(F(x)\bigr)}{dx}\)</span>。类似地，<span class="math">\(F''(x)\)</span> 表示原函数 <span class="math">\(F(x)\)</span> 已对 <span class="math">\(x\)</span> 求导了两次。</p>
-</div>
+
+<p>我们把</p>
+
+<div class="math">\[
+\dfrac{dy}{dx}
+\]</div>
+
+<p>称为“<span class="math">\(y\)</span> 关于 <span class="math">\(x\)</span> 的<strong>导数</strong>”。导数实际上是一个函数，也是一个关于 <span class="math">\(x\)</span> 的函数，用来描述<strong>原函数在每个点上的瞬时变化率</strong>。对于定义域内的每一个 <span class="math">\(x\)</span>，导数给出了原函数在该点处的斜率，即随着 <span class="math">\(x\)</span> 的微小变化，原函数变化的速率。这使得我们可以通过研究导数函数来了解原始函数的性质，比如在哪里增加或减少、凹凸性等。</p>
+
+<p>在学校学过的普通代数中，总是在寻找某个未知量，它被称作 <span class="math">\(x\)</span> 或 <span class="math">\(y\)</span>；有时候要同时找出两个未知量。现在你要学会一种新的“捕猎”方式。这次不是去抓 <span class="math">\(x\)</span> 或 <span class="math">\(y\)</span>，而是去寻找一个叫 <span class="math">\(\dfrac{dy}{dx}\)</span> 的函数。求出 <span class="math">\(\dfrac{dy}{dx}\)</span> 的过程叫做<strong>求导</strong>。但请记住：我们要的是函数在某个点附近 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 都无限小的时候，在该点的变化比例。导数在某一点的真正值，是在 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 都趋于无穷小的极限情况下所趋近的那个值。</p>
+
+<p>现在，我们就来学习如何寻找 <span class="math">\(\dfrac{dy}{dx}\)</span>。</p></div>
     </article>
 </div>
 
     </div>
 </main>
+
 
 
 
@@ -287,6 +328,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+
 
 </body>
 </html>
