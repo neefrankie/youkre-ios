@@ -14,11 +14,7 @@ struct HomeView: View {
             ScrollView {
                 ForEach(DataStore.bookList) { book in
                     NavigationLink(value: book) {
-                        CardView(
-                            image: Image(book.slug),
-                            title: book.title,
-                            subtitle: ""
-                        )
+                        BookCardView(book: book)
                     }
                     .buttonStyle(.plain)
                 }
