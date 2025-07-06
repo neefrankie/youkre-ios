@@ -1,0 +1,38 @@
+{
+    "title": "目录",
+    "items": [
+        {
+            "id": "",
+            "slug": "",
+            "text": "",
+            "summary": "",
+            "title": "三角形与三角函数",
+            "children": [
+                {
+                    "id": "c895bcd90c5a18d8",
+                    "slug": "triangle",
+                    "text": "三角形",
+                    "summary": "有三条边和三个角",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "22badb78fa1cc092",
+                    "slug": "triangle-inequality-theorem",
+                    "text": "三角形不等式定理",
+                    "summary": "三角形的任意一条边都必须比另外两条边加起来短",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "499c42e62468e01d",
+                    "slug": "trigonometry",
+                    "text": "三角函数简介",
+                    "summary": "帮助我们计算角度和距离",
+                    "title": "",
+                    "children": []
+                }
+            ]
+        }
+    ]
+}
