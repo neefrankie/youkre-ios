@@ -296,28 +296,29 @@ struct ChapterView: View {
             id: "ace1f71919520c90",
             slug: "prologue",
             text: "前言",
+            summary: "",
             title: "",
-            subtitle: ""
         ),
         TocEntry(
             id: "662caa141e1055c3",
             slug: "1",
             text: "第 1 章 摆脱恐惧",
+            summary: "",
             title: "",
-            subtitle: ""
+            
         ),
         TocEntry(
             id: "69b61e849f4eaca5",
             slug: "2",
             text: "第 2 章 不同程度的微小性",
+            summary: "",
             title: "",
-            subtitle: ""
         )
     ]
     
     ChapterView(params: ChapterParams(
         book: DataStore.bookList[0],
-        current: toc[1]
+        current: toc[1].toDisplayEntry()
     ))
     .environmentObject(themeManager)
     .preferredColorScheme(themeManager.preferredColorScheme)
