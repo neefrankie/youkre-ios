@@ -39,7 +39,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    var settings = ThemeManager.shared.withLightMode()
+    @Previewable @StateObject var settings = ThemeManager.shared
     
     ContentView()
         .environmentObject(settings)
