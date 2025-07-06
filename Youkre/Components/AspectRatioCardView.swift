@@ -7,12 +7,33 @@
 
 import SwiftUI
 
-struct AspectRatioCardView: View {
+struct AspectRatioCardView<Content: View>: View {
+    var content: () -> Content
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader { geo in
+            let width = geo.size.width
+            let height = width / 16 * 9
+            
+            ZStack {
+                content()
+                    .padding()
+                    .frame(width: width, height: height)
+            }
+            .frame(width: width, height: height)
+//            .background(backgroundColor)
+        }
+        .aspectRatio(16/9, contentMode: .fit)
     }
 }
 
 #Preview {
-    AspectRatioCardView()
+    AspectRatioCardView() {
+        VStack {
+            Image("calculus-made-easy")
+                .resizable()
+                .scaledToFit()
+                .border(.red)
+        }
+    }
 }
