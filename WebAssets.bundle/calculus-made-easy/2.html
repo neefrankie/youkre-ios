@@ -74,6 +74,9 @@ html:not([data-bs-theme="dark"]) #sun {
     text-align: center;
     margin-bottom: 1em;
 }
+figure { 
+  text-align: center;
+}
 figure img {
     max-width: 100%;
     height: auto;
@@ -107,6 +110,9 @@ div.math {
     .formula-section {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+.card {
+  margin-bottom: 1em;
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -254,25 +260,25 @@ f(x + \frac{1}{60}x) = x^2 + 2x \cdot \frac{1}{60}x + (\frac{1}{60}x)^2
 
 <p>第二项是 <span class="math">\(\frac{2}{60}x^2\)</span>，第三项是 <span class="math">\(\frac{1}{3600}x^2\)</span>。最后一项明显不如第二项重要。如果这个微小的变化量进一步取 <span class="math">\(x\)</span> 的 <span class="math">\(\frac{1}{1000}\)</span>，则第二项将是 <span class="math">\(\frac{2}{1000}x^2\)</span>，而第三项仅是 <span class="math">\(\frac{1}{1,000,000}x^2\)</span>。</p>
 
-<figure class="text-center">
+<figure>
 
-<figure><img alt="" src="images/cme-fig-1.svg"/></figure>
+<img alt="边长x的正方形" src="images/cme-fig-1.svg"/>
 <figcaption>图 1</figcaption>
 </figure>
 
 <p>通过几何图形可以更直观地表示这一点。画一个正方形（如图 1），边长代表 <span class="math">\(x\)</span>。现在假设这个正方形每边增加 <span class="math">\(dx\)</span>。扩大的正方形由原来的 <span class="math">\(x^2\)</span>、顶部和右侧的两个矩形（每个面积为 <span class="math">\(x \cdot dx\)</span>，合计 <span class="math">\(2x \cdot dx\)</span>）、以及右上角的小正方形 <span class="math">\((dx)^2\)</span> 组成。</p>
 
-<figure class="text-center">
+<figure>
 
-<figure><img alt="" src="images/cme-fig-2.svg"/></figure>
+<img alt="正方形边长x增加dx" src="images/cme-fig-2.svg"/>
 <figcaption>图 2</figcaption>
 </figure>
 
 <p>在图2中，我们让 <span class="math">\(dx\)</span> 占了 <span class="math">\(x\)</span> 相当大一部分 -- 约 1/5。但如果只取 <span class="math">\(dx\)</span> 为 <span class="math">\(x\)</span> 的 1/100（大约一支细笔画出的墨线厚度），则右上角的小正方形面积仅为 <span class="math">\(x^2\)</span> 的 <span class="math">\(\frac{1}{10,000}\)</span>，几乎看不见。显然，如果 <span class="math">\(dx\)</span> 本身足够小，<span class="math">\((dx)^2\)</span> 可以忽略不计。</p>
 
-<figure class="text-center">
+<figure>
 
-<figure><img alt="" src="images/cme-fig-3.svg"/></figure>
+<img alt="" src="images/cme-fig-3.svg"/>
 <figcaption>图 3</figcaption>
 </figure>
 

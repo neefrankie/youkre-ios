@@ -74,6 +74,9 @@ html:not([data-bs-theme="dark"]) #sun {
     text-align: center;
     margin-bottom: 1em;
 }
+figure { 
+  text-align: center;
+}
 figure img {
     max-width: 100%;
     height: auto;
@@ -107,6 +110,9 @@ div.math {
     .formula-section {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+.card {
+  margin-bottom: 1em;
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -220,9 +226,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>（1）设 <span class="math">\(x\)</span> 和 <span class="math">\(y\)</span> 分别为直角三角形（图4）的底边和高，斜边的倾斜角度固定为 <span class="math">\(30°\)</span>。如果假设这个三角形扩大但仍保持最初的角度，那么当底边变为 <span class="math">\(x + dx\)</span> 时，高则变为 <span class="math">\(y + dy\)</span>。这里 <span class="math">\(x\)</span> 的增加导致了 <span class="math">\(y\)</span> 的增加。新形成的三角形，其高为 <span class="math">\(dy\)</span>，底为 <span class="math">\(dx\)</span>，与原三角形相似，显然 <span class="math">\(\dfrac{dy}{dx}\)</span> 的值等于 <span class="math">\(\dfrac{y}{x}\)</span> 的值。</p>
 
-<figure class="text-center">
+<figure>
 
-<figure><img alt="" src="images/cme-fig-4.svg"/></figure>
+<img alt="" src="images/cme-fig-4.svg"/>
 <figcaption>图 4</figcaption>
 </figure>
 
@@ -234,9 +240,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>（2）设 <span class="math">\(x\)</span> 代表从墙到梯子底端的距离（图5），<span class="math">\(AB\)</span>为梯子的固定长度，<span class="math">\(y\)</span> 是梯子沿墙的高度。很明显<span class="math">\(y\)</span>依赖于<span class="math">\(x\)</span>。如果将底部 <span class="math">\(A\)</span> 拉离墙一些，顶部 <span class="math">\(B\)</span> 就会下降一点。用科学的语言来说，如果把 <span class="math">\(x\)</span> 增加到 <span class="math">\(x + dx\)</span>，那么 <span class="math">\(y\)</span> 会变成 <span class="math">\(y - dy\)</span>；也就是说，当<span class="math">\(x\)</span>有一个正增量时，<span class="math">\(y\)</span>的增量却是负的。</p>
 
-<figure class="text-center">
+<figure>
 
-<figure><img alt="" src="images/cme-fig-5.svg"/></figure>
+<img alt="" src="images/cme-fig-5.svg"/>
 <figcaption>图 5</figcaption>
 </figure>
 
