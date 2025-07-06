@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 class TocViewModel: ObservableObject {
-    @Published var tocItems: [TocEntry]?
+    @Published var tocEntries: [TocDisplayEntry]?
     @Published var isLoading: Bool = true
     @Published var error: String? = nil
     private var hasLoaded = false
@@ -34,12 +34,12 @@ class TocViewModel: ObservableObject {
         await MainActor.run {
             switch result {
             case .success(let decodedToc):
-                self.tocItems = decodedToc.items
+                self.tocEntries = decodedToc.flattenItems()
                 self.error = nil
                 self.hasLoaded = true  // ✅ Set only on success
                 
             case .failure(let error):
-                self.tocItems = nil
+                self.tocEntries = nil
                 self.error = error.errorDescription ?? error.localizedDescription
             }
             
@@ -48,23 +48,44 @@ class TocViewModel: ObservableObject {
     }
 }
 
-struct TocListView: View {
-    var book: Book
-    var tocItems: [TocEntry]
+struct TocCardView: View {
+    let entry: TocDisplayEntry
     
     var body: some View {
-        List {
-            ForEach(tocItems) { entry in
+        VStack(alignment: .leading, spacing: 16) {
+            Text(entry.text)
+                .font(.headline)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text(entry.summary)
+                .font(.body)
+                .foregroundStyle(.gray)
+                
+        }
+        .modifier(PaddedCardStyle())
+    }
+}
+
+struct TocListView: View {
+    var book: Book
+    var entries: [TocDisplayEntry]
+    
+    var body: some View {
+        ScrollView {
+            ForEach(entries) { entry in
                 if entry.slug.isEmpty {
-                    Text(entry.text)
+                    Text(entry.title)
+                        .font(.title)
+                        .padding(.top, 32)
                 } else {
                     NavigationLink(
-                        entry.text,
                         value: ChapterParams(
                             book: book,
                             current: entry
                         )
-                    )
+                    ) {
+                        TocCardView(entry: entry)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -91,10 +112,10 @@ struct TocView: View {
         VStack {
             if viewModel.isLoading {
                 ProgressView()
-            } else if let items = viewModel.tocItems {
+            } else if let entries = viewModel.tocEntries {
                 TocListView(
                     book: book,
-                    tocItems: items,
+                    entries: entries,
                 )
             } else if let error = viewModel.error {
                 Text(error)
@@ -108,11 +129,10 @@ struct TocView: View {
 }
 
 #Preview {
-    TocView(book: Book(
-        id: "calculus-made-easy",
-        slug: "calculus-made-easy",
-        title: "简易微积分",
-        cover: "calculus-made-easy.webp",
-        body: [""]
-    ))
+    @Previewable @StateObject var themeManager = ThemeManager.shared
+    
+    TocView(book: DataStore.bookList[1])
+        .environmentObject(themeManager)
+        .preferredColorScheme(themeManager.preferredColorScheme)
+        .background(AppColors.background)
 }
