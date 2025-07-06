@@ -1,0 +1,78 @@
+{
+    "title": "目录",
+    "items": [
+        {
+            "id": "",
+            "slug": "",
+            "text": "",
+            "summary": "",
+            "title": "代数基础",
+            "children": [
+                {
+                    "id": "3ff54c499f8b24c0",
+                    "slug": "introduction",
+                    "text": "代数加减",
+                    "summary": "代数就像打游戏解谜一样",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "623ee04f8192e8de",
+                    "slug": "introduction-multiply",
+                    "text": "代数乘除",
+                    "summary": "怎么解乘除中的未知数？",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "a31dda81759e5167",
+                    "slug": "operation-order-pemdas",
+                    "text": "运算顺序",
+                    "summary": "先乘除，后加减",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "9b3fa41f9b0e7e02",
+                    "slug": "substitution",
+                    "text": "代入",
+                    "summary": "把字母换成具体的数字",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "bc301d2f72e3ef58",
+                    "slug": "equation-formula",
+                    "text": "等式与公式",
+                    "summary": "等式表示两个事物相等，公式告诉我们各个量之间的关系",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "1a125c5347a10326",
+                    "slug": "inequality",
+                    "text": "不等式",
+                    "summary": "告诉我们数值之间的相对大小关系",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "03d8f4c7efac4b7c",
+                    "slug": "inequality-solving",
+                    "text": "解不等式",
+                    "summary": "和解方程很像，但要注意不等号的方向",
+                    "title": "",
+                    "children": []
+                },
+                {
+                    "id": "d5bb38dcd8173935",
+                    "slug": "definitions",
+                    "text": "代数中的基本定义",
+                    "summary": "变量、系数、指数、多项式、同类项",
+                    "title": "",
+                    "children": []
+                }
+            ]
+        }
+    ]
+}
