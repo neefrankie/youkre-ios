@@ -178,6 +178,7 @@ struct TocView: View {
         .task {
             await viewModel.loadData()
         }
+        .background(AppColors.background)
     }
 }
 
@@ -187,5 +188,4 @@ struct TocView: View {
     TocView(book: DataStore.bookList[1])
         .environmentObject(themeManager)
         .preferredColorScheme(themeManager.preferredColorScheme)
-        .background(AppColors.background)
 }
