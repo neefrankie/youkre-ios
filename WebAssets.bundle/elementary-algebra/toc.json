@@ -2,74 +2,128 @@
     "title": "目录",
     "items": [
         {
-            "id": "",
+            "hex_id": "",
             "slug": "",
-            "text": "",
-            "summary": "",
             "title": "代数基础",
+            "summary": "",
+            "cover": "",
+            "keywords": "",
+            "icons": {
+                "sf_symbol": null,
+                "symbol_name": null,
+                "latex": null
+            },
             "children": [
                 {
-                    "id": "3ff54c499f8b24c0",
+                    "hex_id": "3ff54c499f8b24c0",
                     "slug": "introduction",
-                    "text": "代数加减",
+                    "title": "代数加减",
                     "summary": "代数就像打游戏解谜一样",
-                    "title": "",
+                    "cover": "",
+                    "keywords": "",
+                    "icons": {
+                        "sf_symbol": "plus.forwardslash.minus",
+                        "symbol_name": null,
+                        "latex": null
+                    },
                     "children": []
                 },
                 {
-                    "id": "623ee04f8192e8de",
+                    "hex_id": "623ee04f8192e8de",
                     "slug": "introduction-multiply",
-                    "text": "代数乘除",
+                    "title": "代数乘除",
                     "summary": "怎么解乘除中的未知数？",
-                    "title": "",
+                    "cover": "",
+                    "keywords": "",
+                    "icons": {
+                        "sf_symbol": "divide",
+                        "symbol_name": null,
+                        "latex": null
+                    },
                     "children": []
                 },
                 {
-                    "id": "a31dda81759e5167",
+                    "hex_id": "a31dda81759e5167",
                     "slug": "operation-order-pemdas",
-                    "text": "运算顺序",
+                    "title": "运算顺序",
                     "summary": "先乘除，后加减",
-                    "title": "",
+                    "cover": "",
+                    "keywords": "",
+                    "icons": {
+                        "sf_symbol": null,
+                        "symbol_name": "paren",
+                        "latex": null
+                    },
                     "children": []
                 },
                 {
-                    "id": "9b3fa41f9b0e7e02",
+                    "hex_id": "9b3fa41f9b0e7e02",
                     "slug": "substitution",
-                    "text": "代入",
+                    "title": "代入",
                     "summary": "把字母换成具体的数字",
-                    "title": "",
+                    "cover": "",
+                    "keywords": "",
+                    "icons": {
+                        "sf_symbol": "rectangle.2.swap",
+                        "symbol_name": null,
+                        "latex": null
+                    },
                     "children": []
                 },
                 {
-                    "id": "bc301d2f72e3ef58",
+                    "hex_id": "bc301d2f72e3ef58",
                     "slug": "equation-formula",
-                    "text": "等式与公式",
+                    "title": "等式与公式",
                     "summary": "等式表示两个事物相等，公式告诉我们各个量之间的关系",
-                    "title": "",
+                    "cover": "",
+                    "keywords": "",
+                    "icons": {
+                        "sf_symbol": "equal",
+                        "symbol_name": null,
+                        "latex": null
+                    },
                     "children": []
                 },
                 {
-                    "id": "1a125c5347a10326",
+                    "hex_id": "1a125c5347a10326",
                     "slug": "inequality",
-                    "text": "不等式",
+                    "title": "不等式",
                     "summary": "告诉我们数值之间的相对大小关系",
-                    "title": "",
+                    "cover": "",
+                    "keywords": "",
+                    "icons": {
+                        "sf_symbol": "greaterthan",
+                        "symbol_name": null,
+                        "latex": null
+                    },
                     "children": []
                 },
                 {
-                    "id": "03d8f4c7efac4b7c",
+                    "hex_id": "03d8f4c7efac4b7c",
                     "slug": "inequality-solving",
-                    "text": "解不等式",
+                    "title": "解不等式",
                     "summary": "和解方程很像，但要注意不等号的方向",
-                    "title": "",
+                    "cover": "",
+                    "keywords": "",
+                    "icons": {
+                        "sf_symbol": "lessthanorequalto",
+                        "symbol_name": null,
+                        "latex": null
+                    },
                     "children": []
                 },
                 {
-                    "id": "d5bb38dcd8173935",
+                    "hex_id": "d5bb38dcd8173935",
                     "slug": "definitions",
-                    "text": "代数中的基本定义",
+                    "title": "代数中的基本定义",
                     "summary": "变量、系数、指数、多项式、同类项",
-                    "title": "",
+                    "cover": "",
+                    "keywords": "",
+                    "icons": {
+                        "sf_symbol": null,
+                        "symbol_name": null,
+                        "latex": "8^2"
+                    },
                     "children": []
                 }
             ]

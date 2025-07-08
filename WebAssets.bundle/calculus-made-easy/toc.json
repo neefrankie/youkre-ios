@@ -2,43 +2,73 @@
     "title": "目录",
     "items": [
         {
-            "id": "662caa141e1055c3",
+            "hex_id": "662caa141e1055c3",
             "slug": "1",
-            "text": "1. 摆脱微积分带来的恐惧",
+            "title": "1. 摆脱微积分带来的恐惧",
             "summary": "从理解两个符号开始：𝑑𝑥 和 ∫",
-            "title": "",
+            "cover": "CME-01.webp",
+            "keywords": "sum,integral",
+            "icons": {
+                "sf_symbol": null,
+                "symbol_name": "integral",
+                "latex": null
+            },
             "children": []
         },
         {
-            "id": "69b61e849f4eaca5",
+            "hex_id": "69b61e849f4eaca5",
             "slug": "2",
-            "text": "2. 不同程度的微小",
+            "title": "2. 不同程度的微小",
             "summary": "有些量微小到可以忽略不计",
-            "title": "",
+            "cover": "CME-02.webp",
+            "keywords": "smallness",
+            "icons": {
+                "sf_symbol": null,
+                "symbol_name": "dx",
+                "latex": null
+            },
             "children": []
         },
         {
-            "id": "25d704fe889cf1c4",
+            "hex_id": "25d704fe889cf1c4",
             "slug": "3",
-            "text": "3. 导数是什么",
+            "title": "3. 导数是什么",
             "summary": "描述一个函数在每个点上的瞬时变化率",
-            "title": "",
+            "cover": "CME-03.webp",
+            "keywords": "",
+            "icons": {
+                "sf_symbol": "righttriangle",
+                "symbol_name": null,
+                "latex": null
+            },
             "children": []
         },
         {
-            "id": "ade52a8978948f39",
+            "hex_id": "ade52a8978948f39",
             "slug": "3-note",
-            "text": "微分符号怎么读",
+            "title": "微分符号怎么读",
             "summary": "𝑑𝑥 是一个整体，不能当作 𝑑 乘以 𝑥",
-            "title": "",
+            "cover": "",
+            "keywords": "derivative",
+            "icons": {
+                "sf_symbol": null,
+                "symbol_name": "derivative",
+                "latex": null
+            },
             "children": []
         },
         {
-            "id": "24a8c4fa68c50435",
+            "hex_id": "24a8c4fa68c50435",
             "slug": "4",
-            "text": "4. 简单的代数式的导数",
+            "title": "4. 简单的代数式的导数",
             "summary": "从幂函数开始",
-            "title": "",
+            "cover": "CME-04.webp",
+            "keywords": "",
+            "icons": {
+                "sf_symbol": null,
+                "symbol_name": "power",
+                "latex": null
+            },
             "children": []
         }
     ]
