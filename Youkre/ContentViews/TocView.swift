@@ -52,16 +52,91 @@ struct TocCardView: View {
     let entry: TocDisplayEntry
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text(entry.text)
-                .font(.headline)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Text(entry.summary)
-                .font(.body)
-                .foregroundStyle(.gray)
-                
+        HStack(alignment: .center, spacing: 16) {
+            symbolView(for: entry)
+            
+            VStack(alignment: .leading, spacing: 16) {
+                Text(entry.title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(entry.summary)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    
+            }
+            
+            Spacer()
         }
         .modifier(PaddedCardStyle())
+    }
+    
+    func symbolView(for entry: TocDisplayEntry) -> some View {
+        if let sf = entry.icons.sfSymbol, !sf.isEmpty {
+            return AnyView(
+                IconBoxView(background: iconBackgroundColor(for: entry)) {
+                    Image(systemName: sf)
+                        .font(.system(size: 24))
+                }
+            )
+        }
+        
+        if let key = entry.icons.predefined, let viewBuilder = IconStore.symbolViewMap[key] {
+            return viewBuilder()
+        }
+        
+        if let latex = entry.icons.latex, !latex.isEmpty {
+            return AnyView(
+                IconBoxView(background: .gray) {
+                    LatexIconView(
+                        latex: latex,
+                    )
+                }
+            )
+        }
+        
+        let letter = String(entry.title.prefix(1)).uppercased()
+        return AnyView(
+            IconBoxView(background: .secondary) {
+                Text(letter)
+                    .font(.system(size: 20, weight: .bold))
+            }
+        )
+    }
+    
+    func iconBackgroundColor(for entry: TocDisplayEntry) -> Color {
+        let palette: [Color] = [
+            .blue, .green, .orange, .purple, .pink, .indigo, .teal, .cyan
+        ]
+        
+        let index = abs(entry.slug.hashValue) % palette.count
+        
+        return palette[index].opacity(0.8)
+    }
+    
+    
+    
+    func symbolName(for entry: TocDisplayEntry) -> String {
+        let title = entry.slug.lowercased()
+        if title.contains("function") {
+            return "function"
+        }
+        if title.contains("integral") {
+            return "sum"
+        }
+        if title.contains("limit") {
+            return "arrow.right.to.line"
+        }
+        if title.contains("graph") {
+            return "chart.xyaxis.line"
+        }
+        if title.contains("area") {
+            return "square.split.diagonal.2x2"
+        }
+        if title.contains("product") {
+            return "x.squareroot"
+        }
+        return "book"
     }
 }
 
@@ -71,23 +146,26 @@ struct TocListView: View {
     
     var body: some View {
         ScrollView {
-            ForEach(entries) { entry in
-                if entry.slug.isEmpty {
-                    Text(entry.title)
-                        .font(.title)
-                        .padding(.top, 32)
-                } else {
-                    NavigationLink(
-                        value: ChapterParams(
-                            book: book,
-                            current: entry
-                        )
-                    ) {
-                        TocCardView(entry: entry)
+            LazyVStack(spacing: 16) {
+                ForEach(entries) { entry in
+                    if entry.slug.isEmpty {
+                        Text(entry.title)
+                            .font(.title)
+                            .padding(.top, 32)
+                    } else {
+                        NavigationLink(
+                            value: ChapterParams(
+                                book: book,
+                                current: entry
+                            )
+                        ) {
+                            TocCardView(entry: entry)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
             }
+            .padding()
         }
         .navigationDestination(
             for: ChapterParams.self
