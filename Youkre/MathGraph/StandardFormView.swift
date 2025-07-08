@@ -12,7 +12,7 @@ struct StandardFormView: View {
     let integral: String
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 32) {
             
             LabeledFormulaView(
                 title: "导数",
