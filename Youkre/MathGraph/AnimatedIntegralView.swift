@@ -61,8 +61,8 @@ struct AnimatedIntegralView: View {
             } else {
                 GeometryReader { proxy in
                     let size = min(proxy.size.width, proxy.size.height)
-                    ScrollView {
-                        VStack {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 16) {
                             Group {
                                 functionTitle
                                 
