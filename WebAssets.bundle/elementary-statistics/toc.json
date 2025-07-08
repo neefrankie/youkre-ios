@@ -62,7 +62,7 @@
                     "title": "如何找出众数",
                     "summary": "众数是出现次数最多的那个数。",
                     "cover": "",
-                    "keywords": "",
+                    "keywords": "众数",
                     "icons": {
                         "sf_symbol": null,
                         "symbol_name": null,
@@ -78,7 +78,7 @@
                     "cover": "",
                     "keywords": "",
                     "icons": {
-                        "sf_symbol": null,
+                        "sf_symbol": "a.circle",
                         "symbol_name": null,
                         "latex": null
                     },

@@ -95,7 +95,7 @@ struct TocCardView: View {
             )
         }
         
-        let letter = String(entry.title.prefix(1)).uppercased()
+        let letter = String(entry.keywords.prefix(1)).uppercased()
         return AnyView(
             IconBoxView(background: .secondary) {
                 Text(letter)
@@ -112,31 +112,6 @@ struct TocCardView: View {
         let index = abs(entry.slug.hashValue) % palette.count
         
         return palette[index].opacity(0.8)
-    }
-    
-    
-    
-    func symbolName(for entry: TocDisplayEntry) -> String {
-        let title = entry.slug.lowercased()
-        if title.contains("function") {
-            return "function"
-        }
-        if title.contains("integral") {
-            return "sum"
-        }
-        if title.contains("limit") {
-            return "arrow.right.to.line"
-        }
-        if title.contains("graph") {
-            return "chart.xyaxis.line"
-        }
-        if title.contains("area") {
-            return "square.split.diagonal.2x2"
-        }
-        if title.contains("product") {
-            return "x.squareroot"
-        }
-        return "book"
     }
 }
 
