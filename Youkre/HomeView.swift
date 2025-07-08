@@ -12,12 +12,15 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                ForEach(DataStore.bookList) { book in
-                    NavigationLink(value: book) {
-                        BookCardView(book: book)
+                LazyVStack(spacing: 16) {
+                    ForEach(DataStore.bookList) { book in
+                        NavigationLink(value: book) {
+                            BookCardView(book: book)
+                        }
+                        .buttonStyle(.plain)
                     }
-                    .buttonStyle(.plain)
                 }
+                .padding()
             }
             .navigationDestination(for: Book.self) { book in
                 TocView(book: book)
