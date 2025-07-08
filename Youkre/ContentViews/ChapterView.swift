@@ -291,34 +291,17 @@ struct ChapterView: View {
 #Preview {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
-    let toc = [
-        TocEntry(
-            id: "ace1f71919520c90",
-            slug: "prologue",
-            text: "前言",
-            summary: "",
-            title: "",
-        ),
-        TocEntry(
-            id: "662caa141e1055c3",
-            slug: "1",
-            text: "第 1 章 摆脱恐惧",
-            summary: "",
-            title: "",
-            
-        ),
-        TocEntry(
-            id: "69b61e849f4eaca5",
-            slug: "2",
-            text: "第 2 章 不同程度的微小性",
-            summary: "",
-            title: "",
-        )
-    ]
-    
     ChapterView(params: ChapterParams(
         book: DataStore.bookList[0],
-        current: toc[1].toDisplayEntry()
+        current: TocDisplayEntry(
+            id: "662caa141e1055c3",
+            slug: "1",
+            title: "1. 摆脱恐惧",
+            summary: "",
+            keywords: "",
+            icons: Icons(),
+            level: 0
+        )
     ))
     .environmentObject(themeManager)
     .preferredColorScheme(themeManager.preferredColorScheme)
