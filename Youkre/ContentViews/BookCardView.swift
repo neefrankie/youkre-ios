@@ -11,10 +11,11 @@ struct BookCardView: View {
     let book: Book
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text(book.title)
                 .font(.headline)
-                .padding()
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
                 .frame(
                     maxWidth: .infinity,
                     alignment: .leading
@@ -22,20 +23,21 @@ struct BookCardView: View {
             
             Group {
                 if book.isVector {
-                    AspectRatioCardView() {
+                    AspectRatioCardView {
                         Image(book.slug)
                             .resizable()
                             .scaledToFit()
                     }
                 } else {
-                    Image(book.slug)
-                        .resizable()
-                        .aspectRatio(16/9, contentMode: .fill)
+                    AspectRatioCardView {
+                        Image(book.slug)
+                            .resizable()
+                            .aspectRatio(16/9, contentMode: .fill)
+                    }
                 }
             }
         }
         .modifier(CardStyle())
-        .padding()
     }
 }
 
