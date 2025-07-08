@@ -18,6 +18,7 @@ struct ContentView: View {
                         systemImage: "book"
                     )
                 }
+                .background(AppColors.background)
             
             FunctionPagerView()
                 .tabItem {
@@ -26,6 +27,7 @@ struct ContentView: View {
                         systemImage: "function"
                     )
                 }
+                .background(AppColors.background)
             
             SettingsView()
                 .tabItem {

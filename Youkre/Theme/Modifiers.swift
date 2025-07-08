@@ -13,7 +13,7 @@ struct PaddedCardStyle: ViewModifier {
             .padding()
             .background(AppColors.contentBackground)
             .cornerRadius(12)
-            
+            .shadow(radius: 2)
     }
 }
 

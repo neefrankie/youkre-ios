@@ -29,6 +29,7 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             
         }
+        .background(AppColors.background)
     }
 }
 
@@ -39,5 +40,4 @@ struct HomeView: View {
     HomeView()
         .environmentObject(themeManager)
         .preferredColorScheme(themeManager.preferredColorScheme)
-        .background(AppColors.background)
 }
