@@ -17,7 +17,6 @@ struct AspectRatioCardView<Content: View>: View {
             
             ZStack {
                 content()
-                    .padding()
                     .frame(width: width, height: height)
             }
             .frame(width: width, height: height)
