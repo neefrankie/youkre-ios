@@ -282,6 +282,7 @@ struct ChapterView: View {
                 object: nil
             )
         }
+        .background(AppColors.background)
     }
     
 
