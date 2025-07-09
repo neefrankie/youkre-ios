@@ -60,7 +60,7 @@
         {
             "hex_id": "24a8c4fa68c50435",
             "slug": "4",
-            "title": "4. 根据基本原理找出的导数",
+            "title": "4. 根据基本原理找出导数",
             "summary": "从幂函数开始",
             "cover": "CME-04.webp",
             "keywords": "",
@@ -77,9 +77,9 @@
             "title": "4.1. 幂法则",
             "summary": "对所有正整数指数都成立",
             "cover": "CME-04.webp",
-            "keywords": "",
+            "keywords": "power rul,幂法则",
             "icons": {
-                "sf_symbol": null,
+                "sf_symbol": "p.circle",
                 "symbol_name": null,
                 "latex": null
             },

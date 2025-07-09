@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>简易微积分4: 根据基本原理找出的导数 | 优克 - 数学与计算机科学</title>
+    <title>简易微积分4: 根据基本原理找出导数 | 优克 - 数学与计算机科学</title>
     
 <link rel="stylesheet" href="../css/bootstrap.min.css"/>
 
@@ -213,12 +213,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         
 <div class="row pt-3 justify-content-center">
     <article class="col-12 col-md-8">
-        <h2 class="text-center"><span>4.</span><span class="ps-2">根据基本原理找出的导数</span></h2>
+        <h2 class="text-center"><span>4.</span><span class="ps-2">根据基本原理找出导数</span></h2>
         <div><p>我们来看看，从基本原理出发，如何对一些简单的函数求导。</p>
 
 <h2>求 <span class="math">\(y=x^2\)</span> 的导数</h2>
 
-<p>先从一个简单的表达式 <span class="math">\(y=x^2\)</span> 开始。要记住，微积分的核心概念是“变化”，既然 <span class="math">\(y\)</span> 和 <span class="math">\(x^2\)</span> 是相等的，那么很明显，如果 <span class="math">\(x\)</span> 变化了，<span class="math">\(x^2\)</span> 也会随之变化；而 <span class="math">\(x^2\)</span> 一变，<span class="math">\(y\)</span> 也一定会变。我们要做的，就是找出 <span class="math">\(y\)</span> 的变化量和 <span class="math">\(x\)</span> 的变化量之间的比例关系。换句话说，我们的任务是求出 <span class="math">\(\dfrac{dy}{dx}\)</span>。</p>
+<p>先从一个简单的表达式 <span class="math">\(y=x^2\)</span> 开始。</p>
+
+<p>要记住，微积分的核心概念是“变化”，既然 <span class="math">\(y\)</span> 和 <span class="math">\(x^2\)</span> 是相等的，那么很明显，如果 <span class="math">\(x\)</span> 变化了，<span class="math">\(x^2\)</span> 也会随之变化；而 <span class="math">\(x^2\)</span> 一变，<span class="math">\(y\)</span> 也一定会变。</p>
+
+<p>我们要做的，就是找出 <span class="math">\(y\)</span> 的<strong>变化量</strong>和 <span class="math">\(x\)</span> 的<strong>变化量</strong>之间的比例关系。换句话说，我们的任务是求出 <span class="math">\(\dfrac{dy}{dx}\)</span>。</p>
 
 <p>假设 <span class="math">\(x\)</span> 增加了一点，变成 <span class="math">\(x + dx\)</span>；同理，<span class="math">\(y\)</span> 也会增加一点，变成 <span class="math">\(y + dy\)</span>。显然，增长后的 <span class="math">\(y\)</span> 仍等于增长后的 <span class="math">\(x\)</span> 的平方。于是可以写出：</p>
 
@@ -240,14 +244,15 @@ y + dy = x^2 + 2x \cdot dx
 
 <p>又因为 <span class="math">\(y = x^2\)</span>，两式相减，得到：</p>
 
-<div class="math">\[
-dy = 2x \cdot dx.
-\]</div>
+<div class="math">\begin{align*}
+y + dy -y &amp;= x^2 + 2x \cdot dx - x^2 \\
+dy &amp;= 2x \cdot dx
+\end{align*}</div>
 
 <p>两边同时除以 <span class="math">\(dx\)</span>，得：</p>
 
 <div class="math">\[
-\frac{dy}{dx} = 2x.
+\frac{dy}{dx} = 2x
 \]</div>
 
 <p>这就是我们想要找的结果。在这个例子中，<span class="math">\(y\)</span> 随 <span class="math">\(x\)</span> 变化的速率是 <span class="math">\(2x\)</span>。</p>
@@ -343,14 +348,15 @@ dy = 3x^2 \cdot dx
 <p>再来看 <span class="math">\(y = x^4\)</span> 的求导。同样地，让 <span class="math">\(y\)</span> 和 <span class="math">\(x\)</span> 各增加一点，得：</p>
 
 <div class="math">\[
-y + dy = (x+dx)^4.
+y + dy = (x+dx)^4
 \]</div>
 
-<p>展开四次方项，得：</p>
+<p>展开四次</p>
 
-<div class="math">\[
-y + dy = x^4 + 4x^3 dx + 6x^2(dx)^2 + 4x(dx)^3+(dx)^4.
-\]</div>
+<div class="math">\begin{align*}
+y + dy = x^4 + 4x^3 dx + 6x^2(dx)^2 \\
++ 4x(dx)^3+(dx)^4
+\end{align*}</div>
 
 <p>然后，将所有包含更高次幂 <span class="math">\(dx\)</span> 的项去掉，因为它们相比之下可以忽略不计，得到：</p>
 
