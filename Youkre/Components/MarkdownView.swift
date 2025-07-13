@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MarkdownBlockView: View {
     let block: MarkdownBlock
+    var latexFontSize: CGFloat = 20
     
     var body: some View {
         switch block.type {
@@ -25,7 +26,8 @@ struct MarkdownBlockView: View {
             }
         case .math:
             MathView(
-                equation: block.text
+                latex: block.text,
+                fontSize: latexFontSize,
             )
             .fixedSize(horizontal: false, vertical: true)
         }
@@ -34,11 +36,16 @@ struct MarkdownBlockView: View {
 
 struct MarkdownListView: View {
     let markdown: String
+    var spacing: CGFloat = 16
+    var latexFontSize: CGFloat = 20
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: spacing) {
             ForEach(TextUtils.parseMarkdown(markdown), id: \.id) { block in
-                MarkdownBlockView(block: block)
+                MarkdownBlockView(
+                    block: block,
+                    latexFontSize: latexFontSize
+                )
             }
         }
     }
