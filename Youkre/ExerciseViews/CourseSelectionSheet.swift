@@ -8,11 +8,23 @@
 import SwiftUI
 
 struct CourseSelectionSheet: View {
+    @Binding var selectedCourse: Course
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List(Course.allCases) { course in
+                Button(course.title) {
+                    selectedCourse = course
+                    dismiss()
+                }
+            }
+            .navigationTitle("选择课程")
+        }
     }
 }
 
 #Preview {
-    CourseSelectionSheet()
+    @Previewable @State var selectedCourse: Course = .algebra
+    CourseSelectionSheet(selectedCourse: $selectedCourse)
 }
