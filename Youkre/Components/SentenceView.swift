@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Paragraph {
+struct Sentence {
     enum ParaType {
         case text
         case math
@@ -19,16 +19,17 @@ struct Paragraph {
 }
 
 struct SentenceView: View {
-    let paragraph: Paragraph
+    let sentence: Sentence
     
     var body: some View {
         Group {
-            if paragraph.type == .text {
-                MarkdownBlockView(
-                    block: TextUtils.parseMarkdown(paragraph.content)[0]
-                )
+            if sentence.type == .text {
+                Text(sentence.content)
             } else {
-                MathView(equation: paragraph.content)
+                MathView(
+                    latex: sentence.content,
+                    fontSize: 18
+                )
                     .fixedSize()
             }
         }
@@ -38,7 +39,7 @@ struct SentenceView: View {
 #Preview {
     VStack {
         SentenceView(
-            paragraph: Paragraph(
+            sentence: Sentence(
                 content: "**乘积法则** 如果 *y = uv*，则",
                 type: .text
             )
@@ -46,7 +47,7 @@ struct SentenceView: View {
         .background(.red)
         
         SentenceView(
-            paragraph: Paragraph(
+            sentence: Sentence(
                 content: "\\frac{dy}{dx} = u\\, \\frac{dv}{dx} + v\\, \\frac{du}{dx}",
                 type: .math
             )
