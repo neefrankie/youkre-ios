@@ -8,38 +8,20 @@
 import SwiftUI
 import SwiftMath
 
-struct LatexIconView: UIViewRepresentable {
+struct LatexIconView: View {
     let latex: String
-    let fontSize: CGFloat
-    let labelMode: MTMathUILabelMode
-    let textColor: Color
+    var fontSize: CGFloat = 22
+    var mode: MTMathUILabelMode = .text
     
-    init(
-        latex: String,
-        fontSize: CGFloat = 22,
-        mode: MTMathUILabelMode = .text,
-        textColor: Color = .white
-    ) {
-        self.latex = latex
-        self.fontSize = fontSize
-        self.labelMode = mode
-        self.textColor = textColor
-    }
-    
-    func makeUIView(context: Context) -> MTMathUILabel {
-        let label = MTMathUILabel()
-        label.latex = latex
-        label.fontSize = fontSize
-        label.textAlignment = .center
-        label.contentInsets = .zero
-        label.backgroundColor = .clear
-        label.textColor = MTColor(textColor)
-        label.labelMode = labelMode
-        
-        return label
-    }
-    func updateUIView(_ uiView: MTMathUILabel, context: Context) {
-        uiView.latex = latex
+    var body: some View {
+        MathView(
+            latex: latex,
+            fontSize: fontSize,
+            labelMode: mode,
+            textColor: .white
+        )
+        .fixedSize()
+        .background(.clear)
     }
 }
 
