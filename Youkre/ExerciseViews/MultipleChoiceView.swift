@@ -8,40 +8,58 @@
 import SwiftUI
 
 struct MultipleChoiceView: View {
-    @ObservedObject var session: ExerciseSessionModel
+    let currentExercise: Exercise?
+    @Binding var currentState: ExerciseState
+    @State private var selectedIndex: Int? = nil
 
     var body: some View {
-        let exercise = session.currentExercise
-        let currentState = session.currentState
-        let multipleChoice = exercise?.multipleChoice ?? MultipleChoice(choices: [], correctIndex: -1)
+        let multipleChoice = currentExercise?.multipleChoice ?? MultipleChoice(choices: [], correctIndex: -1)
         
-        if let exercise {
+        if let exercise = currentExercise {
             ExerciseContainerView(
                 exercise: exercise,
                 inputView: {
                     VStack {
                         ForEach(multipleChoice.choices.indices, id: \.self) { i in
                             Button(action: {
-                                self.checkAnswer(selectedIndex: i, multipleChoice: multipleChoice)
+                                selectedIndex = i
+                                checkAnswer(
+                                    correctIndex: multipleChoice.correctIndex
+                                )
                             }) {
                                 HStack {
-                                    Text(multipleChoice.choices[i])
-                                        .fixedSize(horizontal: true, vertical: false)
-                                        .padding(.trailing, 20)
+                                    if multipleChoice.isLatex {
+                                        MathView(
+                                            latex: multipleChoice.choices[i],
+                                            fontSize: 20,
+                                            labelMode: .text,
+                                            textAlignment: .left,
+                                            textColor: .primary
+                                        )
+                                        .fixedSize()
+                                    } else {
+                                        Text(multipleChoice.choices[i])
+                                            .fixedSize(horizontal: true, vertical: false)
+                                            .padding(.trailing, 20)
+                                            .foregroundColor(.primary)
+                                    }
+                                    
                                     Spacer()
                                     trailingImage(
                                         for: i,
-                                        currentState: currentState,
                                         correctIndex: multipleChoice.correctIndex,
                                     )
-                                        .frame(width: 20, height: 20)
+                                    .frame(width: 20, height: 20)
                                 }
                                 .padding()
                                 .background(
                                     buttonColor(
                                         for: i,
-                                        currentState: currentState,
                                         correctIndex: multipleChoice.correctIndex
+                                    )
+                                    .animation(
+                                        .easeInOut(duration: 0.4),
+                                        value: selectedIndex,
                                     )
                                 )
                                 .cornerRadius(8)
@@ -53,22 +71,31 @@ struct MultipleChoiceView: View {
                 
                 
             )
+            .onAppear {
+                // Sync data on appear.
+                if case .choice(let selected) = currentState.answer {
+                    self.selectedIndex = selected
+                }
+            }
         }
     }
     
-    private func checkAnswer(selectedIndex: Int, multipleChoice: MultipleChoice) {
-        guard !session.currentState.isAnswered else { return }
+    private func checkAnswer(correctIndex: Int) {
+        // Only allow answer once
+        guard !currentState.isAnswered else { return }
         
-        let correctAnswer = multipleChoice.correctIndex
+        guard let selected = selectedIndex else { return }
         
-        session.submitAnswer(
-            correct: selectedIndex == correctAnswer,
-            answer: .choice(index: selectedIndex)
+        print(selected)
+        currentState = ExerciseState.answered(
+            correct: selected == correctIndex,
+            answer: .choice(index: selected)
         )
     }
     
-    private func trailingImage(for index: Int, currentState: ExerciseState, correctIndex: Int) -> some View {
-        if case .choice(let selected) = currentState.answer {
+    private func trailingImage(for index: Int, correctIndex: Int) -> some View {
+        if let selected = selectedIndex {
+            // Only add mark to selected one.
             if index == selected {
                 // Index is selected and it is the correct index.
                 if index == correctIndex {
@@ -85,20 +112,28 @@ struct MultipleChoiceView: View {
             .foregroundColor(.clear)
     }
     
-    private func buttonColor(for index: Int, currentState: ExerciseState, correctIndex: Int) -> Color {
-        if index == correctIndex {
-            return .green.opacity(0.3)
-        } else if case .choice(let selected) = currentState.answer, index == selected {
-            return .red.opacity(0.3)
-        } else {
-            return .gray.opacity(0.1)
+    private func buttonColor(for index: Int, correctIndex: Int) -> Color {
+        // If ther's a choice, it indicates the answer is selected and exercise is not skipped.
+        if let selected = selectedIndex {
+            // Correct answer always show green background after user make choice.
+            if index == correctIndex {
+                return .green.opacity(0.3)
+            } else if index == selected {
+                // index is not the correntIndex but is selected, so it's not correct.
+                return .red.opacity(0.3)
+            }
         }
+        
+        return .gray.opacity(0.1)
     }
 }
 
 
 #Preview {
-    @Previewable @StateObject var session = ExerciseSessionModel(allExercises: sampleExercises)
+    @Previewable @State var exState = ExerciseState()
     
-    MultipleChoiceView(session: session)
+    MultipleChoiceView(
+        currentExercise: sampleExercises[1],
+        currentState: $exState
+    )
 }
