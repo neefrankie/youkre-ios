@@ -97,7 +97,7 @@ struct AnimatedIntegralView: View {
             Text("函数的导数和积分")
                 .font(.title)
             MathView(
-                equation: definition.latex,
+                latex: definition.latex,
                 fontSize: 40
             )
             .fixedSize()
