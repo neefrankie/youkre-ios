@@ -20,16 +20,7 @@ struct MarkdownBlock: Identifiable {
     let text: String
 }
 
-struct Paragraph {
-    enum ParaType {
-        case text
-        case math
-    }
-    
-    let id = UUID()
-    let content: String
-    let type: ParaType
-}
+
 
 struct TextUtils {
     static func parseMarkdown(_ input: String) -> [MarkdownBlock] {
