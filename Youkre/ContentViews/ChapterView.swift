@@ -221,14 +221,14 @@ struct LocalWebView: UIViewRepresentable {
 }
 
 struct ChapterView: View {
-    @State var params: ChapterParams
+    @State var params: ChapterLink
     @EnvironmentObject var settings: ThemeManager
     
     @State private var isLoading = true
     @State private var shouldReload = false
     @State private var isBottomBarVisible = false
     
-    init(params: ChapterParams) {
+    init(params: ChapterLink) {
         self._params = State(initialValue: params)
     }
     
@@ -236,8 +236,8 @@ struct ChapterView: View {
         // ZStack(alignment: .bottom) lets you anchor the bottom bar properly.
         ZStack(alignment: .bottom) {
             LocalWebView(
-                bookSlug: params.book.slug,
-                fileName: params.current.slug,
+                bookSlug: params.bookSlug,
+                fileName: params.chapterSlug,
                 themeManager: settings,
                 isLoading: $isLoading,
                 onTap: {
@@ -292,17 +292,9 @@ struct ChapterView: View {
 #Preview {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
-    ChapterView(params: ChapterParams(
-        book: DataStore.bookList[0],
-        current: TocDisplayEntry(
-            id: "662caa141e1055c3",
-            slug: "1",
-            title: "1. 摆脱恐惧",
-            summary: "",
-            keywords: "",
-            icons: Icons(),
-            level: 0
-        )
+    ChapterView(params: ChapterLink(
+        bookSlug: DataStore.bookList[0].slug,
+        chapterSlug: "1"
     ))
     .environmentObject(themeManager)
     .preferredColorScheme(themeManager.preferredColorScheme)
