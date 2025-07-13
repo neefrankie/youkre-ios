@@ -9,33 +9,17 @@ import SwiftUI
 import WebKit
 
 struct ContentView: View {
+    @AppStorage("hasComplatedOnBoarding") var hasCompletedOnboarding = false
     var body: some View {
-        TabView {
-            HomeView()
-                .tabItem {
-                    Label(
-                        Config.appName,
-                        systemImage: "book"
-                    )
+        if !hasCompletedOnboarding {
+            OnboardingView(
+                hasCompletedOnBoarding: $hasCompletedOnboarding
+            )
+                .onDisappear {
+                    hasCompletedOnboarding = true
                 }
-                .background(AppColors.background)
-            
-            FunctionPagerView()
-                .tabItem {
-                    Label(
-                        "图式",
-                        systemImage: "function"
-                    )
-                }
-                .background(AppColors.background)
-            
-            SettingsView()
-                .tabItem {
-                    Label(
-                        "我的",
-                        systemImage: "person"
-                    )
-                }
+        } else {
+            MainView()
         }
     }
 }
