@@ -129,9 +129,9 @@ struct TocListView: View {
                             .padding(.top, 32)
                     } else {
                         NavigationLink(
-                            value: ChapterParams(
-                                book: book,
-                                current: entry
+                            value: ChapterLink(
+                                bookSlug: book.slug,
+                                chapterSlug: entry.slug,
                             )
                         ) {
                             TocCardView(entry: entry)
@@ -143,7 +143,7 @@ struct TocListView: View {
             .padding()
         }
         .navigationDestination(
-            for: ChapterParams.self
+            for: ChapterLink.self
         ) { params in
             ChapterView(params: params)
         }
@@ -185,7 +185,11 @@ struct TocView: View {
 #Preview {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
-    TocView(book: DataStore.bookList[1])
-        .environmentObject(themeManager)
-        .preferredColorScheme(themeManager.preferredColorScheme)
+    NavigationStack {
+        TocView(book: DataStore.bookList[1])
+    }
+//    To preview, place theme manager here rather than TocView.
+    .environmentObject(themeManager)
+    .preferredColorScheme(themeManager.preferredColorScheme)
+    
 }
