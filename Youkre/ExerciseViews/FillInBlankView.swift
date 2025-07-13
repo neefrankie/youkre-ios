@@ -8,23 +8,30 @@
 import SwiftUI
 
 struct FillInBlankView: View {
-    @ObservedObject var session: ExerciseSessionModel
+    let currentExercise: Exercise?
+    @Binding var currentState: ExerciseState
     @State private var userInput = ""
     
+//    @ObservedObject var session: ExerciseSessionModel
+    
     var body: some View {
-        if let exercise = session.currentExercise {
+        if let currentExercise {
             ExerciseContainerView(
-                exercise: exercise,
+                exercise: currentExercise,
                 inputView: {
                     VStack(alignment: .leading, spacing: 8) {
-                        let currentState = session.currentState
-                        
                         validatedTextField(currentState: currentState)
                         
                         feedbackSection(exerciseState: currentState)
                     }
                 }
             )
+            .onAppear {
+                // Sync data on appear.
+                if case .text(let answered) = currentState.answer {
+                    self.userInput = answered
+                }
+            }
         }
         
     }
@@ -52,7 +59,6 @@ struct FillInBlankView: View {
                 Image(systemName: currentState.isCorrect ? "checkmark" : "xmark")
                     .foregroundColor(currentState.isCorrect ? .green : .red)
                     .transition(.opacity)
-                    .animation(.easeInOut(duration: 0.3), value: currentState.isCorrect)
             }
         }
     }
@@ -66,10 +72,10 @@ struct FillInBlankView: View {
             return
         }
         
-        let correctAnswer = session.currentExercise?.fillInAnswer ?? ""
+        let correctAnswer = currentExercise?.fillInAnswer ?? ""
         
         let isCorrect = answer == correctAnswer.lowercased()
-        session.submitAnswer(
+        currentState = ExerciseState.answered(
             correct: isCorrect,
             answer: .text(answer)
         )
@@ -97,7 +103,7 @@ struct FillInBlankView: View {
                         Text("回答正确！太棒了！")
                             .foregroundColor(.green)
                     } else {
-                        Text("正确答案：\(session.currentExercise?.fillInAnswer ?? "")")
+                        Text("正确答案：\(currentExercise?.fillInAnswer ?? "")")
                     }
                     Spacer()
                 }
@@ -121,7 +127,11 @@ struct FillInBlankView: View {
 }
 
 #Preview {
-    @Previewable @StateObject var session = ExerciseSessionModel(allExercises: sampleExercises)
     
-    FillInBlankView(session: session)
+    @Previewable @State var exState = ExerciseState()
+    
+    FillInBlankView(
+        currentExercise: sampleExercises[0],
+        currentState: $exState,
+    )
 }
