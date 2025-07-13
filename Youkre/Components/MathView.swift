@@ -9,44 +9,78 @@ import SwiftUI
 import SwiftMath
 
 struct MathView: UIViewRepresentable {
-    var equation: String
-    var font: MathFont = .latinModernFont
+    let latex: String
     var fontSize: CGFloat = 30
-    var textColor: Color = .primary
-    var textAlignment: MTTextAlignment = .center
     var labelMode: MTMathUILabelMode = .text
-    var insets: MTEdgeInsets = MTEdgeInsets()
+    var textAlignment: MTTextAlignment = .center
+    var font: MathFont = .eulerFont
+    var textColor: Color = .primary
     
     func makeUIView(context: Context) -> MTMathUILabel {
         let view = MTMathUILabel()
+        view.latex = latex
         view.labelMode = labelMode
         view.textAlignment = textAlignment
-        return view
-    }
-    func updateUIView(_ view: MTMathUILabel, context: Context) {
-        view.latex = equation
         view.font = MTFontManager().font(withName: font.rawValue, size: fontSize)
         view.textColor = MTColor(textColor)
-        
-        view.contentInsets = insets
-        
+        return view
+    }
+    
+    func updateUIView(_ view: MTMathUILabel, context: Context) {
         view.sizeToFit()
     }
 }
 
 #Preview {
-    MathView(
-        equation: "y = x \\\\ y = x^2"
-    )
-    .fixedSize()
-    
-    MathView(
-        equation: "\\frac{dy}{dx} = \\cos(x)"
-    )
-    .fixedSize()
-    
-    MathView(
-        equation: "\\int y\\,dx = -\\cos(x) + C"
-    )
-    .fixedSize()
+    VStack {
+        MathView(
+            latex: #"""
+    y = x \\
+    y = x^2
+    """#
+        )
+        .fixedSize()
+        
+        MathView(
+            latex: #"\frac{dy}{dx} = \cos(x)"#,
+            font: .firaFont
+        )
+        .fixedSize()
+        
+        MathView(
+            latex: #"\frac{dy}{dx} = \cos(x)"#,
+            font: .asanaFont
+        )
+        .fixedSize()
+        MathView(
+            latex: #"\frac{dy}{dx} = \cos(x)"#,
+            font: .notoSansFont
+        )
+        .fixedSize()
+        MathView(
+            latex: #"\frac{dy}{dx} = \cos(x)"#,
+            font: .eulerFont
+        )
+        .fixedSize()
+        MathView(
+            latex: #"\frac{dy}{dx} = \cos(x)"#,
+            font: .kpMathSansFont
+        )
+        .fixedSize()
+        MathView(
+            latex: #"\frac{dy}{dx} = \cos(x)"#,
+            font: .libertinusFont
+        )
+        .fixedSize()
+        
+        MathView(
+            latex: #"\int y\,dx = -\cos(x) + C"#,
+        )
+        .fixedSize()
+        
+        MathView(
+            latex: #"你好, \int"#,
+        )
+        .fixedSize()
+    }
 }
