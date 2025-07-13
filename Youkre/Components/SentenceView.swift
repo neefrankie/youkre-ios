@@ -7,7 +7,18 @@
 
 import SwiftUI
 
-struct ParagraphView: View {
+struct Paragraph {
+    enum ParaType {
+        case text
+        case math
+    }
+    
+    let id = UUID()
+    let content: String
+    let type: ParaType
+}
+
+struct SentenceView: View {
     let paragraph: Paragraph
     
     var body: some View {
@@ -26,7 +37,7 @@ struct ParagraphView: View {
 
 #Preview {
     VStack {
-        ParagraphView(
+        SentenceView(
             paragraph: Paragraph(
                 content: "**乘积法则** 如果 *y = uv*，则",
                 type: .text
@@ -34,7 +45,7 @@ struct ParagraphView: View {
         )
         .background(.red)
         
-        ParagraphView(
+        SentenceView(
             paragraph: Paragraph(
                 content: "\\frac{dy}{dx} = u\\, \\frac{dv}{dx} + v\\, \\frac{du}{dx}",
                 type: .math

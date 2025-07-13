@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct BookListView: View {
     
     var body: some View {
         NavigationStack {
@@ -37,7 +37,7 @@ struct HomeView: View {
 #Preview {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
-    HomeView()
+    BookListView()
         .environmentObject(themeManager)
         .preferredColorScheme(themeManager.preferredColorScheme)
 }
