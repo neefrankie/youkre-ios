@@ -1,18 +1,18 @@
 //
-//  PracticeQuestionView.swift
+//  PromptBlockView.swift
 //  Youkre
 //
-//  Created by Weiguo Ni on 2025/7/10.
+//  Created by Weiguo Ni on 2025/7/14.
 //
 
 import SwiftUI
 
-struct PracticeQuestionView: View {
+struct PromptBlockView: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    PracticeQuestionView()
+    PromptBlockView()
 }
