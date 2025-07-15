@@ -8,74 +8,73 @@
 import SwiftUI
 
 struct MultipleChoiceView: View {
-    let currentExercise: Exercise?
+    let exercise: Exercise
     @Binding var currentState: ExerciseState
     @State private var selectedIndex: Int? = nil
 
     var body: some View {
-        let multipleChoice = currentExercise?.multipleChoice ?? MultipleChoice(choices: [], correctIndex: -1)
+        let multipleChoice = exercise.multipleChoice ?? MultipleChoice(choices: [], correctIndex: -1)
         
-        if let exercise = currentExercise {
-            ExerciseContainerView(
-                exercise: exercise,
-                inputView: {
-                    VStack {
-                        ForEach(multipleChoice.choices.indices, id: \.self) { i in
-                            Button(action: {
-                                selectedIndex = i
-                                checkAnswer(
+        
+        ExerciseContainerView(
+            exercise: exercise,
+            inputView: {
+                VStack {
+                    ForEach(multipleChoice.choices.indices, id: \.self) { i in
+                        Button(action: {
+                            selectedIndex = i
+                            checkAnswer(
+                                correctIndex: multipleChoice.correctIndex
+                            )
+                        }) {
+                            HStack {
+                                if multipleChoice.isLatex {
+                                    MathView(
+                                        latex: multipleChoice.choices[i],
+                                        fontSize: 20,
+                                        labelMode: .text,
+                                        textAlignment: .left,
+                                        textColor: .primary
+                                    )
+                                    .fixedSize()
+                                } else {
+                                    Text(multipleChoice.choices[i])
+                                        .fixedSize(horizontal: true, vertical: false)
+                                        .padding(.trailing, 20)
+                                        .foregroundColor(.primary)
+                                }
+                                
+                                Spacer()
+                                trailingImage(
+                                    for: i,
+                                    correctIndex: multipleChoice.correctIndex,
+                                )
+                                .frame(width: 20, height: 20)
+                            }
+                            .padding()
+                            .background(
+                                buttonColor(
+                                    for: i,
                                     correctIndex: multipleChoice.correctIndex
                                 )
-                            }) {
-                                HStack {
-                                    if multipleChoice.isLatex {
-                                        MathView(
-                                            latex: multipleChoice.choices[i],
-                                            fontSize: 20,
-                                            labelMode: .text,
-                                            textAlignment: .left,
-                                            textColor: .primary
-                                        )
-                                        .fixedSize()
-                                    } else {
-                                        Text(multipleChoice.choices[i])
-                                            .fixedSize(horizontal: true, vertical: false)
-                                            .padding(.trailing, 20)
-                                            .foregroundColor(.primary)
-                                    }
-                                    
-                                    Spacer()
-                                    trailingImage(
-                                        for: i,
-                                        correctIndex: multipleChoice.correctIndex,
-                                    )
-                                    .frame(width: 20, height: 20)
-                                }
-                                .padding()
-                                .background(
-                                    buttonColor(
-                                        for: i,
-                                        correctIndex: multipleChoice.correctIndex
-                                    )
-                                    .animation(
-                                        .easeInOut(duration: 0.4),
-                                        value: selectedIndex,
-                                    )
+                                .animation(
+                                    .easeInOut(duration: 0.4),
+                                    value: selectedIndex,
                                 )
-                                .cornerRadius(8)
-                            }
-                            .disabled(currentState.isAnswered)
+                            )
+                            .cornerRadius(8)
                         }
+                        .disabled(currentState.isAnswered)
                     }
                 }
-                
-                
-            )
-            .onAppear {
-                // Sync data on appear.
-                if case .choice(let selected) = currentState.answer {
-                    self.selectedIndex = selected
-                }
+            }
+            
+            
+        )
+        .onAppear {
+            // Sync data on appear.
+            if case .choice(let selected) = currentState.answer {
+                self.selectedIndex = selected
             }
         }
     }
@@ -131,9 +130,12 @@ struct MultipleChoiceView: View {
 
 #Preview {
     @Previewable @State var exState = ExerciseState()
+    @Previewable @StateObject var settings = ThemeManager.shared
     
     MultipleChoiceView(
-        currentExercise: sampleExercises[1],
+        exercise: sampleExercises[1],
         currentState: $exState
     )
+    .environmentObject(settings)
+    .preferredColorScheme(settings.preferredColorScheme)
 }

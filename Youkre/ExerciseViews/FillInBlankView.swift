@@ -8,29 +8,27 @@
 import SwiftUI
 
 struct FillInBlankView: View {
-    let currentExercise: Exercise?
+    let currentExercise: Exercise
     @Binding var currentState: ExerciseState
     @State private var userInput = ""
     
 //    @ObservedObject var session: ExerciseSessionModel
     
     var body: some View {
-        if let currentExercise {
-            ExerciseContainerView(
-                exercise: currentExercise,
-                inputView: {
-                    VStack(alignment: .leading, spacing: 8) {
-                        validatedTextField(currentState: currentState)
-                        
-                        feedbackSection(exerciseState: currentState)
-                    }
+        ExerciseContainerView(
+            exercise: currentExercise,
+            inputView: {
+                VStack(alignment: .leading, spacing: 8) {
+                    validatedTextField(currentState: currentState)
+                    
+                    feedbackSection(exerciseState: currentState)
                 }
-            )
-            .onAppear {
-                // Sync data on appear.
-                if case .text(let answered) = currentState.answer {
-                    self.userInput = answered
-                }
+            }
+        )
+        .onAppear {
+            // Sync data on appear.
+            if case .text(let answered) = currentState.answer {
+                self.userInput = answered
             }
         }
         
@@ -72,7 +70,7 @@ struct FillInBlankView: View {
             return
         }
         
-        let correctAnswer = currentExercise?.fillInAnswer ?? ""
+        let correctAnswer = currentExercise.fillInAnswer ?? ""
         
         let isCorrect = answer == correctAnswer.lowercased()
         currentState = ExerciseState.answered(
@@ -103,7 +101,7 @@ struct FillInBlankView: View {
                         Text("回答正确！太棒了！")
                             .foregroundColor(.green)
                     } else {
-                        Text("正确答案：\(currentExercise?.fillInAnswer ?? "")")
+                        Text("正确答案：\(currentExercise.fillInAnswer ?? "")")
                     }
                     Spacer()
                 }
@@ -129,9 +127,12 @@ struct FillInBlankView: View {
 #Preview {
     
     @Previewable @State var exState = ExerciseState()
+    @Previewable @StateObject var settings = ThemeManager.shared
     
     FillInBlankView(
         currentExercise: sampleExercises[0],
         currentState: $exState,
     )
+    .environmentObject(settings)
+    .preferredColorScheme(settings.preferredColorScheme)
 }
