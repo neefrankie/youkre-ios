@@ -21,7 +21,7 @@ struct ColoredCircleButtonStyle: ButtonStyle {
 }
 
 struct ProminentButtonStyle: ButtonStyle {
-    var backgroundColor: Color
+    var backgroundColor: Color = .teal
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -62,6 +62,11 @@ struct ProminentButtonStyle: ButtonStyle {
         }
         .labelStyle(.iconOnly)
         .buttonStyle(ProminentButtonStyle(backgroundColor: .teal))
+        
+        Button("", systemImage: "arrow.counterclockwise") {
+            
+        }
+        .buttonStyle(ColoredCircleButtonStyle(backgroundColor: .brown))
         
     }
 }
