@@ -14,55 +14,57 @@ struct ExerciseContainerView<InputView: View>: View {
     @State private var showExplanation = false
     
     var body: some View {
-        VStack(spacing: 16) {
-            
-            Spacer()
-            
+        NavigationStack {
             VStack(spacing: 16) {
-                Text(exercise.title)
-                    .font(.headline)
-                    .foregroundColor(.secondary)
-                
-                LocalizedPromptView(parts: exercise.promptParts)
-                
-                inputView()
-            }
-            
-            Spacer()
-            
-            HStack {
-                
-                NavigationLink(value: exercise.learnMore) {
-                    Label("相关知识", systemImage: "book")
-                }
-                .buttonStyle(.plain)
                 
                 Spacer()
                 
-                if exercise.explanation != nil {
-                    Button {
-                        showExplanation = true
-                    } label: {
-                        Label("查看讲解", systemImage: "questionmark")
-                            .font(.headline)
-                            .padding(.top, 8)
+                VStack(spacing: 16) {
+                    Text(exercise.title)
+                        .font(.headline)
+                        .foregroundColor(.secondary)
+                    
+                    LocalizedPromptView(parts: exercise.promptParts)
+                    
+                    inputView()
+                }
+                
+                Spacer()
+                
+                HStack {
+                    
+                    NavigationLink(value: exercise.learnMore) {
+                        Label("相关知识", systemImage: "book")
                     }
-                    .foregroundColor(.teal)
+                    .buttonStyle(.plain)
+                    
+                    Spacer()
+                    
+                    if exercise.explanation != nil {
+                        Button {
+                            showExplanation = true
+                        } label: {
+                            Label("查看讲解", systemImage: "questionmark")
+                                .font(.headline)
+                                .padding(.top, 8)
+                        }
+                        .foregroundColor(.teal)
+                    }
+                }
+                .padding(.bottom, 32)
+                
+            }
+            .padding()
+            .sheet(isPresented: $showExplanation) {
+                if let explanation = exercise.explanation {
+                    ExplanationSheetView(explanation: explanation)
                 }
             }
-            .padding(.bottom, 32)
-            
-        }
-        .padding()
-        .sheet(isPresented: $showExplanation) {
-            if let explanation = exercise.explanation {
-                ExplanationSheetView(explanation: explanation)
+            .navigationDestination(
+                for: ChapterLink.self,
+            ) { param in
+                ChapterView(params: param)
             }
-        }
-        .navigationDestination(
-            for: ChapterLink.self,
-        ) { param in
-            ChapterView(params: param)
         }
     }
 }
