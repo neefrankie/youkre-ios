@@ -47,5 +47,9 @@ struct MainView: View {
 }
 
 #Preview {
+    @Previewable @StateObject var settings = ThemeManager.shared
+    
     MainView()
+        .environmentObject(settings)
+        .preferredColorScheme(settings.preferredColorScheme)
 }
