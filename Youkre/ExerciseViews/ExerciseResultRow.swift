@@ -12,58 +12,89 @@ struct ExerciseResultRow: View {
     let state: ExerciseState
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 16) {
             VStack {
                 Text(exercise.title)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading, )
                     
                 if !exercise.promptParts.isEmpty {
-                    promptView(parts: exercise.promptParts)
+                    LocalizedPromptView(parts: exercise.promptParts)
                 }
             }
             
-            HStack {
-                icon
+            switch state.answer {
+            case .text(let value):
+                answerView(answered: value, correct: exercise.fillInAnswer ?? "")
                 
-                switch state.answer {
-                case .text(let value):
-                    Text("你的答案：\(value)")
-                        .foregroundStyle(.secondary)
+            case .choice(let index):
+                if let multiple = exercise.multipleChoice {
+                    let answered = multiple.choices[index]
+                    let correct = multiple.correctAnswer
                     
-                case .choice(let index):
-                    if let choice = exercise.multipleChoice?.choices[safe: index] {
-                        Text("你的选择：\(choice)")
-                            .foregroundStyle(.secondary)
-                    }
-                case .choices(let indices):
-                    let answers = indices.compactMap { exercise.multipleChoice?.choices[safe: $0] }
-                    Text("你的选择：\(answers.joined(separator: ", "))")
-                        .foregroundStyle(.secondary)
-                    
-                case .none:
-                    if state.skipped {
-                        Text("你跳过了此题")
-                            .foregroundStyle(.orange)
-                    }
+                    answerView(answered: answered, correct: correct, isLatex: multiple.isLatex)
                 }
-            }
-            
-            
-            if state.isAnswered && !state.isCorrect {
-                HStack {
-                    Image(systemName: "checkmark")
-                    Text("正确答案：\(exercise.correctAnswer)")
-                }
-                .foregroundStyle(.green)
+            case .choices(let indices):
+                let answers = indices.compactMap { exercise.multipleChoice?.choices[safe: $0] }
+                Text("你的选择：\(answers.joined(separator: ", "))")
+                    .foregroundStyle(.secondary)
                 
+            case .none:
+                if state.skipped {
+                    skippedView()
+                }
             }
         }
         .frame(maxWidth: .infinity)
         .padding()
-        
-        .cornerRadius(8)
         .border(.gray)
         
+    }
+    
+    private func skippedView() -> some View {
+        HStack {
+            icon
+            Text("你跳过了此题")
+                .foregroundStyle(.orange)
+        }
+    }
+    
+    private func answerView(answered: String, correct: String, isLatex: Bool = false) -> some View {
+        VStack {
+            HStack {
+                icon
+                Text("你的答案:")
+                Spacer()
+                if isLatex {
+                    MathView(
+                        latex: answered,
+                        fontSize: 20
+                    )
+                    .fixedSize()
+                } else {
+                    Text(answered)
+                }
+                
+            }
+            .foregroundStyle(.secondary)
+            
+            if !state.isCorrect {
+                HStack {
+                    Image(systemName: "checkmark")
+                    Text("正确答案:")
+                    Spacer()
+                    if isLatex {
+                        MathView(
+                            latex: correct,
+                            fontSize: 20
+                        )
+                        .fixedSize()
+                    } else {
+                        Text(correct)
+                    }
+                }
+                .foregroundStyle(.green)
+            }
+        }
     }
     
     private var icon: some View {
@@ -80,28 +111,19 @@ struct ExerciseResultRow: View {
         }
         .font(.title3)
     }
-    
-    func promptView(parts: [PromptPart]) -> some View {
-        VStack(spacing: 8) {
-            ForEach(parts.indices, id: \.self) { i in
-                let part = parts[i]
-                switch part {
-                case .text(let s):
-                    Text(s)
-                        
-                case .latex(let ltx):
-                    MathView(
-                        latex: ltx,
-                        fontSize: 20
-                    )
-                    .fixedSize()
-                }
-            }
-        }
-    }
 }
 
 #Preview {
+    ExerciseResultRow(
+        exercise: sampleExercises[sampleExercises.count-1],
+        state: ExerciseState(
+            isAnswered: true,
+            isCorrect: false,
+            skipped: false,
+            answer: .choice(index: 1)
+        )
+    )
+    
     ExerciseResultRow(
         exercise: sampleExercises[0],
         state: ExerciseState(
@@ -109,6 +131,16 @@ struct ExerciseResultRow: View {
             isCorrect: false,
             skipped: false,
             answer: .text("3")
+        )
+    )
+    
+    ExerciseResultRow(
+        exercise: sampleExercises[0],
+        state: ExerciseState(
+            isAnswered: false,
+            isCorrect: false,
+            skipped: true,
+            answer: .none
         )
     )
 }

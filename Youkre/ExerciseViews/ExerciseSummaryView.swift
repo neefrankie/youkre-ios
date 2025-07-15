@@ -18,7 +18,7 @@ struct ExerciseSummaryView: View {
             
             Text("答对 \(session.score) / \(session.exercises.count)")
             
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 ForEach(session.exercises) { exercise in
                     let exState = session.session.state(for: exercise.id)
                     
@@ -31,20 +31,30 @@ struct ExerciseSummaryView: View {
             }
             
             HStack {
-                Button("再试错题") {
+                Button {
                     session.retryIncorrectOnly()
+                } label: {
+                    Label("重试错题", systemImage: "arrow.trianglehead.clockwise")
                 }
-                Button("全部重来") {
+                .buttonStyle(ProminentButtonStyle(backgroundColor: .secondary))
+                
+                Button {
                     session.reset()
+                } label: {
+                    Label("再做一遍", systemImage: "repeat")
                 }
-                Spacer()
-                Button("关闭") {
-                    dismiss()
-                }
+                .buttonStyle(ProminentButtonStyle())
             }
             .padding(.top)
         }
         .padding()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("关闭") {
+                    dismiss()
+                }
+            }
+        }
     }
 }
 
