@@ -138,7 +138,7 @@ let sampleExercises: [Exercise] = [
 
 \[ x = 4\]
 """#,
-        learnMore: ChapterLink.algebraIntroMul
+        learnMore: ChapterLink.algebraIntro
     ),
     Exercise(
         id: "alg-1-2",
@@ -168,7 +168,7 @@ let sampleExercises: [Exercise] = [
 
 \[ x = 6\]
 """#,
-        learnMore: ChapterLink.algebraIntroMul
+        learnMore: ChapterLink.algebraIntro
     ),
     Exercise(
         id: "alg-1-3",
@@ -198,7 +198,7 @@ let sampleExercises: [Exercise] = [
 
 \[ x = 11 \]
 """#,
-        learnMore: ChapterLink.algebraIntroMul
+        learnMore: ChapterLink.algebraIntro
     ),
     Exercise(
         id: "cal-1-1",
@@ -299,7 +299,7 @@ let sampleExercises: [Exercise] = [
                 #"e^x"#,
                 #"nx^{n-1}"#
             ],
-            correctIndex: 4,
+            correctIndex: 3,
             isLatex: true
         ),
         explanation: "By definition, the derivative of ln(x) is 1/x.",
