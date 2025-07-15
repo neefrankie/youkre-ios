@@ -54,9 +54,12 @@ class ExerciseSessionModel: ObservableObject {
     
     @Published var selectedCourse: Course {
         didSet {
+            AppSettings.selectedCourse = selectedCourse
             print("Course changed: \(selectedCourse)")
             reset()
-            AppSettings.selectedCourse = selectedCourse
+            // When a course is changed, we need to
+            // Clear exercise states
+            // Replace exercises
         }
     }
     
@@ -97,6 +100,10 @@ class ExerciseSessionModel: ObservableObject {
     
     var score: Int {
         session.score(for: exercises)
+    }
+    
+    var isFinished: Bool {
+        currentIndex >= exercises.count - 1 && currentState.isAnswered
     }
     
     func submitAnswer(correct: Bool, answer: AnswerData) {
