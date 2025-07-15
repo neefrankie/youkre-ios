@@ -30,6 +30,10 @@ struct MarkdownBlockView: View {
                 fontSize: latexFontSize,
             )
             .fixedSize(horizontal: false, vertical: true)
+        case .image:
+            Image(block.text)
+                .resizable()
+                .scaledToFit()
         }
     }
 }
@@ -63,7 +67,7 @@ struct MarkdownView: View {
 
 
 #Preview {
-    let sampleMarkdown = """
+    let sampleMarkdown = #"""
     # Welcome to SwiftUI
     
     ## Welcome to SwiftUI
@@ -78,8 +82,32 @@ struct MarkdownView: View {
 
     ## Thanks for Reading
     
-    \\[ \\frac{dy}{dx} = u\\, \\frac{dv}{dx} + v\\, \\frac{du}{dx} \\]
-    """
+    \[ \frac{dy}{dx} = u\, \frac{dv}{dx} + v\, \frac{du}{dx} \]
+    
+    Order of Operations are:
+
+    * Parentheses (Brackets) first
+    * Exponents (Orders, Powers, Square Roots, etc.) next
+    * Multiplication and Division (left-to-right) next
+    * Addition and Subtraction (left-to-right) last
+
+    So we do the division and multiplication before the addition:
+
+    \begin{align*}
+    6 \div 3 = 2 \\
+    4 \times 2 = 8
+    \end{align*}
+
+    So 
+
+    \begin{align*}
+    &6 \div 3 + 4 \times 2 \\
+    = &2 + 8 \\
+    = &10
+    \end{align*}
+    
+    ![](calculus-made-easy)
+    """#
     VStack {
         Text("Large Title")
             .font(.largeTitle)
