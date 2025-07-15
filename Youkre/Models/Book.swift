@@ -66,9 +66,9 @@ struct ChapterLink: Hashable, Codable {
     let bookSlug: String
     let chapterSlug: String
     
-    static let algebraIntroMul = ChapterLink(
+    static let algebraIntro = ChapterLink(
         bookSlug: Book.bookList[1].slug,
-        chapterSlug: "introduction-multiply"
+        chapterSlug: "introduction"
     )
     
     static let calChp1 = ChapterLink(
