@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExerciseSwipeView: View {
-    @StateObject var session = ExerciseSessionModel(allExercises: sampleExercises)
+    @StateObject var session = ExerciseSessionModel()
     
     @State private var showCourseSheet = false
     @State private var showSummary = false
@@ -27,27 +27,15 @@ struct ExerciseSwipeView: View {
                     
                     
                     TabView(selection: $session.currentIndex) {
-                        ForEach(session.exercises.indices, id: \.self) { i in
-                            Group {
-                                
-                                switch session.exercises[i].type {
-                                case .fillInTheBlank:
-                                    FillInBlankView(
-                                        currentExercise: session.exercises[i],
-                                        currentState: $session.currentState,
-                                    )
-                                    
-                                case .multipleChoice:
-                                    MultipleChoiceView(
-                                        exercise: session.exercises[i],
-                                        currentState: $session.currentState,
-                                    )
-                                }
-                            }
-                            .tag(i)
+                        ForEach(session.exercises.indices, id: \.self) { index in
+                            ExercisePageView(
+                                exercise: session.exercises[index],
+                                state: session.binding(for: session.exercises[index].id)
+                            )
+                            .tag(index)
                         }
                     }
-                    .tabViewStyle(.page)
+                    .tabViewStyle(.page(indexDisplayMode: .never))
                     .indexViewStyle(.page(backgroundDisplayMode: .never))
                 }
                 
@@ -60,7 +48,7 @@ struct ExerciseSwipeView: View {
                 }
                 
                 ToolbarItem(placement: .topBarTrailing) {
-                    if session.isFinished {
+                    if session.finished {
                         Button("总结") {
                             showSummary = true
                         }
@@ -73,10 +61,12 @@ struct ExerciseSwipeView: View {
                 }
             }
             .sheet(isPresented: $showCourseSheet) {
-                CourseSelectionSheet(selectedCourse: $session.selectedCourse)
+                CourseSelectionSheet(
+                    selectedCourse: $session.selectedCourse,
+                )
             }
             .sheet(isPresented: $showSummary) {
-                ExerciseSummaryView(session: session)
+                ExerciseSummarySheet(session: session)
             }
         }
         .background(AppColors.background)
