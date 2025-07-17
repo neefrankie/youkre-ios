@@ -24,7 +24,8 @@ struct SessionState {
     }
     
     func state(for id: String) -> ExerciseState {
-        states[id] ?? ExerciseState()
+        // By default we assume all questions are skipped.
+        states[id] ?? ExerciseState.skipped()
     }
     
     func score(for exercises: [Exercise]) -> Int {
@@ -42,57 +43,32 @@ struct SessionState {
     }
 }
 
-struct ExerciseModel {
-    var allExercises: [Exercise]
-    
-    func forCourse(_ course: Course) -> [Exercise] {
-        allExercises.filter { $0.course == course }
-    }
-}
+//struct ExerciseModel {
+//    var allExercises: [Exercise]
+//    
+//    func forCourse(_ course: Course) -> [Exercise] {
+//        allExercises.filter { $0.course == course }
+//    }
+//}
 
 class ExerciseSessionModel: ObservableObject {
     
     @Published var selectedCourse: Course {
         didSet {
-            AppSettings.selectedCourse = selectedCourse
             print("Course changed: \(selectedCourse)")
-            reset()
-            // When a course is changed, we need to
-            // Clear exercise states
-            // Replace exercises
+            switchCourse(course: selectedCourse)
         }
     }
     
-    @Published var currentIndex: Int = 0
-    @Published var model: ExerciseModel
+    @Published var currentIndex: Int = 0 {
+        didSet {
+            print("Current index changed \(currentIndex)")
+            finished = false
+        }
+    }
     @Published var session: SessionState = SessionState()
-    
-    init(allExercises: [Exercise]) {
-        self.model = ExerciseModel(allExercises: allExercises)
-        self.selectedCourse = AppSettings.selectedCourse
-    }
-    
-    var exercises: [Exercise] {
-        model.forCourse(selectedCourse)
-    }
-    
-    var currentExercise: Exercise? {
-        guard currentIndex >= 0, currentIndex < exercises.count else {
-            return nil
-        }
-        return exercises[currentIndex]
-    }
-    
-    var currentState: ExerciseState {
-        get {
-            guard let id = currentExercise?.id else { return ExerciseState() }
-            return session.state(for: id)
-        }
-        set {
-            guard let id = currentExercise?.id else { return }
-            session.add(id: id, newState: newValue)
-        }
-    }
+    @Published var exercises: [Exercise]
+    @Published var finished: Bool = false
     
     var progressText: String {
         "\(currentIndex + 1) / \(exercises.count)"
@@ -103,39 +79,35 @@ class ExerciseSessionModel: ObservableObject {
     }
     
     var isFinished: Bool {
-        currentIndex >= exercises.count - 1 && currentState.isAnswered
+        currentIndex >= exercises.count - 1
     }
     
-    func submitAnswer(correct: Bool, answer: AnswerData) {
-        guard let id = currentExercise?.id else { return }
-        session.markAnswered(
-            id: id,
-            correct: correct,
-            answer: answer
-        )
-    }
-    
-    func skipCurrent() {
-        guard let id = currentExercise?.id else {
-            return
+    private var currentExercise: Exercise? {
+        guard currentIndex >= 0, currentIndex < exercises.count else {
+            return nil
         }
-        
-        session.skip(id: id)
+        return exercises[currentIndex]
     }
     
-    func next() {
-        if currentIndex < exercises.count - 1 {
-            currentIndex += 1
-        }
+    private var currentState: ExerciseState {
+        guard let id = currentExercise?.id else { return ExerciseState() }
+        return session.state(for: id)
     }
     
-    func retryIncorrectOnly() {
-        let incorrect = exercises.filter {
-            session.state(for: $0.id).isAnswered &&
-            !session.state(for: $0.id).isCorrect
-        }
-        model = ExerciseModel(allExercises: incorrect)
-        session.reset()
+    init() {
+        print("Initializing exercise session model")
+        let course = CourseSettings.selectedCourse
+        self.exercises = ExerciseData.allExercises[course] ?? []
+        // 这里似乎不会触发 didSet
+        self.selectedCourse = course
+        print("Couse initialized \(self.selectedCourse)")
+    }
+    
+    func switchCourse(course: Course) {
+        print("Resetting exercise and state")
+        CourseSettings.selectedCourse = selectedCourse
+        exercises = ExerciseData.allExercises[course] ?? []
+        reset()
     }
     
     func reset() {
@@ -145,6 +117,67 @@ class ExerciseSessionModel: ObservableObject {
         
         print("Now current index \(currentIndex)")
     }
+    
+    func restart() {
+        print("Restarting all exercises...")
+        let course = CourseSettings.selectedCourse
+        switchCourse(course: course)
+    }
+    
+    func retryIncorrectOnly() {
+        let incorrect = exercises.filter {
+            !session.state(for: $0.id).isCorrect
+        }
+        exercises = incorrect
+        reset()
+    }
+    
+    func next() {
+        print("Current index \(currentIndex)")
+        if !currentState.isAnswered {
+            skipCurrent()
+        }
+        if currentIndex < exercises.count - 1 {
+            currentIndex += 1
+            finished = false
+        } else {
+            // 到了最后一个tab，需要多点击一次才能显示总结。
+            finished = true
+        }
+        print("Progressed to \(currentIndex)")
+    }
+    
+    func binding(for exerciseID: String) -> Binding<ExerciseState> {
+        Binding(
+            get: {
+                self.session.state(for: exerciseID)
+            },
+            set: {
+                self.session.add(id: exerciseID, newState: $0)
+            }
+        )
+    }
+    
+    private func submitAnswer(correct: Bool, answer: AnswerData) {
+        guard let id = currentExercise?.id else { return }
+        session.markAnswered(
+            id: id,
+            correct: correct,
+            answer: answer
+        )
+    }
+    
+    private func skipCurrent() {
+        guard let id = currentExercise?.id else {
+            return
+        }
+        
+        session.skip(id: id)
+    }
+    
+    
+    
+
 }
 
 
