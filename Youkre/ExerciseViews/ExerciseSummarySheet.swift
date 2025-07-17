@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ExerciseSummaryView: View {
+struct ExerciseSummarySheet: View {
     @ObservedObject var session: ExerciseSessionModel
     @Environment(\.dismiss) var dismiss
     
@@ -33,13 +33,15 @@ struct ExerciseSummaryView: View {
             HStack {
                 Button {
                     session.retryIncorrectOnly()
+                    dismiss()
                 } label: {
                     Label("重试错题", systemImage: "arrow.trianglehead.clockwise")
                 }
                 .buttonStyle(ProminentButtonStyle(backgroundColor: .secondary))
                 
                 Button {
-                    session.reset()
+                    session.restart()
+                    dismiss()
                 } label: {
                     Label("再做一遍", systemImage: "repeat")
                 }
@@ -65,7 +67,10 @@ extension Collection {
 }
 
 #Preview {
-    @Previewable @StateObject var session = ExerciseSessionModel(allExercises: sampleExercises)
+    @Previewable @StateObject var session = ExerciseSessionModel()
     
-    ExerciseSummaryView(session: session)
+    NavigationStack {
+        ExerciseSummarySheet(session: session)
+    }
+    
 }
