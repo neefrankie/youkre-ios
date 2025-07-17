@@ -17,6 +17,7 @@ struct MainView: View {
                         systemImage: "graduationcap"
                     )
                 }
+                .background(AppColors.background)
             BookListView()
                 .tabItem {
                     Label(
@@ -29,7 +30,7 @@ struct MainView: View {
             FunctionPagerView()
                 .tabItem {
                     Label(
-                        "图",
+                        "图示",
                         systemImage: "function"
                     )
                 }
