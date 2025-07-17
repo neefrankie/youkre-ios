@@ -87,15 +87,15 @@ extension Bundle {
         }
     }
     
-    func decodeBook(of project: String) async -> Result<Book, JSONParsingError> {
-        guard let fileURL = self.jsonURL(forResource: "book", of: project) else {
-            return .failure(.fileReadFailed("Failed to find book.json of \(project)"))
-        }
-        
-        print("Decode JSON file \(fileURL)")
-        
-        return self.decode(contentsOf: fileURL)
-    }
+//    func decodeBook(of project: String) async -> Result<Book, JSONParsingError> {
+//        guard let fileURL = self.jsonURL(forResource: "book", of: project) else {
+//            return .failure(.fileReadFailed("Failed to find book.json of \(project)"))
+//        }
+//        
+//        print("Decode JSON file \(fileURL)")
+//        
+//        return self.decode(contentsOf: fileURL)
+//    }
     
     func decodeToc(of project: String) async -> Result<TableOfContents, JSONParsingError> {
         guard let fileURL = self.jsonURL(forResource: "toc", of: project) else {
@@ -133,17 +133,6 @@ class JSONParser {
     static func parse<T: Decodable>(data: Data, as type: T.Type) throws -> T {
         let decoder = JSONDecoder()
         return try decoder.decode(type, from: data)
-    }
-    
-    static func parseBook(of project: String) async throws -> Book {
-        guard let fileURL = jsonURL(forResource: project,  "book")
-        else {
-            throw JSONError.fileNotFound("未能找到JSON文件")
-        }
-        print("Try to load file \(fileURL)")
-        let data = try Data(contentsOf: fileURL)
-        print("Loaded data \(data)")
-        return try parse(data: data, as: Book.self)
     }
     
     static func parseToc(of project: String) async throws -> TableOfContents {

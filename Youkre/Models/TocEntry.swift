@@ -13,7 +13,6 @@ struct TocEntry: Identifiable, Codable {
     let title: String
     let summary: String
     let keywords: String
-    let icons: Icons
     var children: [TocEntry] = []
     
     func toDisplayEntry(level: Int = 0) -> TocDisplayEntry {
@@ -23,7 +22,6 @@ struct TocEntry: Identifiable, Codable {
             title: self.title,
             summary: self.summary,
             keywords: self.keywords,
-            icons: self.icons,
             level: level
         )
     }
@@ -34,7 +32,6 @@ struct TocEntry: Identifiable, Codable {
         case title = "title"
         case summary = "summary"
         case keywords = "keywords"
-        case icons = "icons"
         case children = "children"
     }
 }
@@ -48,7 +45,6 @@ struct TocDisplayEntry: Identifiable, Hashable {
     let title: String
     let summary: String
     let keywords: String
-    let icons: Icons
     let level: Int
     
     func hash(into hasher: inout Hasher) {
