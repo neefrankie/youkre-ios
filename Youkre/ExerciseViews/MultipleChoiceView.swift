@@ -135,7 +135,7 @@ struct MultipleChoiceView: View {
     @Previewable @StateObject var settings = ThemeManager.shared
     
     MultipleChoiceView(
-        exercise: ExerciseData.calculus[1],
+        exercise: ExerciseData.stats[0],
         currentState: $exState
     )
     .environmentObject(settings)
