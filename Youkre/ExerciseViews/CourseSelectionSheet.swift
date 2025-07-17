@@ -20,6 +20,13 @@ struct CourseSelectionSheet: View {
                 }
             }
             .navigationTitle("选择课程")
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("关闭") {
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }
