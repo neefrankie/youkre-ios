@@ -106,6 +106,10 @@ struct MarkdownView: View {
     = &10
     \end{align*}
     
+    $$
+    \frac{d}{dx}x^{13} = 13x^{12}
+    $$
+    
     ![](calculus-made-easy)
     """#
     VStack {
