@@ -15,15 +15,21 @@ struct PromptBlockView: View {
         case .text(let string):
             Text(string)
                 .font(.body)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
         case .latex(let latex):
             latexView(latex: latex)
-        case .iamge(let name):
-            Image(name)
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 200)
-        case .table(let rows):
-            gridView(rows: rows)
+        case .image(let name):
+            HStack {
+                Spacer()
+                Image(name)
+                    .resizable()
+                    .scaledToFit()
+                Spacer()
+            }
+            .frame(maxHeight: 300)
+        case .table(let data, let layout):
+            tableView(data: data, layout: layout)
         case .bullet(let text):
             HStack(alignment: .top) {
                 Text("•").bold()
@@ -42,58 +48,56 @@ struct PromptBlockView: View {
         .fixedSize(horizontal: false, vertical: true)
     }
     
-    func tableView(rows: [[String]]) -> some View {
-        Grid(alignment: .leading) {
-            ForEach(rows.indices, id: \.self) { rowIndex in
-                GridRow {
-                    ForEach(rows[rowIndex].indices, id: \.self) { colIndex in
-                        Text(rows[rowIndex][colIndex])
-                            
+    func tableView(data: [String], layout: TableLayout) -> some View {
+        Group {
+            switch layout {
+            case .rows(let count):
+                ScrollView(.horizontal) {
+                    LazyHGrid(rows: Array(repeating: .init(.fixed(50)), count: count), spacing: 1) {
+                        ForEach(data.indices, id: \.self) { i in
+                            Text("\(data[i])")
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .padding(8)
+                                .background(Color.gray.opacity(0.2))
+                        }
                     }
                 }
-                .background(.green)
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .background(.red)
-        
-    }
-    
-    func gridView(rows: [[String]]) -> some View {
-        let maxColumns = rows.map { $0.count }.max() ?? 0
-        let columns = Array(repeating: GridItem(.flexible()), count: maxColumns)
-        
-        return LazyVGrid(columns: columns, alignment: .leading) {
-            ForEach(rows.indices, id: \.self) { rowIdx in
-                let row = rows[rowIdx]
-                
-                ForEach(0..<maxColumns, id: \.self) { colIndex in
-                    if colIndex < row.count {
-                        Text(row[colIndex])
-                            .padding(.vertical, 4)
-                    } else {
-                        // 如果当前行没有足够的列，则填充一个空单元格
-                        Color.clear.frame(height: 0)
+            case .columns(let count):
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: .init(.flexible()), count: count), spacing: 1) {
+                        ForEach(data.indices, id: \.self) { i in
+                            Text("\(data[i])")
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(8)
+                                .background(Color.gray.opacity(0.2))
+                        }
                     }
                 }
             }
         }
-        
     }
 }
 
 #Preview {
+    let data: [String] = [
+        "1月", "1",
+        "2月", "5",
+        "3月", "11",
+        "4月", "20",
+        "5月", "26",
+        "6月", "30",
+        "7月", "30",
+        "8月", "29",
+        "9月", "25",
+        "10月", "19",
+        "11月", "10",
+        "12月", "3",
+    ]
     PromptBlockView(
-        block: .table(rows: [
-            ["Function", "Expression"],
-            ["Linear", "y = mx + b"],
-            ["Quadratic", "y = ax² + bx + c"]
-        ])
+        block: .table(data: data, layout: .rows(2))
     )
     
     PromptBlockView(
-        block: .bullet("Item 1")
+        block: .image(name: "triangle-exercise-1")
     )
-    .frame(maxWidth: .infinity, alignment: .leading)
-    .background(.red)
 }
