@@ -20,7 +20,7 @@ struct ExplanationSheetView: View {
                 )
             }
             .padding()
-            .navigationTitle("解题")
+            .navigationTitle("解析")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -36,6 +36,6 @@ struct ExplanationSheetView: View {
 
 #Preview {
     ExplanationSheetView(
-        explanation: sampleExercises[0].explanation!
+        explanation: ExerciseData.algebra[0].explanation!
     )
 }
