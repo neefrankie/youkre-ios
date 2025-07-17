@@ -22,17 +22,38 @@ struct PromptView: View {
 #Preview {
     PromptView(
         blocks: [
-            .text("Compare the functions:"),
-            .newline,
-            .table(rows: [
-                ["Function", "Expression"],
-                ["Linear", "y = mx + b"],
-                ["Quadratic", "y = ax² + bx + c"]
-            ]),
-            .newline,
+            .table(
+                data: [
+                    "1月", "1",
+                    "2月", "5",
+                    "3月", "11",
+                    "4月", "20",
+                    "5月", "26",
+                    "6月", "30",
+                    "7月", "30",
+                    "8月", "29",
+                    "9月", "25",
+                    "10月", "19",
+                    "11月", "10",
+                    "12月", "3",
+                ],
+                layout: .rows(2)
+            ),
             .latex("f(x) = 2x^2 + 3x + 1"),
-            .text("What type of function is this?"),
-            .bullet("Item 1")
+            .bullet("Item 1"),
+            .text("""
+                在年终考试中，乔乔的成绩如下：
+
+                科学 34  
+                英语 90  
+                历史 87  
+                数学 34  
+                地理 55  
+
+                乔乔的成绩众数是多少？
+                """),
+            .image(name: "triangle-exercise-5-a"),
+            .text("图中显示的是一个菱形。如果画出菱形的对角线，形成的四个三角形是：")
         ]
     )
     .padding()
