@@ -19,6 +19,7 @@ struct MarkdownBlockView: View {
         case .paragraph:
             Text(TextUtils.attributed(from: block.text))
                 .foregroundStyle(.primary)
+                .frame(maxWidth: .infinity, alignment: .leading)
         case .listItem:
             HStack(alignment: .top) {
                 Text("•")
