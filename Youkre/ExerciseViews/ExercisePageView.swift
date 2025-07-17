@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct ExercisePageView: View {
+    let exercise: Exercise
+    @Binding var state: ExerciseState
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            Group {
+                switch exercise.type {
+                case .fillInBlank:
+                    FillInBlankView(
+                        currentExercise: exercise,
+                        currentState: $state
+                    )
+                case .multipleChoice:
+                    MultipleChoiceView(
+                        exercise: exercise,
+                        currentState: $state
+                    )
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    ExercisePageView()
+//    ExercisePageView()
 }

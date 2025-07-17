@@ -63,6 +63,7 @@ struct MultipleChoiceView: View {
                                 )
                             )
                             .cornerRadius(8)
+                            .shadow(radius: 2)
                         }
                         .disabled(currentState.isAnswered)
                     }
@@ -123,7 +124,8 @@ struct MultipleChoiceView: View {
             }
         }
         
-        return .gray.opacity(0.1)
+//        return .gray.opacity(0.1)
+        return AppColors.contentBackground
     }
 }
 
@@ -133,7 +135,7 @@ struct MultipleChoiceView: View {
     @Previewable @StateObject var settings = ThemeManager.shared
     
     MultipleChoiceView(
-        exercise: sampleExercises[1],
+        exercise: ExerciseData.calculus[1],
         currentState: $exState
     )
     .environmentObject(settings)

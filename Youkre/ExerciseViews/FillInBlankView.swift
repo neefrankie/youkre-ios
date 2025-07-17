@@ -130,7 +130,7 @@ struct FillInBlankView: View {
     @Previewable @StateObject var settings = ThemeManager.shared
     
     FillInBlankView(
-        currentExercise: sampleExercises[0],
+        currentExercise: ExerciseData.algebra[0],
         currentState: $exState,
     )
     .environmentObject(settings)
