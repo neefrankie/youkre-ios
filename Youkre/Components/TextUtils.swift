@@ -59,6 +59,13 @@ struct TextUtils {
                         text: String(trimmed.dropFirst(2).dropLast(2).trimmingCharacters(in: .whitespaces))
                      )
                 )
+            } else if trimmed.hasPrefix("$$") && trimmed.hasSuffix("$$") {
+                blocks.append(
+                    .init(
+                        type: .math,
+                        text: String(trimmed.dropFirst(2).dropLast(2).trimmingCharacters(in: .whitespaces))
+                     )
+                )
             } else if trimmed.hasPrefix("\\begin{align") {
                 let latex = extractAlignContent(from: trimmed)
                 if let latex {
