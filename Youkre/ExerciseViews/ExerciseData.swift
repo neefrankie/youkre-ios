@@ -421,17 +421,8 @@ struct ExerciseData {
                 .text(solveEq),
                 .latex(#"\frac{x}{2} = 3"#)
             ],
-            fillInAnswer: nil,
-            multipleChoice: MultipleChoice(
-                choices: [
-                    #"x = \frac{2}{3}"#,
-                    #"x = 1\frac{1}{2}"#,
-                    #"x = 5"#,
-                    #"x = 6"#
-                ],
-                correctIndex: 3,
-                isLatex: true
-            ),
+            fillInAnswer: "6",
+            multipleChoice: nil,
             explanation: #"""
 开始:
 
@@ -464,16 +455,8 @@ struct ExerciseData {
                 .text(solveEq),
                 .latex(#"\frac{x}{3} = 4"#)
             ],
-            fillInAnswer: nil,
-            multipleChoice: MultipleChoice(
-                choices: [
-                    #"x = \frac{3}{4}"#,
-                    #"x = 1\frac{1}{3}"#,
-                    #"x = 7"#,
-                    #"x = 12"#
-                ],
-                correctIndex: 3
-            ),
+            fillInAnswer: "12",
+            multipleChoice: nil,
             explanation: #"""
 开始:
 
@@ -531,7 +514,10 @@ struct ExerciseData {
 
 算一算:
 
-\[ \frac{1}{5} \times 5 = 1, 2 \times 5 = 10 \]
+\begin{align*}
+\frac{1}{5} \times 5 &= 1 \\
+2 \times 5 &= 10
+\end{align*}
 
 得到:
 
@@ -1752,9 +1738,9 @@ Joe 的总分是：
 因此，中位数是：
 
 \begin{align*}
-\text{中位数} &= \frac{3 + 3}{2} \\
-&= \frac{6}{2} \\
-&= 3
+&\frac{3 + 3}{2} \\
+= &\frac{6}{2} \\
+= &3
 \end{align*}
 
 所以，中位数得分为 3。
@@ -2521,7 +2507,7 @@ $$
             multipleChoice: MultipleChoice(
                 choices: [
                     #"-\frac{8}{5}x^{-\frac{8}{5}}"#,
-                    #"-\frac{8}{5}x^{-\frac{13}{5}}"#,
+                    #"\frac{8}{5}x^{-\frac{8}{5}}"#,
                     #"-\frac{8}{5}x^{-\frac{13}{5}}"#,
                     #"\frac{8}{5}x^{-\frac{13}{5}}"#
                 ],

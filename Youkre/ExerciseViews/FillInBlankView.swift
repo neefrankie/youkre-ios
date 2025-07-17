@@ -88,7 +88,7 @@ struct FillInBlankView: View {
                     Button("提交") {
                         checkAnswer()
                     }
-                    .buttonStyle(ProminentButtonStyle(backgroundColor: .teal))
+                    .buttonStyle(CapsuleButtonStyle(backgroundColor: .teal))
                     
                     Spacer()
                 }
