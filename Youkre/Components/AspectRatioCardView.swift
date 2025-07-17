@@ -20,7 +20,6 @@ struct AspectRatioCardView<Content: View>: View {
                     .frame(width: width, height: height)
             }
             .frame(width: width, height: height)
-//            .background(backgroundColor)
         }
         .aspectRatio(16/9, contentMode: .fit)
     }
