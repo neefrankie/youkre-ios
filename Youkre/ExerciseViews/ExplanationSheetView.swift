@@ -13,7 +13,7 @@ struct ExplanationSheetView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 MarkdownListView(
                     markdown: explanation,
                     latexFontSize: 22
@@ -36,6 +36,6 @@ struct ExplanationSheetView: View {
 
 #Preview {
     ExplanationSheetView(
-        explanation: ExerciseData.algebra[0].explanation!
+        explanation: ExerciseData.stats[1].explanation!
     )
 }
