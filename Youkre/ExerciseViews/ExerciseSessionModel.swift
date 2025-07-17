@@ -43,14 +43,6 @@ struct SessionState {
     }
 }
 
-//struct ExerciseModel {
-//    var allExercises: [Exercise]
-//    
-//    func forCourse(_ course: Course) -> [Exercise] {
-//        allExercises.filter { $0.course == course }
-//    }
-//}
-
 class ExerciseSessionModel: ObservableObject {
     
     @Published var selectedCourse: Course {
@@ -78,10 +70,6 @@ class ExerciseSessionModel: ObservableObject {
         session.score(for: exercises)
     }
     
-    var isFinished: Bool {
-        currentIndex >= exercises.count - 1
-    }
-    
     private var currentExercise: Exercise? {
         guard currentIndex >= 0, currentIndex < exercises.count else {
             return nil
@@ -106,8 +94,14 @@ class ExerciseSessionModel: ObservableObject {
     func switchCourse(course: Course) {
         print("Resetting exercise and state")
         CourseSettings.selectedCourse = selectedCourse
-        exercises = ExerciseData.allExercises[course] ?? []
-        reset()
+//        You must reset currentIndex = 0 before updating exercises.
+        currentIndex = 0
+        session.reset()
+//        to be extra safe, you can wrap it with DispatchQueue.main.async to ensure the reset happens after layout:
+        DispatchQueue.main.async {
+            self.exercises = ExerciseData.allExercises[course] ?? []
+        }
+        
     }
     
     func reset() {
@@ -128,8 +122,11 @@ class ExerciseSessionModel: ObservableObject {
         let incorrect = exercises.filter {
             !session.state(for: $0.id).isCorrect
         }
+        
+        currentIndex = 0
+        session.reset()
+        
         exercises = incorrect
-        reset()
     }
     
     func next() {
@@ -174,10 +171,6 @@ class ExerciseSessionModel: ObservableObject {
         
         session.skip(id: id)
     }
-    
-    
-    
-
 }
 
 
