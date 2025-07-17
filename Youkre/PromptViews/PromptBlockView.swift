@@ -43,7 +43,7 @@ struct PromptBlockView: View {
     func latexView(latex: String) -> some View {
         MathView(
             latex: latex,
-            fontSize: 20
+            fontSize: 22
         )
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -95,6 +95,19 @@ struct PromptBlockView: View {
     ]
     PromptBlockView(
         block: .table(data: data, layout: .rows(2))
+    )
+    
+    PromptBlockView(
+        block: .table(
+            data: [
+                "科学", "34",
+                "英语", "90",
+                "历史", "87",
+                "数学", "34",
+                "地理", "55"
+            ],
+            layout: .rows(2)
+        ),
     )
     
     PromptBlockView(
