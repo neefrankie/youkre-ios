@@ -8,28 +8,30 @@
 import SwiftUI
 
 struct SymbolView: View {
-    let icon: Icons
-    let backgroundColor: Color = .gray.opacity(0.8)
+    let icon: IconSymbol
+    var backgroundColor: Color = .gray.opacity(0.8)
     
     var body: some View {
-        Group {
-            if let sf = icon.sfSymbol, !sf.isEmpty {
-                IconBoxView(background: backgroundColor) {
-                    Image(systemName: sf)
-                        .font(.system(size: 24))
-                }
+        switch icon {
+        case .sfSymbol(let sfSymbol):
+            IconBoxView(background: backgroundColor) {
+                Image(systemName: sfSymbol)
+                    .font(.system(size: 24))
             }
-            
-            if let latex = icon.latex, !latex.isEmpty {
-                IconBoxView(background: .gray) {
+        case .latex(let name):
+            // Search the predefined shape by name as key.
+            if let viewBuilder = IconStore.symbolViewMap[name] {
+                viewBuilder()
+            } else {
+                // else rener the name as latex string.
+                IconBoxView(background: backgroundColor) {
                     LatexIconView(
-                        latex: latex,
+                        latex: name,
                     )
                 }
             }
-            
-            let letter = String(entry.keywords.prefix(1)).uppercased()
-            IconBoxView(background: .secondary) {
+        case .text(let letter):
+            IconBoxView(background: backgroundColor) {
                 Text(letter)
                     .font(.system(size: 20, weight: .bold))
             }
@@ -39,8 +41,6 @@ struct SymbolView: View {
 
 #Preview {
     SymbolView(
-        icon: Icons(
-            predefined: "integral"
-        )
+        icon: .latex("integral")
     )
 }
