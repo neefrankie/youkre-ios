@@ -26,5 +26,7 @@ struct CourseSelectionSheet: View {
 
 #Preview {
     @Previewable @State var selectedCourse: Course = .algebra
-    CourseSelectionSheet(selectedCourse: $selectedCourse)
+    CourseSelectionSheet(
+        selectedCourse: $selectedCourse,
+    )
 }
