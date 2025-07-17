@@ -7,6 +7,7 @@
 
 struct ExerciseData {
     static let solveEq = "解方程"
+    static let opOrder = "算一算下式等于多少？注意运算顺序"
     
     static let allExercises: [Course: [Exercise]] = [
         .calculus: ExerciseData.calculus,
@@ -90,11 +91,11 @@ struct ExerciseData {
             explanation: #"""
     开始：
 
-    \[ x − 3 = 8 \]
+    \[ x - 3 = 8 \]
 
     等式两边都减去 5:
 
-    \[ x − 3 + 3 = 8 + 3 \]
+    \[ x - 3 + 3 = 8 + 3 \]
 
     算一下 -3 + 3 = 0，8 + 3 = 11，得到：
 
@@ -113,18 +114,18 @@ struct ExerciseData {
             difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
-                .latex("x − 8 = 7")
+                .latex("x - 8 = 7")
             ],
             fillInAnswer: "15",
             multipleChoice: nil,
             explanation: #"""
     开始：
 
-    \[ x − 8 = 7 \]
+    \[ x - 8 = 7 \]
 
     等式两边都加上 8:
 
-    \[ x − 8 + 8 = 7 + 8 \]
+    \[ x - 8 + 8 = 7 + 8 \]
 
     算一下 -8 + 8 = 0，7 + 8 = 15，得到：
 
@@ -154,9 +155,9 @@ struct ExerciseData {
 
     等式两边都减去 3:
 
-    \[ y + 3 − 3 = 9 − 3 \]
+    \[ y + 3 - 3 = 9 - 3 \]
 
-    算一下 3 − 3 = 0 and 9 − 3 = 6，得到：
+    算一下 3 - 3 = 0，9 - 3 = 6，得到：
 
     \[  y + 0 = 6 \]
 
@@ -184,9 +185,9 @@ struct ExerciseData {
 
     等式两边都减去 7:
 
-    \[ 7 − 7 + y = 12 − 7 \]
+    \[ 7 - 7 + y = 12 - 7 \]
 
-    算一下 7 − 7 = 0 and 12 − 7 = 5，得到：
+    算一下 7 - 7 = 0，12 - 7 = 5，得到：
 
     \[  0 + y = 5 \]
 
@@ -203,20 +204,20 @@ struct ExerciseData {
             difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
-                .latex("y − 5 = 9")
+                .latex("y - 5 = 9")
             ],
             fillInAnswer: "14",
             multipleChoice: nil,
             explanation: #"""
     开始：
 
-    \[ y − 5 = 9 \]
+    \[ y - 5 = 9 \]
 
     等式两边都减去 7:
 
-    \[ y − 5 + 5 = 9 + 5 \]
+    \[ y - 5 + 5 = 9 + 5 \]
 
-    算一下 -5 + 5 = 0 and 9 + 5 = 14，得到：
+    算一下 -5 + 5 = 0，9 + 5 = 14，得到：
 
     \[  y + 0 = 14 \]
 
@@ -233,22 +234,22 @@ struct ExerciseData {
             difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
-                .latex("10 − y = 6")
+                .latex("10 - y = 6")
             ],
             fillInAnswer: "4",
             multipleChoice: nil,
             explanation: #"""
     开始：
 
-    \[ 10 − y = 6 \]
+    \[ 10 - y = 6 \]
 
     等式两边都减去 10:
 
-    \[ 10 − 10 − y = 6 − 10 \]
+    \[ 10 - 10 - y = 6 - 10 \]
 
-    算一下 10 − 10 = 0 and 6 − 10 = -4，得到：
+    算一下 10 - 10 = 0，6 - 10 = -4，得到：
 
-    \[ 0 − y = -4 \]
+    \[ 0 - y = -4 \]
     
     即：
     
@@ -313,7 +314,7 @@ struct ExerciseData {
             difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
-                .latex(#"9 − x = 3\frac{1}{2}"#)
+                .latex(#"9 - x = 3\frac{1}{2}"#)
             ],
             fillInAnswer: nil,
             multipleChoice: MultipleChoice(
@@ -370,8 +371,8 @@ struct ExerciseData {
 两边都除以 3: 
 
 \[ \frac{3x}{3} = \frac{12}{3} \]
- 
-算一算 ( 3/3 = 1 and 12/3 = 4) 得到: 
+
+算一算 ( 3/3 = 1，12/3 = 4) 得到: 
 
 \[ 1x = 4 \]
 
@@ -400,8 +401,8 @@ struct ExerciseData {
 两边都除以 5: 
 
 \[ \frac{5x}{5} = \frac{30}{5} \]
- 
-算一算 ( 5/5 = 1 and 30/5 = 6) 得到: 
+
+算一算 ( 5/5 = 1，30/5 = 6) 得到: 
 
 \[ 1x = 6 \]
 
@@ -442,7 +443,7 @@ struct ExerciseData {
 
 算一算:
 
-\[ \frac{1}{2} \ times 2 = 1, 3 \times 2 = 6 \]
+\[ \frac{1}{2} \times 2 = 1, 3 \times 2 = 6 \]
 
 得到:
 
@@ -484,7 +485,7 @@ struct ExerciseData {
 
 算一算:
 
-\[ \frac{1}{3} \ times 3 = 1, 4 \times 3 = 12 \]
+\[ \frac{1}{3} \times 3 = 1, 4 \times 3 = 12 \]
 
 得到:
 
@@ -512,7 +513,7 @@ struct ExerciseData {
 
 \[ \frac{1}{5}x + 2 = 6 \]
 
-Substract 2 from both sides:
+两边都减去 2:
 
 \[ \frac{1}{5}x + 2 - 2 = 6 - 2 \]
 
@@ -559,7 +560,7 @@ Substract 2 from both sides:
 \[ 3x - 2 = 7 \]
 
 两边都加上 2:
- 
+
 \[ 3x - 2 + 2 = 7 + 2 \]
 
 算一算 (-2 + 2 = 0, 7 + 2 = 9) 得到:
@@ -574,7 +575,7 @@ Substract 2 from both sides:
 
 \[ \frac{3x}{3} = \frac{9}{3} \]
 
-A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
+算一算 (3/3 = 1, 9/3 = 3) 得到:
 
 \[ 1x = 3 \]
 
@@ -601,7 +602,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 \[ 2x + 5 = 13 \]
 
 两边都减去 5:
- 
+
 \[ 2x + 5 - 5 = 13 - 5 \]
 
 算一算 (5 - 5 = 0, 13 - 5 = 8) 得到:
@@ -616,7 +617,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 
 \[ \frac{2x}{2} = 8/2 \]
 
-算一算 (2/2 = 1, 8/2 = 3) 得到:
+算一算 (2/2 = 1，8/2 = 3) 得到:
 
 \[ 1x = 4 \]
 
@@ -643,7 +644,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 \[ 5x - 1 = 19 \]
 
 两边都加上 1:
- 
+
 \[ 5x - 1 + 1 = 19 + 1 \]
 
 算一算 (-1 + 1 = 0, 19 + 1 = 20) 得到:
@@ -658,7 +659,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 
 \[ \frac{5x}{5} = 20/5 \]
 
-算一算 (5/5 = 1, 20/5 = 4) 得到:
+算一算 (5 ÷ 5 = 1, 20 ÷ 5 = 4) 得到:
 
 \[ 1x = 4 \]
 
@@ -685,7 +686,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 \[ 2(x + 1) = 10 \]
 
 两边都除以 2:
- 
+
 \[ \frac{2(x + 1)}{2} = \frac{10}{2} \]
 
 算一算 (2/2 = 1, 10/2 = 5) 得到:
@@ -696,7 +697,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 
 \[ x + 3 - 3 = 5 - 3 \]
 
-算一算 (3 - 3 = 0, 5 - 3 = 2) 得到:
+算一算 (3 - 3 = 0，5 - 3 = 2) 得到:
 
 \[ x + 0 = 2 \]
 
@@ -723,8 +724,8 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 \[ \frac{1}{2}(y - 6) = 7 \]
 
 两边都乘以 2:
- 
-\[ \frac{1}{2}(y - 6) \times 2 = 7 \ times 2 \]
+
+\[ \frac{1}{2}(y - 6) \times 2 = 7 \times 2 \]
 
 算一算 (1/2 x 2 = 1, 7 x 2 = 14) 得到:
 
@@ -753,7 +754,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"6 \div 3 + 4 \times 2"#)
             ],
             fillInAnswer: "10",
@@ -789,7 +790,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"6 \times 4 - 12 \div 3 - 8"#)
             ],
             fillInAnswer: "12",
@@ -822,7 +823,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"4 \times 4 - 3 \times 3 - 16 \div 4"#)
             ],
             fillInAnswer: "3",
@@ -854,7 +855,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"20 - (3 \times 2^3 - 5)"#)
             ],
             fillInAnswer: "1",
@@ -921,7 +922,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"(5 + 2)^2 - 9 \times 3 + 2^3"#)
             ],
             fillInAnswer: "30",
@@ -937,6 +938,8 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 先算括号里面：
 
 \[ 5 + 2 = 7 \]
+
+即：
 
 \begin{align*}
 &(5 + 2)^2 - 9 \times 3 + 2^3 \\
@@ -961,7 +964,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 \end{align*}
 
 
-接下来是乘法Next we do the Multiplication:
+接下来是乘法：
 
 \[ 49 - 9 \times 3 + 8 = 49 - 27 + 8 \]
 
@@ -988,7 +991,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"(12 \div 3 + 4) - (4^2 - 6 \times 2)"#)
             ],
             fillInAnswer: "4",
@@ -1059,7 +1062,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"(5^2 - 5) \div (4^2 + 8 - 7 \times 2)"#)
             ],
             fillInAnswer: "2",
@@ -1123,7 +1126,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 也就是：
 
 \begin{align*}
-&(52 - 5) \div (42 + 8 - 7 \times 2) \\
+&(5^2 - 5) \div (42 + 8 - 7 \times 2) \\
 = &(25 - 5) \div (16 + 8 - 7 \times 2) \\
 = &(25 - 5) \div (16 + 8 - 14) \\
 = &(25 - 5) \div (24 - 14) \\
@@ -1139,7 +1142,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"(3^3 - \frac{9}{3}) + (4 \times 3 - 3^2)"#)
             ],
             fillInAnswer: "27",
@@ -1154,7 +1157,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
 
 先算出括号里面的数。这里有两对括号，一步一步来算。
 
-第一对括号：
+第一对括号里面是：
 
 \[ 3^3 - \frac{9}{3} \]
 
@@ -1212,7 +1215,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"(7 - \sqrt{9}) \times (4^2 - 3 + 1)"#)
             ],
             fillInAnswer: "56",
@@ -1283,7 +1286,7 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .fillInBlank,
             difficulty: .beginner,
             promptParts: [
-                .text(solveEq),
+                .text(opOrder),
                 .latex(#"\frac{2^4 + (16 - 3 \times 4)}{(6 + 3^2) \div (7 - 4)}"#)
             ],
             fillInAnswer: "4",
@@ -1380,17 +1383,18 @@ A little more arithmetic (3/3 = 1, 9/3 = 3) 得到:
             type: .multipleChoice,
             difficulty: .beginner,
             promptParts: [
-                .text("""
-在年终考试中，乔乔的成绩如下：
-
-科学 34  
-英语 90  
-历史 87  
-数学 34  
-地理 55  
-
-乔乔的年终考试平均分是多少？
-""")
+                .text("在年终考试中，乔乔的成绩如下："),
+                .table(
+                    data: [
+                        "科学", "34",
+                        "英语", "90",
+                        "历史", "87",
+                        "数学", "34",
+                        "地理", "55"
+                    ],
+                    layout: .rows(2)
+                ),
+                .text("乔乔的年终考试平均分是多少？")
             ],
             fillInAnswer: nil,
             multipleChoice: MultipleChoice(
@@ -1426,17 +1430,18 @@ Joe 的总分是：
             type: .multipleChoice,
             difficulty: .beginner,
             promptParts: [
-                .text("""
-在年终考试中，乔乔的成绩如下：
-
-科学 34  
-英语 90  
-历史 87  
-数学 34  
-地理 55  
-
-乔乔的成绩中位数是多少？
-""")
+                .text("在年终考试中，乔乔的成绩如下："),
+                .table(
+                    data: [
+                        "科学", "34",
+                        "英语", "90",
+                        "历史", "87",
+                        "数学", "34",
+                        "地理", "55"
+                    ],
+                    layout: .rows(2)
+                ),
+                .text("乔乔的成绩中位数是多少？")
             ],
             fillInAnswer: nil,
             multipleChoice: MultipleChoice(
@@ -1467,17 +1472,18 @@ Joe 的总分是：
             type: .multipleChoice,
             difficulty: .beginner,
             promptParts: [
-                .text("""
-在年终考试中，乔乔的成绩如下：
-
-科学 34  
-英语 90  
-历史 87  
-数学 34  
-地理 55  
-
-乔乔的成绩众数是多少？
-""")
+                .text("在年终考试中，乔乔的成绩如下："),
+                .table(
+                    data: [
+                        "科学", "34",
+                        "英语", "90",
+                        "历史", "87",
+                        "数学", "34",
+                        "地理", "55"
+                    ],
+                    layout: .rows(2)
+                ),
+                .text("乔乔的成绩众数是多少？")
             ],
             fillInAnswer: nil,
             multipleChoice: MultipleChoice(
