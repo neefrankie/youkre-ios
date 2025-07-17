@@ -13,13 +13,8 @@ struct ExerciseResultRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            VStack {
-                Text(exercise.title)
-                    .frame(maxWidth: .infinity, alignment: .leading, )
-                    
-                if !exercise.promptParts.isEmpty {
-                    LocalizedPromptView(parts: exercise.promptParts)
-                }
+            if !exercise.promptParts.isEmpty {
+                PromptView(blocks: exercise.promptParts)
             }
             
             switch state.answer {
@@ -115,7 +110,7 @@ struct ExerciseResultRow: View {
 
 #Preview {
     ExerciseResultRow(
-        exercise: sampleExercises[sampleExercises.count-1],
+        exercise: ExerciseData.calculus[ExerciseData.calculus.count-1],
         state: ExerciseState(
             isAnswered: true,
             isCorrect: false,
@@ -125,7 +120,7 @@ struct ExerciseResultRow: View {
     )
     
     ExerciseResultRow(
-        exercise: sampleExercises[0],
+        exercise: ExerciseData.algebra[0],
         state: ExerciseState(
             isAnswered: true,
             isCorrect: false,
@@ -135,7 +130,7 @@ struct ExerciseResultRow: View {
     )
     
     ExerciseResultRow(
-        exercise: sampleExercises[0],
+        exercise: ExerciseData.algebra[0],
         state: ExerciseState(
             isAnswered: false,
             isCorrect: false,
