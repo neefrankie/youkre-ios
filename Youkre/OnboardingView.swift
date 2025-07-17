@@ -37,43 +37,28 @@ struct OnboardingView: View {
                 .foregroundStyle(.secondary)
                 .padding(.vertical, 16)
             
-            LazyVGrid(columns: columns, alignment: .center, spacing: 10) {
+            LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
                 ForEach(Course.allCases, id: \.self) { course in
-                    Button(action: {
+                    Button(course.title) {
                         selected = course
-                    }) {
-                        Text(course.title)
-                            .font(.caption)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .foregroundColor(.gray)
-                            .background(
-                                Capsule()
-                                    .stroke(Color.gray.opacity(0.5), lineWidth: 2)
-                                    .background(Capsule().fill(buttonColor(for: course)))
-                            )
                     }
-                    .buttonStyle(BorderlessButtonStyle())
+                    .buttonStyle(
+                        CapsuleBorderButtonStyle(
+                            backgroundColor: buttonColor(for: course)
+                        )
+                    )
                 }
             }
             .padding(.vertical, 16)
             
-            Button(action: {
+            Button("完成") {
                 if let selected {
-                    AppSettings.selectedCourse = selected
+                    CourseSettings.selectedCourse = selected
                 }
                 self.hasCompletedOnBoarding = true
-            }) {
-                Text("完成")
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                    .foregroundStyle(.teal)
-                    .background(
-                        Capsule()
-                            .stroke(Color.teal, lineWidth: 2)
-                    )
                     
             }
+            .buttonStyle(CapsuleButtonStyle())
             .padding(.top, 32)
             
             Spacer()
