@@ -14,57 +14,51 @@ struct ExerciseContainerView<InputView: View>: View {
     @State private var showExplanation = false
     
     var body: some View {
-        NavigationStack {
+        VStack(spacing: 16) {
+            
+            Spacer()
+            
             VStack(spacing: 16) {
+                PromptView(blocks: exercise.promptParts)
+                
+                inputView()
+            }
+            
+            Spacer()
+            
+            HStack {
+                
+                NavigationLink(value: exercise.learnMore) {
+                    Label("相关知识", systemImage: "book")
+                }
+                .buttonStyle(.plain)
                 
                 Spacer()
                 
-                VStack(spacing: 16) {
-                    Text(exercise.title)
-                        .font(.headline)
-                        .foregroundColor(.secondary)
-                    
-                    LocalizedPromptView(parts: exercise.promptParts)
-                    
-                    inputView()
-                }
-                
-                Spacer()
-                
-                HStack {
-                    
-                    NavigationLink(value: exercise.learnMore) {
-                        Label("相关知识", systemImage: "book")
+                if exercise.explanation != nil {
+                    Button {
+                        showExplanation = true
+                    } label: {
+                        Label("查看讲解", systemImage: "questionmark")
+                            .font(.headline)
+                            .padding(.top, 8)
                     }
-                    .buttonStyle(.plain)
-                    
-                    Spacer()
-                    
-                    if exercise.explanation != nil {
-                        Button {
-                            showExplanation = true
-                        } label: {
-                            Label("查看讲解", systemImage: "questionmark")
-                                .font(.headline)
-                                .padding(.top, 8)
-                        }
-                        .foregroundColor(.teal)
-                    }
-                }
-                .padding(.bottom, 32)
-                
-            }
-            .padding()
-            .sheet(isPresented: $showExplanation) {
-                if let explanation = exercise.explanation {
-                    ExplanationSheetView(explanation: explanation)
+                    .foregroundColor(.teal)
                 }
             }
-            .navigationDestination(
-                for: ChapterLink.self,
-            ) { param in
-                ChapterView(params: param)
+            .padding(.bottom, 32)
+            
+        }
+        .padding()
+        .sheet(isPresented: $showExplanation) {
+            if let explanation = exercise.explanation {
+                ExplanationSheetView(explanation: explanation)
             }
+        }
+        .navigationDestination(
+            for: ChapterLink.self,
+        ) { param in
+            ChapterView(params: param)
         }
     }
 }
@@ -74,7 +68,7 @@ struct ExerciseContainerView<InputView: View>: View {
     
     NavigationStack {
         ExerciseContainerView(
-            exercise: sampleExercises[0],
+            exercise: ExerciseData.trigonometry[0],
             inputView: {
                 Text("Enter you answer")
             },
