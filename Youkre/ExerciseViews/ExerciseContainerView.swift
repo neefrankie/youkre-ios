@@ -31,7 +31,7 @@ struct ExerciseContainerView<InputView: View>: View {
                 NavigationLink(value: exercise.learnMore) {
                     Label("相关知识", systemImage: "book")
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(CapsuleBorderButtonStyle())
                 
                 Spacer()
                 
@@ -40,10 +40,8 @@ struct ExerciseContainerView<InputView: View>: View {
                         showExplanation = true
                     } label: {
                         Label("查看讲解", systemImage: "questionmark")
-                            .font(.headline)
-                            .padding(.top, 8)
                     }
-                    .foregroundColor(.teal)
+                    .buttonStyle(CapsuleBorderButtonStyle())
                 }
             }
             .padding(.bottom, 16)
