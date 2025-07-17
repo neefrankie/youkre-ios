@@ -46,7 +46,7 @@ struct ExerciseContainerView<InputView: View>: View {
                     .foregroundColor(.teal)
                 }
             }
-            .padding(.bottom, 32)
+            .padding(.bottom, 16)
             
         }
         .padding()
