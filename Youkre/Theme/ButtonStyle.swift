@@ -20,6 +20,38 @@ struct ColoredCircleButtonStyle: ButtonStyle {
     }
 }
 
+struct CapsuleButtonStyle: ButtonStyle {
+    var backgroundColor: Color = .cyan
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.vertical, 12)
+            .padding(.horizontal, 24)
+            .background(
+                Capsule()
+                    .fill(backgroundColor)
+            )
+            .foregroundStyle(.white)
+    }
+}
+
+struct CapsuleBorderButtonStyle: ButtonStyle {
+    var strokeColor: Color = Color.gray
+    var backgroundColor: Color = .clear
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(
+                Capsule()
+                    .stroke(strokeColor)
+                    .background(Capsule().fill(backgroundColor))
+            )
+            .foregroundStyle(strokeColor)
+    }
+}
+
 struct ProminentButtonStyle: ButtonStyle {
     var backgroundColor: Color = .teal
     
@@ -49,7 +81,7 @@ struct ProminentButtonStyle: ButtonStyle {
 
 
 #Preview {
-    HStack(spacing: 20) {
+    VStack(spacing: 20) {
         Button("", systemImage: "play.fill") {
             
         }
@@ -68,5 +100,16 @@ struct ProminentButtonStyle: ButtonStyle {
         }
         .buttonStyle(ColoredCircleButtonStyle(backgroundColor: .brown))
         
+        Button {
+            
+        } label: {
+            Text("完成")
+        }
+        .buttonStyle(CapsuleButtonStyle())
+        
+        Button("微积分") {
+            
+        }
+        .buttonStyle(CapsuleBorderButtonStyle(backgroundColor: .green))
     }
 }
