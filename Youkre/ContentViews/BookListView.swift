@@ -13,9 +13,9 @@ struct BookListView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 16) {
-                    ForEach(DataStore.bookList) { book in
+                    ForEach(Book.bookList) { book in
                         NavigationLink(value: book) {
-                            BookCardView(book: book)
+                            bookCard(book: book)
                         }
                         .buttonStyle(.plain)
                     }
@@ -30,6 +30,38 @@ struct BookListView: View {
             
         }
         .background(AppColors.background)
+    }
+    
+    func bookCard(book: Book) -> some View {
+        HStack(alignment: .center, spacing: 16) {
+            SymbolView(
+                icon: book.icon,
+                backgroundColor: iconBackgroundColor(for: book)
+            )
+            
+            VStack(alignment: .leading, spacing: 16) {
+                Text(book.title)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text(book.summary)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+            }
+            
+            Spacer()
+        }
+        .modifier(PaddedCardStyle())
+    }
+    
+    func iconBackgroundColor(for book: Book) -> Color {
+        let palette: [Color] = [
+            .blue, .green, .orange, .purple, .pink, .indigo, .teal, .cyan
+        ]
+        
+        let index = abs(book.slug.hashValue) % palette.count
+        
+        return palette[index].opacity(0.8)
     }
 }
 
