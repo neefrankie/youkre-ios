@@ -32,13 +32,15 @@ struct ExerciseSummarySheet: View {
                 }
                 
                 HStack {
-                    Button {
-                        session.retryIncorrectOnly()
-                        dismiss()
-                    } label: {
-                        Label("重试错题", systemImage: "arrow.trianglehead.clockwise")
+                    if session.hasIncorrect {
+                        Button {
+                            session.retryIncorrectOnly()
+                            dismiss()
+                        } label: {
+                            Label("重试错题", systemImage: "arrow.trianglehead.clockwise")
+                        }
+                        .buttonStyle(ProminentButtonStyle(backgroundColor: .secondary))
                     }
-                    .buttonStyle(ProminentButtonStyle(backgroundColor: .secondary))
                     
                     Button {
                         session.restart()
