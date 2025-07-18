@@ -70,6 +70,12 @@ class ExerciseSessionModel: ObservableObject {
         session.score(for: exercises)
     }
     
+    var hasIncorrect: Bool {
+        exercises.filter {
+            !session.state(for: $0.id).isCorrect
+        }.count > 0
+    }
+    
     private var currentExercise: Exercise? {
         guard currentIndex >= 0, currentIndex < exercises.count else {
             return nil
@@ -126,7 +132,9 @@ class ExerciseSessionModel: ObservableObject {
         currentIndex = 0
         session.reset()
         
-        exercises = incorrect
+        DispatchQueue.main.async {
+            self.exercises = incorrect
+        }
     }
     
     func next() {
