@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct BookCardView: View {
+struct FigureCardView: View {
     let title: String
     let imageName: String
-    var isVector: Bool = false
+    var fit: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -24,7 +24,7 @@ struct BookCardView: View {
                 )
             
             Group {
-                if isVector {
+                if fit {
                     AspectRatioCardView {
                         Image(imageName)
                             .resizable()
@@ -46,25 +46,25 @@ struct BookCardView: View {
 #Preview {
     ScrollView {
         VStack {
-            BookCardView(
+            FigureCardView(
                 title: "简易微积分",
                 imageName: "calculus-made-easy",
-                isVector: true,
+                fit: true,
             )
-            BookCardView(
+            FigureCardView(
                 title: "初级代数",
                 imageName: "elementary-algebra",
-                isVector: true
+                fit: true
             )
-            BookCardView(
+            FigureCardView(
                 title: "概率统计入门",
                 imageName: "elementary-statistics",
-                isVector: true
+                fit: true
             )
-            BookCardView(
+            FigureCardView(
                 title: "三角函数",
                 imageName: "elementary-trigonometry",
-                isVector: true
+                fit: true
             )
         }
         .padding()
