@@ -12,7 +12,10 @@ struct OnboardingView: View {
     @State private var selected: Course? = nil
     
     let columns = [
-        GridItem(.adaptive(minimum: 100), spacing: 5)
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
     ]
     
     private func buttonColor(for course: Course) -> Color {
