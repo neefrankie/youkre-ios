@@ -13,10 +13,10 @@ class TocViewModel: ObservableObject {
     @Published var isLoading: Bool = true
     @Published var error: String? = nil
     private var hasLoaded = false
-    private var bookSlug: String
+    private var courseSlug: String
     
-    init(bookSlug: String) {
-        self.bookSlug = bookSlug
+    init(courseSlug: String) {
+        self.courseSlug = courseSlug
     }
     
     func loadData() async {
@@ -29,7 +29,7 @@ class TocViewModel: ObservableObject {
             self.error = nil
         }
         
-        let result = await Bundle.main.decodeToc(of: bookSlug)
+        let result = await Bundle.main.decodeToc(of: courseSlug)
         
         await MainActor.run {
             switch result {
@@ -49,7 +49,7 @@ class TocViewModel: ObservableObject {
 }
 
 struct TocListView: View {
-    var book: Book
+    var course: Course
     var entries: [TocDisplayEntry]
     
     var body: some View {
@@ -63,7 +63,7 @@ struct TocListView: View {
                     } else {
                         NavigationLink(
                             value: ChapterLink(
-                                bookSlug: book.slug,
+                                courseSlug: course.slug,
                                 chapterSlug: entry.slug,
                             )
                         ) {
@@ -87,13 +87,13 @@ struct TocListView: View {
 }
 
 struct TocView: View {
-    private let book: Book
+    private let course: Course
     @StateObject private var viewModel: TocViewModel
     
-    init(book: Book) {
-        self.book = book
+    init(course: Course) {
+        self.course = course
         _viewModel = StateObject(
-            wrappedValue: TocViewModel(bookSlug: book.slug)
+            wrappedValue: TocViewModel(courseSlug: course.slug)
         )
     }
     
@@ -103,7 +103,7 @@ struct TocView: View {
                 ProgressView()
             } else if let entries = viewModel.tocEntries {
                 TocListView(
-                    book: book,
+                    course: course,
                     entries: entries,
                 )
             } else if let error = viewModel.error {
@@ -122,7 +122,7 @@ struct TocView: View {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
     NavigationStack {
-        TocView(book: Book.bookList[1])
+        TocView(course: Course.courseList[1])
     }
 //    To preview, place theme manager here rather than TocView.
     .environmentObject(themeManager)

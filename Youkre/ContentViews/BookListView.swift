@@ -13,17 +13,17 @@ struct BookListView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 16) {
-                    ForEach(Book.bookList) { book in
-                        NavigationLink(value: book) {
-                            bookCard(book: book)
+                    ForEach(Course.courseList) { course in
+                        NavigationLink(value: course) {
+                            bookCard(course: course)
                         }
                         .buttonStyle(.plain)
                     }
                 }
                 .padding()
             }
-            .navigationDestination(for: Book.self) { book in
-                TocView(book: book)
+            .navigationDestination(for: Course.self) { course in
+                TocView(course: course)
             }
             .navigationTitle(Config.appName)
             .navigationBarTitleDisplayMode(.inline)
@@ -32,19 +32,19 @@ struct BookListView: View {
         .background(AppColors.background)
     }
     
-    func bookCard(book: Book) -> some View {
+    func bookCard(course: Course) -> some View {
         HStack(alignment: .center, spacing: 16) {
             SymbolView(
-                icon: book.icon,
-                backgroundColor: iconBackgroundColor(for: book)
+                icon: course.icon,
+                backgroundColor: iconBackgroundColor(for: course)
             )
             
             VStack(alignment: .leading, spacing: 16) {
-                Text(book.title)
+                Text(course.title)
                     .font(.headline)
                     .foregroundColor(.primary)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text(book.summary)
+                Text(course.summary)
                     .font(.body)
                     .foregroundColor(.secondary)
             }
@@ -54,12 +54,12 @@ struct BookListView: View {
         .modifier(PaddedCardStyle())
     }
     
-    func iconBackgroundColor(for book: Book) -> Color {
+    func iconBackgroundColor(for course: Course) -> Color {
         let palette: [Color] = [
             .blue, .green, .orange, .purple, .pink, .indigo, .teal, .cyan
         ]
         
-        let index = abs(book.slug.hashValue) % palette.count
+        let index = abs(course.slug.hashValue) % palette.count
         
         return palette[index].opacity(0.8)
     }

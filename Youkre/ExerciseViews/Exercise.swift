@@ -99,13 +99,6 @@ struct ExerciseState: Codable, Hashable {
     }
 }
 
-struct Subject {
-    var name: String          // 科目名称，如 "代数"
-    var exercises: [Exercise] // 该科目下的练习题数组
-}
 
-struct Voc {
-    static let solveEq = "解方程"
-}
 
 

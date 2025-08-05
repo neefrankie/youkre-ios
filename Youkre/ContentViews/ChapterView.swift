@@ -236,7 +236,7 @@ struct ChapterView: View {
         // ZStack(alignment: .bottom) lets you anchor the bottom bar properly.
         ZStack(alignment: .bottom) {
             LocalWebView(
-                bookSlug: params.bookSlug,
+                bookSlug: params.courseSlug,
                 fileName: params.chapterSlug,
                 themeManager: settings,
                 isLoading: $isLoading,
@@ -293,7 +293,7 @@ struct ChapterView: View {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
     ChapterView(params: ChapterLink(
-        bookSlug: Book.bookList[0].slug,
+        courseSlug: Course.courseList[0].slug,
         chapterSlug: "1"
     ))
     .environmentObject(themeManager)
