@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @Binding var hasCompletedOnBoarding: Bool
-    @State private var selected: Course? = nil
+    @State private var selected: CourseKind? = nil
     
     let columns = [
         GridItem(.flexible()),
@@ -18,7 +18,7 @@ struct OnboardingView: View {
         GridItem(.flexible())
     ]
     
-    private func buttonColor(for course: Course) -> Color {
+    private func buttonColor(for course: CourseKind) -> Color {
         guard let selected else { return Color.clear}
         if course == selected {
             return Color.gray.opacity(0.5)
@@ -41,7 +41,7 @@ struct OnboardingView: View {
                 .padding(.vertical, 16)
             
             LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
-                ForEach(Course.allCases, id: \.self) { course in
+                ForEach(CourseKind.allCases, id: \.self) { course in
                     Button(course.title) {
                         selected = course
                     }

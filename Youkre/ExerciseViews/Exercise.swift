@@ -41,7 +41,7 @@ struct MultipleChoice: Codable {
 
 struct Exercise: Identifiable, Codable {
     var id: String
-    var course: Course     // 题目类别，如 "代数" 或 "微积分"
+    var course: CourseKind     // 题目类别，如 "代数" 或 "微积分"
     var type: ExerciseType
     var difficulty: DifficultyLevel      // 难度等级，1-5
     // 题目内容

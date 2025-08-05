@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Course: String, CaseIterable, Identifiable, Codable {
+enum CourseKind: String, CaseIterable, Identifiable, Codable {
     case calculus
     case algebra
     case probability
@@ -33,10 +33,10 @@ enum Course: String, CaseIterable, Identifiable, Codable {
 struct CourseSettings {
     static let courseKey = "SelectedCourse"
     
-    static var selectedCourse: Course {
+    static var selectedCourse: CourseKind {
         get {
             if let raw = UserDefaults.standard.string(forKey: courseKey),
-               let course = Course(rawValue: raw) {
+               let course = CourseKind(rawValue: raw) {
                 return course
             }
             
@@ -49,25 +49,3 @@ struct CourseSettings {
     }
 }
 
-class CourseManager: ObservableObject {
-    static let shared = CourseManager()
-    
-    private let courseKey = "SelectedCourse"
-    
-    @Published
-    var selectedCourse: Course {
-        didSet {
-            print("Changing course to: \(selectedCourse)")
-            UserDefaults.standard.set(selectedCourse.rawValue, forKey: courseKey)
-        }
-    }
-    
-    private init() {
-        if let raw = UserDefaults.standard.string(forKey: courseKey),
-           let course = Course(rawValue: raw) {
-            selectedCourse = course
-        } else {
-            selectedCourse = .algebra
-        }
-    }
-}

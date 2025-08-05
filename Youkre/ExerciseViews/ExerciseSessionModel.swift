@@ -45,7 +45,7 @@ struct SessionState {
 
 class ExerciseSessionModel: ObservableObject {
     
-    @Published var selectedCourse: Course {
+    @Published var selectedCourse: CourseKind {
         didSet {
             print("Course changed: \(selectedCourse)")
             switchCourse(course: selectedCourse)
@@ -97,7 +97,7 @@ class ExerciseSessionModel: ObservableObject {
         print("Couse initialized \(self.selectedCourse)")
     }
     
-    func switchCourse(course: Course) {
+    func switchCourse(course: CourseKind) {
         print("Resetting exercise and state")
         CourseSettings.selectedCourse = selectedCourse
 //        You must reset currentIndex = 0 before updating exercises.

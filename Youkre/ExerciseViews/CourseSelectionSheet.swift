@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CourseSelectionSheet: View {
-    @Binding var selectedCourse: Course
+    @Binding var selectedCourse: CourseKind
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
-            List(Course.allCases) { course in
+            List(CourseKind.allCases) { course in
                 Button(course.title) {
                     selectedCourse = course
                     dismiss()
@@ -32,7 +32,7 @@ struct CourseSelectionSheet: View {
 }
 
 #Preview {
-    @Previewable @State var selectedCourse: Course = .algebra
+    @Previewable @State var selectedCourse: CourseKind = .algebra
     CourseSelectionSheet(
         selectedCourse: $selectedCourse,
     )

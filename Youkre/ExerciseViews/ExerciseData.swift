@@ -9,7 +9,7 @@ struct ExerciseData {
     static let solveEq = "解方程"
     static let opOrder = "算一算下式等于多少？注意运算顺序"
     
-    static let allExercises: [Course: [Exercise]] = [
+    static let allExercises: [CourseKind: [Exercise]] = [
         .calculus: ExerciseData.calculus,
         .algebra: ExerciseData.algebra,
         .probability: ExerciseData.stats,
