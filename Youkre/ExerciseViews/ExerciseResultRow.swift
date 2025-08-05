@@ -19,7 +19,7 @@ struct ExerciseResultRow: View {
             
             switch state.answer {
             case .text(let value):
-                answerView(answered: value, correct: exercise.fillInAnswer ?? "")
+                answerView(answered: value, correct: "") // TODO: remove
                 
             case .choice(let index):
                 if let multiple = exercise.multipleChoice {

@@ -20,14 +20,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-1",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex("x + 2 = 6")
             ],
-            fillInAnswer: "4",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "1",
+                    "4",
+                    "8",
+                    "3"
+                ],
+                correctIndex: 1
+            ),
             explanation: #"""
     开始：
 
@@ -50,14 +55,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-2",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex("x + 5 = 11")
             ],
-            fillInAnswer: "6",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "6",
+                    "16",
+                    "5",
+                    "7",
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
     开始：
 
@@ -80,14 +90,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-3",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex("x - 3 = 8")
             ],
-            fillInAnswer: "11",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "5",
+                    "12",
+                    "8",
+                    "11"
+                ],
+                correctIndex: 3
+            ),
             explanation: #"""
     开始：
 
@@ -110,14 +125,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-4",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex("x - 8 = 7")
             ],
-            fillInAnswer: "15",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "1",
+                    "15",
+                    "-1",
+                    "8"
+                ],
+                correctIndex: 1
+            ),
             explanation: #"""
     开始：
 
@@ -140,14 +160,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-5",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex("y + 3 = 9")
             ],
-            fillInAnswer: "6",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "6",
+                    "12",
+                    "3",
+                    "5"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
     开始：
 
@@ -170,14 +195,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-6",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex("7 + y = 12")
             ],
-            fillInAnswer: "5",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "5",
+                    "19",
+                    "4",
+                    "12",
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
     开始：
 
@@ -200,14 +230,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-7",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex("y - 5 = 9")
             ],
-            fillInAnswer: "14",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "4",
+                    "13",
+                    "14",
+                    "18"
+                ],
+                correctIndex: 2
+            ),
             explanation: #"""
     开始：
 
@@ -230,14 +265,20 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-8",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex("10 - y = 6")
             ],
-            fillInAnswer: "4",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "16",
+                    "5",
+                    "4",
+                    "9",
+                ],
+                correctIndex: 2
+            ),
+            
             explanation: #"""
     开始：
 
@@ -264,13 +305,10 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-9",
             course: .algebra,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"x + 2\frac{1}{2} = 10"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"x = 7\frac{1}{2}"#,
@@ -310,13 +348,10 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-10",
             course: .algebra,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"9 - x = 3\frac{1}{2}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"x = 12\frac{1}{2}"#,
@@ -355,14 +390,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-1",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"3x = 12"#)
             ],
-            fillInAnswer: "4",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "4",
+                    "3",
+                    "2",
+                    "6"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
 开始:
 
@@ -385,14 +425,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-2",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"5x = 30"#)
             ],
-            fillInAnswer: "6",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "5",
+                    "10",
+                    "7",
+                    "6"
+                ],
+                correctIndex: 3
+            ),
             explanation: #"""
 开始:
 
@@ -415,14 +460,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-3",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"\frac{x}{2} = 3"#)
             ],
-            fillInAnswer: "6",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "6",
+                    "9",
+                    "4",
+                    "12"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
 开始:
 
@@ -449,14 +499,18 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-4",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"\frac{x}{3} = 4"#)
             ],
-            fillInAnswer: "12",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "15",
+                    "12",
+                    "4",
+                    "3"
+                ], correctIndex: 1
+            ),
             explanation: #"""
 开始:
 
@@ -483,14 +537,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-5",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"\frac{1}{5}x + 2 = 6"#)
             ],
-            fillInAnswer: "20",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "22",
+                    "20",
+                    "30",
+                    "4"
+                ],
+                correctIndex: 1,
+            ),
             explanation: #"""
 开始:
 
@@ -532,14 +591,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-6",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"3x - 2 = 7"#)
             ],
-            fillInAnswer: "3",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "5",
+                    "9",
+                    "3",
+                    "6"
+                ],
+                correctIndex: 2
+            ),
             explanation: #"""
 开始:
 
@@ -574,14 +638,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-7",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"2x + 5 = 13"#)
             ],
-            fillInAnswer: "4",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "4",
+                    "8",
+                    "18",
+                    "9"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
 开始:
 
@@ -616,14 +685,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-8",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"5x - 1 = 19"#)
             ],
-            fillInAnswer: "4",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "20",
+                    "4",
+                    "18",
+                    "3"
+                ],
+                correctIndex: 1
+            ),
             explanation: #"""
 开始:
 
@@ -658,14 +732,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-9",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"2(x + 3) = 10"#)
             ],
-            fillInAnswer: "2",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "5",
+                    "4",
+                    "2",
+                    "8"
+                ],
+                correctIndex: 2
+            ),
             explanation: #"""
 开始:
 
@@ -696,14 +775,19 @@ struct ExerciseData {
         Exercise(
             id: "algebra-introduction-multiply-10",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(solveEq),
                 .latex(#"\frac{1}{2}(y - 6) = 7"#)
             ],
-            fillInAnswer: "20",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "20",
+                    "14",
+                    "8",
+                    "16"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
 开始:
 
@@ -737,14 +821,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-1",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"6 \div 3 + 4 \times 2"#)
             ],
-            fillInAnswer: "10",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "10",
+                    "12",
+                    "1",
+                    "3"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -773,14 +862,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-2",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"6 \times 4 - 12 \div 3 - 8"#)
             ],
-            fillInAnswer: "12",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "-4",
+                    "4",
+                    "12",
+                    "20"
+                ],
+                correctIndex: 2
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -806,14 +900,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-3",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"4 \times 4 - 3 \times 3 - 16 \div 4"#)
             ],
-            fillInAnswer: "3",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "5",
+                    "2",
+                    "4",
+                    "3"
+                ],
+                correctIndex: 3
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -838,14 +937,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-4",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"20 - (3 \times 2^3 - 5)"#)
             ],
-            fillInAnswer: "1",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "1",
+                    "-11",
+                    "19",
+                    "2"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -905,14 +1009,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-5",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"(5 + 2)^2 - 9 \times 3 + 2^3"#)
             ],
-            fillInAnswer: "30",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "8",
+                    "30",
+                    "40",
+                    "20"
+                ],
+                correctIndex: 1
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -974,14 +1083,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-6",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"(12 \div 3 + 4) - (4^2 - 6 \times 2)"#)
             ],
-            fillInAnswer: "4",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "4",
+                    "8",
+                    "5",
+                    "12"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -1045,14 +1159,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-7",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"(5^2 - 5) \div (4^2 + 8 - 7 \times 2)"#)
             ],
-            fillInAnswer: "2",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "20",
+                    "7",
+                    "2",
+                    "4"
+                ],
+                correctIndex: 2
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -1125,14 +1244,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-8",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"(3^3 - \frac{9}{3}) + (4 \times 3 - 3^2)"#)
             ],
-            fillInAnswer: "27",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "27",
+                    "6",
+                    "24",
+                    "20"
+                ],
+                correctIndex: 0
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -1198,14 +1322,19 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-9",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"(7 - \sqrt{9}) \times (4^2 - 3 + 1)"#)
             ],
-            fillInAnswer: "56",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "20",
+                    "56",
+                    "14",
+                    "52"
+                ],
+                correctIndex: 1
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -1269,14 +1398,18 @@ struct ExerciseData {
         Exercise(
             id: "operation-order-pemdas-exercise-10",
             course: .algebra,
-            type: .fillInBlank,
-            difficulty: .beginner,
             promptParts: [
                 .text(opOrder),
                 .latex(#"\frac{2^4 + (16 - 3 \times 4)}{(6 + 3^2) \div (7 - 4)}"#)
             ],
-            fillInAnswer: "4",
-            multipleChoice: nil,
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "20",
+                    "3",
+                    "5",
+                    "4"
+                ], correctIndex: 3
+            ),
             explanation: #"""
 运算顺序是：
 
@@ -1366,8 +1499,6 @@ struct ExerciseData {
         Exercise(
             id: "central-meausres-exercise-1",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("在年终考试中，乔乔的成绩如下："),
                 .table(
@@ -1382,7 +1513,6 @@ struct ExerciseData {
                 ),
                 .text("乔乔的年终考试平均分是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "34",
@@ -1413,8 +1543,6 @@ Joe 的总分是：
         Exercise(
             id: "central-meausres-exercise-2",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("在年终考试中，乔乔的成绩如下："),
                 .table(
@@ -1429,7 +1557,6 @@ Joe 的总分是：
                 ),
                 .text("乔乔的成绩中位数是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "34",
@@ -1455,8 +1582,6 @@ Joe 的总分是：
         Exercise(
             id: "central-meausres-exercise-3",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("在年终考试中，乔乔的成绩如下："),
                 .table(
@@ -1471,7 +1596,6 @@ Joe 的总分是：
                 ),
                 .text("乔乔的成绩众数是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "34",
@@ -1493,8 +1617,6 @@ Joe 的总分是：
         Exercise(
             id: "central-meausres-exercise-4",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("下表显示了北京每个月的平均气温："),
                 .table(
@@ -1516,7 +1638,6 @@ Joe 的总分是：
                 ),
                 .text("请问一年的平均气温是多少度？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "19.5°C",
@@ -1545,8 +1666,6 @@ Joe 的总分是：
         Exercise(
             id: "central-meausres-exercise-5",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("下表显示了北京每个月的平均气温："),
                 .table(
@@ -1568,7 +1687,6 @@ Joe 的总分是：
                 ),
                 .text("这些气温的中位数是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "19.5°C",
@@ -1602,8 +1720,6 @@ Joe 的总分是：
         Exercise(
             id: "central-meausres-exercise-6",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("下表显示了北京每个月的平均气温："),
                 .table(
@@ -1625,7 +1741,6 @@ Joe 的总分是：
                 ),
                 .text("这些气温的众数是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "19.5°C",
@@ -1647,14 +1762,11 @@ Joe 的总分是：
         Exercise(
             id: "central-meausres-exercise-7",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("小艾掷骰子多次，并将结果用柱状图表示出来，如下所示："),
                 .image(name: "central-meausres-exercise-7"),
                 .text("平均得分是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "3",
@@ -1703,15 +1815,12 @@ Joe 的总分是：
         Exercise(
             id: "central-meausres-exercise-8",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("小艾掷骰子多次，并将结果用柱状图表示出来，如下所示："),
                 .image(name: "central-meausres-exercise-7"),
                 .text("中位数得分是多少？")
 
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "3",
@@ -1750,14 +1859,11 @@ Joe 的总分是：
         Exercise(
             id: "central-meausres-exercise-9",
             course: .probability,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("小艾掷骰子多次，并将结果用柱状图表示出来，如下所示："),
                 .image(name: "central-meausres-exercise-7"),
                 .text("众数是什么？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "没有众数",
@@ -1790,13 +1896,10 @@ Joe 的总分是：
         Exercise(
             id: "triangle-exercise-1",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .image(name: "triangle-exercise-1"),
                 .text("这个图形叫作：")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "直角三角形",
@@ -1819,13 +1922,10 @@ Joe 的总分是：
         Exercise(
             id: "triangle-exercise-3",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .image(name: "triangle-exercise-3"),
                 .text("下面哪一项正确描述了这个三角形？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "这是一个直角等腰三角形",
@@ -1847,12 +1947,9 @@ Joe 的总分是：
         Exercise(
             id: "triangle-exercise-4",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("下面哪一项是不可能存在的？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "钝角等腰三角形",
@@ -1882,13 +1979,10 @@ Joe 的总分是：
         Exercise(
             id: "triangle-exercise-5",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .image(name: "triangle-exercise-5-a"),
                 .text("图中显示的是一个菱形。如果画出菱形的对角线，形成的四个三角形是：")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "等腰直角三角形",
@@ -1912,13 +2006,10 @@ Joe 的总分是：
         Exercise(
             id: "triangle-exercise-6",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .image(name: "triangle-exercise-6"),
                 .text("三角形 PQR 的面积是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "37.5",
@@ -1947,13 +2038,10 @@ PQR &= \frac{1}{2} \times 11 \times 7 \\
         Exercise(
             id: "triangle-exercise-7",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .image(name: "triangle-exercise-7"),
                 .text("三角形 ABC 的面积是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "17.4",
@@ -1984,13 +2072,10 @@ PQR &= \frac{1}{2} \times 11 \times 7 \\
         Exercise(
             id: "triangle-exercise-8",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .image(name: "triangle-exercise-8"),
                 .text("三角形的面积是 42，它的高是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "5",
@@ -2021,13 +2106,10 @@ h &= 42 \div 6 = 7
         Exercise(
             id: "triangle-exercise-9",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .image(name: "triangle-exercise-9"),
                 .text("三角形的面积是 22.5，它的底边长度是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "5",
@@ -2061,13 +2143,10 @@ b &= 45 \div 5 \\
         Exercise(
             id: "triangle-exercise-10",
             course: .trigonometry,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .image(name: "triangle-exercise-10"),
                 .text("未知角 a° 的度数是多少？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "53.6",
@@ -2105,12 +2184,9 @@ b &= 45 \div 5 \\
         Exercise(
             id: "cme-1-a",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("𝑑𝑥 在微积分中表示什么？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "𝑑 乘以 𝑥",
@@ -2134,12 +2210,9 @@ b &= 45 \div 5 \\
         Exercise(
             id: "cme-1-b",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("∫𝑑𝑥 在微积分中表示什么？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "函数的导数",
@@ -2161,12 +2234,9 @@ b &= 45 \div 5 \\
         Exercise(
             id: "cme-3-a",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("什么是导数？")
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "函数图像与 𝑥 轴之间区域的面积",
@@ -2190,13 +2260,10 @@ b &= 45 \div 5 \\
         Exercise(
             id: "cme-3-b",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("下面的符号表示什么？"),
                 .latex(#"\frac{dy}{dx}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     "函数 𝑦 关于变量 𝑥 的导数",
@@ -2220,13 +2287,10 @@ b &= 45 \div 5 \\
         Exercise(
             id: "cme-4-a",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .intermediate,
             promptParts: [
                 .text("以下函数的导数是什么？"),
                 .latex(#"x^n"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"x^{n-1}"#,
@@ -2247,13 +2311,10 @@ b &= 45 \div 5 \\
         Exercise(
             id: "cme-4-1",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"y = x^{13}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"12x^{12}"#,
@@ -2284,13 +2345,10 @@ $$
         Exercise(
             id: "cme-4-2",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"y = x^{-\frac{3}{2}}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"-\frac{3}{2}x^{-\frac{1}{2}}"#,
@@ -2321,13 +2379,10 @@ $$
         Exercise(
             id: "cme-4-3",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"y = x^{2a}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"2a x^{2a}"#,
@@ -2356,13 +2411,10 @@ $$
         Exercise(
             id: "cme-4-4",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"u = t^{2.4}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"2.4t^{1.4}"#,
@@ -2401,13 +2453,10 @@ $$
         Exercise(
             id: "cme-4-5",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"z = \sqrt[3]{u}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"\frac{1}{3} u^{-\frac{1}{3}}"#,
@@ -2452,13 +2501,10 @@ $$
         Exercise(
             id: "cme-4-6",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"y = \sqrt[3]{x^{-5}}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"-\frac{5}{3}x^{-\frac{2}{3}}"#,
@@ -2497,13 +2543,10 @@ $$
         Exercise(
             id: "cme-4-7",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"u = \sqrt[5]{\frac{1}{x^8}}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"-\frac{8}{5}x^{-\frac{8}{5}}"#,
@@ -2543,13 +2586,10 @@ $$
         Exercise(
             id: "cme-4-8",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"y = 2x^a"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"2ax^{a-1}"#,
@@ -2584,13 +2624,10 @@ $$
         Exercise(
             id: "cme-4-9",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"y = \sqrt[q]{x^3}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"\frac{3}{q}x^{3 - q}"#,
@@ -2621,13 +2658,10 @@ y &= \sqrt[q]{x^3} \\
         Exercise(
             id: "cme-4-10",
             course: .calculus,
-            type: .multipleChoice,
-            difficulty: .beginner,
             promptParts: [
                 .text("求以下函数的导数："),
                 .latex(#"y = \sqrt[n]{\frac{1}{x^m}}"#)
             ],
-            fillInAnswer: nil,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"\frac{m}{n}x^{-\frac{m}{n} - 1}"#,

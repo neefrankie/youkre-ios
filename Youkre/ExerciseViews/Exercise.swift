@@ -41,34 +41,21 @@ struct MultipleChoice: Codable {
 
 struct Exercise: Identifiable, Codable {
     var id: String
-    var course: CourseKind     // 题目类别，如 "代数" 或 "微积分"
-    var type: ExerciseType
-    var difficulty: DifficultyLevel      // 难度等级，1-5
-    // 题目内容
+    var course: CourseKind     // TODO: use Course id
     let promptParts: [PromptBlock]
-    // For fill-in-the-blank
-    var fillInAnswer: String?
     
     // For multiple choice
     var multipleChoice: MultipleChoice?
-    
     var explanation: String?
     var learnMore: ChapterLink
     
-//    let hints: [String]?     // 可选提示
-    
     var correctAnswer: String {
-        switch self.type {
-        case .fillInBlank:
-            return fillInAnswer ?? ""
-        case .multipleChoice:
-            return multipleChoice?.correctAnswer ?? ""
-        }
+        return multipleChoice?.correctAnswer ?? ""
     }
 }
 
 enum AnswerData: Codable, Hashable {
-    case text(String)
+    case text(String) // Deprecated
     case choice(index: Int)
     case choices(indices: [Int])
     case none

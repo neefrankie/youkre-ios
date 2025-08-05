@@ -13,20 +13,10 @@ struct ExercisePageView: View {
     
     var body: some View {
         NavigationStack {
-            Group {
-                switch exercise.type {
-                case .fillInBlank:
-                    FillInBlankView(
-                        currentExercise: exercise,
-                        currentState: $state
-                    )
-                case .multipleChoice:
-                    MultipleChoiceView(
-                        exercise: exercise,
-                        currentState: $state
-                    )
-                }
-            }
+            MultipleChoiceView(
+                exercise: exercise,
+                currentState: $state
+            )
         }
     }
 }
