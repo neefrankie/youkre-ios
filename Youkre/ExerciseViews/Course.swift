@@ -49,3 +49,31 @@ struct CourseSettings {
     }
 }
 
+struct Course {
+    let id: String
+    let slug: String
+    let title: String
+    
+    static let all: [Course] = [
+        Course(
+            id: "5bd2c24bd901b5a9",
+            slug: "calculus-made-easy",
+            title: "简易微积分",
+        ),
+        Course(
+            id: "6b927048e42cc585",
+            slug: "elementary-algebra",
+            title: "初级代数",
+        ),
+//        Course(
+//            id: "ad7dd3035d82eda3",
+//            slug: "elementary-statistics",
+//            title: "概率统计入门",
+//        ),
+//        Course(
+//            id: "9b08c5f3f19338c4",
+//            slug: "elementary-trigonometry",
+//            title: "三角函数",
+//        )
+    ]
+}

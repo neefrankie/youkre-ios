@@ -5,7 +5,7 @@
 //  Created by Weiguo Ni on 2025/8/5.
 //
 
-struct Course: Identifiable, Hashable {
+struct Book: Identifiable, Hashable {
     let id: String
     let slug: String
     let title: String
@@ -17,12 +17,12 @@ struct Course: Identifiable, Hashable {
         hasher.combine(slug)
     }
     
-    static func ==(lhs: Course, rhs: Course) -> Bool {
+    static func ==(lhs: Book, rhs: Book) -> Bool {
         return lhs.id == rhs.id
     }
     
-    static let courseList: [Course] = [
-        Course(
+    static let courseList: [Book] = [
+        Book(
             id: "5bd2c24bd901b5a9",
             slug: "calculus-made-easy",
             title: "简易微积分",
@@ -30,7 +30,7 @@ struct Course: Identifiable, Hashable {
             summary: "简单易懂的微积分",
             icon: .latex("integral")
         ),
-        Course(
+        Book(
             id: "6b927048e42cc585",
             slug: "elementary-algebra",
             title: "初级代数",
@@ -38,7 +38,7 @@ struct Course: Identifiable, Hashable {
             summary: "用字母、数字和符号来“玩”的游戏",
             icon: .latex("x")
         ),
-        Course(
+        Book(
             id: "ad7dd3035d82eda3",
             slug: "elementary-statistics",
             title: "概率统计入门",
@@ -46,7 +46,7 @@ struct Course: Identifiable, Hashable {
             summary: "预测事情发生的可能性，找出规律",
             icon: .text("P")
         ),
-        Course(
+        Book(
             id: "9b08c5f3f19338c4",
             slug: "elementary-trigonometry",
             title: "三角函数",
