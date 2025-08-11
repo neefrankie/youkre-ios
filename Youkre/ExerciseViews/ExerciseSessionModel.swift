@@ -9,26 +9,32 @@ import SwiftUI
 
 struct SessionState {
    
-    var states: [String: ExerciseState] = [:]
+    var states: [String: ExerciseProgress] = [:]
     
-    mutating func markAnswered(id: String, correct: Bool, answer: AnswerData) {
-        states[id] = ExerciseState.answered(correct: correct, answer: answer)
+    mutating func markAnswered(id: String, correct: Bool, answer: Int) {
+        if let current = states[id] {
+            states[id]?.answered(correct: correct, selectedIndex: answer)
+        } else {
+            var ex = ExerciseProgress.new(exerciseID: id)
+            ex.answered(correct: correct, selectedIndex: answer)
+            states[id] = ex
+        }
     }
     
     mutating func skip(id: String) {
-        states[id] = ExerciseState.skipped()
+        states[id] = ExerciseProgress.new(exerciseID: id)
     }
     
-    mutating func add(id: String, newState: ExerciseState) {
+    mutating func add(id: String, newState: ExerciseProgress) {
         states[id] = newState
     }
     
-    func state(for id: String) -> ExerciseState {
+    func state(for id: String) -> ExerciseProgress {
         // By default we assume all questions are skipped.
-        states[id] ?? ExerciseState.skipped()
+        states[id] ?? ExerciseProgress.new(exerciseID: id)
     }
     
-    func score(for exercises: [Exercise]) -> Int {
+    func score(for exercises: [ExerciseV2]) -> Int {
         exercises.reduce(0) { total, ex in
             if states[ex.id]?.isCorrect == true {
                 return total + 1
@@ -59,7 +65,7 @@ class ExerciseSessionModel: ObservableObject {
         }
     }
     @Published var session: SessionState = SessionState()
-    @Published var exercises: [Exercise]
+    @Published var exercises: [ExerciseV2]
     @Published var finished: Bool = false
     
     var progressText: String {
@@ -76,22 +82,25 @@ class ExerciseSessionModel: ObservableObject {
         }.count > 0
     }
     
-    private var currentExercise: Exercise? {
+    private var currentExercise: ExerciseV2? {
         guard currentIndex >= 0, currentIndex < exercises.count else {
             return nil
         }
         return exercises[currentIndex]
     }
     
-    private var currentState: ExerciseState {
-        guard let id = currentExercise?.id else { return ExerciseState() }
-        return session.state(for: id)
+    private var currentState: ExerciseProgress? {
+        if let id = currentExercise?.id {
+            return session.state(for: id)
+        }
+        
+        return nil
     }
     
     init() {
         print("Initializing exercise session model")
         let course = CourseSettings.selectedCourse
-        self.exercises = ExerciseData.allExercises[course] ?? []
+        self.exercises = LevelData.cme[0].exercises
         // 这里似乎不会触发 didSet
         self.selectedCourse = course
         print("Couse initialized \(self.selectedCourse)")
@@ -105,7 +114,7 @@ class ExerciseSessionModel: ObservableObject {
         session.reset()
 //        to be extra safe, you can wrap it with DispatchQueue.main.async to ensure the reset happens after layout:
         DispatchQueue.main.async {
-            self.exercises = ExerciseData.allExercises[course] ?? []
+            self.exercises = LevelData.cme[0].exercises
         }
         
     }
@@ -139,7 +148,7 @@ class ExerciseSessionModel: ObservableObject {
     
     func next() {
         print("Current index \(currentIndex)")
-        if !currentState.isAnswered {
+        if let completed = currentState?.isCompleted, !completed {
             skipCurrent()
         }
         if currentIndex < exercises.count - 1 {
@@ -152,7 +161,7 @@ class ExerciseSessionModel: ObservableObject {
         print("Progressed to \(currentIndex)")
     }
     
-    func binding(for exerciseID: String) -> Binding<ExerciseState> {
+    func binding(for exerciseID: String) -> Binding<ExerciseProgress> {
         Binding(
             get: {
                 self.session.state(for: exerciseID)
@@ -163,7 +172,7 @@ class ExerciseSessionModel: ObservableObject {
         )
     }
     
-    private func submitAnswer(correct: Bool, answer: AnswerData) {
+    private func submitAnswer(correct: Bool, answer: Int) {
         guard let id = currentExercise?.id else { return }
         session.markAnswered(
             id: id,

@@ -19,20 +19,14 @@ struct ExerciseSwipeView: View {
                 if session.exercises.isEmpty {
                     Text("没有这个课程的题目")
                 } else {
-                    HStack {
-                        Text("\(session.progressText)")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
                     
                     TabView(selection: $session.currentIndex) {
                         ForEach(session.exercises.indices, id: \.self) { index in
-                            ExercisePageView(
-                                exercise: session.exercises[index],
-                                state: session.binding(for: session.exercises[index].id)
-                            )
-                            .tag(index)
+//                            MultipleChoiceView(
+//                                exercise: session.exercises[index],
+//                                currentState: session.binding(for: session.exercises[index].id)
+//                            )
+//                            .tag(index)
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
@@ -40,6 +34,8 @@ struct ExerciseSwipeView: View {
                 }
                 
             }
+            .navigationTitle("\(session.progressText)")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("课程") {

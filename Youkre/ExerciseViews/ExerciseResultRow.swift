@@ -8,35 +8,24 @@
 import SwiftUI
 
 struct ExerciseResultRow: View {
-    let exercise: Exercise
-    let state: ExerciseState
+    let exercise: ExerciseV2
+    let state: ExerciseProgress
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            if !exercise.promptParts.isEmpty {
-                PromptView(blocks: exercise.promptParts)
+            if !exercise.prompts.isEmpty {
+                PromptView(blocks: exercise.prompts)
             }
             
-            switch state.answer {
-            case .text(let value):
-                answerView(answered: value, correct: "") // TODO: remove
+            if let selectedIndex = state.selectedIndex {
+                let multiple = exercise.multipleChoice
                 
-            case .choice(let index):
-                if let multiple = exercise.multipleChoice {
-                    let answered = multiple.choices[index]
-                    let correct = multiple.correctAnswer
-                    
-                    answerView(answered: answered, correct: correct, isLatex: multiple.isLatex)
-                }
-            case .choices(let indices):
-                let answers = indices.compactMap { exercise.multipleChoice?.choices[safe: $0] }
-                Text("你的选择：\(answers.joined(separator: ", "))")
-                    .foregroundStyle(.secondary)
+                let answered = multiple.choices[selectedIndex]
+                let correct = multiple.correctAnswer
                 
-            case .none:
-                if state.skipped {
-                    skippedView()
-                }
+                answerView(answered: answered, correct: correct, isLatex: multiple.isLatex)
+            } else {
+                skippedView()
             }
         }
         .frame(maxWidth: .infinity)
@@ -94,11 +83,11 @@ struct ExerciseResultRow: View {
     
     private var icon: some View {
         Group {
-            if state.skipped {
+            if state.isSkipped {
                 Image(systemName: "arrowshape.turn.up.left.fill").foregroundColor(.orange)
             } else if state.isCorrect {
                 Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
-            } else if state.isAnswered {
+            } else if state.isCompleted {
                 Image(systemName: "xmark.circle.fill").foregroundColor(.red)
             } else {
                 Image(systemName: "circle").foregroundColor(.gray)
@@ -109,33 +98,10 @@ struct ExerciseResultRow: View {
 }
 
 #Preview {
-    ExerciseResultRow(
-        exercise: ExerciseData.calculus[ExerciseData.calculus.count-1],
-        state: ExerciseState(
-            isAnswered: true,
-            isCorrect: false,
-            skipped: false,
-            answer: .choice(index: 1)
-        )
-    )
+    let exc = LevelData.cme[0].exercises[0]
     
     ExerciseResultRow(
-        exercise: ExerciseData.algebra[0],
-        state: ExerciseState(
-            isAnswered: true,
-            isCorrect: false,
-            skipped: false,
-            answer: .text("3")
-        )
-    )
-    
-    ExerciseResultRow(
-        exercise: ExerciseData.algebra[0],
-        state: ExerciseState(
-            isAnswered: false,
-            isCorrect: false,
-            skipped: true,
-            answer: .none
-        )
+        exercise: exc,
+        state: ExerciseProgress.new(exerciseID: exc.id)
     )
 }
