@@ -36,6 +36,6 @@ struct ExplanationSheetView: View {
 
 #Preview {
     ExplanationSheetView(
-        explanation: ExerciseData.stats[1].explanation!
+        explanation: ExerciseData.calculus[0].explanation!
     )
 }
