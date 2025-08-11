@@ -28,8 +28,8 @@ struct PromptBlockView: View {
                 Spacer()
             }
             .frame(maxHeight: 300)
-        case .table(let data, let layout):
-            tableView(data: data, layout: layout)
+        case .table(let table):
+            tableView(table: table)
         case .bullet(let text):
             HStack(alignment: .top) {
                 Text("•").bold()
@@ -48,25 +48,24 @@ struct PromptBlockView: View {
         .fixedSize(horizontal: false, vertical: true)
     }
     
-    func tableView(data: [String], layout: TableLayout) -> some View {
+    func tableView(table: Table) -> some View {
         Group {
-            switch layout {
-            case .rows(let count):
+            if let rows = table.rows {
                 ScrollView(.horizontal) {
-                    LazyHGrid(rows: Array(repeating: .init(.fixed(50)), count: count), spacing: 1) {
-                        ForEach(data.indices, id: \.self) { i in
-                            Text("\(data[i])")
+                    LazyHGrid(rows: Array(repeating: .init(.fixed(50)), count: rows), spacing: 1) {
+                        ForEach(table.data.indices, id: \.self) { i in
+                            Text("\(table.data[i])")
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .padding(8)
                                 .background(Color.gray.opacity(0.2))
                         }
                     }
                 }
-            case .columns(let count):
+            } else if let cols = table.cols {
                 ScrollView {
-                    LazyVGrid(columns: Array(repeating: .init(.flexible()), count: count), spacing: 1) {
-                        ForEach(data.indices, id: \.self) { i in
-                            Text("\(data[i])")
+                    LazyVGrid(columns: Array(repeating: .init(.flexible()), count: cols), spacing: 1) {
+                        ForEach(table.data.indices, id: \.self) { i in
+                            Text("\(table.data[i])")
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(8)
                                 .background(Color.gray.opacity(0.2))
@@ -94,23 +93,25 @@ struct PromptBlockView: View {
         "12月", "3",
     ]
     PromptBlockView(
-        block: .table(data: data, layout: .rows(2))
+        block: .table(Table(data: data, rows: 2))
     )
     
     PromptBlockView(
         block: .table(
-            data: [
-                "科学", "34",
-                "英语", "90",
-                "历史", "87",
-                "数学", "34",
-                "地理", "55"
-            ],
-            layout: .rows(2)
+            Table(
+                data: [
+                    "科学", "34",
+                    "英语", "90",
+                    "历史", "87",
+                    "数学", "34",
+                    "地理", "55"
+                ],
+                rows: 2
+            )
         ),
     )
     
     PromptBlockView(
-        block: .image(name: "triangle-exercise-1")
+        block: .image("triangle-exercise-1")
     )
 }

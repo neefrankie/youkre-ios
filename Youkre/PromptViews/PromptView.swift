@@ -22,7 +22,7 @@ struct PromptView: View {
 #Preview {
     PromptView(
         blocks: [
-            .table(
+            .table(Table(
                 data: [
                     "1月", "1",
                     "2月", "5",
@@ -37,8 +37,8 @@ struct PromptView: View {
                     "11月", "10",
                     "12月", "3",
                 ],
-                layout: .rows(2)
-            ),
+                rows: 2
+            )),
             .latex("f(x) = 2x^2 + 3x + 1"),
             .bullet("Item 1"),
             .text("""
@@ -52,7 +52,7 @@ struct PromptView: View {
 
                 乔乔的成绩众数是多少？
                 """),
-            .image(name: "triangle-exercise-5-a"),
+            .image("triangle-exercise-5-a"),
             .text("图中显示的是一个菱形。如果画出菱形的对角线，形成的四个三角形是：")
         ]
     )
