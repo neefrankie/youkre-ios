@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import SwiftData
 
 
 struct Exercise: Identifiable, Codable {
@@ -32,26 +32,17 @@ struct MultipleChoice: Codable {
     }
 }
 
+struct ChoiceItem: Codable {
+    var text: String
+    var correct: Bool
+    var isLatex: Bool = false
+}
 
-
-struct ExerciseLevel: Identifiable, Hashable {
+struct ExerciseV3: Identifiable, Codable {
     var id: String
-    var courseID: String
-    var courseSlug: String
-    var chapterID: String
-    var chapterSlug: String
-    var title: String
-    var index: Int
-    var contentVersoin: Int = 1
-    var exercises: [ExerciseV2] = []
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-    
-    static func ==(lhs: ExerciseLevel, rhs: ExerciseLevel) -> Bool {
-        return lhs.id == rhs.id
-    }
+    var prompts: [PromptBlock]
+    var multipleChoice: [ChoiceItem]
+    var explanation: String?
 }
 
 struct ExerciseV2: Identifiable, Codable {
@@ -62,3 +53,81 @@ struct ExerciseV2: Identifiable, Codable {
 }
 
 
+struct ExerciseProgress {
+    var id: UUID
+    var exerciseID: String
+    var selectedIndex: Int?
+    var isCorrect: Bool
+    var startedAt: Date
+    var completedAt: Date?
+    
+    var isCompleted: Bool {
+        completedAt != nil
+    }
+    
+    var isSkipped: Bool {
+        selectedIndex == nil && completedAt == nil
+    }
+        
+    mutating func answered(correct: Bool, selectedIndex: Int) {
+        self.selectedIndex = selectedIndex
+        self.isCorrect = correct
+    }
+    
+    static func new(exerciseID: String) -> ExerciseProgress {
+        ExerciseProgress(
+            id: UUID(),
+            exerciseID: exerciseID,
+            selectedIndex: nil,
+            isCorrect: false,
+            startedAt: Date(),
+            completedAt: nil
+        )
+    }
+}
+
+@Model
+class ExerciseProgressEntity {
+    @Attribute(.unique) var id: UUID
+    var exerciseID: String
+    var selectedIndex: Int? // selectedIndex stores choice index (for MC questions)
+    var isCorrect: Bool
+    var startedAt: Date
+    var completedAt: Date? // answeredAt for tracking progress
+
+    // level: back-reference to parent level
+    @Relationship(inverse: \LevelProgressEntity.exerciseProgress)
+    var levelProgress: LevelProgressEntity?
+    
+    init(exerciseID: String, level: LevelProgressEntity) {
+        self.id = UUID()
+        self.exerciseID = exerciseID
+        self.selectedIndex = nil
+        self.isCorrect = false
+        self.startedAt = Date()
+        self.levelProgress = level
+    }
+    
+    func update(from model: ExerciseProgress) {
+        self.selectedIndex = model.selectedIndex
+        self.isCorrect = model.isCorrect
+        self.completedAt = model.completedAt
+    }
+    
+    func toModel() -> ExerciseProgress {
+        ExerciseProgress(
+            id: id,
+            exerciseID: exerciseID,
+            selectedIndex: selectedIndex,
+            isCorrect: isCorrect,
+            startedAt: startedAt,
+            completedAt: completedAt
+        )
+    }
+}
+
+enum AnswerData: Codable, Hashable {
+    case choice(index: Int)
+    case choices(indices: [Int])
+    case none
+}

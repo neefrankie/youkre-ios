@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 enum CourseKind: String, CaseIterable, Identifiable, Codable {
     case calculus
@@ -89,4 +90,66 @@ struct Course: Identifiable, Hashable {
             contentVersion: 1,
         )
     ]
+}
+
+struct CourseSession {
+    var id: UUID
+    var courseID: String
+    var startedAt: Date
+    var completedAt: Date?
+    var lastLevelIndex: Int?
+    var levelProgress: [LevelProgress]
+    
+    static func new(courseID: String, levelCount: Int) -> CourseSession {
+        CourseSession(
+            id: UUID(),
+            courseID: courseID,
+            startedAt: Date(),
+            lastLevelIndex: levelCount > 0 ? 0 : nil,
+            levelProgress: [],
+        )
+    }
+    
+    mutating func complete() {
+        self.completedAt = Date()
+    }
+}
+
+@Model
+class CourseSessionEntity {
+    @Attribute(.unique) var id: UUID
+    var courseID: String
+    var startedAt: Date
+    var completedAt: Date?
+    var lastLevelIndex: Int?
+    var courseContentVersion: Int
+    
+    // levels is a 1:N relationship to LevelProgressEntity
+    // .cascade ensures cleanup on delete
+    @Relationship(deleteRule: .cascade)
+    var levelProgress: [LevelProgressEntity] = []
+    
+    init(course: Course, levelCount: Int) {
+        self.id = UUID()
+        self.courseID = course.id
+        self.startedAt = Date()
+        self.lastLevelIndex = levelCount > 0 ? 0 : nil
+        self.courseContentVersion = course.contentVersion
+    }
+    
+    func update(from model: CourseSession) {
+        self.completedAt = model.completedAt
+        self.lastLevelIndex = model.lastLevelIndex
+    }
+    
+    func toModel() -> CourseSession {
+        CourseSession(
+            id: id,
+            courseID: courseID,
+            startedAt: startedAt,
+            completedAt: completedAt,
+            lastLevelIndex: lastLevelIndex,
+            levelProgress: levelProgress.map { $0.toModel() }
+        )
+    }
 }
