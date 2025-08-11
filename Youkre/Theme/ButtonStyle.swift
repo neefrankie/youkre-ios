@@ -21,7 +21,7 @@ struct ColoredCircleButtonStyle: ButtonStyle {
 }
 
 struct CapsuleButtonStyle: ButtonStyle {
-    var backgroundColor: Color = .cyan
+    var backgroundColor: Color = .teal
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -38,11 +38,13 @@ struct CapsuleButtonStyle: ButtonStyle {
 struct CapsuleBorderButtonStyle: ButtonStyle {
     var strokeColor: Color = Color.gray
     var backgroundColor: Color = .clear
+    var verticalPadding: CGFloat = 6
+    var horizontalPadding: CGFloat = 12
     
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(.vertical, 8)
-            .padding(.horizontal, 12)
+            .padding(.vertical, verticalPadding)
+            .padding(.horizontal, horizontalPadding)
             .background(
                 Capsule()
                     .stroke(strokeColor)
@@ -103,13 +105,16 @@ struct ProminentButtonStyle: ButtonStyle {
         Button {
             
         } label: {
-            Text("完成")
+            HStack {
+                Text("完成")
+                    .fixedSize(horizontal: true, vertical: false)
+            }
         }
         .buttonStyle(CapsuleButtonStyle())
         
         Button("微积分") {
             
         }
-        .buttonStyle(CapsuleBorderButtonStyle(backgroundColor: .green))
+        .buttonStyle(CapsuleBorderButtonStyle(strokeColor: .teal))
     }
 }
