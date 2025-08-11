@@ -49,7 +49,7 @@ class TocViewModel: ObservableObject {
 }
 
 struct TocListView: View {
-    var course: Course
+    var course: Book
     var entries: [TocDisplayEntry]
     
     var body: some View {
@@ -87,10 +87,10 @@ struct TocListView: View {
 }
 
 struct TocView: View {
-    private let course: Course
+    private let course: Book
     @StateObject private var viewModel: TocViewModel
     
-    init(course: Course) {
+    init(course: Book) {
         self.course = course
         _viewModel = StateObject(
             wrappedValue: TocViewModel(courseSlug: course.slug)
@@ -122,7 +122,7 @@ struct TocView: View {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
     NavigationStack {
-        TocView(course: Course.courseList[1])
+        TocView(course: Book.bookList[1])
     }
 //    To preview, place theme manager here rather than TocView.
     .environmentObject(themeManager)

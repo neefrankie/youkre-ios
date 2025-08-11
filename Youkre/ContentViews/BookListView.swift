@@ -13,7 +13,7 @@ struct BookListView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 16) {
-                    ForEach(Course.courseList) { course in
+                    ForEach(Book.bookList) { course in
                         NavigationLink(value: course) {
                             bookCard(course: course)
                         }
@@ -22,7 +22,7 @@ struct BookListView: View {
                 }
                 .padding()
             }
-            .navigationDestination(for: Course.self) { course in
+            .navigationDestination(for: Book.self) { course in
                 TocView(course: course)
             }
             .navigationTitle(Config.appName)
@@ -32,7 +32,7 @@ struct BookListView: View {
         .background(AppColors.background)
     }
     
-    func bookCard(course: Course) -> some View {
+    func bookCard(course: Book) -> some View {
         HStack(alignment: .center, spacing: 16) {
             SymbolView(
                 icon: course.icon,
@@ -54,7 +54,7 @@ struct BookListView: View {
         .modifier(PaddedCardStyle())
     }
     
-    func iconBackgroundColor(for course: Course) -> Color {
+    func iconBackgroundColor(for course: Book) -> Color {
         let palette: [Color] = [
             .blue, .green, .orange, .purple, .pink, .indigo, .teal, .cyan
         ]
