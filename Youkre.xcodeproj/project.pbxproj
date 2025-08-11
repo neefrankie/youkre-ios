@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D74FD1452D81B3A4004C6C8E /* WebAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D74FD1442D81B3A4004C6C8E /* WebAssets.bundle */; };
 		D7F70C8A2E02AFEC0015D172 /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D7F70C892E02AFEC0015D172 /* SwiftMath */; };
+		D7F8E6A12E4328E600A9E4A0 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D7F8E6A02E4328E600A9E4A0 /* SQLite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F8E6A12E4328E600A9E4A0 /* SQLite in Frameworks */,
 				D7F70C8A2E02AFEC0015D172 /* SwiftMath in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +131,7 @@
 			name = Youkre;
 			packageProductDependencies = (
 				D7F70C892E02AFEC0015D172 /* SwiftMath */,
+				D7F8E6A02E4328E600A9E4A0 /* SQLite */,
 			);
 			productName = Youkre;
 			productReference = D7F8B1E32D7C8CB30096AB80 /* Youkre.app */;
@@ -214,6 +217,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D7F70C882E02AFEC0015D172 /* XCRemoteSwiftPackageReference "SwiftMath" */,
+				D7F8E69F2E4328E600A9E4A0 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D7F8B1E42D7C8CB30096AB80 /* Products */;
@@ -597,6 +601,14 @@
 				minimumVersion = 1.7.1;
 			};
 		};
+		D7F8E69F2E4328E600A9E4A0 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.15.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -604,6 +616,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D7F70C882E02AFEC0015D172 /* XCRemoteSwiftPackageReference "SwiftMath" */;
 			productName = SwiftMath;
+		};
+		D7F8E6A02E4328E600A9E4A0 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F8E69F2E4328E600A9E4A0 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
