@@ -21,7 +21,7 @@ struct Book: Identifiable, Hashable {
         return lhs.id == rhs.id
     }
     
-    static let courseList: [Book] = [
+    static let bookList: [Book] = [
         Book(
             id: "5bd2c24bd901b5a9",
             slug: "calculus-made-easy",

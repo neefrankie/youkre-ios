@@ -8,7 +8,7 @@
 
 
 struct Article {
-    let course: Course
+    let course: Book
     let toc: [TocEntry]
     let tocIndex: Int
     let currentEntry: TocEntry
