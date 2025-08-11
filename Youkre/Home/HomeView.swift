@@ -8,8 +8,33 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var path = NavigationPath()
+    @State private var navigationManager = NavigationManager()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack(path: $path) {
+            ScrollView {
+                Text("练习")
+                CourseListView()
+            }
+            .navigationDestination(for: Course.self) { course in
+                let viewModel = navigationManager.getOrCreateCourseViewModel(for: course)
+                CourseDetailView(
+                    viewModel: viewModel,
+                    path: $path,
+                )
+            }
+            .navigationDestination(for: ExerciseLevel.self) { level in
+                if let viewModel = navigationManager.getCourseViewModel(by: level.courseID) {
+                    LevelDetailView(
+                        courseViewModel: viewModel,
+                        path: $path
+                    )
+                }
+            }
+            .navigationTitle(Config.appName)
+            .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
