@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct YoukreApp: App {
@@ -18,5 +19,6 @@ struct YoukreApp: App {
                 .preferredColorScheme(themeManager.preferredColorScheme)
                 .background(AppColors.background)
         }
+        .modelContainer(for: [CourseSessionEntity.self])
     }
 }
