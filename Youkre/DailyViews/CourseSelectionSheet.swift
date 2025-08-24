@@ -8,15 +8,32 @@
 import SwiftUI
 
 struct CourseSelectionSheet: View {
-    @Binding var selectedCourse: CourseKind
+    @State var selectedCourse = CourseSettings.selectedCourse {
+        didSet {
+            if oldValue != selectedCourse {
+                onSwitchCourse(selectedCourse)
+            }
+        }
+    }
     @Environment(\.dismiss) var dismiss
+    
+    let onSwitchCourse: (CourseKind) -> Void
     
     var body: some View {
         NavigationStack {
             List(CourseKind.allCases) { course in
-                Button(course.title) {
+                
+                Button(action: {
                     selectedCourse = course
                     dismiss()
+                }) {
+                    HStack {
+                        Text(course.title)
+                        Spacer()
+                        if course == selectedCourse {
+                            Image(systemName: "checkmark")
+                        }
+                    }
                 }
             }
             .navigationTitle("选择课程")
@@ -34,6 +51,8 @@ struct CourseSelectionSheet: View {
 #Preview {
     @Previewable @State var selectedCourse: CourseKind = .algebra
     CourseSelectionSheet(
-        selectedCourse: $selectedCourse,
+        onSwitchCourse: { kind in
+            print("Course changed \(kind)")
+        }
     )
 }
