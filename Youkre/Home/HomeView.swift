@@ -14,8 +14,13 @@ struct HomeView: View {
     var body: some View {
         NavigationStack(path: $path) {
             ScrollView {
-                Text("练习")
-                CourseListView()
+                VStack {
+                    DailyExerciseView()
+                    
+                    
+                    CourseListView()
+                }
+                .padding()
             }
             .navigationDestination(for: Course.self) { course in
                 let viewModel = navigationManager.getOrCreateCourseViewModel(for: course)
@@ -32,12 +37,22 @@ struct HomeView: View {
                     )
                 }
             }
+            .navigationDestination(for: ChapterLink.self) { params in
+                ChapterView(params: params)
+            }
+            .navigationDestination(for: DailyExerciseParam.self) { param in
+                DailyExerciseDetailView(param: param)
+            }
             .navigationTitle(Config.appName)
             .navigationBarTitleDisplayMode(.inline)
         }
-    }
+        .background(AppColors.background)
+    } 
 }
 
 #Preview {
+    @Previewable @StateObject var themeManager = ThemeManager.shared
     HomeView()
+        .environmentObject(themeManager)
+        .preferredColorScheme(themeManager.preferredColorScheme)
 }

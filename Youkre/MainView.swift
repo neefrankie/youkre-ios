@@ -10,10 +10,10 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            ExerciseSwipeView()
+            HomeView()
                 .tabItem {
                     Label(
-                        "练习",
+                        Config.appName,
                         systemImage: "graduationcap"
                     )
                 }
