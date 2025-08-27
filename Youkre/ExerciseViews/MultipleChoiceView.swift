@@ -20,8 +20,8 @@ struct MultipleChoiceView: View {
     @State private var error: String? = nil
     @State private var currentProgress: ExerciseProgress? = nil
     
+    // Exercise choice index selected.
     @State private var selectedIndex: Int? = nil
-    @State private var showExplanation = false
     @Environment(\.modelContext) var modelContext
     
     private var finished: Bool {
@@ -57,11 +57,13 @@ struct MultipleChoiceView: View {
                                 correctIndex: exercise.multipleChoice.correctIndex
                             )
                         }) {
-                            choiceItemView(
+                            
+                            OptionItemView(
                                 choice: exercise.multipleChoice.choices[i],
                                 isLatex: exercise.multipleChoice.isLatex,
-                                currentIndex: i,
-                                correctIndex: exercise.multipleChoice.correctIndex
+                                correctIndex: exercise.multipleChoice.correctIndex,
+                                optionIndex: i,
+                                selectedIndex: selectedIndex,
                             )
                         }
                         .disabled(progress.isCompleted)
@@ -80,80 +82,9 @@ struct MultipleChoiceView: View {
                 }
                 .buttonStyle(CapsuleButtonStyle())
                 .padding()
+                .padding(.bottom, 16)
             }
         }
-        .toolbar {
-            ToolbarItemGroup(placement: .bottomBar) {
-                NavigationLink(value: level.learnMore) {
-                    Label("理论", systemImage: "book")
-                }
-                
-                Spacer()
-                
-                Button{
-                    
-                } label: {
-                    Label("分享", systemImage: "square.and.arrow.up")
-                }
-                
-                Spacer()
-                
-                Button {
-                    showExplanation = true
-                } label: {
-                    Label("解析", systemImage: "questionmark")
-                        
-                }
-            }
-        }
-    }
-    
-    @ViewBuilder
-    private func choiceItemView(
-        choice: String,
-        isLatex: Bool,
-        currentIndex: Int,
-        correctIndex: Int
-    ) -> some View {
-        HStack {
-            if isLatex {
-                MathView(
-                    latex: choice,
-                    fontSize: 20,
-                    labelMode: .text,
-                    textAlignment: .left,
-                    textColor: .primary
-                )
-                .fixedSize()
-            } else {
-                Text(choice)
-                    .fixedSize(horizontal: true, vertical: false)
-                    .padding(.trailing, 20)
-                    .foregroundColor(.primary)
-            }
-            
-            // This also makes the button full width.
-            Spacer()
-            
-            trailingImage(
-                for: currentIndex,
-                correctIndex: correctIndex,
-            )
-            .frame(width: 20, height: 20)
-        }
-        .padding()
-        .background(
-            buttonColor(
-                for: currentIndex,
-                correctIndex: correctIndex
-            )
-            .animation(
-                .easeInOut(duration: 0.4),
-                value: selectedIndex,
-            )
-        )
-        .cornerRadius(8)
-        .shadow(radius: 2)
     }
     
     private func checkAnswer(correctIndex: Int) {
@@ -175,42 +106,6 @@ struct MultipleChoiceView: View {
         Task {
             await updateExerciseProgress(progress: progress)
         }
-    }
-    
-    private func trailingImage(for index: Int, correctIndex: Int) -> some View {
-        if let selected = selectedIndex {
-            // Only add mark to selected one.
-            if index == selected {
-                // Index is selected and it is the correct index.
-                if index == correctIndex {
-                    return Image(systemName: "checkmark")
-                        .foregroundColor(.green)
-                } else {
-                    return Image(systemName: "xmark")
-                        .foregroundColor(.red)
-                }
-            }
-        }
-        
-        return Image(systemName: "")
-            .foregroundColor(.clear)
-    }
-    
-    private func buttonColor(for index: Int, correctIndex: Int) -> Color {
-        // If ther's a choice, it indicates the answer is selected and exercise is not skipped.
-        if let selected = selectedIndex {
-            // Correct answer always show green background after user make choice.
-            if index == correctIndex {
-                return .green.opacity(0.3)
-            } else if index == selected {
-                // Implicilty indicated this index != correcIndex
-                // index is not the correntIndex but is selected, so it's not correct.
-                return .red.opacity(0.3)
-            }
-        }
-        
-//        return .gray.opacity(0.1)
-        return AppColors.contentBackground
     }
     
     @MainActor
@@ -247,9 +142,9 @@ struct MultipleChoiceView: View {
 
 #Preview {
     @Previewable @State var showSummary = false
-    @Previewable @State var progress = ExerciseProgress.new(exerciseID: ExerciseData.calculus[0].id)
+    @Previewable @State var progress = ExerciseProgress.new(exerciseID: ExampleData.cmeLevels[0].exercises[0].id)
     @Previewable @StateObject var settings = ThemeManager.shared
-    let level = LevelData.cme[0]
+    let level = ExampleData.cmeLevels[0]
     
     NavigationStack {
         MultipleChoiceView(
