@@ -5,16 +5,10 @@
 //  Created by Weiguo Ni on 2025/7/14.
 //
 
-struct Table: Codable, Hashable {
-    let data: [String]
-    var rows: Int? = nil
-    var cols: Int? = nil
-}
-
 // [
 //  { "type": "text", "value": "Welcome" },
 //  { "type": "latex", "value": "x^2 + y^2 = z^2" },
-//  { "type": "image", "name": "cat" },
+//  { "type": "image", "value": "cat" },
 //  { "type": "table", "table": { "data": ["A", "B", "C"], rows: 2, cols: null } },
 //  { "type": "bullet", "value": "Item 1" },
 //  { "type": "newline" }
@@ -23,15 +17,14 @@ enum PromptBlock: Codable, Hashable {
     case text(String)
     case latex(String)
     case image(String)
-    case table(Table)
+    case table(GridTable)
     case bullet(String)
     case newline
     
     private enum CodingKeys: String, CodingKey {
-        case type
+        case kind
         case value
         case table
-        case layout
     }
     
     private enum BlockType: String, Codable {
@@ -48,33 +41,33 @@ enum PromptBlock: Codable, Hashable {
         
         switch self {
         case .text(let value):
-            try container.encode(BlockType.text, forKey: .type)
+            try container.encode(BlockType.text, forKey: .kind)
             try container.encode(value, forKey: .value)
         
         case .latex(let value):
-            try container.encode(BlockType.latex, forKey: .type)
+            try container.encode(BlockType.latex, forKey: .kind)
             try container.encode(value, forKey: .value)
             
-        case .image(let name):
-            try container.encode(BlockType.image, forKey: .type)
-            try container.encode(name, forKey: .value)
+        case .image(let value):
+            try container.encode(BlockType.image, forKey: .kind)
+            try container.encode(value, forKey: .value)
             
         case .table(let table):
-            try container.encode(BlockType.table, forKey: .type)
+            try container.encode(BlockType.table, forKey: .kind)
             try container.encode(table, forKey: .table)
             
         case .bullet(let value):
-            try container.encode(BlockType.bullet, forKey: .type)
+            try container.encode(BlockType.bullet, forKey: .kind)
             try container.encode(value, forKey: .value)
             
         case .newline:
-            try container.encode(BlockType.newline, forKey: .type)
+            try container.encode(BlockType.newline, forKey: .kind)
         }
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        let type = try container.decode(BlockType.self, forKey: .type)
+        let type = try container.decode(BlockType.self, forKey: .kind)
         
         switch type {
         case .text:
@@ -90,7 +83,7 @@ enum PromptBlock: Codable, Hashable {
             self = .image(name)
             
         case .table:
-            let table = try container.decode(Table.self, forKey: .table)
+            let table = try container.decode(GridTable.self, forKey: .table)
             self = .table(table)
             
         case .bullet:
