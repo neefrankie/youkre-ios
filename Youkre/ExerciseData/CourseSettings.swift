@@ -8,7 +8,8 @@
 import Foundation
 
 struct CourseSettings {
-    static let courseKey = "SelectedCourse"
+    static private let courseKey = "SelectedCourse"
+    static private let dailyExerciseKey = "dailyExerciseInfo"
     
     static var selectedCourse: CourseKind {
         get {
@@ -17,11 +18,25 @@ struct CourseSettings {
                 return course
             }
             
-            return .calculus
+            return .all
         }
         
         set {
             UserDefaults.standard.set(newValue.rawValue, forKey: courseKey)
+        }
+    }
+    
+    static func loadDailyExercise() -> DailyExerciseInfo? {
+        guard let savedData = UserDefaults.standard.data(forKey: dailyExerciseKey) else {
+            return nil
+        }
+        
+        return try? JSONDecoder().decode(DailyExerciseInfo.self, from: savedData)
+    }
+    
+    static func saveDailyExercise(info: DailyExerciseInfo) {
+        if let encoded = try? JSONEncoder().encode(info) {
+            UserDefaults.standard.set(encoded, forKey: dailyExerciseKey)
         }
     }
 }

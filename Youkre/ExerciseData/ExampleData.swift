@@ -8,38 +8,69 @@
 struct ExampleData {
     
     static let allLevels: [String: [ExerciseLevel]] = [
-        Book.bookList[0].id: cme,
-        Book.bookList[1].id: algebra,
-        Book.bookList[2].id: stats,
-        Book.bookList[3].id: trignometry,
+        cmeID: cmeLevels,
+        algebraID: algebra,
+        statID: stats,
+        trigID: trignometry,
     ]
     
-    static var cme: [ExerciseLevel] = [
-        ExerciseLevel(
-            id: "cme-chp-1",
-            courseID: Book.bookList[0].id,
-            courseSlug: Book.bookList[0].slug,
-            chapterID: "",
-            chapterSlug: "1",
-            title: "",
-            index: 0,
-            exercises: [
-                ExerciseV2(
-                    id: "cme-1-a",
-                    levelId: "cme-chp-1",
-                    prompts: [
-                        .text("𝑑𝑥 在微积分中表示什么？")
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "𝑑 乘以 𝑥",
-                            "𝑥 的微小部分",
-                            "一个函数",
-                            "函数在 𝑥 点的值"
-                        ],
-                        correctIndex: 1,
-                    ),
-                    explanation: """
+    static let cmeID = "crs-5bd2c24bd901b5a9"
+    static let cmeSlug = "calculus-made-easy"
+    
+    static let algebraID = "crs-6b927048e42cc585"
+    static let algebraSlug = "elementary-algebra"
+    
+    static let statID = "crs-ad7dd3035d82eda3"
+    static let statSlug = "elementary-statistics"
+    
+    static let trigID = "crs-9b08c5f3f19338c4"
+    static let trigSlug = "elementary-trigonometry"
+    
+    static let courses: [Course] = [
+        Course(
+            id: cmeID,
+            slug: cmeSlug,
+            title: "简易微积分",
+            contentVersion: 1,
+        ),
+        Course(
+            id: algebraID,
+            slug: algebraSlug,
+            title: "初级代数",
+            contentVersion: 1,
+        ),
+        Course(
+            id: statID,
+            slug: statSlug,
+            title: "概率统计入门",
+            contentVersion: 1,
+        ),
+        Course(
+            id: trigID,
+            slug: trigSlug,
+            title: "三角函数",
+            contentVersion: 1,
+        )
+    ]
+    
+    static let cmeLevel1Ex = [
+        ExerciseV2(
+            id: "cme-1-a",
+            levelId: "lvl-5353106dd4b461a9",
+            prompts: [
+                .latex("dx"),
+                .text("在微积分中表示什么？")
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "𝑑 乘以 𝑥",
+                    "𝑥 的微小部分",
+                    "一个函数",
+                    "函数在 𝑥 点的值"
+                ],
+                correctIndex: 1,
+            ),
+            explanation: """
 在微积分中，不要把 𝑑𝑥 看成是 𝑑 乘以 𝑥。
 
 𝑑 并不是一个因子，它的意思是“……的一个微小部分”或“……的一个微量”。
@@ -48,57 +79,49 @@ struct ExampleData {
 
 𝑑𝑥 应该读作“dee-eks”。
 """,
-                ),
-                ExerciseV2(
-                    id: "cme-1-b",
-                    levelId: "cme-chp-1",
-                    prompts: [
-                        .text("∫𝑑𝑥 在微积分中表示什么？")
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "函数的导数",
-                            "函数在某一点的斜率",
-                            "函数的极限值",
-                            "所有 𝑥 的小部分的总和"
-                        ],
-                        correctIndex: 3
-                    ),
-                    explanation: """
+        ),
+        ExerciseV2(
+            id: "cme-1-b",
+            levelId: "cme-chp-1",
+            prompts: [
+                .text("∫𝑑𝑥 在微积分中表示什么？")
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "函数的导数",
+                    "函数在某一点的斜率",
+                    "函数的极限值",
+                    "所有 𝑥 的小部分的总和"
+                ],
+                correctIndex: 3
+            ),
+            explanation: """
 ∫ 可以看作变长的 S，英文单词“sum”的第一个字母，可以称为“总和”。
 
 如果 𝑥 被看作由很多小部分组成，每个部分称为 𝑑𝑥，当把它们全部加起来时，就得到了所有 𝑑𝑥 的总和，也就是 𝑥。
 
 ∫𝑑𝑥 指的是所有 𝑥 的小部分的总和；∫𝑑𝑡 指的是所有 𝑡 的小部分的总和。
 """,
-                ),
-            ]
         ),
-        ExerciseLevel(
-            id: "cme-chp-3",
-            courseID: Book.bookList[0].id,
-            courseSlug: Book.bookList[0].slug,
-            chapterID: "",
-            chapterSlug: "3",
-            title: "",
-            index: 1,
-            exercises: [
-                ExerciseV2(
-                    id: "cme-3-a",
-                    levelId: "cme-chp-3",
-                    prompts: [
-                        .text("什么是导数？")
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "函数图像与 𝑥 轴之间区域的面积",
-                            "函数值在无限小间隔内的平均变化率",
-                            "函数图像上某一点处切线的斜率",
-                            "一个函数从负无穷到正无穷的积分值"
-                        ],
-                        correctIndex: 2
-                    ),
-                    explanation: """
+    ]
+    
+    static let cmeLevel2Ex = [
+        ExerciseV2(
+            id: "cme-3-a",
+            levelId: "cme-chp-3",
+            prompts: [
+                .text("什么是导数？")
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "函数图像与 𝑥 轴之间区域的面积",
+                    "函数值在无限小间隔内的平均变化率",
+                    "函数图像上某一点处切线的斜率",
+                    "一个函数从负无穷到正无穷的积分值"
+                ],
+                correctIndex: 2
+            ),
+            explanation: """
 导数是一个关于 𝑥 的函数，用来描述原函数每个点上的瞬时变化率。
 
 对于定义域内的每一个 x，导数给出了原函数在该点处的斜率，即随着 𝑥 的微小变化，原函数变化的速率。
@@ -107,24 +130,24 @@ struct ExampleData {
 
 你可以在本应用的“图示”部分观察不同函数的斜率变化。       
 """,
-                ),
-                ExerciseV2(
-                    id: "cme-3-b",
-                    levelId: "cme-chp-3",
-                    prompts: [
-                        .text("下面的符号表示什么？"),
-                        .latex(#"\frac{dy}{dx}"#)
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "函数 𝑦 关于变量 𝑥 的导数",
-                            "𝑑𝑦 除以 𝑑𝑥",
-                            "函数 𝑦 关于变量 𝑥 的积分",
-                            "函数 𝑥 关于变量 𝑦 的导数"
-                        ],
-                        correctIndex: 0
-                    ),
-                    explanation: #"""
+        ),
+        ExerciseV2(
+            id: "cme-3-b",
+            levelId: "cme-chp-3",
+            prompts: [
+                .text("下面的符号表示什么？"),
+                .latex(#"\frac{dy}{dx}"#)
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "函数 𝑦 关于变量 𝑥 的导数",
+                    "𝑑𝑦 除以 𝑑𝑥",
+                    "函数 𝑦 关于变量 𝑥 的积分",
+                    "函数 𝑥 关于变量 𝑦 的导数"
+                ],
+                correctIndex: 0
+            ),
+            explanation: #"""
 我们用符号
 
 \[ \frac{dy}{dx} \]
@@ -133,59 +156,51 @@ struct ExampleData {
 
 找出这个函数的过程叫做求导。
 """#,
-                ),
-            ]
         ),
-        ExerciseLevel(
-            id: "cme-chp-4",
-            courseID: Book.bookList[0].id,
-            courseSlug: Book.bookList[0].slug,
-            chapterID: "",
-            chapterSlug: "4",
-            title: "",
-            index: 2,
-            exercises: [
-                ExerciseV2(
-                    id: "cme-4-a",
-                    levelId: "cme-chp-4",
-                    prompts: [
-                        .text("以下函数的导数是什么？"),
-                        .latex(#"x^n"#)
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            #"x^{n-1}"#,
-                            #"x"#,
-                            #"e^x"#,
-                            #"nx^{n-1}"#
-                        ],
-                        correctIndex: 3,
-                        isLatex: true
-                    ),
-                    explanation: #"""
+    ]
+    
+    static let cmeLevel3Ex = [
+        ExerciseV2(
+            id: "cme-4-a",
+            levelId: "cme-chp-4",
+            prompts: [
+                .text("以下函数的导数是什么？"),
+                .latex(#"x^n"#)
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    #"x^{n-1}"#,
+                    #"x"#,
+                    #"e^x"#,
+                    #"nx^{n-1}"#
+                ],
+                correctIndex: 3,
+                isLatex: true
+            ),
+            explanation: #"""
 这是求导法则中最基本的幂法则：
 
 \[ \frac{d}{dx} x^a = ax^{a-1} \]
 """#,
-                ),
-                ExerciseV2(
-                    id: "cme-4-1",
-                    levelId: "cme-chp-4",
-                    prompts: [
-                        .text("求以下函数的导数："),
-                        .latex(#"y = x^{13}"#)
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            #"12x^{12}"#,
-                            #"13x^{12}"#,
-                            #"13x^{14}"#,
-                            #"14x^{13}"#,
-                        ],
-                        correctIndex: 1,
-                        isLatex: true
-                    ),
-                    explanation: #"""
+        ),
+        ExerciseV2(
+            id: "cme-4-1",
+            levelId: "cme-chp-4",
+            prompts: [
+                .text("求以下函数的导数："),
+                .latex(#"y = x^{13}"#)
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    #"12x^{12}"#,
+                    #"13x^{12}"#,
+                    #"13x^{14}"#,
+                    #"14x^{13}"#,
+                ],
+                correctIndex: 1,
+                isLatex: true
+            ),
+            explanation: #"""
 根据幂法则：
 
 $$
@@ -200,41 +215,63 @@ $$
 = &13x^{12}
 \end{align*}
 """#,
-                ),
-            ]
+        ),
+    ]
+    
+    static var cmeLevels: [ExerciseLevel] = [
+        ExerciseLevel(
+            id: "lvl-5353106dd4b461a9",
+            courseID: cmeID,
+            courseSlug: cmeSlug,
+            chapterID: "",
+            chapterSlug: "1",
+            title: "",
+            index: 0,
+            exercises: cmeLevel1Ex,
+        ),
+        ExerciseLevel(
+            id: "lvl-7ed0198d9df80f66",
+            courseID: cmeID,
+            courseSlug: cmeSlug,
+            chapterID: "",
+            chapterSlug: "3",
+            title: "",
+            index: 1,
+            exercises: cmeLevel2Ex
+        ),
+        ExerciseLevel(
+            id: "lvl-b841a5cf93b68e42",
+            courseID: cmeID,
+            courseSlug: cmeSlug,
+            chapterID: "",
+            chapterSlug: "4",
+            title: "",
+            index: 2,
+            exercises: cmeLevel3Ex
         ),
     ]
     
     static let solveEq = "解方程"
     static let opOrder = "算一算下式等于多少？注意运算顺序"
     
-    static let algebra: [ExerciseLevel] = [
-        ExerciseLevel(
-            id: "algebra-chp-1",
-            courseID: Book.bookList[1].id,
-            courseSlug: Book.bookList[1].slug,
-            chapterID: "",
-            chapterSlug: "introduction",
-            title: "",
-            index: 1,
-            exercises: [
-                ExerciseV2(
-                    id: "algebra-introduction-1",
-                    levelId: "algebra-chp-1",
-                    prompts: [
-                        .text(solveEq),
-                        .latex("x + 2 = 6")
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "1",
-                            "4",
-                            "8",
-                            "3"
-                        ],
-                        correctIndex: 1
-                    ),
-                    explanation: #"""
+    static let algebraLevel1Ex = [
+        ExerciseV2(
+            id: "algebra-introduction-1",
+            levelId: "algebra-chp-1",
+            prompts: [
+                .text(solveEq),
+                .latex("x + 2 = 6")
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "1",
+                    "4",
+                    "8",
+                    "3"
+                ],
+                correctIndex: 1
+            ),
+            explanation: #"""
 开始：
 
 \[ x + 2 = 6 \]
@@ -251,24 +288,24 @@ $$
 
 \[ x = 4\]
 """#,
-                ),
-                ExerciseV2(
-                    id: "algebra-introduction-2",
-                    levelId: "algebra-chp-1",
-                    prompts: [
-                        .text(solveEq),
-                        .latex("x + 5 = 11")
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "6",
-                            "16",
-                            "5",
-                            "7",
-                        ],
-                        correctIndex: 0
-                    ),
-                    explanation: #"""
+        ),
+        ExerciseV2(
+            id: "algebra-introduction-2",
+            levelId: "algebra-chp-1",
+            prompts: [
+                .text(solveEq),
+                .latex("x + 5 = 11")
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "6",
+                    "16",
+                    "5",
+                    "7",
+                ],
+                correctIndex: 0
+            ),
+            explanation: #"""
 开始：
 
 \[ x + 5 = 11 \]
@@ -285,35 +322,27 @@ $$
 
 \[ x = 6\]
 """#,
-                ),
-            ]
         ),
-        ExerciseLevel(
-            id: "algebra-chp-2",
-            courseID: Book.bookList[1].id,
-            courseSlug: Book.bookList[1].slug,
-            chapterID: "",
-            chapterSlug: "introduction-multiply",
-            title: "",
-            index: 2,
-            exercises: [
-                ExerciseV2(
-                    id: "algebra-introduction-multiply-1",
-                    levelId: "algebra-chp-2",
-                    prompts: [
-                        .text(solveEq),
-                        .latex(#"3x = 12"#)
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "4",
-                            "3",
-                            "2",
-                            "6"
-                        ],
-                        correctIndex: 0
-                    ),
-                    explanation: #"""
+    ]
+    
+    static let algebraLevel2Ex = [
+        ExerciseV2(
+            id: "algebra-introduction-multiply-1",
+            levelId: "algebra-chp-2",
+            prompts: [
+                .text(solveEq),
+                .latex(#"3x = 12"#)
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "4",
+                    "3",
+                    "2",
+                    "6"
+                ],
+                correctIndex: 0
+            ),
+            explanation: #"""
 开始:
 
 \[ 3x = 12 \]
@@ -330,24 +359,24 @@ $$
 
 \[ x = 4 \]
 """#,
-                ),
-                ExerciseV2(
-                    id: "algebra-introduction-multiply-2",
-                    levelId: "algebra-chp-2",
-                    prompts: [
-                        .text(solveEq),
-                        .latex(#"5x = 30"#)
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "5",
-                            "10",
-                            "7",
-                            "6"
-                        ],
-                        correctIndex: 3
-                    ),
-                    explanation: #"""
+        ),
+        ExerciseV2(
+            id: "algebra-introduction-multiply-2",
+            levelId: "algebra-chp-2",
+            prompts: [
+                .text(solveEq),
+                .latex(#"5x = 30"#)
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "5",
+                    "10",
+                    "7",
+                    "6"
+                ],
+                correctIndex: 3
+            ),
+            explanation: #"""
 开始:
 
 \[ 5x = 30 \]
@@ -364,35 +393,27 @@ $$
 
 \[ x = 6 \]
 """#,
-                ),
-            ],
         ),
-        ExerciseLevel(
-            id: "algebra-chp-3",
-            courseID: Book.bookList[1].id,
-            courseSlug: Book.bookList[1].slug,
-            chapterID: "",
-            chapterSlug: "operation-order-pemdas",
-            title: "",
-            index: 3,
-            exercises: [
-                ExerciseV2(
-                    id: "operation-order-pemdas-exercise-9",
-                    levelId: "algebra-chp-3",
-                    prompts: [
-                        .text(opOrder),
-                        .latex(#"(7 - \sqrt{9}) \times (4^2 - 3 + 1)"#)
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "20",
-                            "56",
-                            "14",
-                            "52"
-                        ],
-                        correctIndex: 1
-                    ),
-                    explanation: #"""
+    ]
+    
+    static let algebraLevel3Ex = [
+        ExerciseV2(
+            id: "operation-order-pemdas-exercise-9",
+            levelId: "algebra-chp-3",
+            prompts: [
+                .text(opOrder),
+                .latex(#"(7 - \sqrt{9}) \times (4^2 - 3 + 1)"#)
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "20",
+                    "56",
+                    "14",
+                    "52"
+                ],
+                correctIndex: 1
+            ),
+            explanation: #"""
 运算顺序是：
 
 * 先算括号（如果有）  
@@ -450,23 +471,23 @@ $$
 = &56  
 \end{align*}
 """#,
-                ),
-                ExerciseV2(
-                    id: "operation-order-pemdas-exercise-10",
-                    levelId: "algebra-chp-3",
-                    prompts: [
-                        .text(opOrder),
-                        .latex(#"\frac{2^4 + (16 - 3 \times 4)}{(6 + 3^2) \div (7 - 4)}"#)
-                    ],
-                    multipleChoice: MultipleChoice(
-                        choices: [
-                            "20",
-                            "3",
-                            "5",
-                            "4"
-                        ], correctIndex: 3
-                    ),
-                    explanation: #"""
+        ),
+        ExerciseV2(
+            id: "operation-order-pemdas-exercise-10",
+            levelId: "algebra-chp-3",
+            prompts: [
+                .text(opOrder),
+                .latex(#"\frac{2^4 + (16 - 3 \times 4)}{(6 + 3^2) \div (7 - 4)}"#)
+            ],
+            multipleChoice: MultipleChoice(
+                choices: [
+                    "20",
+                    "3",
+                    "5",
+                    "4"
+                ], correctIndex: 3
+            ),
+            explanation: #"""
 运算顺序是：
 
 * 先算括号（如果有）  
@@ -546,16 +567,47 @@ $$
 = &4
 \end{align*}
 """#,
-                ),
-            ]
+        ),
+    ]
+    
+    static let algebra: [ExerciseLevel] = [
+        ExerciseLevel(
+            id: "algebra-chp-1",
+            courseID: algebraID,
+            courseSlug: algebraSlug,
+            chapterID: "",
+            chapterSlug: "introduction",
+            title: "",
+            index: 1,
+            exercises: algebraLevel1Ex
+        ),
+        ExerciseLevel(
+            id: "algebra-chp-2",
+            courseID: algebraID,
+            courseSlug: algebraSlug,
+            chapterID: "",
+            chapterSlug: "introduction-multiply",
+            title: "",
+            index: 2,
+            exercises: algebraLevel2Ex,
+        ),
+        ExerciseLevel(
+            id: "algebra-chp-3",
+            courseID: algebraID,
+            courseSlug: algebraSlug,
+            chapterID: "",
+            chapterSlug: "operation-order-pemdas",
+            title: "",
+            index: 3,
+            exercises: algebraLevel3Ex,
         ),
     ]
     
     static let stats: [ExerciseLevel] = [
         ExerciseLevel(
             id: "stats-chp-1",
-            courseID: Book.bookList[2].id,
-            courseSlug: Book.bookList[2].slug,
+            courseID: statID,
+            courseSlug: statSlug,
             chapterID: "",
             chapterSlug: "central-meausres",
             title: "",
@@ -568,20 +620,10 @@ $$
                         .text("下表显示了北京每个月的平均气温："),
                         .table(GridTable(
                             data: [
-                                "1月", "1",
-                                "2月", "5",
-                                "3月", "11",
-                                "4月", "20",
-                                "5月", "26",
-                                "6月", "30",
-                                "7月", "30",
-                                "8月", "29",
-                                "9月", "25",
-                                "10月", "19",
-                                "11月", "10",
-                                "12月", "3",
+                                ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月",],
+                                ["1", "5", "11", "20", "26", "30", "30", "29", "25", "19", "10", "3"],
                             ],
-                            rows: 2
+                            horizontal: true
                         )),
                         .text("请问一年的平均气温是多少度？")
                     ],
@@ -668,8 +710,8 @@ $$
     static let trignometry: [ExerciseLevel] = [
         ExerciseLevel(
             id: "trignometry-chp-1",
-            courseID: Book.bookList[2].id,
-            courseSlug: Book.bookList[2].slug,
+            courseID: statID,
+            courseSlug: statSlug,
             chapterID: "",
             chapterSlug: "central-meausres",
             title: "",
