@@ -15,33 +15,52 @@ struct CourseDetailView: View {
     
     @Environment(\.modelContext) var modelContext
     
+    let layout = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+    ]
+    
     var body: some View {
-        VStack {
+        ScrollView {
             if viewModel.isLoading {
                 ProgressView()
             } else if viewModel.session != nil {
-                HStack {
+                VStack(alignment: .leading, spacing: 24) {
                     Text(viewModel.course.title)
-                        .font(.title)
-                }
-                
-                List {
-                    ForEach(viewModel.levels.indices, id: \.self) { index in
-                        let level = viewModel.levels[index]
-                        let completed = viewModel.levelsCompleted[level.id]
-                        Button {
-                            viewModel.session?.lastLevelIndex = index
-                            path.append(level)
-                        } label: {
-                            Text("Level \(level.index). Completed: \(completed ?? false)")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    LazyVGrid(columns: layout, spacing: 16) {
+                        ForEach(viewModel.levels.indices, id: \.self) { index in
+                            let level = viewModel.levels[index]
+                            let completed = viewModel.levelsCompleted[level.id] ?? false
+                            
+                            LevelCardView(
+                                index: index,
+                                level: level,
+                                isCompleted: completed,
+                                isLocked: false,
+                            ) {
+                                viewModel.session?.lastLevelIndex = index
+                                path.append(level)
+                            }
                         }
                     }
+                    
                 }
-                
+                .frame(maxWidth: .infinity)
             } else if let error = viewModel.error {
                 Text(error)
+                    .foregroundColor(.red)
+                    .frame(maxWidth: .infinity)
             }
         }
+        .frame(maxWidth: .infinity)
+        .padding()
+        .toolbar(.hidden, for: .tabBar)
         .background(AppColors.background)
         .task {
             await viewModel.loadSession(context: modelContext)
@@ -50,7 +69,7 @@ struct CourseDetailView: View {
 }
 
 #Preview {
-    @Previewable @State var viewModel = CourseViewModel.mock(course: Course.all[0])
+    @Previewable @State var viewModel = CourseViewModel(course: ExampleData.courses[0])
     @Previewable @State var path = NavigationPath()
     
     NavigationStack(path: $path) {
