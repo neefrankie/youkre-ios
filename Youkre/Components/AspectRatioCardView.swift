@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct AspectRatioCardView<Content: View>: View {
+    var ratio: CGFloat = 16/9
     var content: () -> Content
     
     var body: some View {
         GeometryReader { geo in
             let width = geo.size.width
-            let height = width / 16 * 9
+            let height = width / ratio
             
             ZStack {
                 content()
@@ -21,7 +22,7 @@ struct AspectRatioCardView<Content: View>: View {
             }
             .frame(width: width, height: height)
         }
-        .aspectRatio(16/9, contentMode: .fit)
+        .aspectRatio(ratio, contentMode: .fit)
     }
 }
 
@@ -34,4 +35,5 @@ struct AspectRatioCardView<Content: View>: View {
                 .border(.red)
         }
     }
+    .border(.yellow)
 }
