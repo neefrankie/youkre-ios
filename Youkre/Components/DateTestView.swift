@@ -7,41 +7,9 @@
 
 import SwiftUI
 
-struct YamlView: View {
+struct DateTestView: View {
     var body: some View {
         List {
-            Section("CME") {
-                ForEach(ExampleData.cmeLevels) { level in
-                    Button(level.id) {
-                        print(level.yaml())
-                    }
-                }
-            }
-            
-            Section("Algebra") {
-                ForEach(ExampleData.algebra) { level in
-                    Button(level.id) {
-                        print(level.yaml())
-                    }
-                }
-            }
-            
-            Section("Probability") {
-                ForEach(ExampleData.stats) { level in
-                    Button(level.id) {
-                        print(level.yaml())
-                    }
-                }
-            }
-            
-            Section("Trigonometry") {
-                ForEach(ExampleData.trignometry) { level in
-                    Button(level.id) {
-                        print(level.yaml())
-                    }
-                }
-            }
-            
             Section("Test DB") {
                 Button("Load Courses") {
                     Task {
@@ -81,6 +49,22 @@ struct YamlView: View {
                         print(exercises)
                     }
                 }
+                
+                Button("Random exercise") {
+                    Task {
+                        let exercise = try await ExerciseDataSource.shared.manulRandomExercise()
+                        if let exercise {
+                            print(exercise.id)
+                        }
+                    }
+                }
+                
+                Button("Row count") {
+                    Task {
+                        try await ExerciseDataSource.shared.countAll()
+                    }
+                }
+                
             }
             
             Section("JSON") {
@@ -126,5 +110,5 @@ struct YamlView: View {
 }
 
 #Preview {
-    YamlView()
+    DateTestView()
 }

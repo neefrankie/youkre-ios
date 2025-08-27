@@ -8,53 +8,62 @@
 import SwiftUI
 
 struct TableDataView: View {
-    let data: [String] = [
-        "1月", "1",
-        "2月", "5",
-        "3月", "11",
-        "4月", "20",
-        "5月", "26",
-        "6月", "30",
-        "7月", "30",
-        "8月", "29",
-        "9月", "25",
-        "10月", "19",
-        "11月", "10",
-        "12月", "3",
-    ]
-    let layout = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-    ]
+    
+    let rows: [[String]]
+    var alignment: Alignment = .leading
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 2), spacing: 1) {
-                ForEach(data.indices, id: \.self) { i in
-                    Text("\(data[i])")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(8)
-                        .background(Color.gray.opacity(0.2))
+        Grid(horizontalSpacing: 1, verticalSpacing: 0) {
+            ForEach(rows.indices, id: \.self) { rowIdx in
+                let row = rows[rowIdx]
+                
+                GridRow {
+                    ForEach(row.indices, id: \.self) { colIdx in
+                        Text("\(row[colIdx])")
+                            .frame(
+                                minWidth: 50,
+                                maxWidth: .infinity,
+                                alignment: alignment
+                            )
+                            .padding(4)
+                            .background(AppColors.contentBackground)
+                    }
                 }
+                Divider()
             }
         }
-        
-        ScrollView(.horizontal) {
-            LazyHGrid(rows: Array(repeating: .init(.fixed(50)), count: 2), spacing: 1) {
-                ForEach(data.indices, id: \.self) { i in
-                    Text("\(data[i])")
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .padding(8)
-                        .background(Color.gray.opacity(0.2))
-                }
-            }
-        }
+        .background(.gray.opacity(0.2))
+        .border(.gray, width: 1)
+        .padding()
     }
 }
 
 #Preview {
-    let data: [String] = [
-        
-    ]
-    TableDataView()
+    TableDataView(
+        rows: [
+            ["1月", "1"],
+            ["2月", "5"],
+            ["3月", "11"],
+            ["4月", "20"],
+            ["5月", "26"],
+            ["6月", "30"],
+            ["7月", "30"],
+            ["8月", "29"],
+            ["9月", "25"],
+            ["10月", "19"],
+            ["11月", "10"],
+            ["12月", "3"],
+        ]
+    )
+    
+    ScrollView(.horizontal) {
+        TableDataView(
+            rows: [
+                ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月",],
+                ["1", "5", "11", "20", "26", "30", "30", "29", "25", "19", "10", "3"],
+            ]
+        )
+    }
+    
+    
 }
