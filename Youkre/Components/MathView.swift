@@ -13,7 +13,7 @@ struct MathView: UIViewRepresentable {
     var fontSize: CGFloat = 30
     var labelMode: MTMathUILabelMode = .text
     var textAlignment: MTTextAlignment = .center
-    var font: MathFont = .eulerFont
+    var font: MathFont = .latinModernFont
     var textColor: Color = .primary
     
     func makeUIView(context: Context) -> MTMathUILabel {
