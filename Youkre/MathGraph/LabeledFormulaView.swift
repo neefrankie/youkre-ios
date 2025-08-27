@@ -21,7 +21,7 @@ struct LabeledFormulaView: View {
                     alignment: .leading
                 )
             
-            MarkdownListView(
+            MarkdownView(
                 markdown: latex
             )
             

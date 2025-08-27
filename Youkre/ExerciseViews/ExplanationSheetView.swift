@@ -14,7 +14,7 @@ struct ExplanationSheetView: View {
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
-                MarkdownListView(
+                MarkdownView(
                     markdown: explanation,
                     latexFontSize: 22
                 )
