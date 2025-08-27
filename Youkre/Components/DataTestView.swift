@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DateTestView: View {
+struct DataTestView: View {
     var body: some View {
         List {
             Section("Test DB") {
@@ -110,5 +110,5 @@ struct DateTestView: View {
 }
 
 #Preview {
-    DateTestView()
+    DataTestView()
 }
