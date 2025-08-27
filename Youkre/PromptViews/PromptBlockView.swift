@@ -18,7 +18,10 @@ struct PromptBlockView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
         case .latex(let latex):
-            latexView(latex: latex)
+            MathView(
+                latex: latex,
+            )
+            .fixedSize(horizontal: false, vertical: true)
         case .image(let name):
             HStack {
                 Spacer()
@@ -29,7 +32,19 @@ struct PromptBlockView: View {
             }
             .frame(maxHeight: 300)
         case .table(let table):
-            tableView(table: table)
+            if table.horizontal {
+                ScrollView(.horizontal) {
+                    TableDataView(
+                        rows: table.data,
+                        
+                    )
+                }
+            } else {
+                TableDataView(
+                    rows: table.data,
+                    
+                )
+            }
         case .bullet(let text):
             HStack(alignment: .top) {
                 Text("•").bold()
@@ -39,78 +54,9 @@ struct PromptBlockView: View {
             Spacer().frame(height: 8)
         }
     }
-    
-    func latexView(latex: String) -> some View {
-        MathView(
-            latex: latex,
-            fontSize: 22
-        )
-        .fixedSize(horizontal: false, vertical: true)
-    }
-    
-    func tableView(table: Table) -> some View {
-        Group {
-            if let rows = table.rows {
-                ScrollView(.horizontal) {
-                    LazyHGrid(rows: Array(repeating: .init(.fixed(50)), count: rows), spacing: 1) {
-                        ForEach(table.data.indices, id: \.self) { i in
-                            Text("\(table.data[i])")
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .padding(8)
-                                .background(Color.gray.opacity(0.2))
-                        }
-                    }
-                }
-            } else if let cols = table.cols {
-                ScrollView {
-                    LazyVGrid(columns: Array(repeating: .init(.flexible()), count: cols), spacing: 1) {
-                        ForEach(table.data.indices, id: \.self) { i in
-                            Text("\(table.data[i])")
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(8)
-                                .background(Color.gray.opacity(0.2))
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 #Preview {
-    let data: [String] = [
-        "1月", "1",
-        "2月", "5",
-        "3月", "11",
-        "4月", "20",
-        "5月", "26",
-        "6月", "30",
-        "7月", "30",
-        "8月", "29",
-        "9月", "25",
-        "10月", "19",
-        "11月", "10",
-        "12月", "3",
-    ]
-    PromptBlockView(
-        block: .table(Table(data: data, rows: 2))
-    )
-    
-    PromptBlockView(
-        block: .table(
-            Table(
-                data: [
-                    "科学", "34",
-                    "英语", "90",
-                    "历史", "87",
-                    "数学", "34",
-                    "地理", "55"
-                ],
-                rows: 2
-            )
-        ),
-    )
-    
     PromptBlockView(
         block: .image("triangle-exercise-1")
     )
