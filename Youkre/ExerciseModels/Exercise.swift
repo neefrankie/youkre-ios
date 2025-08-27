@@ -8,24 +8,16 @@
 import Foundation
 import SwiftData
 
-
-struct Exercise: Identifiable, Codable {
-    var id: String
-    var course: CourseKind     // TODO: remove
-    let promptParts: [PromptBlock]
-    var multipleChoice: MultipleChoice?
-    var explanation: String?
-    var learnMore: ChapterLink
-    
-    var correctAnswer: String {
-        return multipleChoice?.correctAnswer ?? ""
-    }
-}
-
 struct MultipleChoice: Codable {
     var choices: [String]
     var correctIndex: Int
     var isLatex: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case choices = "choices"
+        case correctIndex = "correct_index"
+        case isLatex = "is_latex"
+    }
     
     var correctAnswer: String {
         return choices[correctIndex]
@@ -45,11 +37,24 @@ struct ExerciseV3: Identifiable, Codable {
     var explanation: String?
 }
 
-struct ExerciseV2: Identifiable, Codable {
+struct ExerciseV2: Identifiable, Codable, Equatable {
     var id: String
+    var levelId: String
     var prompts: [PromptBlock]
     var multipleChoice: MultipleChoice
     var explanation: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case levelId = "level_id"
+        case prompts = "prompts"
+        case multipleChoice = "multiple_choice"
+        case explanation = "explanation"
+    }
+    
+    static func ==(lhs: ExerciseV2, rhs: ExerciseV2) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
 
