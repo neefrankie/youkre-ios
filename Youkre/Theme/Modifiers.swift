@@ -22,7 +22,8 @@ struct CardStyle: ViewModifier {
         content
             .background(AppColors.contentBackground)
             .cornerRadius(12)
-            .shadow(radius: 4)
+            .shadow(radius: 2)
+            
     }
 }
 
@@ -47,4 +48,14 @@ struct TitleStyle: ViewModifier {
             .bold()
             .frame(maxWidth: .infinity, alignment: .center)
     }
+}
+
+#Preview {
+    VStack {
+        Text("hello")
+            .frame(maxWidth: .infinity)
+            .modifier(PaddedCardStyle())
+    }
+    .padding()
+    .background(AppColors.background)
 }

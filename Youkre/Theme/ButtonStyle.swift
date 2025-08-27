@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ColoredCircleButtonStyle: ButtonStyle {
-    var backgroundColor: Color
+    var backgroundColor: Color = .teal
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
