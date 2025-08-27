@@ -78,11 +78,7 @@ struct TocListView: View {
             }
             .padding()
         }
-        .navigationDestination(
-            for: ChapterLink.self
-        ) { params in
-            ChapterView(params: params)
-        }
+        
     }
 }
 

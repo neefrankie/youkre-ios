@@ -25,7 +25,9 @@ struct BookListView: View {
             .navigationDestination(for: Book.self) { course in
                 TocView(course: course)
             }
-            .navigationTitle(Config.appName)
+            .navigationDestination(for: ChapterLink.self) { params in
+                ChapterView(params: params)
+            }
             .navigationBarTitleDisplayMode(.inline)
             
         }
