@@ -8,22 +8,57 @@
 import SwiftUI
 
 struct CourseListView: View {
+    @State private var isLoading = true
+    @State private var error: String? = nil
+    @State private var courses: [Course]? = nil
+    
     let layout = [
         GridItem(.flexible()),
         GridItem(.flexible()),
     ]
     
     var body: some View {
-        LazyVGrid(columns: layout) {
-            ForEach(Course.all) { course in
-                NavigationLink(value: course) {
-                    Text(course.title)
+        VStack {
+            if isLoading {
+                ProgressView()
+            } else if let courses {
+                Text("更多练习")
+                    .padding(.top, 32)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                LazyVGrid(columns: layout, spacing: 16) {
+                    ForEach(courses) { course in
+                        NavigationLink(value: course) {
+                            FigureCardView(
+                                title: course.title,
+                                imageName: course.slug,
+                                fit: true,
+                                ratio: 1,
+                            )
+                        }
+                    }
                 }
-                .frame(maxWidth: .infinity)
-                .modifier(PaddedCardStyle())
+            } else if let error {
+                Text(error)
             }
         }
-        .padding()
+        .task {
+            await loadCourses()
+        }
+        
+    }
+    
+    @MainActor
+    private func loadCourses() async {
+        isLoading = true
+        
+        do {
+            let courses = try await ExerciseDataSource.shared.loadCourse()
+            self.courses = courses
+        } catch {
+            self.error = error.localizedDescription
+        }
+        isLoading = false
     }
 }
 
@@ -31,4 +66,5 @@ struct CourseListView: View {
 
 #Preview {
     CourseListView()
+        .padding()
 }
