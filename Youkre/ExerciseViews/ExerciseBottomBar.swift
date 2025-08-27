@@ -6,13 +6,76 @@
 //
 
 import SwiftUI
+import Photos
 
 struct ExerciseBottomBar: View {
+    let level: ExerciseLevel
+    let exercise: ExerciseV2
+    
+    @State private var showExplanation = false
+    
+    @State private var showPreview = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 0) {
+            
+            Divider()
+            HStack(spacing: 32) {
+                NavigationLink(value: level.learnMore) {
+                    VStack(spacing: 4) {
+                        Image(systemName: "book")
+                        Text("了解更多")
+                            .font(.caption2)
+                    }
+                }
+
+                Spacer()
+                
+                Button(action: {
+                    showPreview = true
+                }) {
+                    VStack(spacing: 4) {
+                        Image(systemName: "square.and.arrow.up")
+                        Text("分享")
+                            .font(.caption2)
+                    }
+                }
+                
+                if exercise.explanation != nil {
+                    Spacer()
+
+                    Button {
+                        showExplanation = true
+                    } label: {
+                        VStack(spacing: 4) {
+                            Image(systemName: "questionmark")
+                            Text("解析")
+                                .font(.caption2)
+                        }
+                    }
+                }
+                
+            }
+            .padding()
+            
+        }
+        .sheet(isPresented: $showExplanation) {
+            if let explanation = exercise.explanation {
+                ExplanationSheetView(explanation: explanation)
+            }
+        }
+        .sheet(isPresented: $showPreview) {
+            ExerciseShareView(exercise: exercise)
+        }
     }
 }
 
 #Preview {
-    ExerciseBottomBar()
+    NavigationStack {
+        ExerciseBottomBar(
+            level: ExampleData.cmeLevels[0],
+            exercise: ExampleData.cmeLevel1Ex[0]
+        )
+    }
+    
 }
