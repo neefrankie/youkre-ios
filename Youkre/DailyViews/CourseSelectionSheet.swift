@@ -10,6 +10,7 @@ import SwiftUI
 struct CourseSelectionSheet: View {
     @State var selectedCourse = CourseSettings.selectedCourse {
         didSet {
+            print("selected course: \(oldValue) -> \(selectedCourse)")
             if oldValue != selectedCourse {
                 onSwitchCourse(selectedCourse)
             }

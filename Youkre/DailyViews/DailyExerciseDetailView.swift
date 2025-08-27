@@ -8,18 +8,74 @@
 import SwiftUI
 
 struct DailyExerciseDetailView: View {
-    let param: DailyExerciseParam
+    let level: ExerciseLevel
+    let exercise: ExerciseV2
+    
+    @State private var exerciseInfo: DailyExerciseInfo?
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    init(param: DailyExerciseParam) {
+        self.level = param.level
+        self.exercise = param.exercise
+    }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            VStack(spacing: 16) {
+                PromptView(blocks: exercise.prompts)
+                
+                ForEach(exercise.multipleChoice.choices.indices, id: \.self) { i in
+                    Button(action: {
+                        checkAnswer(selected: i)
+                    }) {
+                        OptionItemView(
+                            choice: exercise.multipleChoice.choices[i],
+                            isLatex: exercise.multipleChoice.isLatex,
+                            correctIndex: exercise.multipleChoice.correctIndex,
+                            optionIndex: i,
+                            selectedIndex: exerciseInfo?.selectedIndex,
+                        )
+                    }
+                }
+            }
+            .padding()
+            .onAppear {
+                self.exerciseInfo = CourseSettings.loadDailyExercise()
+            }
+        }
+        .toolbar(.hidden, for: .tabBar)
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                ExerciseBottomBar(
+                    level: level,
+                    exercise: exercise
+                )
+            }
+        }
+    }
+    
+    private func checkAnswer(selected: Int) {
+        if exerciseInfo != nil {
+            exerciseInfo?.selectedIndex = selected
+        } else {
+            exerciseInfo = DailyExerciseInfo.new(exerciseID: exercise.id, selected: selected)
+        }
+        
+        guard let info = exerciseInfo else {
+            return
+        }
+        CourseSettings.saveDailyExercise(info: info)
     }
 }
 
 #Preview {
-    DailyExerciseDetailView(
-        param: DailyExerciseParam(
-            exercise: ExampleData.cmeLevel1Ex[0],
-            level: ExampleData.cmeLevels[0]
+    NavigationStack {
+        DailyExerciseDetailView(
+            param: DailyExerciseParam(
+                exercise: ExampleData.cmeLevel1Ex[0],
+                level: ExampleData.cmeLevels[0]
+            )
         )
-    )
+    }
 }

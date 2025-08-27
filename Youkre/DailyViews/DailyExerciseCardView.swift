@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct DailyExerciseCardView: View {
+    let exercise: ExerciseV2
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 12) {
+            PromptView(blocks: exercise.prompts)
+                .font(.headline)
+                .foregroundColor(.primary)
+        }
+        .modifier(PaddedCardStyle())
+        
     }
 }
 
 #Preview {
-    DailyExerciseCardView()
+    DailyExerciseCardView(
+        exercise: ExampleData.cmeLevel1Ex[0]
+    )
 }
