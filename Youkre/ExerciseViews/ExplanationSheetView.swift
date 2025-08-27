@@ -36,6 +36,6 @@ struct ExplanationSheetView: View {
 
 #Preview {
     ExplanationSheetView(
-        explanation: ExerciseData.calculus[0].explanation!
+        explanation: ExampleData.cmeLevels[0].exercises[0].explanation!
     )
 }
