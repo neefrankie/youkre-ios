@@ -7,16 +7,21 @@
 
 import Foundation
 
-enum JSONParsingError: LocalizedError {
+enum JSONError: LocalizedError {
     case fileReadFailed(String)
     case decodingFailed(String)
+    case convertDataFailed
     
     var errorDescription: String? {
         switch self {
         case .fileReadFailed(let message):
+            print(message)
             return "文件读取失败"
         case .decodingFailed(let message):
+            print(message)
             return "JSON解析错误"
+        case .convertDataFailed:
+            return "无法转换为Data"
         }
     }
 }
@@ -36,6 +41,10 @@ extension Bundle {
         }
         
         return nil
+    }
+    
+    var dbPath: String? {
+        self.webAssetsBundle?.path(forResource: "db", ofType: "sqlite3")
     }
     
     func jsonURL(forResource name: String, of subpath: String) -> URL? {
@@ -63,7 +72,7 @@ extension Bundle {
         return nil
     }
     
-    func decode<T: Codable>(contentsOf url: URL) -> Result<T, JSONParsingError> {
+    func decode<T: Codable>(contentsOf url: URL) -> Result<T, JSONError> {
         guard let data = try? Data(contentsOf: url) else {
             return .failure(.fileReadFailed("cannot load content from \(url)"))
         }
@@ -97,7 +106,7 @@ extension Bundle {
 //        return self.decode(contentsOf: fileURL)
 //    }
     
-    func decodeToc(of project: String) async -> Result<TableOfContents, JSONParsingError> {
+    func decodeToc(of project: String) async -> Result<TableOfContents, JSONError> {
         guard let fileURL = self.jsonURL(forResource: "toc", of: project) else {
             return .failure(.fileReadFailed("Failed to find toc.json of \(project)"))
         }
@@ -108,41 +117,29 @@ extension Bundle {
     }
 }
 
-enum JSONError: Error {
-    case fileNotFound(String)
-    case invalidFilePath(String)
-}
-
 class JSONParser {
-    static let baseURL = Bundle.main.resourceURL?.appendingPathComponent("WebAssets.bundle")
-    
-    static func jsonURL(forResource dir: String, _ fileName: String) -> URL? {
-        return baseURL?
-            .appendingPathComponent(dir)
-            .appendingPathComponent(fileName)
-            .appendingPathExtension("json")
-    }
-    
-    static func htmlURL(forResource dir: String, fileName: String) -> URL? {
-        return baseURL?
-            .appendingPathComponent(dir)
-            .appendingPathComponent(fileName)
-            .appendingPathExtension("html")
-    }
-    
     static func parse<T: Decodable>(data: Data, as type: T.Type) throws -> T {
         let decoder = JSONDecoder()
         return try decoder.decode(type, from: data)
     }
     
-    static func parseToc(of project: String) async throws -> TableOfContents {
-        guard let fileURL = jsonURL(forResource: project, "toc")
-        else {
-            throw JSONError.fileNotFound("未能找到JSON文件")
+    static func decode<T: Codable>(data: Data) -> Result<T, JSONError> {
+        let decoder = JSONDecoder()
+                
+        do {
+            let decoded = try decoder.decode(T.self, from: data)
+            return .success(decoded)
+            
+        } catch DecodingError.keyNotFound(let key, let context) {
+            return .failure(.decodingFailed("keyNotFound: missing key '\(key.stringValue)' – \(context.debugDescription)"))
+        } catch DecodingError.typeMismatch(_, let context) {
+            return .failure(.decodingFailed("typeMismatch: type mismatch – \(context.debugDescription)"))
+        } catch DecodingError.valueNotFound(let type, let context) {
+            return .failure(.decodingFailed("valueNotFound: \(type) value – \(context.debugDescription)"))
+        } catch DecodingError.dataCorrupted(_) {
+            return .failure(.decodingFailed("dataCorrupted: Failed to decode because it appears to be invalid JSON."))
+        } catch {
+            return .failure(.decodingFailed("Failed to decode: \(error.localizedDescription)"))
         }
-        print("Try to load file \(fileURL)")
-        let data = try Data(contentsOf: fileURL)
-        print("Loaded data \(data)")
-        return try parse(data: data, as: TableOfContents.self)
     }
 }
