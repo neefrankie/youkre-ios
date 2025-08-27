@@ -54,7 +54,7 @@ struct ExampleData {
     ]
     
     static let cmeLevel1Ex = [
-        ExerciseV2(
+        Exercise(
             id: "cme-1-a",
             levelId: "lvl-5353106dd4b461a9",
             prompts: [
@@ -80,7 +80,7 @@ struct ExampleData {
 𝑑𝑥 应该读作“dee-eks”。
 """,
         ),
-        ExerciseV2(
+        Exercise(
             id: "cme-1-b",
             levelId: "cme-chp-1",
             prompts: [
@@ -106,7 +106,7 @@ struct ExampleData {
     ]
     
     static let cmeLevel2Ex = [
-        ExerciseV2(
+        Exercise(
             id: "cme-3-a",
             levelId: "cme-chp-3",
             prompts: [
@@ -131,7 +131,7 @@ struct ExampleData {
 你可以在本应用的“图示”部分观察不同函数的斜率变化。       
 """,
         ),
-        ExerciseV2(
+        Exercise(
             id: "cme-3-b",
             levelId: "cme-chp-3",
             prompts: [
@@ -160,7 +160,7 @@ struct ExampleData {
     ]
     
     static let cmeLevel3Ex = [
-        ExerciseV2(
+        Exercise(
             id: "cme-4-a",
             levelId: "cme-chp-4",
             prompts: [
@@ -183,7 +183,7 @@ struct ExampleData {
 \[ \frac{d}{dx} x^a = ax^{a-1} \]
 """#,
         ),
-        ExerciseV2(
+        Exercise(
             id: "cme-4-1",
             levelId: "cme-chp-4",
             prompts: [
@@ -255,7 +255,7 @@ $$
     static let opOrder = "算一算下式等于多少？注意运算顺序"
     
     static let algebraLevel1Ex = [
-        ExerciseV2(
+        Exercise(
             id: "algebra-introduction-1",
             levelId: "algebra-chp-1",
             prompts: [
@@ -289,7 +289,7 @@ $$
 \[ x = 4\]
 """#,
         ),
-        ExerciseV2(
+        Exercise(
             id: "algebra-introduction-2",
             levelId: "algebra-chp-1",
             prompts: [
@@ -326,7 +326,7 @@ $$
     ]
     
     static let algebraLevel2Ex = [
-        ExerciseV2(
+        Exercise(
             id: "algebra-introduction-multiply-1",
             levelId: "algebra-chp-2",
             prompts: [
@@ -360,7 +360,7 @@ $$
 \[ x = 4 \]
 """#,
         ),
-        ExerciseV2(
+        Exercise(
             id: "algebra-introduction-multiply-2",
             levelId: "algebra-chp-2",
             prompts: [
@@ -397,7 +397,7 @@ $$
     ]
     
     static let algebraLevel3Ex = [
-        ExerciseV2(
+        Exercise(
             id: "operation-order-pemdas-exercise-9",
             levelId: "algebra-chp-3",
             prompts: [
@@ -472,7 +472,7 @@ $$
 \end{align*}
 """#,
         ),
-        ExerciseV2(
+        Exercise(
             id: "operation-order-pemdas-exercise-10",
             levelId: "algebra-chp-3",
             prompts: [
@@ -613,7 +613,7 @@ $$
             title: "",
             index: 1,
             exercises: [
-                ExerciseV2(
+                Exercise(
                     id: "central-meausres-exercise-4",
                     levelId: "stats-chp-1",
                     prompts: [
@@ -651,7 +651,7 @@ $$
 所以，平均气温是 17.4°C。
 """#,
                 ),
-                ExerciseV2(
+                Exercise(
                     id: "central-meausres-exercise-7",
                     levelId: "stats-chp-1",
                     prompts: [
@@ -717,7 +717,7 @@ $$
             title: "",
             index: 1,
             exercises: [
-                ExerciseV2(
+                Exercise(
                     id: "triangle-exercise-1",
                     levelId: "trignometry-chp-1",
                     prompts: [
@@ -742,7 +742,7 @@ $$
 * 三个相等的角。
 """#,
                 ),
-                ExerciseV2(
+                Exercise(
                     id: "triangle-exercise-5",
                     levelId: "trignometry-chp-1",
                     prompts: [

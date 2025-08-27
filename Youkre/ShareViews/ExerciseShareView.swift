@@ -33,7 +33,7 @@ extension View {
 }
 
 struct ExerciseShareView: View {
-    let exercise: ExerciseV2
+    let exercise: Exercise
     @Environment(\.displayScale) var displayScale
     @Environment(\.dismiss) var dismiss
     
@@ -99,7 +99,7 @@ struct ExerciseShareView: View {
 
 #Preview {    
     ExerciseShareView(
-        exercise: ExerciseV2(
+        exercise: Exercise(
             id: "",
             levelId: "",
             prompts: [

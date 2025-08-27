@@ -24,20 +24,9 @@ struct MultipleChoice: Codable {
     }
 }
 
-struct ChoiceItem: Codable {
-    var text: String
-    var correct: Bool
-    var isLatex: Bool = false
-}
 
-struct ExerciseV3: Identifiable, Codable {
-    var id: String
-    var prompts: [PromptBlock]
-    var multipleChoice: [ChoiceItem]
-    var explanation: String?
-}
 
-struct ExerciseV2: Identifiable, Codable, Equatable {
+struct Exercise: Identifiable, Codable, Equatable {
     var id: String
     var levelId: String
     var prompts: [PromptBlock]
@@ -52,7 +41,7 @@ struct ExerciseV2: Identifiable, Codable, Equatable {
         case explanation = "explanation"
     }
     
-    static func ==(lhs: ExerciseV2, rhs: ExerciseV2) -> Bool {
+    static func ==(lhs: Exercise, rhs: Exercise) -> Bool {
         return lhs.id == rhs.id
     }
 }
@@ -131,8 +120,15 @@ class ExerciseProgressEntity {
     }
 }
 
-enum AnswerData: Codable, Hashable {
-    case choice(index: Int)
-    case choices(indices: [Int])
-    case none
+struct ChoiceItem: Codable {
+    var text: String
+    var correct: Bool
+    var isLatex: Bool = false
+}
+
+struct ExerciseV3: Identifiable, Codable {
+    var id: String
+    var prompts: [PromptBlock]
+    var multipleChoice: [ChoiceItem]
+    var explanation: String?
 }

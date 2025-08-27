@@ -13,7 +13,7 @@ class LevelDetailViewModel {
     var isLoading = true
     var error: String? = nil
     var levelProgress: LevelProgress? = nil
-    var exercises: [ExerciseV2] = []
+    var exercises: [Exercise] = []
     private var exerciseStates: [String: ExerciseProgress] = [:]
     
     // Current tab
@@ -27,7 +27,7 @@ class LevelDetailViewModel {
         "\(selectedTabIndex + 1) / \(self.exercises.count)"
     }
     
-    var currentExercise: ExerciseV2? {
+    var currentExercise: Exercise? {
         if selectedTabIndex >= self.exercises.count {
             return nil
         }

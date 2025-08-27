@@ -10,7 +10,7 @@ import Photos
 
 struct ExerciseBottomBar: View {
     let level: ExerciseLevel
-    let exercise: ExerciseV2
+    let exercise: Exercise
     
     @State private var showExplanation = false
     

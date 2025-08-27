@@ -17,7 +17,7 @@ struct ExerciseLevel: Identifiable, Hashable {
     var title: String
     var index: Int
     var contentVersoin: Int = 1
-    var exercises: [ExerciseV2] = []
+    var exercises: [Exercise] = []
     
     var learnMore: ChapterLink {
         ChapterLink(

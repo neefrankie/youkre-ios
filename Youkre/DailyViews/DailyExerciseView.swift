@@ -10,7 +10,7 @@ import SwiftUI
 struct DailyExerciseView: View {
     @State private var isLoading: Bool = true
     @State private var error: String? = nil
-    @State private var dailyExercise: ExerciseV2?
+    @State private var dailyExercise: Exercise?
     @State private var exerciseLevel: ExerciseLevel?
     
     @State private var showCourseSelection = false

@@ -10,7 +10,7 @@ import SwiftUI
 struct MultipleChoiceView: View {
     let level: ExerciseLevel
     let levelProgress: LevelProgress
-    let exercise: ExerciseV2
+    let exercise: Exercise
     let isLast: Bool
     @Binding var showSummary: Bool
     var onAnswer: (ExerciseProgress) -> Void
@@ -39,6 +39,7 @@ struct MultipleChoiceView: View {
             }
         }
         .task {
+            print("Initialize loadExerciseProgress")
             await loadExerciseProgress()
         }
     }
@@ -110,6 +111,7 @@ struct MultipleChoiceView: View {
     
     @MainActor
     func loadExerciseProgress() async {
+        print("loadExerciseProgress")
         isLoading = true
         do {
             let exerciseProgress = try await SessionDataSource.shared.loadOrCreateExerciseProgress(

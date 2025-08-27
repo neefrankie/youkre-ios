@@ -194,7 +194,7 @@ actor SessionDataSource {
 // ExerciseProgress is attached to LevelProgress, so we need to start from LevelProgressEntity.
     func loadOrCreateExerciseProgress(
         levelProgress: LevelProgress,
-        exercise: ExerciseV2,
+        exercise: Exercise,
         context: ModelContext
     ) throws -> ExerciseProgress {
         // Find the entity corresponding to LevelProgress

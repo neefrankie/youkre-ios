@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ExerciseRendererView: View {
-    let exercise: ExerciseV2
+    let exercise: Exercise
     var body: some View {
         VStack {
             HStack {

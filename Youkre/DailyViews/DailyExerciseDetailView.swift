@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DailyExerciseDetailView: View {
     let level: ExerciseLevel
-    let exercise: ExerciseV2
+    let exercise: Exercise
     
     @State private var exerciseInfo: DailyExerciseInfo?
     

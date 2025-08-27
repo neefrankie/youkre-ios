@@ -28,7 +28,7 @@ struct DailyExerciseInfo: Codable {
 }
 
 struct DailyExerciseParam: Hashable {
-    let exercise: ExerciseV2
+    let exercise: Exercise
     let level: ExerciseLevel
     
     func hash(into hasher: inout Hasher) {

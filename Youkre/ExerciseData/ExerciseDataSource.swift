@@ -143,7 +143,7 @@ actor ExerciseDataSource {
         }
     }
     
-    func loadExercises(for course: Course, level: ExerciseLevel) throws -> [ExerciseV2] {
+    func loadExercises(for course: Course, level: ExerciseLevel) throws -> [Exercise] {
         let exerciseQuery = exerciseTable
             .filter(levelId == level.id)
             .order(index.asc)
@@ -156,12 +156,12 @@ actor ExerciseDataSource {
         return exercises
     }
     
-    private func toExercise(row: SQLite.Row) throws -> ExerciseV2 {
+    private func toExercise(row: SQLite.Row) throws -> Exercise {
         
         let prompts = try decodePrompts(row: row)
         let multipleChoice = try decodeMultipleChoce(row: row)
         
-        return ExerciseV2(
+        return Exercise(
             id: row[idCol],
             levelId: row[levelId],
             prompts: prompts,
@@ -170,7 +170,7 @@ actor ExerciseDataSource {
         )
     }
     
-    private func fetchExercise(_ query: QueryType) throws -> ExerciseV2 {
+    private func fetchExercise(_ query: QueryType) throws -> Exercise {
         let conn = try getConn()
         conn.trace { print($0) }
         let exercise = try conn.pluck(query)
@@ -182,7 +182,7 @@ actor ExerciseDataSource {
         throw DBError.rowNotFound("random exercise not found")
     }
     
-    func fetchRandomExercise(kind: CourseKind) throws -> ExerciseV2 {
+    func fetchRandomExercise(kind: CourseKind) throws -> Exercise {
         var query = exerciseTable
             .order(Expression<Int>.random())
             .limit(1)
@@ -196,7 +196,7 @@ actor ExerciseDataSource {
     
     
     
-    func fetchExerciseByID(id: String) throws -> ExerciseV2 {
+    func fetchExerciseByID(id: String) throws -> Exercise {
         let query = exerciseTable.filter(idCol == id)
         return try fetchExercise(query)
     }
@@ -223,7 +223,7 @@ actor ExerciseDataSource {
         print("Exercise rows: \(exCount)")
     }
     
-    func manulRandomExercise() throws -> ExerciseV2? {
+    func manulRandomExercise() throws -> Exercise? {
         let conn = try getConn()
         let count = try conn.scalar(exerciseTable.count)
         
