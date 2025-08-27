@@ -41,7 +41,8 @@ struct OnboardingView: View {
                 .padding(.vertical, 16)
             
             LazyVGrid(columns: columns, alignment: .center, spacing: 20) {
-                ForEach(CourseKind.allCases, id: \.self) { course in
+                let courses = CourseKind.allCases.filter{ $0 != .all }
+                ForEach(courses, id: \.self) { course in
                     Button(course.title) {
                         selected = course
                     }
