@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MarkdownBlockView: View {
     let block: MarkdownBlock
-    var latexFontSize: CGFloat = 20
+    var latexFontSize: CGFloat = 24
     
     var body: some View {
         switch block.type {
