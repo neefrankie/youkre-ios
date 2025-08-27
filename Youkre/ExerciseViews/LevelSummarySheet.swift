@@ -31,20 +31,20 @@ struct LevelSummarySheet: View {
                 HStack {
                     Button("再做一遍") {
                         onRestart()
-                        dismiss()
+//                        dismiss()
                     }
                     .buttonStyle(CapsuleButtonStyle())
                     
                     if hasNextLevel {
                         Button("下一节") {
                             onNextLevel()
-                            dismiss()
+//                            dismiss()
                         }
                         .buttonStyle(CapsuleButtonStyle())
                     } else if allLevelsComplete {
                         Button("已完成所有练习") {
                             onFinish()
-                            dismiss()
+//                            dismiss()
                         }
                         .buttonStyle(CapsuleBorderButtonStyle(
                             verticalPadding: 12,
