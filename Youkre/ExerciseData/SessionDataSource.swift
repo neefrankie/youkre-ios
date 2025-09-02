@@ -160,7 +160,7 @@ actor SessionDataSource {
         
         // Check if this level already exists
         if let levelEntity = try fetchLatestLevelEntity(for: session, level: level, context: context) {
-            if levelEntity.levelContentVersion == level.contentVersoin {
+            if levelEntity.levelContentVersion == level.contentVersion {
                 print("loadOrCreatedLevelProgress existing")
                 return levelEntity.toModel(withExercise: true)
             } else {

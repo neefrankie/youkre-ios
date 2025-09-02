@@ -8,137 +8,87 @@
             "summary": "",
             "cover": "",
             "keywords": "",
-            "icons": {
-                "sf_symbol": null,
-                "symbol_name": null,
-                "latex": null
-            },
             "children": [
                 {
-                    "hex_id": "94a0ae8aa663282f",
+                    "hex_id": "artl-94a0ae8aa663282f",
                     "slug": "central-measures",
                     "title": "寻找中心值",
                     "summary": "有两组或更多数据时，常常需要找出一个代表这些数据“中心位置”的数值",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "divide",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "3889dcb72913c4e6",
+                    "hex_id": "artl-3889dcb72913c4e6",
                     "slug": "mean",
                     "title": "如何计算均值",
                     "summary": "均值就是一组数的平均水平。",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "square.split.2x1",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "6f6272ec6e449e19",
+                    "hex_id": "artl-6f6272ec6e449e19",
                     "slug": "median",
                     "title": "中位数",
                     "summary": "中位数就是一组数字排序后，中间的那个数",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "m.circle",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "df43089e65cd92d5",
+                    "hex_id": "artl-df43089e65cd92d5",
                     "slug": "mode",
                     "title": "如何找出众数",
                     "summary": "众数是出现次数最多的那个数。",
                     "cover": "",
                     "keywords": "众数",
-                    "icons": {
-                        "sf_symbol": null,
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "0d34b851d5d6f45a",
+                    "hex_id": "artl-0d34b851d5d6f45a",
                     "slug": "mean-frequency-table",
                     "title": "从频数表中计算平均值",
                     "summary": "频数表示出现次数",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "a.circle",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "4b1ed261ef87689f",
+                    "hex_id": "artl-4b1ed261ef87689f",
                     "slug": "weighted-mean",
                     "title": "加权平均数",
                     "summary": "一种某些数值比其他数值贡献更大的平均方式。",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "w.circle",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "03f3b865f6102f97",
+                    "hex_id": "artl-03f3b865f6102f97",
                     "slug": "geometric-mean",
                     "title": "几何平均数",
                     "summary": "让不同量级的数值“公平”地参与比较",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "squareroot",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "6723a7bfeb97a300",
+                    "hex_id": "artl-6723a7bfeb97a300",
                     "slug": "harmonic-mean",
                     "title": "调和平均数",
                     "summary": "涉及速度或比率的问题中能给出更准确的结果",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": null,
-                        "symbol_name": "fraction",
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "ddc99ca5ee10f63e",
+                    "hex_id": "artl-ddc99ca5ee10f63e",
                     "slug": "frequency-grouped-mean-median-mode",
                     "title": "从分组频表求平均数、中位数和众数",
                     "summary": "",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "tablecells",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 }
             ]
         }

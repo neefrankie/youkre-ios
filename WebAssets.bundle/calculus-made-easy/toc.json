@@ -2,102 +2,76 @@
     "title": "目录",
     "items": [
         {
-            "hex_id": "662caa141e1055c3",
+            "hex_id": "artl-662caa141e1055c3",
             "slug": "1",
             "title": "1. 摆脱微积分带来的恐惧",
             "summary": "从理解两个符号开始：𝑑𝑥 和 ∫",
             "cover": "CME-01.webp",
             "keywords": "sum,integral",
-            "icons": {
-                "sf_symbol": null,
-                "symbol_name": "integral",
-                "latex": null
-            },
-            "children": []
+            "children": null
         },
         {
-            "hex_id": "69b61e849f4eaca5",
+            "hex_id": "artl-69b61e849f4eaca5",
             "slug": "2",
             "title": "2. 不同程度的微小",
             "summary": "有些量微小到可以忽略不计",
             "cover": "CME-02.webp",
             "keywords": "smallness",
-            "icons": {
-                "sf_symbol": null,
-                "symbol_name": "dx",
-                "latex": null
-            },
-            "children": []
+            "children": null
         },
         {
-            "hex_id": "25d704fe889cf1c4",
+            "hex_id": "artl-25d704fe889cf1c4",
             "slug": "3",
             "title": "3. 导数是什么",
             "summary": "描述函数在某个点处的斜率",
             "cover": "CME-03.webp",
             "keywords": "",
-            "icons": {
-                "sf_symbol": "righttriangle",
-                "symbol_name": null,
-                "latex": null
-            },
-            "children": []
+            "children": null
         },
         {
-            "hex_id": "ade52a8978948f39",
+            "hex_id": "artl-ade52a8978948f39",
             "slug": "3-note",
             "title": "微分符号怎么读",
             "summary": "𝑑𝑥 是一个整体，不能当作 𝑑 乘以 𝑥",
             "cover": "",
             "keywords": "derivative",
-            "icons": {
-                "sf_symbol": null,
-                "symbol_name": "derivative",
-                "latex": null
-            },
-            "children": []
+            "children": null
         },
         {
-            "hex_id": "24a8c4fa68c50435",
+            "hex_id": "artl-24a8c4fa68c50435",
             "slug": "4",
             "title": "4. 根据基本原理找出导数",
             "summary": "从幂函数开始",
             "cover": "CME-04.webp",
             "keywords": "",
-            "icons": {
-                "sf_symbol": null,
-                "symbol_name": "power",
-                "latex": null
-            },
-            "children": []
+            "children": null
         },
         {
-            "hex_id": "ad86b7fde5d78e43",
+            "hex_id": "artl-ad86b7fde5d78e43",
             "slug": "4-1",
             "title": "4.1. 幂法则",
             "summary": "对所有正整数指数都成立",
             "cover": "CME-04.webp",
             "keywords": "power rul,幂法则",
-            "icons": {
-                "sf_symbol": "p.circle",
-                "symbol_name": null,
-                "latex": null
-            },
-            "children": []
+            "children": null
         },
         {
-            "hex_id": "5d7aa4627998ea54",
+            "hex_id": "artl-5d7aa4627998ea54",
             "slug": "4-2",
             "title": "4.2. 负指数与分数指数",
             "summary": "幂法则同样适用",
             "cover": "CME-04.webp",
             "keywords": "",
-            "icons": {
-                "sf_symbol": "x.squareroot",
-                "symbol_name": null,
-                "latex": null
-            },
-            "children": []
+            "children": null
+        },
+        {
+            "hex_id": "artl-f8353efc873bf1ca",
+            "slug": "5",
+            "title": "5. 如何处理常数",
+            "summary": "加法中的常数直接消失，乘法中会保留下来",
+            "cover": "CME-05.webp",
+            "keywords": "",
+            "children": null
         }
     ]
 }

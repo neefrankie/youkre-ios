@@ -8,53 +8,33 @@
             "summary": "",
             "cover": "",
             "keywords": "",
-            "icons": {
-                "sf_symbol": null,
-                "symbol_name": null,
-                "latex": null
-            },
             "children": [
                 {
-                    "hex_id": "c895bcd90c5a18d8",
+                    "hex_id": "artl-c895bcd90c5a18d8",
                     "slug": "triangle",
                     "title": "三角形",
                     "summary": "有三条边和三个角",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "triangle",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "22badb78fa1cc092",
+                    "hex_id": "artl-22badb78fa1cc092",
                     "slug": "triangle-inequality-theorem",
                     "title": "三角形不等式定理",
                     "summary": "三角形的任意一条边都必须比另外两条边加起来短",
                     "cover": "",
                     "keywords": "triangle,inequality",
-                    "icons": {
-                        "sf_symbol": "angle",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 },
                 {
-                    "hex_id": "499c42e62468e01d",
+                    "hex_id": "artl-499c42e62468e01d",
                     "slug": "trigonometry",
                     "title": "三角函数简介",
                     "summary": "帮助我们计算角度和距离",
                     "cover": "",
                     "keywords": "",
-                    "icons": {
-                        "sf_symbol": "righttriangle",
-                        "symbol_name": null,
-                        "latex": null
-                    },
-                    "children": []
+                    "children": null
                 }
             ]
         }

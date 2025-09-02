@@ -106,7 +106,7 @@ actor ExerciseDataSource {
             chapterSlug: row[articleSlug],
             title: row[title],
             index: row[index],
-            contentVersoin: row[contentVersion]
+            contentVersion: row[contentVersion]
         )
     }
     

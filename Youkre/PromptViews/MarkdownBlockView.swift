@@ -8,18 +8,7 @@
 
 import SwiftUI
 
-struct MarkdownListView: View {
-    let items: [String]
-    
-    var body: some View {
-        ForEach(items.indices, id: \.self) { idx in
-            HStack(alignment: .top) {
-                Text("•")
-                Text(MarkdownParser.attributed(from: items[idx]))
-            }
-        }
-    }
-}
+
 
 struct MarkdownBlockView: View {
     let block: MarkdownBlock
@@ -35,7 +24,7 @@ struct MarkdownBlockView: View {
                 .foregroundStyle(.primary)
                 .frame(maxWidth: .infinity, alignment: .leading)
         case .listItem(let items):
-            MarkdownListView(items: items)
+            UnorderedListView(items: items)
         case .math(let latex):
             MathView(
                 latex: latex,

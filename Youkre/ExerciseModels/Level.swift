@@ -16,7 +16,7 @@ struct ExerciseLevel: Identifiable, Hashable {
     var chapterSlug: String
     var title: String
     var index: Int
-    var contentVersoin: Int = 1
+    var contentVersion: Int = 1
     var exercises: [Exercise] = []
     
     var learnMore: ChapterLink {
@@ -123,7 +123,7 @@ class LevelProgressEntity {
         self.total = exerciseCount
         self.startedAt = Date()
         self.lastExerciseIndex = nil
-        self.levelContentVersion = level.contentVersoin
+        self.levelContentVersion = level.contentVersion
         self.courseSessionID = session.id
         self.courseSession = session
     }
