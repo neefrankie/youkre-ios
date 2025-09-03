@@ -18,8 +18,8 @@ struct ExplanationSheetView: View {
                     markdown: explanation,
                     latexFontSize: 22
                 )
+                .padding()
             }
-            .padding()
             .navigationTitle("解析")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {

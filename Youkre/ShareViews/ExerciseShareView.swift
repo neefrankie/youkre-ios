@@ -102,17 +102,13 @@ struct ExerciseShareView: View {
         exercise: Exercise(
             id: "",
             levelId: "",
-            prompts: [
-                .table(GridTable(
-                    data: [
-                        ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月",],
-                        ["1", "5", "11", "20", "26", "30", "30", "29", "25", "19", "10", "3"],
-                    ],
-                )),
-                .image("triangle-exercise-1"),
-                .text("求以下函数的导数："),
-                .latex(#"y = x^{13}"#)
-            ],
+            prompts: #"""
+![](triangle-exercise-1)
+
+求以下函数的导数：
+
+\[ y = x^{13} \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"12x^{12}"#,

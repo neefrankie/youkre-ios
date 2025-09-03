@@ -36,9 +36,11 @@ struct MarkdownBlockView: View {
                 .resizable()
                 .scaledToFit()
         case .table(let rows):
-            TableDataView(
-                rows: rows
-            )
+            ScrollView(.horizontal) {
+                TableDataView(
+                    rows: rows
+                )
+            }
         }
     }
 }

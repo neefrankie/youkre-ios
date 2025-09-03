@@ -47,6 +47,7 @@ struct DailyExerciseView: View {
                         DailyExerciseCardView(
                             exercise: exercise
                         )
+                        .foregroundColor(.primary)
                     }
                 }
                 

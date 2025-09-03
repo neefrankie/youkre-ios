@@ -12,9 +12,8 @@ struct DailyExerciseCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            PromptView(blocks: exercise.prompts)
-                .font(.headline)
-                .foregroundColor(.primary)
+//            PromptView(blocks: exercise.prompts)
+            MarkdownView(markdown: exercise.prompts)
         }
         .modifier(PaddedCardStyle())
         

@@ -57,10 +57,16 @@ struct ExampleData {
         Exercise(
             id: "cme-1-a",
             levelId: "lvl-5353106dd4b461a9",
-            prompts: [
-                .latex("dx"),
-                .text("在微积分中表示什么？")
-            ],
+            prompts: #"""
+\[ dx \]
+
+在微积分中表示什么？
+"""#,
+//            prompts: [
+//                .latex("dx"),
+//                .text("在微积分中表示什么？")
+//            ],
+
             multipleChoice: MultipleChoice(
                 choices: [
                     "𝑑 乘以 𝑥",
@@ -83,9 +89,12 @@ struct ExampleData {
         Exercise(
             id: "cme-1-b",
             levelId: "cme-chp-1",
-            prompts: [
-                .text("∫𝑑𝑥 在微积分中表示什么？")
-            ],
+            prompts: #"""
+                
+\[ \int dx\]
+
+在微积分中表示什么？
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     "函数的导数",
@@ -109,9 +118,12 @@ struct ExampleData {
         Exercise(
             id: "cme-3-a",
             levelId: "cme-chp-3",
-            prompts: [
-                .text("什么是导数？")
-            ],
+//            prompts: [
+//                .text("什么是导数？")
+//            ],
+            prompts: """
+什么是导数？
+""",
             multipleChoice: MultipleChoice(
                 choices: [
                     "函数图像与 𝑥 轴之间区域的面积",
@@ -134,10 +146,15 @@ struct ExampleData {
         Exercise(
             id: "cme-3-b",
             levelId: "cme-chp-3",
-            prompts: [
-                .text("下面的符号表示什么？"),
-                .latex(#"\frac{dy}{dx}"#)
-            ],
+//            prompts: [
+//                .text("下面的符号表示什么？"),
+//                .latex(#"\frac{dy}{dx}"#)
+//            ],
+            prompts: #"""
+下面的符号表示什么？
+
+\[ \frac{dy}{dx} \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     "函数 𝑦 关于变量 𝑥 的导数",
@@ -163,10 +180,15 @@ struct ExampleData {
         Exercise(
             id: "cme-4-a",
             levelId: "cme-chp-4",
-            prompts: [
-                .text("以下函数的导数是什么？"),
-                .latex(#"x^n"#)
-            ],
+//            prompts: [
+//                .text("以下函数的导数是什么？"),
+//                .latex(#"x^n"#)
+//            ],
+            prompts: #"""
+以下函数的导数是什么？
+
+\[ x^n \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"x^{n-1}"#,
@@ -186,10 +208,15 @@ struct ExampleData {
         Exercise(
             id: "cme-4-1",
             levelId: "cme-chp-4",
-            prompts: [
-                .text("求以下函数的导数："),
-                .latex(#"y = x^{13}"#)
-            ],
+//            prompts: [
+//                .text("求以下函数的导数："),
+//                .latex(#"y = x^{13}"#)
+//            ],
+            prompts: #"""
+求以下函数的导数：
+
+\[ y = x^{13} \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     #"12x^{12}"#,
@@ -258,10 +285,14 @@ $$
         Exercise(
             id: "algebra-introduction-1",
             levelId: "algebra-chp-1",
-            prompts: [
-                .text(solveEq),
-                .latex("x + 2 = 6")
-            ],
+//            prompts: [
+//                .text(solveEq),
+//                .latex("x + 2 = 6")
+//            ],
+            prompts: solveEq + #"""
+
+\[ x + 2 = 6 \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     "1",
@@ -292,10 +323,14 @@ $$
         Exercise(
             id: "algebra-introduction-2",
             levelId: "algebra-chp-1",
-            prompts: [
-                .text(solveEq),
-                .latex("x + 5 = 11")
-            ],
+//            prompts: [
+//                .text(solveEq),
+//                .latex("x + 5 = 11")
+//            ],
+            prompts: solveEq + #"""
+
+\[ x + 5 = 11 \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     "6",
@@ -329,10 +364,14 @@ $$
         Exercise(
             id: "algebra-introduction-multiply-1",
             levelId: "algebra-chp-2",
-            prompts: [
-                .text(solveEq),
-                .latex(#"3x = 12"#)
-            ],
+//            prompts: [
+//                .text(solveEq),
+//                .latex(#"3x = 12"#)
+//            ],
+            prompts: solveEq + #"""
+
+\[ 3x = 12 \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     "4",
@@ -363,10 +402,14 @@ $$
         Exercise(
             id: "algebra-introduction-multiply-2",
             levelId: "algebra-chp-2",
-            prompts: [
-                .text(solveEq),
-                .latex(#"5x = 30"#)
-            ],
+//            prompts: [
+//                .text(solveEq),
+//                .latex(#"5x = 30"#)
+//            ],
+            prompts: solveEq + #"""
+
+\[ 5x = 30 \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     "5",
@@ -400,10 +443,14 @@ $$
         Exercise(
             id: "operation-order-pemdas-exercise-9",
             levelId: "algebra-chp-3",
-            prompts: [
-                .text(opOrder),
-                .latex(#"(7 - \sqrt{9}) \times (4^2 - 3 + 1)"#)
-            ],
+//            prompts: [
+//                .text(opOrder),
+//                .latex(#"(7 - \sqrt{9}) \times (4^2 - 3 + 1)"#)
+//            ],
+            prompts: opOrder + #"""
+
+(7 - \sqrt{9}) \times (4^2 - 3 + 1)
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     "20",
@@ -475,10 +522,14 @@ $$
         Exercise(
             id: "operation-order-pemdas-exercise-10",
             levelId: "algebra-chp-3",
-            prompts: [
-                .text(opOrder),
-                .latex(#"\frac{2^4 + (16 - 3 \times 4)}{(6 + 3^2) \div (7 - 4)}"#)
-            ],
+//            prompts: [
+//                .text(opOrder),
+//                .latex(#"\frac{2^4 + (16 - 3 \times 4)}{(6 + 3^2) \div (7 - 4)}"#)
+//            ],
+            prompts: opOrder + #"""
+
+\[ \frac{2^4 + (16 - 3 \times 4)}{(6 + 3^2) \div (7 - 4)} \]
+"""#,
             multipleChoice: MultipleChoice(
                 choices: [
                     "20",
@@ -616,17 +667,26 @@ $$
                 Exercise(
                     id: "central-meausres-exercise-4",
                     levelId: "stats-chp-1",
-                    prompts: [
-                        .text("下表显示了北京每个月的平均气温："),
-                        .table(GridTable(
-                            data: [
-                                ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月",],
-                                ["1", "5", "11", "20", "26", "30", "30", "29", "25", "19", "10", "3"],
-                            ],
-                            horizontal: true
-                        )),
-                        .text("请问一年的平均气温是多少度？")
-                    ],
+//                    prompts: [
+//                        .text("下表显示了北京每个月的平均气温："),
+//                        .table(GridTable(
+//                            data: [
+//                                ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月",],
+//                                ["1", "5", "11", "20", "26", "30", "30", "29", "25", "19", "10", "3"],
+//                            ],
+//                            horizontal: true
+//                        )),
+//                        .text("请问一年的平均气温是多少度？")
+//                    ],
+                    prompts: """
+下表显示了北京每个月的平均气温：
+
+| 1月 | 2月 | 3月 | 4月 | 5月 | 6月 | 7月 | 8月 | 9月 | 10月 | 11月 | 12月 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 5 | 11 | 20 | 26 | 30 | 30 | 29 | 25 | 19 | 10 | 3 |
+
+请问一年的平均气温是多少度？
+""",
                     multipleChoice: MultipleChoice(
                         choices: [
                             "19.5°C",
@@ -654,11 +714,18 @@ $$
                 Exercise(
                     id: "central-meausres-exercise-7",
                     levelId: "stats-chp-1",
-                    prompts: [
-                        .text("小艾掷骰子多次，并将结果用柱状图表示出来，如下所示："),
-                        .image("central-meausres-exercise-7"),
-                        .text("平均得分是多少？")
-                    ],
+//                    prompts: [
+//                        .text("小艾掷骰子多次，并将结果用柱状图表示出来，如下所示："),
+//                        .image("central-meausres-exercise-7"),
+//                        .text("平均得分是多少？")
+//                    ],
+                    prompts: """
+小艾掷骰子多次，并将结果用柱状图表示出来，如下所示：
+
+![](central-meausres-exercise-7)
+
+平均得分是多少？
+""",
                     multipleChoice: MultipleChoice(
                         choices: [
                             "3",
@@ -720,10 +787,15 @@ $$
                 Exercise(
                     id: "triangle-exercise-1",
                     levelId: "trignometry-chp-1",
-                    prompts: [
-                        .image("triangle-exercise-1"),
-                        .text("这个图形叫作：")
-                    ],
+//                    prompts: [
+//                        .image("triangle-exercise-1"),
+//                        .text("这个图形叫作：")
+//                    ],
+                    prompts: """
+![](triangle-exercise-1)
+
+这个图形叫作：
+""",
                     multipleChoice: MultipleChoice(
                         choices: [
                             "直角三角形",
@@ -745,10 +817,15 @@ $$
                 Exercise(
                     id: "triangle-exercise-5",
                     levelId: "trignometry-chp-1",
-                    prompts: [
-                        .image("triangle-exercise-5-a"),
-                        .text("图中显示的是一个菱形。如果画出菱形的对角线，形成的四个三角形是：")
-                    ],
+//                    prompts: [
+//                        .image("triangle-exercise-5-a"),
+//                        .text("图中显示的是一个菱形。如果画出菱形的对角线，形成的四个三角形是：")
+//                    ],
+                    prompts: """
+![](triangle-exercise-5-a)
+
+图中显示的是一个菱形。如果画出菱形的对角线，形成的四个三角形是：
+""",
                     multipleChoice: MultipleChoice(
                         choices: [
                             "等腰直角三角形",

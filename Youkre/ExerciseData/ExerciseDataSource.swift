@@ -39,7 +39,7 @@ actor ExerciseDataSource {
     
     // Exercise table
     let levelId = Expression<String>("level_id")
-    let prompts = Expression<String>("prompts")
+    let promptsCol = Expression<String>("prompts")
     let multipleChoice = Expression<String>("multiple_choice")
     let explanation = Expression<String>("explanation")
     
@@ -110,23 +110,6 @@ actor ExerciseDataSource {
         )
     }
     
-    private func decodePrompts(row: SQLite.Row) throws -> [PromptBlock] {
-        let rawPrompts = row[prompts]
-        
-        if let data = rawPrompts.data(using: .utf8) {
-            let result: Swift.Result<[PromptBlock], JSONError> = JSONParser.decode(data: data)
-            
-            switch result {
-            case .success(let prompts):
-                return prompts
-            case .failure(let error):
-                throw error
-            }
-        } else {
-            throw JSONError.convertDataFailed
-        }
-    }
-    
     private func decodeMultipleChoce(row: SQLite.Row) throws -> MultipleChoice {
         let rawValue = row[multipleChoice]
         if let data = rawValue.data(using: .utf8) {
@@ -158,13 +141,12 @@ actor ExerciseDataSource {
     
     private func toExercise(row: SQLite.Row) throws -> Exercise {
         
-        let prompts = try decodePrompts(row: row)
         let multipleChoice = try decodeMultipleChoce(row: row)
         
         return Exercise(
             id: row[idCol],
             levelId: row[levelId],
-            prompts: prompts,
+            prompts: row[promptsCol],
             multipleChoice: multipleChoice,
             explanation: row[explanation]
         )

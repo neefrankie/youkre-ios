@@ -29,7 +29,7 @@ struct MultipleChoice: Codable {
 struct Exercise: Identifiable, Codable, Equatable {
     var id: String
     var levelId: String
-    var prompts: [PromptBlock]
+    var prompts: String
     var multipleChoice: MultipleChoice
     var explanation: String?
     

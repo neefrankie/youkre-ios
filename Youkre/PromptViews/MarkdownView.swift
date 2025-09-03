@@ -16,7 +16,7 @@ struct MarkdownView: View {
     @State private var blocks: [MarkdownBlock] = []
     
     var body: some View {
-        ScrollView {
+        Group {
             if isLoading {
                 ProgressView()
             } else {
@@ -28,7 +28,6 @@ struct MarkdownView: View {
                         )
                     }
                 }
-                .padding()
             }
         }
         .onAppear {
@@ -97,11 +96,9 @@ struct MarkdownView: View {
     | 数学 | 34 |  
     | 地理 | 55 | 
     """#
-    VStack {
-        Text("Large Title")
-            .font(.largeTitle)
-            .bold()
+    ScrollView {
         MarkdownView(markdown: sampleMarkdown)
+            .padding()
     }
     
 }

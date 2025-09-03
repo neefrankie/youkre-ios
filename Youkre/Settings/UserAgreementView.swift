@@ -71,7 +71,10 @@ let userAgreeementContract = """
 
 struct UserAgreementView: View {
     var body: some View {
-        MarkdownView(markdown: userAgreeementContract)
+        ScrollView {
+            MarkdownView(markdown: userAgreeementContract)
+                .padding()
+        }
     }
 }
 
