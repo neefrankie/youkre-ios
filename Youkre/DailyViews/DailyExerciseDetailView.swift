@@ -23,7 +23,6 @@ struct DailyExerciseDetailView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-//                PromptView(blocks: exercise.prompts)
                 MarkdownView(markdown: exercise.prompts)
                 
                 ForEach(exercise.multipleChoice.choices.indices, id: \.self) { i in

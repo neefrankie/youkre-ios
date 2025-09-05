@@ -49,7 +49,6 @@ struct MultipleChoiceView: View {
         VStack {
             ScrollView {
                 VStack(spacing: 16) {
-//                    PromptView(blocks: exercise.prompts)
                     MarkdownView(markdown: exercise.prompts)
                     
                     ForEach(exercise.multipleChoice.choices.indices, id: \.self) { i in
