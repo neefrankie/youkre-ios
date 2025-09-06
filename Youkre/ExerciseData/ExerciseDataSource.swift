@@ -45,12 +45,22 @@ actor ExerciseDataSource {
     
     let exerciseTable = SQLite.Table("exercise")
     
+    private var connection: Connection?
+    
     func getConn() throws -> Connection {
-        guard let dbPath = Bundle.main.webAssetsBundle?.path(forResource: "db", ofType: "sqlite3") else {
-            throw DBError.fileNotFound("DB path not found at WebAssets.bundle/db.sqlite3")
+        if connection == nil {
+            guard let dbPath = Bundle.main.webAssetsBundle?.path(forResource: "db", ofType: "sqlite3") else {
+                throw DBError.fileNotFound("DB path not found at WebAssets.bundle/db.sqlite3")
+            }
+            
+            connection = try Connection(dbPath, readonly: true)
+            
+            try connection?.execute("PRAGMA query_only = ON")
+            try connection?.execute("PRAGMA cache_size = 1000")
+            try connection?.execute("PRAGMA journal_mode = WAL")
         }
         
-        return try Connection(dbPath, readonly: true)
+        return connection!
     }
     
     func newIcon(row: SQLite.Row) -> IconSymbol? {
