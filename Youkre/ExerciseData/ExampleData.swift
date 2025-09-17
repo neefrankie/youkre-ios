@@ -31,24 +31,28 @@ struct ExampleData {
             id: cmeID,
             slug: cmeSlug,
             title: "简易微积分",
+            exerciseCover: "calculus-made-easy.png",
             contentVersion: 1,
         ),
         Course(
             id: algebraID,
             slug: algebraSlug,
             title: "初级代数",
+            exerciseCover: "elementary-algebra.png",
             contentVersion: 1,
         ),
         Course(
             id: statID,
             slug: statSlug,
             title: "概率统计入门",
+            exerciseCover: "elementary-statistics.png",
             contentVersion: 1,
         ),
         Course(
             id: trigID,
             slug: trigSlug,
             title: "三角函数",
+            exerciseCover: "elementary-trigonometry.png",
             contentVersion: 1,
         )
     ]
@@ -62,10 +66,6 @@ struct ExampleData {
 
 在微积分中表示什么？
 """#,
-//            prompts: [
-//                .latex("dx"),
-//                .text("在微积分中表示什么？")
-//            ],
 
             multipleChoice: MultipleChoice(
                 choices: [
