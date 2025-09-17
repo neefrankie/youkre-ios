@@ -15,7 +15,7 @@ struct UnorderedListView: View {
         ForEach(items.indices, id: \.self) { idx in
             HStack(alignment: .top) {
                 Text("•")
-                Text(MarkdownParser.attributed(from: items[idx]))
+                Text(TextUtils.attributed(from: items[idx]))
             }
         }
     }
