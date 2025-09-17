@@ -23,10 +23,12 @@ actor ExerciseDataSource {
     let iconSfSymbol = Expression<String?>("icon_sf_symbol")
     let iconLatex = Expression<String?>("icon_latex")
     let iconText = Expression<String?>("icon_text")
+    let exerciseCoverCol = Expression<String>("exercise_cover")
     let contentVersion = Expression<Int>("content_version")
     let courseKindCol = Expression<String>("course_kind")
+    let tocListCol = Expression<String>("toc_list")
     
-    let course_table = SQLite.Table("course")
+    let courseTable = SQLite.Table("course")
     
     // Level table
     let courseId = Expression<String>("course_id")
@@ -49,15 +51,11 @@ actor ExerciseDataSource {
     
     func getConn() throws -> Connection {
         if connection == nil {
-            guard let dbPath = Bundle.main.webAssetsBundle?.path(forResource: "db", ofType: "sqlite3") else {
+            guard let dbPath = Bundle.main.dbPath else {
                 throw DBError.fileNotFound("DB path not found at WebAssets.bundle/db.sqlite3")
             }
             
             connection = try Connection(dbPath, readonly: true)
-            
-            try connection?.execute("PRAGMA query_only = ON")
-            try connection?.execute("PRAGMA cache_size = 1000")
-            try connection?.execute("PRAGMA journal_mode = WAL")
         }
         
         return connection!
@@ -77,23 +75,60 @@ actor ExerciseDataSource {
     func loadCourse() throws -> [Course] {
         
         let conn = try getConn()
+        conn.trace { print($0) }
         
-        let mapRowIterator = try conn.prepareRowIterator(course_table)
-        let courses = try mapRowIterator.map{ row in
-            return Course(
-                id: row[idCol],
-                slug: row[slug],
-                title: row[title],
-                summary: row[summary],
-                keywords: row[keywords],
-                icons: newIcon(row: row),
-                contentVersion: row[contentVersion],
-            )
-        }
+        print("Loading courses...")
+        let mapRowIterator = try conn.prepareRowIterator(courseTable)
+        let courses = try mapRowIterator.map(toCourse)
         return courses
     }
     
-    func loadLevels(for course: Course) throws -> [ExerciseLevel] {
+    private func toCourse(row: SQLite.Row) -> Course {
+        return Course(
+            id: row[idCol],
+            slug: row[slug],
+            title: row[title],
+            summary: row[summary],
+            keywords: row[keywords],
+            icons: newIcon(row: row),
+            exerciseCover: row[exerciseCoverCol],
+            contentVersion: row[contentVersion],
+        )
+    }
+    
+    func findTocList(for course: Course) throws -> [TocEntry] {
+        let query = courseTable.filter(idCol == course.id)
+        
+        let conn = try getConn()
+        conn.trace { print($0) }
+        
+        let courseRow = try conn.pluck(query)
+        
+        if let row = courseRow {
+            let tocEntries = try decodeToc(row: row)
+            return tocEntries
+        }
+        
+        throw DBError.rowNotFound("Course not found: \(course.id)")
+    }
+    
+    private func decodeToc(row: SQLite.Row) throws -> [TocEntry] {
+        let rawValue = row[tocListCol]
+        if let data = rawValue.data(using: .utf8) {
+            let result: Swift.Result<[TocEntry], JSONError> = JSONParser.decode(data: data)
+            
+            switch result {
+            case .success(let tocEntries):
+                return tocEntries
+            case .failure(let error):
+                throw error
+            }
+        } else {
+            throw JSONError.convertDataFailed
+        }
+    }
+    
+    func loadLevels(for course: Course) async throws -> [ExerciseLevel] {
         print("Loading levels from SQLite...")
         let query_level = levelTable
             .filter(courseId == course.id)
@@ -120,7 +155,7 @@ actor ExerciseDataSource {
         )
     }
     
-    private func decodeMultipleChoce(row: SQLite.Row) throws -> MultipleChoice {
+    private func decodeMultipleChoice(row: SQLite.Row) throws -> MultipleChoice {
         let rawValue = row[multipleChoice]
         if let data = rawValue.data(using: .utf8) {
             let result: Swift.Result<MultipleChoice, JSONError> = JSONParser.decode(data: data)
@@ -136,7 +171,7 @@ actor ExerciseDataSource {
         }
     }
     
-    func loadExercises(for course: Course, level: ExerciseLevel) throws -> [Exercise] {
+    func loadExercises(for course: Course, level: ExerciseLevel) async throws -> [Exercise] {
         let exerciseQuery = exerciseTable
             .filter(levelId == level.id)
             .order(index.asc)
@@ -151,7 +186,7 @@ actor ExerciseDataSource {
     
     private func toExercise(row: SQLite.Row) throws -> Exercise {
         
-        let multipleChoice = try decodeMultipleChoce(row: row)
+        let multipleChoice = try decodeMultipleChoice(row: row)
         
         return Exercise(
             id: row[idCol],
