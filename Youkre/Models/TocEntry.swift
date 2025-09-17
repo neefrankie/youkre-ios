@@ -13,7 +13,7 @@ struct TocEntry: Identifiable, Codable {
     let title: String
     let summary: String
     let keywords: String
-    var children: [TocEntry] = []
+    var children: [TocEntry]? = nil
     
     func toDisplayEntry(level: Int = 0) -> TocDisplayEntry {
         return TocDisplayEntry(
@@ -71,7 +71,9 @@ struct TableOfContents: Codable {
         for entry in entries {
             result.append(entry.toDisplayEntry(level: level))
             
-            result += flattenToc(entry.children, level: level+1)
+            if let children = entry.children {
+                result += flattenToc(children, level: level+1)
+            }
         }
         
         return result
