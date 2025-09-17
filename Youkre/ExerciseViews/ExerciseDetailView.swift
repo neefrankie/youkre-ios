@@ -7,40 +7,38 @@
 
 import SwiftUI
 
-struct MultipleChoiceView: View {
+struct ExerciseDetailView: View {
     let level: ExerciseLevel
     let levelProgress: LevelProgress
     let exercise: Exercise
     let isLast: Bool
-    @Binding var showSummary: Bool
     var onAnswer: (ExerciseProgress) -> Void
-    var onLevelComplete: () -> Void
+    @Binding var showSummary: Bool
     
-    @State private var isLoading: Bool = true
-    @State private var error: String? = nil
-    @State private var currentProgress: ExerciseProgress? = nil
+    @State private var viewModel = ExerciseViewModel()
     
-    // Exercise choice index selected.
-    @State private var selectedIndex: Int? = nil
     @Environment(\.modelContext) var modelContext
     
     private var finished: Bool {
-        isLast && selectedIndex != nil
+        isLast && viewModel.selectedIndex != nil
     }
 
     var body: some View {
         Group {
-            if self.isLoading {
+            if viewModel.isLoading {
                 ProgressView("Loading exercise progress")
-            } else if let currentProgress {
+            } else if let currentProgress = viewModel.exerciseProgress {
                 detailView(progress: currentProgress)
-            } else if let error {
+            } else if let error = viewModel.error {
                 Text(error)
             }
         }
         .task {
-            print("Initialize loadExerciseProgress")
-            await loadExerciseProgress()
+            await viewModel.loadData(
+                exercise: exercise,
+                levelProgress: levelProgress,
+                context: modelContext
+            )
         }
     }
     
@@ -53,10 +51,7 @@ struct MultipleChoiceView: View {
                     
                     ForEach(exercise.multipleChoice.choices.indices, id: \.self) { i in
                         Button(action: {
-                            selectedIndex = i
-                            checkAnswer(
-                                correctIndex: exercise.multipleChoice.correctIndex
-                            )
+                            onCheckAnswer(selected: i)
                         }) {
                             
                             OptionItemView(
@@ -64,7 +59,7 @@ struct MultipleChoiceView: View {
                                 isLatex: exercise.multipleChoice.isLatex,
                                 correctIndex: exercise.multipleChoice.correctIndex,
                                 optionIndex: i,
-                                selectedIndex: selectedIndex,
+                                selectedIndex: viewModel.selectedIndex,
                             )
                         }
                         .disabled(progress.isCompleted)
@@ -75,7 +70,6 @@ struct MultipleChoiceView: View {
             
             if self.finished {
                 Button(action: {
-                    onLevelComplete()
                     showSummary = true
                 }) {
                     Label("完成", systemImage: "")
@@ -88,56 +82,20 @@ struct MultipleChoiceView: View {
         }
     }
     
-    private func checkAnswer(correctIndex: Int) {
-        guard var progress = currentProgress else { return }
-        // Only allow answer once
-        guard !progress.isCompleted else { return }
-        
-        guard let selected = selectedIndex else { return }
-        
-        progress.answered(
-            correct: selected == correctIndex,
-            selectedIndex: selected,
+    private func onCheckAnswer(selected: Int) {
+        let newProgress = viewModel.checkAnswer(
+            selected: selected,
+            exercise: self.exercise
         )
+        onAnswer(newProgress)
         
-        onAnswer(progress)
-        self.currentProgress = progress
-        
-        // Save exercise progress upon clicking a choice.
         Task {
-            await updateExerciseProgress(progress: progress)
-        }
-    }
-    
-    @MainActor
-    func loadExerciseProgress() async {
-        print("loadExerciseProgress")
-        isLoading = true
-        do {
-            let exerciseProgress = try await SessionDataSource.shared.loadOrCreateExerciseProgress(
-                levelProgress: self.levelProgress,
-                exercise: self.exercise,
+            await viewModel.updateProgress(
+                progress: newProgress,
                 context: modelContext
             )
-            self.currentProgress = exerciseProgress
-            self.selectedIndex = exerciseProgress.selectedIndex
-        } catch {
-            self.error = error.localizedDescription
         }
         
-        isLoading = false
-    }
-    
-    @MainActor
-    func updateExerciseProgress(progress: ExerciseProgress) async {
-        do {
-            try await SessionDataSource.shared.updateExerciseProgress(
-                for: progress,
-                context: modelContext
-            )
-        } catch {
-            print("Error updating exercise progress: \(error.localizedDescription)")
-        }
     }
 }
 
@@ -149,7 +107,7 @@ struct MultipleChoiceView: View {
     let level = ExampleData.cmeLevels[0]
     
     NavigationStack {
-        MultipleChoiceView(
+        ExerciseDetailView(
             level: level,
             levelProgress: LevelProgress.new(
                 levelID: level.id,
@@ -157,11 +115,10 @@ struct MultipleChoiceView: View {
             ),
             exercise: level.exercises[0],
             isLast: true,
-            showSummary: $showSummary,
             onAnswer: { anws in
                 print(anws)
             },
-            onLevelComplete: { }
+            showSummary: $showSummary,
         )
         .navigationDestination(for: ChapterLink.self) { param in
             ChapterView(params: param)

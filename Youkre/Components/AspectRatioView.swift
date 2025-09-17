@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AspectRatioCardView<Content: View>: View {
+struct AspectRatioView<Content: View>: View {
     var ratio: CGFloat = 16/9
     var content: () -> Content
     
@@ -27,7 +27,7 @@ struct AspectRatioCardView<Content: View>: View {
 }
 
 #Preview {
-    AspectRatioCardView() {
+    AspectRatioView() {
         VStack {
             Image("calculus-made-easy")
                 .resizable()
