@@ -13,10 +13,9 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack {
                     DailyExerciseView()
-                    
                     
                     CourseListView()
                 }
