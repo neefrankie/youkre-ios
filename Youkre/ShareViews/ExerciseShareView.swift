@@ -42,25 +42,24 @@ struct ExerciseShareView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
-                
-                ZStack {
-                    Color.gray.opacity(0.5)
-                        .edgesIgnoringSafeArea(.all)
-                    
-                    if let image {
+                if let image {
+                    ZStack {
+                        Color.gray.opacity(0.5)
+                            .edgesIgnoringSafeArea(.all)
+                        
                         Image(uiImage: image)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding(30)
                     }
-                }
-                
-                
-                Divider()
-                
-                if let image {
+                    
+                    
+                    Divider()
+                    
                     ShareToolView(image: image)
+                } else {
+                    ProgressView()
                 }
             }
             .toolbar {
@@ -71,10 +70,10 @@ struct ExerciseShareView: View {
                 }
             }
             .onAppear {
-//                renderAndPreview()
                 uiRender()
             }
         }
+        .toast()
     }
     
     func uiRender() {
@@ -83,18 +82,18 @@ struct ExerciseShareView: View {
         self.image = image
     }
     
-    func renderAndPreview() {
-        let renderer = ImageRenderer(
-            content: ExerciseRendererView(exercise: exercise)
-        )
-        renderer.scale = displayScale
-        
-        if let uiImage = renderer.uiImage {
-            image = uiImage
-        } else {
-            print("Failed to render image")
-        }
-    }
+//    func renderAndPreview() {
+//        let renderer = ImageRenderer(
+//            content: ExerciseRendererView(exercise: exercise)
+//        )
+//        renderer.scale = displayScale
+//        
+//        if let uiImage = renderer.uiImage {
+//            image = uiImage
+//        } else {
+//            print("Failed to render image")
+//        }
+//    }
 }
 
 #Preview {    
@@ -122,4 +121,5 @@ struct ExerciseShareView: View {
             explanation: nil
         )
     )
+    .toast()
 }
