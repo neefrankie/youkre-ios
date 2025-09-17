@@ -176,33 +176,4 @@ struct MarkdownParser {
         
         return nil
     }
-    
-    // Split filename into (stem, ext).
-    // Exmple:
-    // hello.png -> (hello, .png)
-    // hello -> (hello, '')
-    static func splitFilenameAndExtension(_ filename: String) -> (name: String, ext: String)? {
-        guard let lastDotIndex = filename.lastIndex(of: ".") else {
-            return nil // 没有后缀
-        }
-
-        let name = String(filename[..<lastDotIndex])
-        let ext = String(filename[lastDotIndex...])
-        
-        return (name, ext)
-    }
-    
-    static func attributed(from text: String) -> AttributedString {
-        do {
-            var options = AttributedString.MarkdownParsingOptions()
-            options.interpretedSyntax = .inlineOnlyPreservingWhitespace
-            options.allowsExtendedAttributes = true
-            return try AttributedString(
-                markdown: text,
-                options: options
-            )
-        } catch {
-            return AttributedString(text)
-        }
-    }
 }
