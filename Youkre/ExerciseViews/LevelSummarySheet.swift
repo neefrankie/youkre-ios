@@ -83,7 +83,6 @@ struct LevelSummarySheet: View {
             score: 8,
             total: 10,
             startedAt: Date(),
-            exerciseProgress: []
         ),
         hasNextLevel: false,
         allLevelsComplete: true,
