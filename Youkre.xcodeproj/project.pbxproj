@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D74FD1452D81B3A4004C6C8E /* WebAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D74FD1442D81B3A4004C6C8E /* WebAssets.bundle */; };
+		D79A7CA42E7B22A2004EEC1E /* SVGView in Frameworks */ = {isa = PBXBuildFile; productRef = D79A7CA32E7B22A2004EEC1E /* SVGView */; };
+		D79A7CA72E7B2324004EEC1E /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = D79A7CA62E7B2324004EEC1E /* ToastUI */; };
 		D7F70C8A2E02AFEC0015D172 /* SwiftMath in Frameworks */ = {isa = PBXBuildFile; productRef = D7F70C892E02AFEC0015D172 /* SwiftMath */; };
 		D7F8E6A12E4328E600A9E4A0 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = D7F8E6A02E4328E600A9E4A0 /* SQLite */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D79A7CA72E7B2324004EEC1E /* ToastUI in Frameworks */,
+				D79A7CA42E7B22A2004EEC1E /* SVGView in Frameworks */,
 				D7F8E6A12E4328E600A9E4A0 /* SQLite in Frameworks */,
 				D7F70C8A2E02AFEC0015D172 /* SwiftMath in Frameworks */,
 			);
@@ -132,6 +136,8 @@
 			packageProductDependencies = (
 				D7F70C892E02AFEC0015D172 /* SwiftMath */,
 				D7F8E6A02E4328E600A9E4A0 /* SQLite */,
+				D79A7CA32E7B22A2004EEC1E /* SVGView */,
+				D79A7CA62E7B2324004EEC1E /* ToastUI */,
 			);
 			productName = Youkre;
 			productReference = D7F8B1E32D7C8CB30096AB80 /* Youkre.app */;
@@ -218,6 +224,8 @@
 			packageReferences = (
 				D7F70C882E02AFEC0015D172 /* XCRemoteSwiftPackageReference "SwiftMath" */,
 				D7F8E69F2E4328E600A9E4A0 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+				D79A7CA22E7B22A2004EEC1E /* XCRemoteSwiftPackageReference "SVGView" */,
+				D79A7CA52E7B2324004EEC1E /* XCRemoteSwiftPackageReference "ToastUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D7F8B1E42D7C8CB30096AB80 /* Products */;
@@ -597,6 +605,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D79A7CA22E7B22A2004EEC1E /* XCRemoteSwiftPackageReference "SVGView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/SVGView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
+		D79A7CA52E7B2324004EEC1E /* XCRemoteSwiftPackageReference "ToastUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quanshousio/ToastUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		D7F70C882E02AFEC0015D172 /* XCRemoteSwiftPackageReference "SwiftMath" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mgriebling/SwiftMath.git";
@@ -616,6 +640,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D79A7CA32E7B22A2004EEC1E /* SVGView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D79A7CA22E7B22A2004EEC1E /* XCRemoteSwiftPackageReference "SVGView" */;
+			productName = SVGView;
+		};
+		D79A7CA62E7B2324004EEC1E /* ToastUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D79A7CA52E7B2324004EEC1E /* XCRemoteSwiftPackageReference "ToastUI" */;
+			productName = ToastUI;
+		};
 		D7F70C892E02AFEC0015D172 /* SwiftMath */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D7F70C882E02AFEC0015D172 /* XCRemoteSwiftPackageReference "SwiftMath" */;

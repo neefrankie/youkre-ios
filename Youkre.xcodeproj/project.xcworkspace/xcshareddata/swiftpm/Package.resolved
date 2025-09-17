@@ -1,5 +1,5 @@
 {
-  "originHash" : "9698d7e7cb09318ec7d1ed63befd4c9d7aab9e80111dbe6ae9f4f10a8ff8761b",
+  "originHash" : "de6b84b61d2473b970dcd54095f52b0edd0f274ca8aec42b799475583eee1455",
   "pins" : [
     {
       "identity" : "sqlite.swift",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "392dd6058624d9f6c5b4c769d165ddd8c7293394",
         "version" : "0.15.4"
+      }
+    },
+    {
+      "identity" : "svgview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/SVGView.git",
+      "state" : {
+        "revision" : "6465962facdd25cb96eaebc35603afa2f15d2c0d",
+        "version" : "1.0.6"
       }
     },
     {
@@ -26,6 +35,15 @@
       "state" : {
         "revision" : "606f9be66db6afe0c41c3b064723a57061723db7",
         "version" : "1.7.1"
+      }
+    },
+    {
+      "identity" : "toastui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/quanshousio/ToastUI",
+      "state" : {
+        "revision" : "146e2f52c132f681fbf798c8c9f0eb52f021f346",
+        "version" : "4.0.0"
       }
     }
   ],
