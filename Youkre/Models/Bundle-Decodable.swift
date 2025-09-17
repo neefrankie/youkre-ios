@@ -44,7 +44,7 @@ extension Bundle {
     }
     
     var dbPath: String? {
-        self.webAssetsBundle?.path(forResource: "db", ofType: "sqlite3")
+        self.webAssetsBundle?.path(forResource: "db_v1", ofType: "sqlite3", inDirectory: "db")
     }
     
     func jsonURL(forResource name: String, of subpath: String) -> URL? {
@@ -95,16 +95,6 @@ extension Bundle {
             return .failure(.decodingFailed("Failed to decode \(url) from bundle: \(error.localizedDescription)"))
         }
     }
-    
-//    func decodeBook(of project: String) async -> Result<Book, JSONParsingError> {
-//        guard let fileURL = self.jsonURL(forResource: "book", of: project) else {
-//            return .failure(.fileReadFailed("Failed to find book.json of \(project)"))
-//        }
-//        
-//        print("Decode JSON file \(fileURL)")
-//        
-//        return self.decode(contentsOf: fileURL)
-//    }
     
     func decodeToc(of project: String) async -> Result<TableOfContents, JSONError> {
         guard let fileURL = self.jsonURL(forResource: "toc", of: project) else {
