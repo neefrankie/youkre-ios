@@ -56,6 +56,7 @@ struct CourseListView: View {
             let courses = try await ExerciseDataSource.shared.loadCourse()
             self.courses = courses
         } catch {
+            print(error)
             self.error = error.localizedDescription
         }
         isLoading = false
