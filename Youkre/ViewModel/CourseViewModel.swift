@@ -12,6 +12,10 @@ import SwiftData
 class CourseViewModel {
     let course: Course
     
+    init(course: Course) {
+        self.course = course
+    }
+    
     var isLoading = true
     var error: String? = nil
     
@@ -25,7 +29,6 @@ class CourseViewModel {
     var currentLevel: ExerciseLevel? {
 
         if let index = session?.lastLevelIndex, index < levels.count {
-            print("current level \(index)")
             return levels[index]
         }
         
@@ -55,52 +58,23 @@ class CourseViewModel {
         return false
     }
     
-    init(course: Course) {
-        self.course = course
+    func moveToNextLevel() -> ExerciseLevel? {
+        session?.advanceLevel(maxIndex: self.levels.count - 1)
+        return currentLevel
     }
     
-    func moveToNextLevel() {
-        
-        guard let lastLevelIndex = session?.lastLevelIndex else {
-            if self.levels.count > 0 {
-                session?.lastLevelIndex = 0
-            }
-            return
-        }
-        
-        if lastLevelIndex < self.levels.count - 1 {
-            session?.lastLevelIndex = lastLevelIndex + 1
-            print("Advanced to level \(lastLevelIndex + 1)")
-        } else {
-            print("cannot move to next level")
-        }
+    func changeLevel(index: Int) {
+        session?.changeLevel(
+            toLevelIndex: index,
+            maxIndex: self.levels.count - 1
+        )
     }
     
-    func markLevelComplete(levelProgress: LevelProgress) {
+    func addCompletedLevel(levelProgress: LevelProgress) {
         levelsCompleted[levelProgress.levelID] = true
     }
     
-    @MainActor
-    func updateSession(context: ModelContext) async {
-
-        print("hasNextLevel: \(hasNextLevel). Last level index: \(session?.lastLevelIndex ?? -1). Level count: \(levels.count)")
-        
-        guard let session = self.session else {
-            return
-        }
-        
-        do {
-            try await SessionDataSource.shared.updateSession(
-                from: session,
-                context: context
-            )
-        } catch {
-            print("error syncing last level: \(error.localizedDescription)")
-        }
-    }
-    
-    @MainActor
-    func loadSession(context: ModelContext) async {
+    func loadSession() {
         // TODO:
         // Upon showing a course and its levels, try to find the last course session,
         // regardless of whether it is complete or not so that we could show complete
@@ -109,45 +83,102 @@ class CourseViewModel {
         // Do It Again button.
         isLoading = true
         
-        do {
-            let levels = try await ExerciseDataSource.shared.loadLevels(for: self.course)
-            var session = try await SessionDataSource.shared.loadOrCreateSession(
-                for: self.course,
-                levelCount: levels.count,
-                context: context
-            )
-            
-            // [level id : [LevelProgress]
-            // Group LevelProgress by level id.
-            let groupedLevels = Dictionary(grouping: session.levelProgress, by: { $0.levelID })
-            // [level id : Bool]
-            // If user has ever completed a level.
-            let levelsCompleted = groupedLevels.mapValues { levelProgresses in
-                // This group has not element (should happen actually)
-                if levelProgresses.count == 0 {
-                    return false
-                } else if levelProgresses.count == 1 {
-                    // This group has only one element
-                    return levelProgresses[0].completed
-                } else {
-                    // If a level has mutliple progress, user must have completed it at least onece.
-                    return true
+        Task(priority: .background) {
+            do {
+                let levels = try await ExerciseDataSource.shared.loadLevels(for: self.course)
+                
+                let backgroundContext = ModelContext(DataController.shared)
+                
+                let (session, levelProgressList) = try await SessionDataSource.shared.loadOrCreateSession(
+                    context: backgroundContext,
+                    for: self.course,
+                )
+                
+                // [level id : [LevelProgress]
+                // Group LevelProgress by level id.
+                let groupedLevels = Dictionary(grouping: levelProgressList, by: { $0.levelID })
+                
+                // [level id : Bool]
+                // If user has ever completed a level.
+                let levelsCompleted = groupedLevels.mapValues { levelProgresses in
+                    // This group has not element (should happen actually)
+                    if levelProgresses.count == 0 {
+                        return false
+                    } else if levelProgresses.count == 1 {
+                        // This group has only one element
+                        return levelProgresses[0].completed
+                    } else {
+                        // If a level has mutliple progress, user must have completed it at least onece.
+                        return true
+                    }
                 }
+                
+                await MainActor.run {
+                    self.levels = levels
+                    self.session = session
+                    self.levelsCompleted = levelsCompleted
+                    self.isLoading = false
+                }
+                
+                print("Session loaded. Levels: \(levels.count)")
+            } catch {
+                print("Failed to load session: \(error)")
+                await handleLoadFailure(error.localizedDescription)
             }
-            session.levelProgress = []
-            
-            self.levels = levels
-            self.session = session
-            self.levelsCompleted = levelsCompleted
-            
-            print("Session loaded. Levels: \(levels.count)")
-            print(session)
-        } catch {
-            print("Failed to load session: \(error)")
-            self.error = error.localizedDescription
         }
-        isLoading = false
     }
+    
+    private func handleLoadFailure(_ message: String) async {
+        await MainActor.run {
+            self.error = message
+            self.isLoading = false
+        }
+    }
+    
+    private func updateSession(modelContext: ModelContext, session: CourseSession) async {
+        do {
+            try await SessionDataSource.shared.updateSession(
+                context: modelContext,
+                from: session
+            )
+        } catch {
+            print("error updating course session: \(error.localizedDescription)")
+        }
+    }
+    
+    // Update session when a level started.
+    func updateSession() {
+        guard let session = self.session else {
+            return
+        }
+        
+        Task(priority: .background) {
+            let backgroundContext = ModelContext(DataController.shared)
+            
+            await updateSession(modelContext: backgroundContext, session: session)
+        }
+        
+    }
+    
+    // Try to mark a session as complete every time a level is complete.
+    // This is called when summary sheet is popped up.
+    func tryCompleteSession() {
+        print("try to complete a session")
+        
+        session?.markComplete()
+        // Only update db if it is completed.
+        guard let session = self.session, session.isCompleted else {
+            return
+        }
+        
+        Task(priority: .background) {
+            let backgroundContext = ModelContext(DataController.shared)
+            
+            await updateSession(modelContext: backgroundContext, session: session)
+        }
+    }
+    
+    
     
     static func mock(course: Course) -> CourseViewModel {
         let vm = CourseViewModel(course: course)
@@ -156,7 +187,6 @@ class CourseViewModel {
         vm.levels = ExampleData.allLevels[course.id] ?? []
         vm.session = CourseSession.new(
             courseID: course.id,
-            levelCount: vm.levels.count
         )
         
         return vm
