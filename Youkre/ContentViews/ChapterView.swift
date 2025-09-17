@@ -293,7 +293,7 @@ struct ChapterView: View {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
     ChapterView(params: ChapterLink(
-        courseSlug: Book.bookList[0].slug,
+        courseSlug: ExampleData.courses[0].slug,
         chapterSlug: "1"
     ))
     .environmentObject(themeManager)
