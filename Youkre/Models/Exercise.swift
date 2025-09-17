@@ -66,6 +66,7 @@ struct ExerciseProgress {
     mutating func answered(correct: Bool, selectedIndex: Int) {
         self.selectedIndex = selectedIndex
         self.isCorrect = correct
+        self.completedAt = Date()
     }
     
     static func new(exerciseID: String) -> ExerciseProgress {
@@ -80,6 +81,12 @@ struct ExerciseProgress {
     }
 }
 
+// An Exercise has only one ExerciseProgressEntity under a certain LevelProgressEntity.
+// We do not allow user to redo the same exercise again and again under a specific
+// LevelProgressEntity. An exercise has only 4 choices. Once selected, freeze it.
+// It would be meaningless if we generate multiple ExerciseProgressEntity
+// under a LevelProgressEntity, which would indicate that every click of the 4 choice creates
+// a new row, meaningless.
 @Model
 class ExerciseProgressEntity {
     @Attribute(.unique) var id: UUID
@@ -88,6 +95,8 @@ class ExerciseProgressEntity {
     var isCorrect: Bool
     var startedAt: Date
     var completedAt: Date? // answeredAt for tracking progress
+    
+//    var levelProgressId: String
 
     // level: back-reference to parent level
     @Relationship(inverse: \LevelProgressEntity.exerciseProgress)

@@ -65,18 +65,20 @@ struct LevelProgress {
     var startedAt: Date
     var completedAt: Date?
     var lastExerciseIndex: Int?
-    var exerciseProgress: [ExerciseProgress]
     
     var completed: Bool {
         completedAt != nil
     }
     
-    mutating func moveExercise(lastIndex: Int, score: Int, finished: Bool = false) {
+    mutating func moveExercise(lastIndex: Int, score: Int) {
         self.score = score
         if lastIndex <= total - 1 {
             self.lastExerciseIndex = lastIndex
         }
-        self.completedAt = finished ? Date() : nil
+    }
+    
+    mutating func markComplete() {
+        self.completedAt = Date()
     }
     
     static func new(levelID: String, exerciseCount: Int) -> LevelProgress {
@@ -88,13 +90,14 @@ struct LevelProgress {
             startedAt: Date(),
             completedAt: nil,
             lastExerciseIndex: nil,
-            exerciseProgress: []
         )
     }
 }
 
-// levelID + courseSession.id should be combined unique
-// in SQL terms.
+// An ExerciseLevel might have multiple LevelProgressEntity under a specific CourseSession.
+// This idea is this: if user finished a level, we allow user to redo it again.
+// The redo process should generate a completedly new LevelProgressEntity.
+// Therefore, for a courseSessionID, there are multiple rows for the same levelID.
 @Model
 class LevelProgressEntity {
     @Attribute(.unique) var id: UUID
@@ -116,7 +119,7 @@ class LevelProgressEntity {
     @Relationship(deleteRule: .cascade)
     var exerciseProgress: [ExerciseProgressEntity] = []
     
-    init(for level: ExerciseLevel, exerciseCount: Int, of session: CourseSessionEntity) {
+    init(for level: ExerciseLevel, exerciseCount: Int, ofCourse session: CourseSessionEntity) {
         self.id = UUID()
         self.levelID = level.id
         self.score = 0
@@ -135,7 +138,7 @@ class LevelProgressEntity {
         self.lastExerciseIndex = model.lastExerciseIndex
     }
     
-    func toModel(withExercise: Bool = false) -> LevelProgress {
+    func toModel() -> LevelProgress {
         LevelProgress(
             id: id,
             levelID: levelID,
@@ -143,10 +146,11 @@ class LevelProgressEntity {
             total: total,
             startedAt: startedAt,
             lastExerciseIndex: lastExerciseIndex,
-            exerciseProgress: withExercise
-                ? exerciseProgress.map { $0.toModel() }
-                : [],
         )
+    }
+    
+    func toExerciseModel() -> [ExerciseProgress] {
+        exerciseProgress.map { $0.toModel() }
     }
 }
 
