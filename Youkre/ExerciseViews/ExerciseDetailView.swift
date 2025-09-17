@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ExerciseDetailView: View {
-    let level: ExerciseLevel
-    let levelProgress: LevelProgress
     let exercise: Exercise
+    let levelProgress: LevelProgress
+    let exerciseProgress: ExerciseProgress? // If retrieved in LevelViewModel, avoid querying db again since SwiftData is very cumbersome in this case.
     let isLast: Bool
     var onAnswer: (ExerciseProgress) -> Void
-    @Binding var showSummary: Bool
+    var onSummary: () -> Void
     
     @State private var viewModel = ExerciseViewModel()
     
@@ -26,25 +26,25 @@ struct ExerciseDetailView: View {
     var body: some View {
         Group {
             if viewModel.isLoading {
-                ProgressView("Loading exercise progress")
+                ProgressView()
             } else if let currentProgress = viewModel.exerciseProgress {
                 detailView(progress: currentProgress)
             } else if let error = viewModel.error {
                 Text(error)
             }
         }
-        .task {
-            await viewModel.loadData(
-                exercise: exercise,
-                levelProgress: levelProgress,
-                context: modelContext
+        .onAppear {
+            viewModel.loadData(
+                for: exercise,
+                of: levelProgress,
+                exerciseProgress: exerciseProgress,
             )
         }
     }
     
     @ViewBuilder
     private func detailView(progress: ExerciseProgress) -> some View {
-        VStack {
+//        VStack {
             ScrollView {
                 VStack(spacing: 16) {
                     MarkdownView(markdown: exercise.prompts)
@@ -68,18 +68,16 @@ struct ExerciseDetailView: View {
                 .padding()
             }
             
-            if self.finished {
-                Button(action: {
-                    showSummary = true
-                }) {
-                    Label("完成", systemImage: "")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(CapsuleButtonStyle())
-                .padding()
-                .padding(.bottom, 16)
-            }
-        }
+//            if self.finished {
+//                Button(action: onSummary) {
+//                    Label("完成", systemImage: "")
+//                        .frame(maxWidth: .infinity)
+//                }
+//                .buttonStyle(CapsuleButtonStyle())
+//                .padding()
+//                .padding(.bottom, 16)
+//            }
+//        }
     }
     
     private func onCheckAnswer(selected: Int) {
@@ -88,14 +86,6 @@ struct ExerciseDetailView: View {
             exercise: self.exercise
         )
         onAnswer(newProgress)
-        
-        Task {
-            await viewModel.updateProgress(
-                progress: newProgress,
-                context: modelContext
-            )
-        }
-        
     }
 }
 
@@ -108,17 +98,17 @@ struct ExerciseDetailView: View {
     
     NavigationStack {
         ExerciseDetailView(
-            level: level,
+            exercise: level.exercises[0],
             levelProgress: LevelProgress.new(
                 levelID: level.id,
                 exerciseCount: level.exercises.count
             ),
-            exercise: level.exercises[0],
+            exerciseProgress: nil,
             isLast: true,
             onAnswer: { anws in
                 print(anws)
             },
-            showSummary: $showSummary,
+            onSummary: {},
         )
         .navigationDestination(for: ChapterLink.self) { param in
             ChapterView(params: param)
