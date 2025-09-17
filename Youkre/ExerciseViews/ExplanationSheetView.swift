@@ -13,13 +13,10 @@ struct ExplanationSheetView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView(showsIndicators: false) {
-                MarkdownView(
-                    markdown: explanation,
-                    latexFontSize: 22
-                )
-                .padding()
-            }
+            MarkdownScrollView(
+                markdown: explanation,
+                titleAlignment: .leading
+            )
             .navigationTitle("解析")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
