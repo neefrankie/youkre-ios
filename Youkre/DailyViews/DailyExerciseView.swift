@@ -22,7 +22,6 @@ struct DailyExerciseView: View {
             } else if let exercise = dailyExercise, let level = exerciseLevel {
                 VStack {
                     HStack {
-                        Spacer()
                         Text("每日一题")
                             .font(.headline)
                             .foregroundColor(.primary)
@@ -45,7 +44,7 @@ struct DailyExerciseView: View {
                         )
                     ) {
                         DailyExerciseCardView(
-                            exercise: exercise
+                            question: exercise.prompts,
                         )
                         .foregroundColor(.primary)
                     }
