@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct ToastView: View {
+    @ObservedObject var manager = ToastManager.shared
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if let toast = manager.toast {
+            ZStack {
+                HStack {
+                    Text(toast.text)
+                        .padding(32)
+                        .background(Color.black.opacity(0.8))
+                        .foregroundColor(.white)
+                        .font(.caption)
+                        .cornerRadius(8)
+                }
+                .transition(.move(edge: .bottom))
+            }
+            .edgesIgnoringSafeArea(.bottom)
+        }
     }
 }
 
 #Preview {
-    ToastView()
+    VStack {
+        Button("Show Toast") {
+            ToastManager.shared.show(text: "Saved")
+        }
+    }
+    .toast()
 }
