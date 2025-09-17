@@ -18,7 +18,8 @@ struct YoukreApp: App {
                 .environmentObject(themeManager)
                 .preferredColorScheme(themeManager.preferredColorScheme)
                 .background(AppColors.background)
+                .toast()
         }
-        .modelContainer(for: [CourseSessionEntity.self])
+        .modelContainer(DataController.shared)
     }
 }
