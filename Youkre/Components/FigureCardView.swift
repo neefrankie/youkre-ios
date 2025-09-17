@@ -27,7 +27,7 @@ struct FigureCardView: View {
             
             Group {
                 if fit {
-                    AspectRatioCardView(
+                    AspectRatioView(
                         ratio: ratio,
                     ) {
                         Image(imageName)
@@ -35,7 +35,7 @@ struct FigureCardView: View {
                             .scaledToFit()
                     }
                 } else {
-                    AspectRatioCardView(
+                    AspectRatioView(
                         ratio: ratio,
                     ) {
                         Image(imageName)
