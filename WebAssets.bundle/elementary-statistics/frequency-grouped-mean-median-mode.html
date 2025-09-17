@@ -262,7 +262,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>接着阿力做了一个<strong>分组频率表</strong>：</p>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>秒数段</th>
   <th>次数</th>
@@ -286,7 +286,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td>4</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <figure>
 
@@ -313,7 +313,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>现在只有这张表：</p>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>秒数段</th>
   <th>次数</th>
@@ -337,7 +337,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td>4</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <p>每组之间的间隔是 5 秒，比如 51-55、56-60 等。</p>
 
@@ -359,7 +359,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>接下来，把原来的数据换成中间值和次数：</p>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>中间值</th>
   <th>次数</th>
@@ -383,7 +383,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td>4</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <p>这样想：“2 个人用了 53 秒，7 个人用了 58 秒，8 个人用了 63 秒，4 个人用了 68 秒。”  换句话说，我们<strong>假设</strong>这些数据是这样的：</p>
 
@@ -391,7 +391,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>然后把这些数加起来，再除以 21。更快的方法是：用每个中间值乘以对应的次数：</p>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>中间值 x</th>
   <th>次数 f</th>
@@ -425,7 +425,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td><strong>1288</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <p>于是可以估算平均时间为：</p>
 
@@ -439,7 +439,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>再来看一下这张表：</p>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>秒数段</th>
   <th>次数</th>
@@ -463,7 +463,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td>4</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <p>中位数是中间那个值，在这里是第 11 个数，它落在“61 - 65”这一组里。</p>
 
@@ -525,7 +525,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>再来看一下这张表：</p>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>秒数段</th>
   <th>次数</th>
@@ -549,7 +549,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td>4</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <p>哪个组的次数最多？显然是“61 - 65”这一组。</p>
 
@@ -614,7 +614,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>你用特殊的土壤种了 50 根小胡萝卜。把它们挖出来后测量长度（精确到毫米），并分组如下：</p>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>长度（mm）</th>
   <th>次数</th>
@@ -654,11 +654,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td>3</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <h3>平均数</h3>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>长度（mm）</th>
   <th>中间值 x</th>
@@ -722,7 +722,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td><strong>8530</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <div class="math">\begin{align*}
 \text{估算的平均数} &amp;= \frac{8530}{50} \\
@@ -781,7 +781,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <p>比如：一个岛上住着 112 人，他们的年龄分组如下：</p>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>年龄段</th>
   <th>人数</th>
@@ -825,7 +825,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td>1</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <p>第一组“0 - 9”中的孩子可能快 10 岁了。因此这组的中间值是 <strong>5</strong>，而不是 4.5。</p>
 
@@ -835,7 +835,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <h3>平均数</h3>
 
-<table class="table"><thead>
+<div class="table-responsive"><table class="table"><thead>
 <tr>
   <th>年龄段</th>
   <th>中间值 x</th>
@@ -905,7 +905,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <td><strong>3360</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 
 <div class="math">\[
 \text{估算的平均数} = \frac{3360}{112} = 30
