@@ -25,7 +25,7 @@ struct ExerciseRendererView: View {
             ScrollView {
                 VStack {
                     
-                    MarkdownView(markdown: exercise.prompts)
+                    MarkdownListView(blocks: MarkdownParser.parse(exercise.prompts))
                     
                     VStack(spacing: 8) {
                         ForEach(exercise.multipleChoice.choices.indices, id: \.self) { i in
