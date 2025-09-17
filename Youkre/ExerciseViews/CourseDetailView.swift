@@ -13,8 +13,6 @@ struct CourseDetailView: View {
     @Bindable var viewModel: CourseViewModel
     @Binding var path: NavigationPath
     
-    @Environment(\.modelContext) var modelContext
-    
     let layout = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -44,7 +42,7 @@ struct CourseDetailView: View {
                                 isCompleted: completed,
                                 isLocked: false,
                             ) {
-                                viewModel.session?.lastLevelIndex = index
+                                viewModel.changeLevel(index: index)
                                 path.append(level)
                             }
                         }
@@ -62,8 +60,8 @@ struct CourseDetailView: View {
         .padding()
         .toolbar(.hidden, for: .tabBar)
         .background(AppColors.background)
-        .task {
-            await viewModel.loadSession(context: modelContext)
+        .onAppear {
+            viewModel.loadSession()
         }
     }
 }
