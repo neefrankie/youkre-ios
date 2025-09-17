@@ -13,46 +13,61 @@ struct LevelDetailView: View {
     @Bindable var courseViewModel: CourseViewModel
     @Binding var path: NavigationPath
     
-    @State private var viewModel = LevelDetailViewModel()
+    @State private var viewModel = LevelViewModel()
     
-    @State var showSummary = false
-    
-    @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) private var dismiss
     
+    @State private var showButton = false
     
     var body: some View {
-        VStack {
+        Group {
             if viewModel.isLoading {
                 ProgressView()
-            } else if let levelProgress = viewModel.levelProgress, let level = courseViewModel.currentLevel {
-                
-                HStack {
-                    Text("\(viewModel.progressText)")
-                }
-                
-                TabView(selection: $viewModel.selectedTabIndex) {
-                    ForEach(viewModel.exercises.indices, id: \.self) { index in
+            } else if let levelProgress = viewModel.levelProgress {
+                VStack {
+                    HStack {
+                        Text("\(viewModel.progressText)")
+                    }
+                    
+                    TabView(selection: $viewModel.selectedTabIndex) {
+                        ForEach(viewModel.exercises.indices, id: \.self) { index in
+                            let exercise = viewModel.exercises[index]
+                            
+                            ExerciseDetailView(
+                                exercise: exercise,
+                                levelProgress: levelProgress,
+                                exerciseProgress: viewModel.getExerciseProgress(exerciseID: exercise.id),
+                                isLast: viewModel.isLast,
+                                onAnswer: viewModel.updateLevelProgress,
+                                onSummary: viewModel.onSummary,
+                            )
+                            .tag(index)
+                        }
                         
-                        MultipleChoiceView(
-                            level: level,
-                            levelProgress: levelProgress,
-                            exercise: viewModel.exercises[index],
-                            isLast: viewModel.isLast,
-                            showSummary: $showSummary,
-                            onAnswer: self.saveExerciseProgress,
-                            onLevelComplete: self.markLevelComplete,
-                        )
-                        .tag(index)
+                    }
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    .indexViewStyle(.page(backgroundDisplayMode: .never))
+                    
+                    if showButton {
+                        Button(action: viewModel.onSummary) {
+                            Label("完成", systemImage: "")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(CapsuleButtonStyle())
+                        .padding()
+                        .padding(.bottom, 16)
+                        .transition(.scale(scale: 0.9).combined(with: .opacity))
                     }
                     
                 }
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .indexViewStyle(.page(backgroundDisplayMode: .never))
-                
                 
             } else if let error = viewModel.error {
                 Text(error)
+            }
+        }
+        .onChange(of: viewModel.isLast && viewModel.lastAnswered) { (oldValue, newValue) in
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
+                showButton = newValue
             }
         }
         .navigationTitle(courseViewModel.navTitle)
@@ -82,7 +97,7 @@ struct LevelDetailView: View {
                 }
             }
         }
-        .sheet(isPresented: $showSummary) {
+        .sheet(isPresented: $viewModel.showSummary) {
             LevelSummarySheet(
                 levelProgress: viewModel.levelProgress,
                 hasNextLevel: courseViewModel.hasNextLevel,
@@ -92,76 +107,64 @@ struct LevelDetailView: View {
                 onFinish: self.onFinish,
             )
         }
-        
-        .task {
+        .onAppear {
             loadLevelAndExercises()
-            await courseViewModel.updateSession(context: modelContext)
+            // When user clicked a level randomly, update the last level index.
+            courseViewModel.updateSession()
         }
     }
     
     private func loadLevelAndExercises() {
-        Task {
-            await viewModel.loadLevelAndExercises(
-                modelContext: modelContext,
-                course: courseViewModel.course,
-                session: courseViewModel.session,
-                level: courseViewModel.currentLevel
+        viewModel.loadData(
+            for: courseViewModel.currentLevel,
+            of: courseViewModel.session,
+            course: courseViewModel.course,
+        )
+    }
+        
+    // Create a new level progress.
+    private func onRestart() {
+        let prevLevelProgress = viewModel.restartCurrentLevel(
+            for: courseViewModel.currentLevel,
+            of: courseViewModel.session,
+            course: courseViewModel.course,
+        )
+        
+        // level progress should be updated to completed when reaching here.
+        if let prevLevelProgress {
+            courseViewModel.addCompletedLevel(
+                levelProgress: prevLevelProgress
             )
         }
     }
     
     // Callback
-    private func onRestart() {
-        viewModel.resetState()
-        showSummary = false
-        
-        loadLevelAndExercises()
-    }
-    
-    // Callback
-    func onNextLevel() {
+    private func onNextLevel() {
         print("Go to next level")
-        viewModel.resetState()
-        showSummary = false
         
-        courseViewModel.moveToNextLevel()
+        let nextLevel = courseViewModel.moveToNextLevel()
         
-        loadLevelAndExercises()
+        let prevLevelProgress = viewModel.startNewLevel(
+            for: nextLevel,
+            of: courseViewModel.session,
+            course: courseViewModel.course
+        )
+        
+        if let prevLevelProgress {
+            courseViewModel.addCompletedLevel(
+                levelProgress: prevLevelProgress
+            )
+        }
+        
+        courseViewModel.updateSession()
     }
     
-    // Callback
-    func onFinish() {
+    // All levels finished.
+    private func onFinish() {
         if !path.isEmpty {
             // Simply remove or append to path is safe.
             path.removeLast()
         }
-    }
-    
-    // Callback when exercise progress is updated.
-    @MainActor
-    func saveExerciseProgress(exerciseProgress: ExerciseProgress) {
-        Task {
-            await viewModel.saveExerciseProgress(
-                modelContext: modelContext,
-                exerciseProgress: exerciseProgress,
-            )
-        }
-    }
-    
-    // When the Finish button is clicked for the last exercise.
-    @MainActor
-    func markLevelComplete() {
-        Task {
-            await viewModel.markLevelComplete(modelContext: modelContext)
-        }
-        
-        if let levelProgress = viewModel.levelProgress, viewModel.allAnswered {
-            // Only update level progress when all exercises are answered.
-            courseViewModel.markLevelComplete(
-                levelProgress: levelProgress
-            )
-        }
-        
     }
     
     
