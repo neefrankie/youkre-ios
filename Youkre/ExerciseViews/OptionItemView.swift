@@ -16,32 +16,35 @@ struct OptionItemView: View {
     var selectedIndex: Int? = nil
     
     var body: some View {
-        HStack {
-            if isLatex {
-                MathView(
-                    latex: choice,
-                    labelMode: .text,
-                    textAlignment: .left,
-                    textColor: .primary
-                )
-                .fixedSize(horizontal: false, vertical: true)
-            } else {
-                Text(choice)
+        HStack(alignment: .center, spacing: 8) {
+            let (iconName, color) = icon(for: optionIndex, correctIndex: correctIndex)
+            Image(systemName: iconName)
+                .resizable()
+                .scaledToFit()
+                .foregroundColor(color)
+                .frame(width: 20, height: 20)
+            
+            Group {
+                if isLatex {
+                    MathView(
+                        latex: choice,
+                        labelMode: .text,
+                        textAlignment: .left,
+                        textColor: .primary
+                    )
                     .fixedSize(horizontal: false, vertical: true)
-                    .padding(.trailing, 20)
-                    .foregroundColor(.primary)
+                } else {
+                    Text(choice)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .foregroundColor(.primary)
+                }
             }
+            .padding([.top, .bottom], 16)
             
-            // This also makes the button full width.
-            Spacer()
-            
-            trailingImage(
-                for: optionIndex,
-                correctIndex: correctIndex,
-            )
-            .frame(width: 20, height: 20)
         }
-        .padding()
+        .padding([.leading, .trailing], 8)
         .background(
             buttonColor(
                 for: optionIndex,
@@ -56,23 +59,20 @@ struct OptionItemView: View {
         .shadow(radius: 2)
     }
     
-    private func trailingImage(for index: Int, correctIndex: Int) -> some View {
+    private func icon(for index: Int, correctIndex: Int) -> (name: String, color: Color) {
         if let selected = selectedIndex {
             // Only add mark to selected one.
             if index == selected {
                 // Index is selected and it is the correct index.
                 if index == correctIndex {
-                    return Image(systemName: "checkmark")
-                        .foregroundColor(.green)
+                    return ("checkmark", Color.teal)
                 } else {
-                    return Image(systemName: "xmark")
-                        .foregroundColor(.red)
+                    return ("xmark", Color.red)
                 }
             }
         }
         
-        return Image(systemName: "")
-            .foregroundColor(.clear)
+        return ("circle", Color.clear)
     }
     
     private func buttonColor(for index: Int, correctIndex: Int) -> Color {
@@ -94,5 +94,11 @@ struct OptionItemView: View {
 }
 
 #Preview {
-    ChoiceItemView()
+    OptionItemView(
+        choice: "Option A",
+        isLatex: false,
+        correctIndex: 1,
+        optionIndex: 1,
+        selectedIndex: 1
+    )
 }
