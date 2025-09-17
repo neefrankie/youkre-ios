@@ -211,8 +211,7 @@ struct IconStore {
     ]
 }
 
-
-struct TestView: View {
+#Preview {
     var items: [(key: String, viewCreator: () -> AnyView)] {
         return Array(IconStore.symbolViewMap.map { ($0.key, $0.value) } )
     }
@@ -223,17 +222,12 @@ struct TestView: View {
         GridItem(.flexible()),
         GridItem(.flexible()),
     ]
-    var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(items, id: \.key) { item in
-                    item.viewCreator()
-                }
+    
+    ScrollView {
+        LazyVGrid(columns: columns, spacing: 20) {
+            ForEach(items, id: \.key) { item in
+                item.viewCreator()
             }
         }
     }
-}
-
-#Preview {
-    TestView()
 }
