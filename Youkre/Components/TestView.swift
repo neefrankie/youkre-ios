@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DataTestView: View {
+struct TestView: View {
     var body: some View {
         List {
             Section("Test DB") {
@@ -102,13 +102,36 @@ struct DataTestView: View {
                     }
                 }
             }
+            
+            Section("Path") {
+                Button("/images/exercise/triangle-inequality-theorem--ex-10.png") {
+                    let path = "/images/exercise/triangle-inequality-theorem--ex-10.png"
+                    
+                    let result = TextUtils.parseImagePath(path)
+                    
+                    print(result)
+                }
+            }
+            
+            Section("Toast") {
+                Button("Show Toast") {
+                    ToastManager.shared.show(text: "Saved")
+                }
+            }
+            
+            Section("LaTeX") {
+                Button("Has \\frac") {
+                    let latex = #"\frac{1}{2}"#
+                    let has = latex.contains(#"\frac"#)
+                    print(has)
+                }
+            }
         }
         
     }
-    
-    
 }
 
 #Preview {
-    DataTestView()
+    TestView()
+        .toast()
 }
