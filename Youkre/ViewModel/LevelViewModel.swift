@@ -28,8 +28,8 @@ class LevelViewModel {
     }
     
     var lastAnswered: Bool {
-        if let id = exercises.last?.id {
-            return exerciseStates[id] != nil
+        if let id = exercises.last?.id, let p = exerciseStates[id] {
+            return p.isCompleted
         }
         
         return false
