@@ -10,7 +10,7 @@ import SwiftUI
 struct MarkdownView: View {
     let markdown: String
     var spacing: CGFloat = 16
-    var latexFontSize: CGFloat = 20
+    var latexFontSize: CGFloat = 24
     
     @State private var isLoading = true
     @State private var blocks: [MarkdownBlock] = []
@@ -20,14 +20,11 @@ struct MarkdownView: View {
             if isLoading {
                 ProgressView()
             } else {
-                VStack(alignment: .leading, spacing: spacing) {
-                    ForEach(blocks.indices, id: \.self) { idx in
-                        MarkdownBlockView(
-                            block: blocks[idx],
-                            latexFontSize: latexFontSize
-                        )
-                    }
-                }
+                MarkdownListView(
+                    blocks: blocks,
+                    spacing: spacing,
+                    latexFontSize: latexFontSize
+                )
             }
         }
         .onAppear {
@@ -45,56 +42,50 @@ struct MarkdownView: View {
 
 #Preview {
     let sampleMarkdown = #"""
-    # Welcome to SwiftUI
-    
-    ## Welcome to SwiftUI
-    
-    ### Welcome to SwiftUI
+    本题要求将周长 L 的热膨胀关系转化为直径 D 的变化率。
 
-    This is a custom **Markdown** renderer.
+    ### 步骤 1：建立 D 与 L 的关系
 
-    - Easy to use
-    - Supports *basic* styling
-    - [Visit Apple](https://apple.com)
-
-    ## Thanks for Reading
-    
-    \[ \frac{dy}{dx} = u\, \frac{dv}{dx} + v\, \frac{du}{dx} \]
-    
-    Order of Operations are:
-
-    * Parentheses (Brackets) first
-    * Exponents (Orders, Powers, Square Roots, etc.) next
-    * Multiplication and Division (left-to-right) next
-    * Addition and Subtraction (left-to-right) last
-
-    So we do the division and multiplication before the addition:
+    铁箍是圆形，周长与直径关系为：
 
     \begin{align*}
-    6 \div 3 = 2 \\
-    4 \times 2 = 8
+    L &= \pi D \\
+    D &= \frac{L}{\pi}
     \end{align*}
 
-    So 
+    ### 步骤 2：将 L 的表达式代入
+
+    已知
+
+    \[ L = l_t \bigl[1 + 0.000012(T-t)\bigr]\]
+
+    所以：
+
+    \[
+    D = \frac{1}{\pi} \cdot l_t \bigl[1 + 0.000012(T-t)\bigr]
+    \]
+
+    这里 𝑙ₜ, π, t 都是常数，T 是变量。
+
+    ### 步骤 3：对 D 关于 T 求导
 
     \begin{align*}
-    &6 \div 3 + 4 \times 2 \\
-    = &2 + 8 \\
-    = &10
+    \frac{dD}{dT} &= \frac{1}{\pi} \cdot l_t \cdot \frac{d}{dT} [1 + 0.000012(T-t)] \\
+    &= \frac{1}{\pi} \cdot l_t \cdot 0.000012 \\
+    &= \frac{l_t}{\pi} \times 0.000012
     \end{align*}
-    
-    $$
-    \frac{d}{dx}x^{13} = 13x^{12}
-    $$
-    
-    ![](calculus-made-easy)
-    
-    | 科学 | 34 | 
-    | --- | --- |
-    | 英语 | 90 | 
-    | 历史 | 87 | 
-    | 数学 | 34 |  
-    | 地理 | 55 | 
+
+    ### 物理意义解释
+
+    - dD / dT 表示温度每升高 1°C，铁箍直径增加的量。
+
+    - 结果是一个常数，说明直径随温度线性膨胀。
+
+    - 𝑙ₜ / π  就是参考温度 t 时的直径 Dₜ，所以
+
+    \[ \frac{dD}{dT} = D_t \times 0.000012 \]
+
+    即“直径的膨胀率 = 原直径 × 线膨胀系数”，符合物理规律。
     """#
     ScrollView {
         MarkdownView(markdown: sampleMarkdown)
