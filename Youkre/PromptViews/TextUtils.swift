@@ -7,6 +7,20 @@
 
 import Foundation
 
+struct ParsedPath {
+    let name: String
+    let suffix: String
+    let directory: String?
+    
+    var isSvg: Bool {
+        suffix.lowercased() == "svg"
+    }
+    
+    var isPdf: Bool {
+        suffix.lowercased() == "pdf"
+    }
+}
+
 struct TextUtils {
     // Split filename into (stem, ext).
     // Exmple:
@@ -37,7 +51,12 @@ struct TextUtils {
         }
     }
     
-    static func parseImagePath(_ path: String) -> (name: String, type: String, directory: String?) {
+    // Example: /images/exercise/triangle-inequality-theorem--ex-10.png
+    // witll be
+    // name: "triangle-inequality-theorem--ex-10",
+    // type: "png",
+    // directory: Optional("images/exercise")
+    static func parseImagePath(_ path: String) -> ParsedPath {
         let url = URL(fileURLWithPath: path)
 //        let fileNameWithExtension = url.lastPathComponent
         
@@ -54,8 +73,11 @@ struct TextUtils {
             directory.remove(at: directory.index(before: directory.endIndex))
         }
         
-        
-        return (name, type, directory.isEmpty ? nil: directory)
+        return ParsedPath(
+            name: name,
+            suffix: type,
+            directory: directory.isEmpty ? nil : directory,
+        )
     }
     
     static func hasFrac(latex: String) -> Bool {
