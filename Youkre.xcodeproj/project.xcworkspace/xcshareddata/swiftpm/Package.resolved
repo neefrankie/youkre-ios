@@ -1,5 +1,5 @@
 {
-  "originHash" : "de6b84b61d2473b970dcd54095f52b0edd0f274ca8aec42b799475583eee1455",
+  "originHash" : "44b619e0fcaeb3e04648607e168f1b1b2b74436cf24390d7d2841ac114c7bd96",
   "pins" : [
     {
       "identity" : "sqlite.swift",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "392dd6058624d9f6c5b4c769d165ddd8c7293394",
         "version" : "0.15.4"
-      }
-    },
-    {
-      "identity" : "svgview",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/exyte/SVGView.git",
-      "state" : {
-        "revision" : "6465962facdd25cb96eaebc35603afa2f15d2c0d",
-        "version" : "1.0.6"
       }
     },
     {
