@@ -13,7 +13,6 @@ struct ExerciseDetailView: View {
     let exerciseProgress: ExerciseProgress? // If retrieved in LevelViewModel, avoid querying db again since SwiftData is very cumbersome in this case.
     let isLast: Bool
     var onAnswer: (ExerciseProgress) -> Void
-    var onSummary: () -> Void
     
     @State private var viewModel = ExerciseViewModel()
     
@@ -44,40 +43,28 @@ struct ExerciseDetailView: View {
     
     @ViewBuilder
     private func detailView(progress: ExerciseProgress) -> some View {
-//        VStack {
-            ScrollView {
-                VStack(spacing: 16) {
-                    MarkdownView(markdown: exercise.prompts)
-                    
-                    ForEach(exercise.multipleChoice.choices.indices, id: \.self) { i in
-                        Button(action: {
-                            onCheckAnswer(selected: i)
-                        }) {
-                            
-                            OptionItemView(
-                                choice: exercise.multipleChoice.choices[i],
-                                isLatex: exercise.multipleChoice.isLatex,
-                                correctIndex: exercise.multipleChoice.correctIndex,
-                                optionIndex: i,
-                                selectedIndex: viewModel.selectedIndex,
-                            )
-                        }
-                        .disabled(progress.isCompleted)
+        ScrollView {
+            VStack(spacing: 16) {
+                MarkdownView(markdown: exercise.prompts)
+                
+                ForEach(exercise.multipleChoice.choices.indices, id: \.self) { i in
+                    Button(action: {
+                        onCheckAnswer(selected: i)
+                    }) {
+                        
+                        OptionItemView(
+                            choice: exercise.multipleChoice.choices[i],
+                            isLatex: exercise.multipleChoice.isLatex,
+                            correctIndex: exercise.multipleChoice.correctIndex,
+                            optionIndex: i,
+                            selectedIndex: viewModel.selectedIndex,
+                        )
                     }
+                    .disabled(progress.isCompleted)
                 }
-                .padding()
             }
-            
-//            if self.finished {
-//                Button(action: onSummary) {
-//                    Label("完成", systemImage: "")
-//                        .frame(maxWidth: .infinity)
-//                }
-//                .buttonStyle(CapsuleButtonStyle())
-//                .padding()
-//                .padding(.bottom, 16)
-//            }
-//        }
+            .padding()
+        }
     }
     
     private func onCheckAnswer(selected: Int) {
@@ -108,7 +95,6 @@ struct ExerciseDetailView: View {
             onAnswer: { anws in
                 print(anws)
             },
-            onSummary: {},
         )
         .navigationDestination(for: ChapterLink.self) { param in
             ChapterView(params: param)

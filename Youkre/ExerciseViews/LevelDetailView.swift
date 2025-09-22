@@ -39,7 +39,6 @@ struct LevelDetailView: View {
                                 exerciseProgress: viewModel.getExerciseProgress(exerciseID: exercise.id),
                                 isLast: viewModel.isLast,
                                 onAnswer: viewModel.updateLevelProgress,
-                                onSummary: viewModel.onSummary,
                             )
                             .tag(index)
                         }
