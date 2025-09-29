@@ -18,9 +18,9 @@ struct MarkdownParser {
             if trimmed.hasPrefix("#") {
                 blocks.append(parseHeading(trimmed))
             } else if trimmed.hasPrefix("\\[") && trimmed.hasSuffix("\\]") {
-                blocks.append(parseSquareLatex(trimmed))
+                blocks.append(parseBlockLatex(trimmed))
             } else if trimmed.hasPrefix("$$") && trimmed.hasSuffix("$$") {
-                blocks.append(parseDollarLatex(trimmed))
+                blocks.append(parseBlockLatex(trimmed))
             } else if trimmed.hasPrefix("\\begin{align") {
                 if let latex = parseAlignLatex(trimmed) {
                     blocks.append(latex)
@@ -115,49 +115,70 @@ struct MarkdownParser {
         return cells.isEmpty ? nil : Array(cells)
     }
     
-    static func parseSquareLatex(_ line: String) -> MarkdownBlock {
+    static func parseBlockLatex(_ line: String) -> MarkdownBlock {
         let text = String(
             line.dropFirst(2)
                 .dropLast(2)
                 .trimmingCharacters(in: .whitespaces)
         )
         
-        return .math(text)
-    }
+        guard !text.isEmpty else { return .math("") }
+        
+        // 尝试提取对齐环境
+        if let (_, extractedContent) = extractAlignmentEnvironment(text) {
+            return .math(extractedContent)
+        }
     
-    static func parseDollarLatex(_ line: String) -> MarkdownBlock {
-        let text = String(
-            line.dropFirst(2)
-                .dropLast(2)
-                .trimmingCharacters(in: .whitespaces)
-        )
-        
         return .math(text)
     }
     
     static func parseAlignLatex(_ paragraph: String) -> MarkdownBlock? {
-        let beginMarker = "\\begin{align*}"
-        let endMarker = "\\end{align*}"
+        if let (_, content) = extractAlignmentEnvironment(paragraph) {
+            return .math(content)
+        }
+        return nil
+    }
+    
+    /// 从字符串中提取 \begin{...}...\end{...} 环境的内容，支持多种环境
+    /// - Returns: (环境名, 内容) 或 nil
+    static func extractAlignmentEnvironment(_ input: String) -> (environment: String, content: String)? {
+        let patterns = [
+            "align\\*?",      // align 或 align*
+            "aligned",        // aligned
+            "gathered",       // gathered
+            "split",          // split
+            "equation\\*?"    // equation 或 equation*
+        ]
 
-        guard let beginRange = paragraph.range(of: beginMarker),
-              let endRange = paragraph.range(of: endMarker, options: [], range: nil)
-        else {
-            // 没有找到完整的 \begin{align*} 或 \end{align*}
-            return nil
+        for pattern in patterns {
+            // 构造 \begin{...} 的模式
+            // \\begin Swift 会把它解释为：\begin（一个反斜杠）
+            // 正则引擎看到的是 \begin
+            // 但正则引擎中：
+            // \b 是特殊含义：单词边界（word boundary）
+            // 所以我们不能让正则引擎把 \b 当作“单词边界”，而要当作字面量 \ + b
+            // → 所以我们必须写成
+            // \\\\begin
+            let beginPattern = "\\\\begin\\{\(pattern)\\}"
+            let endPattern = "\\\\end\\{\(pattern)\\}"
+            
+            guard let beginRange = input.range(of: beginPattern, options: .regularExpression),
+                  let endRange = input.range(of: endPattern, options: .regularExpression)
+            else { continue }
+
+            // 确保 \begin 在 \end 前
+            guard beginRange.lowerBound < endRange.lowerBound else { continue }
+
+            // 提取内容
+            let contentStart = input.index(beginRange.upperBound, offsetBy: 0)
+            let contentEnd = input.index(endRange.lowerBound, offsetBy: 0)
+            let content = String(input[contentStart..<contentEnd])
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+
+            return (pattern, content)
         }
 
-        // 确保 \begin 在 \end 前面
-        guard beginRange.lowerBound < endRange.lowerBound else {
-            return nil
-        }
-
-        // 提取中间内容
-        let contentStart = beginRange.upperBound
-        let contentEnd = endRange.lowerBound
-        let content = String(paragraph[contentStart..<contentEnd])
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-
-        return .math(content)
+        return nil
     }
     
     static func parseImage(from line: String) -> MarkdownBlock? {

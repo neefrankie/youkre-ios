@@ -68,12 +68,15 @@ struct MarkdownView: View {
     这里 𝑙ₜ, π, t 都是常数，T 是变量。
 
     ### 步骤 3：对 D 关于 T 求导
-
-    \begin{align*}
-    \frac{dD}{dT} &= \frac{1}{\pi} \cdot l_t \cdot \frac{d}{dT} [1 + 0.000012(T-t)] \\
+    
+    $$
+    \begin{aligned}
+    \frac{dD}{dT} &= \frac{1}{\pi} \cdot l_t \\
+    &\cdot \frac{d}{dT} [1 + 0.000012(T-t)] \\
     &= \frac{1}{\pi} \cdot l_t \cdot 0.000012 \\
     &= \frac{l_t}{\pi} \times 0.000012
-    \end{align*}
+    \end{aligned}
+    $$
 
     ### 物理意义解释
 
