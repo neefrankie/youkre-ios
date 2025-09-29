@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易微积分6: 和、差、积与商的导数 | 优克 - 数学与计算机科学</title>
+    
+<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+
+<link rel="stylesheet" href="../css/katex.min.css"/>
+
+
+    <style>:root {
+    --color-teal: #0d7680;
+    --color-teal20: #052f33;
+    --color-teal30: #08474d;
+    --color-teal40: #0a5e66;
+    --color-teal50: #0d7680;
+    --color-teal60: #0f8e99;
+    --color-teal70: #12a5b3;
+    --color-teal80: #14bdcc;
+    --color-teal90: #17d4e6;
+    --color-teal100: #1aecff;
+    --color-emerald: #009b77;
+    --color-bs-dark: #212529;
+    --color-youkre-yellow: #cabdab;
+    --color-youkre-cyan: #71a9be;
+    --color-bg-gray: #EEEDF1;
+    --header-height: 60px;
+    --footer-height: 60px;
+    --radius: 8px;
+}
+body {
+    font-family: -apple-system, sans-serif;
+    font-size: 18px;
+    padding: 8px;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-x: hidden; /* Prevent horizontal scrolling of the whole page */
+}
+a {
+    color: var(--color-teal);
+    text-decoration: none;
+}
+.bg-emerald {
+    background-color: var(--color-emerald);
+}
+.logo {
+    margin-inline-end: auto;
+    line-height: var(--header-height);
+}
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+}
+.logo a img {
+    display: inline;
+    vertical-align: middle;
+    pointer-events: none;
+    transform: translate(0, -10%);
+    border-radius: 6px;
+}
+html[data-bs-theme="dark"] #moon {
+    vertical-align: middle;
+    display: none;
+}
+html:not([data-bs-theme="dark"]) #sun {
+    display: none;
+}</style>
+    
+    <style>
+    h1, h2, h3, h4 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+figure { 
+  text-align: center;
+}
+figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+div.math {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap; /* Prevent breaking long formulas */
+}
+.note {
+    border: 1px solid var(--color-teal);
+    border-radius: 0.375rem;
+    padding: 0.5em;
+}
+.formula-section {
+    display: grid;
+    grid-template-columns: 1fr; /* 在小屏幕上变为单列 */
+    gap: 10px;
+}
+.formula-card {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .formula-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.card {
+  margin-bottom: 1em;
+}
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #222222 }
+.highlight { background: #000000; color: #CCC }
+.highlight .c { color: #000080 } /* Comment */
+.highlight .err { color: #CCC; border: 1px solid #F00 } /* Error */
+.highlight .esc { color: #CCC } /* Escape */
+.highlight .g { color: #CCC } /* Generic */
+.highlight .k { color: #CDCD00 } /* Keyword */
+.highlight .l { color: #CCC } /* Literal */
+.highlight .n { color: #CCC } /* Name */
+.highlight .o { color: #39C } /* Operator */
+.highlight .x { color: #CCC } /* Other */
+.highlight .p { color: #CCC } /* Punctuation */
+.highlight .ch { color: #000080 } /* Comment.Hashbang */
+.highlight .cm { color: #000080 } /* Comment.Multiline */
+.highlight .cp { color: #000080 } /* Comment.Preproc */
+.highlight .cpf { color: #000080 } /* Comment.PreprocFile */
+.highlight .c1 { color: #000080 } /* Comment.Single */
+.highlight .cs { color: #CD0000; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #CD0000 } /* Generic.Deleted */
+.highlight .ge { color: #CCC; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #CCC; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #F00 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00CD00 } /* Generic.Inserted */
+.highlight .go { color: #888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #CCC; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #CDCD00 } /* Keyword.Constant */
+.highlight .kd { color: #00CD00 } /* Keyword.Declaration */
+.highlight .kn { color: #CD00CD } /* Keyword.Namespace */
+.highlight .kp { color: #CDCD00 } /* Keyword.Pseudo */
+.highlight .kr { color: #CDCD00 } /* Keyword.Reserved */
+.highlight .kt { color: #00CD00 } /* Keyword.Type */
+.highlight .ld { color: #CCC } /* Literal.Date */
+.highlight .m { color: #CD00CD } /* Literal.Number */
+.highlight .s { color: #CD0000 } /* Literal.String */
+.highlight .na { color: #CCC } /* Name.Attribute */
+.highlight .nb { color: #CD00CD } /* Name.Builtin */
+.highlight .nc { color: #00CDCD } /* Name.Class */
+.highlight .no { color: #CCC } /* Name.Constant */
+.highlight .nd { color: #CCC } /* Name.Decorator */
+.highlight .ni { color: #CCC } /* Name.Entity */
+.highlight .ne { color: #669; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #CCC } /* Name.Function */
+.highlight .nl { color: #CCC } /* Name.Label */
+.highlight .nn { color: #CCC } /* Name.Namespace */
+.highlight .nx { color: #CCC } /* Name.Other */
+.highlight .py { color: #CCC } /* Name.Property */
+.highlight .nt { color: #CCC } /* Name.Tag */
+.highlight .nv { color: #00CDCD } /* Name.Variable */
+.highlight .ow { color: #CDCD00 } /* Operator.Word */
+.highlight .pm { color: #CCC } /* Punctuation.Marker */
+.highlight .w { color: #CCC } /* Text.Whitespace */
+.highlight .mb { color: #CD00CD } /* Literal.Number.Bin */
+.highlight .mf { color: #CD00CD } /* Literal.Number.Float */
+.highlight .mh { color: #CD00CD } /* Literal.Number.Hex */
+.highlight .mi { color: #CD00CD } /* Literal.Number.Integer */
+.highlight .mo { color: #CD00CD } /* Literal.Number.Oct */
+.highlight .sa { color: #CD0000 } /* Literal.String.Affix */
+.highlight .sb { color: #CD0000 } /* Literal.String.Backtick */
+.highlight .sc { color: #CD0000 } /* Literal.String.Char */
+.highlight .dl { color: #CD0000 } /* Literal.String.Delimiter */
+.highlight .sd { color: #CD0000 } /* Literal.String.Doc */
+.highlight .s2 { color: #CD0000 } /* Literal.String.Double */
+.highlight .se { color: #CD0000 } /* Literal.String.Escape */
+.highlight .sh { color: #CD0000 } /* Literal.String.Heredoc */
+.highlight .si { color: #CD0000 } /* Literal.String.Interpol */
+.highlight .sx { color: #CD0000 } /* Literal.String.Other */
+.highlight .sr { color: #CD0000 } /* Literal.String.Regex */
+.highlight .s1 { color: #CD0000 } /* Literal.String.Single */
+.highlight .ss { color: #CD0000 } /* Literal.String.Symbol */
+.highlight .bp { color: #CD00CD } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #CCC } /* Name.Function.Magic */
+.highlight .vc { color: #00CDCD } /* Name.Variable.Class */
+.highlight .vg { color: #00CDCD } /* Name.Variable.Global */
+.highlight .vi { color: #00CDCD } /* Name.Variable.Instance */
+.highlight .vm { color: #00CDCD } /* Name.Variable.Magic */
+.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */
+    </style>
+    
+    
+</head>
+<body id="top">
+
+
+
+
+<main class="min-vh-100" role="main">
+    <div class="container">
+        
+<div class="row pt-3 justify-content-center">
+    <article class="col-12 col-md-8">
+        <h2 class="text-center"><span>6.</span><span class="ps-2">和、差、积与商的导数</span></h2>
+        <div><h2>和、差的导数</h2>
+
+<p>我们已经学习了如何对 <span class="math">\(x^2 + c\)</span> 或 <span class="math">\(ax^4\)</span> 这样的简单代数函数求导，接下来需要探讨的是，如何对两个或多个函数的<strong>和</strong>进行求导。</p>
+
+<p>举个例子，假设</p>
+
+<div class="math">
+$$
+y = (x^2+c) + (ax^4+b)
+$$
+</div>
+
+<p>那么它的 <span class="math">\(\dfrac{dy}{dx}\)</span> 会是什么？我们该如何着手处理这类新问题？</p>
+
+<p>答案其实非常简单：你只需逐个对这些函数分别求导，然后把结果相加即可。例如，上面这个例子的结果就是：</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = 2x + 4ax^3
+$$
+</div>
+
+<p>如果你对这个做法是否正确还有疑问，不妨用更一般化的方法，从基本原理出发来验证一下。具体过程如下：</p>
+
+<p>设 <span class="math">\(y = u + v\)</span>，其中 <span class="math">\(u\)</span> 是关于 <span class="math">\(x\)</span> 的任意函数，<span class="math">\(v\)</span> 是另一个关于 <span class="math">\(x\)</span> 的函数。当 <span class="math">\(x\)</span> 增加到 <span class="math">\(x+dx\)</span> 时，<span class="math">\(y\)</span> 会相应地增加到 <span class="math">\(y+dy\)</span>，同时 <span class="math">\(u\)</span> 增加到 <span class="math">\(u+du\)</span>，<span class="math">\(v\)</span> 增加到 <span class="math">\(v+dv\)</span>。</p>
+
+<p>于是我们有：</p>
+
+<div class="math">
+$$
+y+dy = u+du + v+dv
+$$
+</div>
+
+<p>减去原来的等式 <span class="math">\(y = u + v\)</span>，得到</p>
+
+<div class="math">
+$$
+dy = du+dv
+$$
+</div>
+
+<p>两边同时除以 <span class="math">\(dx\)</span>，便得到：</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = \dfrac{du}{dx} + \dfrac{dv}{dx}
+$$
+</div>
+
+<p>这就为我们之前的做法提供了理论依据：对每个函数分别求导，然后将结果相加。现在我们再回过头来看前面那个例子，把两个函数的具体形式代入，采用第3章介绍的记号，就有</p>
+
+<div class="math">
+$$
+\begin{alignat*}{2}
+\frac{dy}{dx}
+  &amp; = \frac{d(x^2+c)}{dx} &amp;&amp;+ \frac{d(ax^4+b)}{dx} \\
+  &amp; = 2x                  &amp;&amp;+ 4ax^3
+\end{alignat*}
+$$
+</div>
+
+<p>结果与之前完全一致。</p>
+
+<p>如果有三个关于 <span class="math">\(x\)</span> 的函数，我们称它们为 <span class="math">\(u\)</span>、<span class="math">\(v\)</span> 和 <span class="math">\(w\)</span>，即</p>
+
+<div class="math">
+$$
+\begin{aligned}
+y &amp;= u+v+w \\
+\frac{dy}{dx} &amp;= \frac{du}{dx} + \frac{dv}{dx} + \frac{dw}{dx}
+\end{aligned}
+$$
+</div>
+
+<p>至于<strong>减法</strong>，结论也顺理成章：如果函数 <span class="math">\(v\)</span> 前面带有负号，那么它的导数也会是负的。例如，对</p>
+
+<div class="math">
+$$
+\begin{align*}
+y &amp;= u-v \\
+\frac{dy}{dx} &amp;= \frac{du}{dx} - \frac{dv}{dx}.
+\end{align*}
+$$
+</div>
+
+<p>求导，结果自然如此。</p>
+
+<p>然而，当我们处理<strong>乘积</strong>时，情况就没那么简单了。</p>
+
+<h2>积的导数</h2>
+
+<p>假设我们要对下面这个表达式求导：</p>
+
+<div class="math">
+$$
+y = (x^2+c) × (ax^4+b)
+$$
+</div>
+
+<p>该怎么办呢？结果当然<strong>不会</strong>是 <span class="math">\(2x × 4ax^3\)</span>；因为很容易看出，像 <span class="math">\(c × ax^4\)</span> 或 <span class="math">\(x^2 × b\)</span> 这样的项在 <span class="math">\(2x × 4ax^3\)</span> 中根本没有体现出来。</p>
+
+<p>现在，我们有两种方法可以解决这个问题。</p>
+
+<h3>第一种方法</h3>
+
+<p><strong>先进行乘法运算，把表达式展开后再求导。</strong>。</p>
+
+<p>于是，我们将 <span class="math">\(x^2 + c\)</span> 和 <span class="math">\(ax^4 + b\)</span> 相乘，得到：</p>
+
+<div class="math">
+$$
+ax^6 + acx^4 + bx^2 + bc
+$$
+</div>
+
+<p>然后对这个结果求导，得到：</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = 6ax^5 + 4acx^3 + 2bx
+$$
+</div>
+
+<h3>第二种方法</h3>
+
+<p>回到微分的定义，考虑方程</p>
+
+<div class="math">
+$$
+y = u × v
+$$
+</div>
+
+<p>其中 <span class="math">\(u\)</span> 是关于 <span class="math">\(x\)</span> 的一个函数，<span class="math">\(v\)</span> 是另一个关于 <span class="math">\(x\)</span> 的函数。当 <span class="math">\(x\)</span> 增加到 <span class="math">\(x+dx\)</span> 时，<span class="math">\(y\)</span> 变为 <span class="math">\(y+dy\)</span>，<span class="math">\(u\)</span> 变为 <span class="math">\(u+du\)</span>，<span class="math">\(v\)</span> 变为 <span class="math">\(v+dv\)</span>。于是我们有：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+y + dy &amp;= (u + du) × (v + dv) \\
+        &amp;= u · v + u · dv + v · du + du · dv
+\end{aligned}
+$$
+</div>
+
+<p>其中，<span class="math">\(du · dv\)</span> 是一个二阶无穷小量，在取极限时可以忽略不计。因此，上式简化为：</p>
+
+<div class="math">
+$$
+y + dy = u · v + u · dv + v · du
+$$
+</div>
+
+<p>再减去原来的等式 <span class="math">\(y = u · v\)</span>，得到：</p>
+
+<div class="math">
+$$
+dy = u · dv + v · du
+$$
+</div>
+
+<p>两边同时除以 <span class="math">\(dx\)</span>，便得到：</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = u \dfrac{dv}{dx} + v \dfrac{du}{dx}
+$$
+</div>
+
+<p>这个结果告诉我们具体的操作步骤是：</p>
+
+<blockquote>
+<p>对两个函数的乘积求导时，将每个函数乘以另一个函数的导数，然后把这两个乘积相加。</p>
+</blockquote>
+
+<p>你应当注意到，这个过程实际上可以这样理解：先将 <span class="math">\(u\)</span> 视为常数，对 <span class="math">\(v\)</span> 求导；再将 <span class="math">\(v\)</span> 视为常数，对 <span class="math">\(u\)</span> 求导；最终的导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 就是这两部分结果的和。</p>
+
+<p>现在，我们已经得到了这个通用法则，接下来就把它应用到前面那个具体例子中。</p>
+
+<p>我们要对乘积</p>
+
+<div class="math">
+$$
+(x^2 + c) × (ax^4 + b)
+$$
+</div>
+
+<p>求导。</p>
+
+<p>令 <span class="math">\(u = x^2 + c\)</span>，<span class="math">\(v = ax^4 + b\)</span>。</p>
+
+<p>根据刚刚推导出的法则，可以写出：</p>
+
+<div class="math">
+$$
+\begin{alignat*}{2}
+\dfrac{dy}{dx}
+&amp;= (x^2 + c)\, \frac{d(ax^4 + b)}{dx} &amp;&amp;+ (ax^4 + b)\, \frac{d(x^2 + c)}{dx} \\
+&amp;= (x^2 + c)\, 4ax^3                  &amp;&amp;+ (ax^4 + b)\, 2x \\
+&amp;= 4ax^5 + 4acx^3                     &amp;&amp;+ 2ax^5 + 2bx,   \\
+\dfrac{dy}{dx}
+&amp;= 6ax^5 + 4acx^3                     &amp;&amp;+ 2bx,
+\end{alignat*}
+$$
+</div>
+
+<p>结果与之前完全一致。</p>
+
+<p>最后，我们要对<strong>商</strong>求导。</p>
+
+<h2>商的导数</h2>
+
+<p>考虑这样一个例子：<span class="math">\(y = \dfrac{bx^5 + c}{x^2 + a}\)</span>。在这种情况下，事先尝试把除法算出来是行不通的，因为 <span class="math">\(x^2 + a\)</span> 无法整除 <span class="math">\(bx^5 + c\)</span>，而且两者也没有公因式。因此，我们别无选择，只能回到基本原理，推导出一个通用法则。</p>
+
+<p>我们设</p>
+
+<div class="math">
+$$
+y = \frac{u}{v}
+$$
+</div>
+
+<p>其中 <span class="math">\(u\)</span> 和 <span class="math">\(v\)</span> 是自变量 <span class="math">\(x\)</span> 的两个不同函数。当 <span class="math">\(x\)</span> 变为 <span class="math">\(x + dx\)</span> 时，<span class="math">\(y\)</span> 变为 <span class="math">\(y + dy\)</span>，<span class="math">\(u\)</span> 变为 <span class="math">\(u + du\)</span>，<span class="math">\(v\)</span> 变为 <span class="math">\(v + dv\)</span>。于是有：</p>
+
+<div class="math">
+$$
+y + dy = \dfrac{u + du}{v + dv}
+$$
+</div>
+
+<p>现在进行代数除法运算：</p>
+
+<figure>
+
+<img alt="Long division for quotient rule" src="images/cme-fig-quotient-rule-long-division.svg"/>
+</figure>
+
+<p>由于这些余项都是二阶无穷小量，在极限过程中可以忽略不计，因此除法到此为止即可——后续产生的余项只会更小。</p>
+
+<p>于是我们得到：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+y + dy &amp;= \dfrac{u}{v} + \dfrac{du}{v} - \dfrac{u· dv}{v^2} \\
+&amp;= \dfrac{u}{v} + \dfrac{v· du - u· dv}{v^2}
+\end{aligned}
+$$
+</div>
+
+<p>从上式中减去原来的 <span class="math">\(y = \dfrac{u}{v}\)</span>，得到：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+dy &amp;= \dfrac{v · du - u · dv}{v^2} \\
+\dfrac{dy}{dx}
+&amp;= \dfrac{v\, \dfrac{du}{dx} - u\, \dfrac{dv}{dx}}{v^2}
+\end{aligned}
+$$
+</div>
+
+<p>这就给出了<strong>分式求导的法则</strong>：</p>
+
+<blockquote>
+<p>用除数函数乘以被除数函数的微分系数；然后用被除数函数乘以除数函数的微分系数，并相减。最后除以除数函数的平方。</p>
+</blockquote>
+
+<p>回到我们的例子</p>
+
+<div class="math">
+$$
+y = \dfrac{bx^5 + c}{x^2 + a}
+$$
+</div>
+
+<p>设 <span class="math">\(bx^5 + c = u\)</span> 并设 <span class="math">\(x^2  + a = v\)</span>。</p>
+
+<p>则有：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+\frac{dy}{dx}
+&amp;= \frac{(x^2 + a)\, \dfrac{d(bx^5 + c)}{dx} - (bx^5 + c)\, \dfrac{d(x^2 + a)}{dx}}{(x^2 + a)^2} \\
+&amp;= \frac{(x^2 + a)(5bx^4) - (bx^5 + c)(2x)}{(x^2 + a)^2}, \\
+\frac{dy}{dx}
+&amp;= \frac{3bx^6 + 5abx^4 - 2cx}{(x^2 + a)^2}.
+\end{aligned}
+$$
+</div>
+
+<p>计算分式的导数常常比较繁琐，但只要掌握了这个法则，过程本身并不困难。</p>
+
+<p>接下来我们给出一些完整求导的例子，来学习符合使用这些法则。</p></div>
+    </article>
+</div>
+
+    </div>
+</main>
+
+
+
+
+
+<script defer src="../js/katex.min.js"></script>
+<script defer src="../js/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: "\\begin{align*}", right: "\\end{align*}", display: true}
+        ]
+    });
+});
+</script>
+
+
+</body>
+</html>
