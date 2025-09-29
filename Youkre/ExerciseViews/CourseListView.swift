@@ -42,24 +42,34 @@ struct CourseListView: View {
                 Text(error)
             }
         }
-        .task {
-            await loadCourses()
+        .onAppear {
+            loadCourses()
         }
         
     }
     
-    @MainActor
-    private func loadCourses() async {
+    private func loadCourses() {
         isLoading = true
         
-        do {
-            let courses = try await ExerciseDataSource.shared.loadCourse()
-            self.courses = courses
-        } catch {
-            print(error)
-            self.error = error.localizedDescription
+        Task(priority: .background) {
+            do {
+                let courses = try await ExerciseDataSource.shared.loadCourse()
+                
+                await MainActor.run {
+                    self.courses = courses
+                    isLoading = false
+                }
+                
+            } catch {
+                print(error)
+                await MainActor.run {
+                    self.error = error.localizedDescription
+                    isLoading = false
+                }
+                
+            }
+            
         }
-        isLoading = false
     }
 }
 
