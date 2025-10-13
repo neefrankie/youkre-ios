@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="ps-2">三角形</span></h2>
-        <div><div class="row align-items-center">
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span class="ps-2">三角形</span></h2>
+<div><div class="row align-items-center">
 <div class="col-12 col-sm-6">
 
 <ul>
@@ -224,7 +232,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </div>
 <figure class="text-center col-12 col-sm-6">
 
-<img alt="三角形的角度" src="images/triangle-angles.svg"/>
+<p><img alt="三角形的角度" src="images/triangle-angles.svg"/></p>
 </figure>
 </div>
 
@@ -237,7 +245,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="row align-items-center">
 <figure class="col-12 col-sm-4">
 
-<img alt="等边三角形" src="images/triangle-equilateral.svg"/>
+<p><img alt="等边三角形" src="images/triangle-equilateral.svg"/></p>
 </figure>
 
 <div class="col-12 col-sm-8"> 
@@ -250,7 +258,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="row align-items-center">
 <figure class="col-12 col-sm-4">
 
-<img alt="等腰三角形" src="images/triangle-isosceles.svg"/>
+<p><img alt="等腰三角形" src="images/triangle-isosceles.svg"/></p>
 </figure>
 <div class="col-12 col-sm-8">
 
@@ -262,7 +270,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="row align-items-center">
 <figure class="col-12 col-sm-4">
 
-<img alt="不等边三角形" src="images/triangle-scalene.svg"/>
+<p><img alt="不等边三角形" src="images/triangle-scalene.svg"/></p>
 </figure>
 <div class="col-12 col-sm-8">
 **不等边三角形**：没有相等的边，也没有相等的角。
@@ -282,7 +290,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="row align-items-center">
 <figure class="col-12 col-sm-4">
 
-<img alt="锐角三角形" src="images/triangle-acute.svg"/>
+<p><img alt="锐角三角形" src="images/triangle-acute.svg"/></p>
 </figure>
 <div class="col-12 col-sm-8">
 
@@ -294,7 +302,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="row align-items-center">
 <figure class="col-12 col-sm-4">
 
-<img alt="直角三角形" src="images/triangle-right.svg"/>
+<p><img alt="直角三角形" src="images/triangle-right.svg"/></p>
 </figure>
 <div class="col-12 col-sm-8">
 
@@ -306,7 +314,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="row align-items-center">
 <figure class="col-12 col-sm-4">
 
-<img alt="钝角三角形" src="images/triangle-obtuse.svg"/>
+<p><img alt="钝角三角形" src="images/triangle-obtuse.svg"/></p>
 </figure>
 <div class="col-12 col-sm-8">
 
@@ -327,7 +335,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="row align-items-center">
 <figure class="col-12 col-sm-4">
 
-<img alt="直角等腰三角形" src="images/triangle-right-isosceles.svg"/>
+<p><img alt="直角等腰三角形" src="images/triangle-right-isosceles.svg"/></p>
 </figure>
 <div class="col-12 col-sm-8">
 
@@ -356,15 +364,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><span class="math">\(b\)</span> 是底边的长度。</li>
 <li><span class="math">\(h\)</span> 是高（从顶点垂直量到底边的距离）。</li>
 </ul>
-<div class="math">$$
+<div class="math">
+$$
 \text{面积} = \frac{1}{2} \times b \times h
-$$</div>
+$$
+</div>
 <p>这个公式适用于所有三角形。</p>
 </div>
 <div class="col-12 col-sm-4">
 <figure>
 
-<img alt="底和高" src="images/triangle-b-h.svg"/>
+<p><img alt="底和高" src="images/triangle-b-h.svg"/></p>
 </figure>
 </div>
 </div>
@@ -388,7 +398,7 @@ $$</div>
 </div>
 <figure class="col-12 col-sm-4">
 
-<img alt="面积示例" src="images/triangle-area-example.svg"/>
+<p><img alt="面积示例" src="images/triangle-area-example.svg"/></p>
 </figure>
 </div>
 
@@ -403,10 +413,11 @@ $$</div>
 
 <figure>
 
-<img alt="面积推导" src="images/triangle-area.svg"/>
+<p><img alt="面积推导" src="images/triangle-area.svg"/></p>
 </figure>
 
 <p>这样整个图形的面积是 <span class="math">\(bh\)</span>，但这是两个三角形的总面积。所以一个三角形的面积就是 <span class="math">\(\frac{1}{2} \times bh\)</span>。</p></div>
+
     </article>
 </div>
 

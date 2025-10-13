@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span>3.1.</span><span class="ps-2">微分符号怎么读</span></h2>
-        <div><p>千万不要犯一些初学者的错误，把 <span class="math">\(dx\)</span> 看成是 <span class="math">\(d\)</span> 乘以 <span class="math">\(x\)</span>。这里的 <span class="math">\(d\)</span> 并不是一个因子，它的意思是“……的一个微小部分”或“……的一个微量”。所以 <span class="math">\(dx\)</span> 应该读作“dee-eks”。</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>3.1.</span><span class="ps-2">微分符号怎么读</span></h2>
+<div><p>千万不要犯一些初学者的错误，把 <span class="math">\(dx\)</span> 看成是 <span class="math">\(d\)</span> 乘以 <span class="math">\(x\)</span>。这里的 <span class="math">\(d\)</span> 并不是一个因子，它的意思是“……的一个微小部分”或“……的一个微量”。所以 <span class="math">\(dx\)</span> 应该读作“dee-eks”。</p>
 
 <p>如果读者没有人指导这类问题，这里简单说明一下导数的读法。<span class="math">\(\dfrac{dy}{dx}\)</span> 读作 <span class="math">\(y\)</span> 关于 <span class="math">\(x\)</span> 的导数。同样，<span class="math">\(\dfrac{du}{dt}\)</span> 表示 u 关于 t 的导数。</p>
 
@@ -227,6 +235,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>意思是对 <span class="math">\(y\)</span> 关于 <span class="math">\(x\)</span> 的求导运算已经（或将要）进行两次。</p>
 
 <p>还有一种表示函数已被求导的方式是在函数符号上加一个撇号（'）。例如，如果 <span class="math">\(y=F(x)\)</span> 表示 <span class="math">\(y\)</span> 是 <span class="math">\(x\)</span> 的某个未指明的函数，那么可以用  <span class="math">\(F'(x)\)</span> 来代替 <span class="math">\(\dfrac{d\bigl(F(x)\bigr)}{dx}\)</span>。类似地，<span class="math">\(F''(x)\)</span> 表示原函数 <span class="math">\(F(x)\)</span> 已对 <span class="math">\(x\)</span> 求导了两次。</p></div>
+
     </article>
 </div>
 

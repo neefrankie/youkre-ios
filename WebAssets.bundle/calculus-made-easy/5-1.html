@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span>5.1.</span><span class="ps-2">常数求导示例</span></h2>
-        <div><p>以下是一些例题，有完整解答。</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>5.1.</span><span class="ps-2">常数求导示例</span></h2>
+<div><p>以下是一些例题，有完整解答。</p>
 
 <p><strong>(1)</strong> 求</p>
 
@@ -349,6 +357,7 @@ r &amp;= h = \sqrt{\dfrac{400}{2\pi}} \approx 7.98
 <p>当 <span class="math">\(t = 800\)</span>、<span class="math">\(1000\)</span>、<span class="math">\(1200\)</span> 时，对应的 <span class="math">\(\dfrac{d\theta}{dt}\)</span> 分别为 <span class="math">\(0.0512\)</span>、<span class="math">\(0.1\)</span> 和 <span class="math">\(0.1728\)</span>。</p>
 
 <p>由此可见，灵敏度从 <span class="math">\(800^\circ \text{C}\)</span> 到 <span class="math">\(1000^\circ \text{C}\)</span> 约翻了一倍，再从 <span class="math">\(1000^\circ \text{C}\)</span> 到 <span class="math">\(1200^\circ \text{C}\)</span> 又增加了约四分之三。</p></div>
+
     </article>
 </div>
 

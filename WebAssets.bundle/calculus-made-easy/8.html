@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易微积分8: 瞬时之变：用导数解读运动 | 优克 - 数学与计算机科学</title>
+    
+<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+
+<link rel="stylesheet" href="../css/katex.min.css"/>
+
+
+    <style>:root {
+    --color-teal: #0d7680;
+    --color-teal20: #052f33;
+    --color-teal30: #08474d;
+    --color-teal40: #0a5e66;
+    --color-teal50: #0d7680;
+    --color-teal60: #0f8e99;
+    --color-teal70: #12a5b3;
+    --color-teal80: #14bdcc;
+    --color-teal90: #17d4e6;
+    --color-teal100: #1aecff;
+    --color-emerald: #009b77;
+    --color-bs-dark: #212529;
+    --color-youkre-yellow: #cabdab;
+    --color-youkre-cyan: #71a9be;
+    --color-bg-gray: #EEEDF1;
+    --header-height: 60px;
+    --footer-height: 60px;
+    --radius: 8px;
+}
+body {
+    font-family: -apple-system, sans-serif;
+    font-size: 18px;
+    padding: 8px;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-x: hidden; /* Prevent horizontal scrolling of the whole page */
+}
+a {
+    color: var(--color-teal);
+    text-decoration: none;
+}
+.bg-emerald {
+    background-color: var(--color-emerald);
+}
+.logo {
+    margin-inline-end: auto;
+    line-height: var(--header-height);
+}
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+}
+.logo a img {
+    display: inline;
+    vertical-align: middle;
+    pointer-events: none;
+    transform: translate(0, -10%);
+    border-radius: 6px;
+}
+html[data-bs-theme="dark"] #moon {
+    vertical-align: middle;
+    display: none;
+}
+html:not([data-bs-theme="dark"]) #sun {
+    display: none;
+}</style>
+    
+    <style>
+    h1, h2, h3, h4 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+figure { 
+  text-align: center;
+}
+figure img, p img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+div.math {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap; /* Prevent breaking long formulas */
+}
+.note {
+    border: 1px solid var(--color-teal);
+    border-radius: 0.375rem;
+    padding: 0.5em;
+}
+.formula-section {
+    display: grid;
+    grid-template-columns: 1fr; /* 在小屏幕上变为单列 */
+    gap: 10px;
+}
+.formula-card {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .formula-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.card {
+  margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
+}
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #222222 }
+.highlight { background: #000000; color: #CCC }
+.highlight .c { color: #000080 } /* Comment */
+.highlight .err { color: #CCC; border: 1px solid #F00 } /* Error */
+.highlight .esc { color: #CCC } /* Escape */
+.highlight .g { color: #CCC } /* Generic */
+.highlight .k { color: #CDCD00 } /* Keyword */
+.highlight .l { color: #CCC } /* Literal */
+.highlight .n { color: #CCC } /* Name */
+.highlight .o { color: #39C } /* Operator */
+.highlight .x { color: #CCC } /* Other */
+.highlight .p { color: #CCC } /* Punctuation */
+.highlight .ch { color: #000080 } /* Comment.Hashbang */
+.highlight .cm { color: #000080 } /* Comment.Multiline */
+.highlight .cp { color: #000080 } /* Comment.Preproc */
+.highlight .cpf { color: #000080 } /* Comment.PreprocFile */
+.highlight .c1 { color: #000080 } /* Comment.Single */
+.highlight .cs { color: #CD0000; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #CD0000 } /* Generic.Deleted */
+.highlight .ge { color: #CCC; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #CCC; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #F00 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00CD00 } /* Generic.Inserted */
+.highlight .go { color: #888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #CCC; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #CDCD00 } /* Keyword.Constant */
+.highlight .kd { color: #00CD00 } /* Keyword.Declaration */
+.highlight .kn { color: #CD00CD } /* Keyword.Namespace */
+.highlight .kp { color: #CDCD00 } /* Keyword.Pseudo */
+.highlight .kr { color: #CDCD00 } /* Keyword.Reserved */
+.highlight .kt { color: #00CD00 } /* Keyword.Type */
+.highlight .ld { color: #CCC } /* Literal.Date */
+.highlight .m { color: #CD00CD } /* Literal.Number */
+.highlight .s { color: #CD0000 } /* Literal.String */
+.highlight .na { color: #CCC } /* Name.Attribute */
+.highlight .nb { color: #CD00CD } /* Name.Builtin */
+.highlight .nc { color: #00CDCD } /* Name.Class */
+.highlight .no { color: #CCC } /* Name.Constant */
+.highlight .nd { color: #CCC } /* Name.Decorator */
+.highlight .ni { color: #CCC } /* Name.Entity */
+.highlight .ne { color: #669; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #CCC } /* Name.Function */
+.highlight .nl { color: #CCC } /* Name.Label */
+.highlight .nn { color: #CCC } /* Name.Namespace */
+.highlight .nx { color: #CCC } /* Name.Other */
+.highlight .py { color: #CCC } /* Name.Property */
+.highlight .nt { color: #CCC } /* Name.Tag */
+.highlight .nv { color: #00CDCD } /* Name.Variable */
+.highlight .ow { color: #CDCD00 } /* Operator.Word */
+.highlight .pm { color: #CCC } /* Punctuation.Marker */
+.highlight .w { color: #CCC } /* Text.Whitespace */
+.highlight .mb { color: #CD00CD } /* Literal.Number.Bin */
+.highlight .mf { color: #CD00CD } /* Literal.Number.Float */
+.highlight .mh { color: #CD00CD } /* Literal.Number.Hex */
+.highlight .mi { color: #CD00CD } /* Literal.Number.Integer */
+.highlight .mo { color: #CD00CD } /* Literal.Number.Oct */
+.highlight .sa { color: #CD0000 } /* Literal.String.Affix */
+.highlight .sb { color: #CD0000 } /* Literal.String.Backtick */
+.highlight .sc { color: #CD0000 } /* Literal.String.Char */
+.highlight .dl { color: #CD0000 } /* Literal.String.Delimiter */
+.highlight .sd { color: #CD0000 } /* Literal.String.Doc */
+.highlight .s2 { color: #CD0000 } /* Literal.String.Double */
+.highlight .se { color: #CD0000 } /* Literal.String.Escape */
+.highlight .sh { color: #CD0000 } /* Literal.String.Heredoc */
+.highlight .si { color: #CD0000 } /* Literal.String.Interpol */
+.highlight .sx { color: #CD0000 } /* Literal.String.Other */
+.highlight .sr { color: #CD0000 } /* Literal.String.Regex */
+.highlight .s1 { color: #CD0000 } /* Literal.String.Single */
+.highlight .ss { color: #CD0000 } /* Literal.String.Symbol */
+.highlight .bp { color: #CD00CD } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #CCC } /* Name.Function.Magic */
+.highlight .vc { color: #00CDCD } /* Name.Variable.Class */
+.highlight .vg { color: #00CDCD } /* Name.Variable.Global */
+.highlight .vi { color: #00CDCD } /* Name.Variable.Instance */
+.highlight .vm { color: #00CDCD } /* Name.Variable.Magic */
+.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */
+    </style>
+    
+    
+</head>
+<body id="top">
+
+
+
+
+<main class="min-vh-100" role="main">
+    <div class="container">
+        
+<div class="row pt-3 justify-content-center">
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>8.</span><span class="ps-2">瞬时之变：用导数解读运动</span></h2>
+<div><p>在微积分所研究的诸多问题中，有一类极为重要，即<strong>以时间为自变量</strong>的问题。</p>
+
+<p>此时，我们需要思考：当时间发生变化时，其他某个量是如何随之变化的。</p>
+
+<p>有些事物随着时间推移而增长，有些则逐渐减少。例如，</p>
+
+<ul>
+<li>火车离起点的距离随着时间推移而不断增加；</li>
+<li>树木也随着岁月增长而越来越高。</li>
+</ul>
+
+<p>一株植物在一个月内从12厘米长到14厘米，一棵树在一年内从12米长到14米，二者哪个长得更快呢？</p>
+
+<p>本章将频繁使用“速率”（rate）一词。当一辆汽车从身边疾驰而过时，我们会说：“速度真快啊！”当一个挥金如土的人肆意花钱时，我们会评论道：“这年轻人花钱如流水啊！”</p>
+
+<p>那么，我们所说的“速率”究竟是什么意思？</p>
+
+<p>在上面两种情况下，我们实际上是在心中将某个正在发生的<strong>过程</strong>与其所花费的<strong>时间长度</strong>进行比较。如果汽车以每秒10米的速度飞驰而过，只需简单的心算就能知道，这相当于每分钟600米，或每小时36千米。</p>
+
+<p>那么，说“每秒10米的速度”与“每分钟600米”是相同的速率，究竟意味着什么？10米并不等于600米，一秒也绝不等于一分钟。我们所说的“速率相同”，指的是：<strong>所经过的距离与所用时间之间的比例关系</strong>，在这两种情况下是相同的。</p>
+
+<p>再举一个例子。一个人口袋里可能只有几十元钱，却仍能以每年数百万的速度花钱——只要他只持续花几分钟。假设你在便利店买一瓶水，价格是 2 元，扫码支付的动作恰好持续 1 秒钟。那么，在这一短暂的过程中，你正以每秒 2 元的速度花钱，这相当于每分钟 120 元，或每小时 7200 元，或每天 172,800 元，或每年 63,072,000 元！如果你身上有 100 元现金，你就能以每年六千多万的速度连续花上83秒多一点。</p>
+
+<p>现在，我们尝试将这些概念用导数表达出来。</p>
+
+<p>设 $ y $ 代表金钱，$ t $ 代表时间。</p>
+
+<p>如果你正在花钱，且在极短的时间 <span class="math">\(dt\)</span> 内花费的金额记为 <span class="math">\(dy\)</span>，那么花钱的“速率”就是 <span class="math">\(\dfrac{dy}{dt}\)</span>。更准确地说，应写作负值 <span class="math">\(-\dfrac{dy}{dt}\)</span>，因为 <span class="math">\(dy\)</span> 是一个减少量（减量），而非增加量（增量）。</p>
+
+<p>然而，金钱并非微积分的理想例子，因为金钱的收支通常是<strong>跳跃式</strong>的，而非连续流动的——你可能年收入约 <strong>8万元</strong>，但这笔钱并不会全天以细流的形式持续流入你的账户；它通常以<strong>月</strong>为单位，成笔支付；你的支出也同样是以购物、缴费等突然的支付形式发生的。这种“离散”的特性，使得金钱的总量并不像物理世界中的位置、温度或速度那样，是一个平滑连续变化的量。</p>
+
+<p>一个更能恰当地体现“速率”概念的例子，是运动物体的速度。</p>
+
+<h2>速度的变化</h2>
+
+<p>来看一个你可能很熟悉的场景：<strong>城际高铁</strong>。假设从 <strong>A市</strong> 到 <strong>B市</strong> 的距离大约是 <strong>300公里</strong>。一列高铁早上8点从A市站出发，于上午9点整抵达B市站。这意味着，它在 <strong>1小时</strong> 内完成了这段旅程。</p>
+
+<p>要计算它的平均速度，我们只需将总路程除以总时间：</p>
+
+<div class="math">
+$$
+\text{平均速度} = \frac{300  \text{公里}}{1  \text{小时}} = 300  \text{公里/小时}
+$$
+</div>
+
+<p>此时，你实际上是在心中将所经过的距离与所用时间进行比较，并用距离除以时间。如果用数学符号表示，设 <span class="math">\(y\)</span> 为总路程（单位：公里），<span class="math">\(t\)</span> 为总时间（单位：小时），那么平均速度 <span class="math">\(v_{\text{avg}}\)</span> 的计算公式就是：</p>
+
+<div class="math">
+$$
+v_{\text{avg}} = \frac{y}{t}
+$$
+</div>
+
+<p>这个例子诠释了“速率”的基本思想：<strong>它是距离变化量与时间变化量的比值</strong>。</p>
+
+<p>当然，这只是一个“平均”速度。在这1小时里，火车可能在市区起步时较慢，在郊区加速到350公里/小时，进站时又减速。这个“300公里/小时”掩盖了所有细节。那么，我们如何知道它在<strong>某一瞬间</strong>，比如出发后23分15秒时，到底开得多快呢？这就引出了“瞬时速度”的概念，也是微积分要解决的核心问题。</p>
+
+<p>科学上所说的“速度”（velocity），指的是在某一给定方向上，单位时间内通过的极短距离，因此可以写作：</p>
+
+<div class="math">
+$$
+v = \dfrac{dy}{dt}.
+$$
+</div>
+
+<p>但如果速度 <span class="math">\(v\)</span> 不是均匀的，那它必然在增加或减少。速度增加的快慢程度称为“加速度”（acceleration）。如果一个运动物体在某一瞬间，在极短时间 <span class="math">\(dt\)</span> 内获得了额外的速度增量 <span class="math">\(dv\)</span>，那么该瞬间的加速度 <span class="math">\(a\)</span> 可表示为：</p>
+
+<div class="math">
+$$
+a = \dfrac{dv}{dt};
+$$
+</div>
+
+<p>而 <span class="math">\(dv\)</span> 本身又是 <span class="math">\(d\left( \dfrac{dy}{dt} \right)\)</span>。因此，我们可以写成：</p>
+
+<div class="math">
+$$
+a = \frac{d\left( \dfrac{dy}{dt} \right)}{dt};
+$$
+</div>
+
+<p>这通常简写为</p>
+
+<div class="math">
+$$
+a = \dfrac{d^2y}{dt^2}
+$$
+</div>
+
+<p>也就是说，加速度是距离对时间的二阶导数。加速度的单位是<strong>单位时间内速度的变化量</strong>。</p>
+
+<p>例如，如果一个物体的加速度是 <span class="math">\(5  \text{m/s}^2\)</span>，这意味着<strong>它的速度每秒钟增加（或减少）5米每秒</strong>。</p>
+
+<p>这个单位读作“<strong>米每二次方秒</strong>”，记作 <span class="math">\(\text{m/s}^2\)</span>。</p>
+
+<p>当一列火车刚开始启动时，速度 <span class="math">\(v\)</span> 很小，但正在迅速加快 —— 即在牵引力的作用下加速，因此它的 <span class="math">\(\dfrac{d^2y}{dt^2}\)</span> 值很大。当火车达到最高速度后，就不再加速，此时 <span class="math">\(\dfrac{d^2y}{dt^2}\)</span> 已降至零。而当它接近终点站时，速度开始减慢；如果使用刹车，速度甚至会迅速下降。在这段“减速”或“放缓”的过程中，<span class="math">\(\dfrac{dv}{dt}\)</span>（也就是 <span class="math">\(\dfrac{d^2y}{dt^2}\)</span>）的值为负数。</p>
+
+<h2>力</h2>
+
+<p>要使质量为 <span class="math">\(m\)</span> 的物体产生加速度，必须持续施加力。使物体加速所需的力，与物体的质量成正比，同时也与所获得的加速度成正比。因此，对于力 <span class="math">\(f\)</span>，可以写出如下表达式：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+f &amp;= ma \\
+f &amp;= m \frac{dv}{dt} \\
+f &amp;= m \frac{d^2y}{dt^2}
+\end{aligned}
+$$
+</div>
+
+<h2>动量</h2>
+
+<p><strong>质量与其运动速度的乘积</strong>称为该物体的“<strong>动量</strong>”（momentum），符号表示为 <span class="math">\(mv\)</span>。</p>
+
+<p>如果对动量关于时间求导，就得到动量变化的速率</p>
+
+<div class="math">
+$$
+\dfrac{d(mv)}{dt}
+$$
+</div>
+
+<p>但由于质量 <span class="math">\(m\)</span> 是常数，这个表达式可写为</p>
+
+<div class="math">
+$$
+m \dfrac{dv}{dt}
+$$
+</div>
+
+<p>而这正是我们上面提到的力 <span class="math">\(f\)</span>。换句话说，力既可以表示为“质量乘以加速度”，也可以表示为“<strong>动量随时间的变化率</strong>”。</p>
+
+<h2>功</h2>
+
+<p>如果一个力被用来移动某个物体（对抗一个大小相等、方向相反的反作用力），那么这个力就在做“<strong>功</strong>”（work）。</p>
+
+<p>所做的功的大小，等于该<strong>力</strong>与其作用点在力的方向上前进了多远的<strong>距离</strong>的乘积。</p>
+
+<p>因此，如果一个恒定的力 <span class="math">\(f\)</span> 沿其方向移动了一段距离 <span class="math">\(y\)</span>，那么所做的功（我们记为 <span class="math">\(w\)</span>）就是：</p>
+
+<div class="math">
+$$
+w = f \times y
+$$
+</div>
+
+<p>这里假设 <span class="math">\(f\)</span> 是一个恒定的力。如果在距离 <span class="math">\(y\)</span> 的不同位置上，力的大小不同，那么就必须找出力在每一点上的具体表达式。</p>
+
+<p>设在一小段极短的距离 <span class="math">\(dy\)</span> 上的力为 <span class="math">\(f\)</span>，则在这段微小距离上所做的功就是 <span class="math">\(f × dy\)</span>。但由于 <span class="math">\(dy\)</span> 只是一个无限小的位移，因此所做的功也是一个无限小的量。如果用 <span class="math">\(w\)</span> 表示总功，那么这个微小的功就可以记为 <span class="math">\(dw\)</span>，于是有：</p>
+
+<div class="math">
+$$
+dw = f × dy
+$$
+</div>
+
+<p>这也可以写成：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+dw &amp;= ma·dy; \\
+dw &amp;= m \frac{d^2y}{dt^2}· dy; \\
+dw &amp;= m \frac{dv}{dt}· dy.
+\end{aligned}
+$$
+</div>
+
+<p>进一步，我们可以变换表达式，写作：</p>
+
+<div class="math">
+$$
+\frac{dw}{dy} &amp;= f
+$$
+</div>
+
+<p>这又为我们提供了“力”的第三种定义：如果一个力被用来在某个方向上产生位移，那么该方向上的力就等于单位长度上做功的速率（即功对位移的变化率）。在最后一句话中，“速率”一词显然不是指“时间上的快慢”，而是取其“比值”或“比例”的含义。</p>
+
+<h2>牛顿的导数符号</h2>
+
+<blockquote>
+<p>艾萨克·牛顿爵士（Sir Isaac Newton）与莱布尼茨（Leibniz）同为微积分方法的发明者。牛顿将随时间变化的物理量（如位置、速度等）视为“流动的量”；而我们现在称为“导数”的概念——即描述原函数如何变化的那个新函数——他则称之为该量的“流动的速率”，或称“流数”(fluxion)。</p>
+</blockquote>
+
+<p>牛顿并未使用 <span class="math">\(dy\)</span>、<span class="math">\(dx\)</span>、<span class="math">\(dt\)</span> 这样的符号（这是莱布尼茨的贡献），而是采用了自己的一套记号。如果 <span class="math">\(y\)</span> 是一个变化的、或者说“流动”的量，那么他用来表示其变化速率（即“流数”）的符号是 <span class="math">\(\dot{y}\)</span>。如果变量是 <span class="math">\(x\)</span>，那么它的流数就是 <span class="math">\(\dot{x}\)</span>。字母上方的点表示该量已被求导。</p>
+
+<p>但这种记号并不能告诉我们，是相对于哪一个自变量进行的求导。当看到 <span class="math">\(\dfrac{dy}{dt}\)</span> 时，我们知道 <span class="math">\(y\)</span> 是对 <span class="math">\(t\)</span> 求导；当看到 <span class="math">\(\dfrac{dy}{dx}\)</span> 时，我们知道 <span class="math">\(y\)</span> 是对 <span class="math">\(x\)</span> 求导。然而，如果只看到 <span class="math">\(\dot{y}\)</span>，除非结合上下文，否则无法判断它究竟表示 <span class="math">\(\dfrac{dy}{dx}\)</span>、<span class="math">\(\dfrac{dy}{dt}\)</span>、<span class="math">\(\dfrac{dy}{dz}\)</span>，还是对其他某个变量求导。</p>
+
+<p>因此，这种流数记号不如微分记号信息丰富，也因此在现代已基本弃用。</p>
+
+<p>不过，它的简洁性仍具优势，只要我们约定仅在“时间”作为自变量的情况下使用它。在这种情况下，<span class="math">\(\dot{y}\)</span> 表示 <span class="math">\(\dfrac{dy}{dt}\)</span>，<span class="math">\(\dot{u}\)</span> 表示 <span class="math">\(\dfrac{du}{dt}\)</span>，而 <span class="math">\(\ddot{x}\)</span> 表示 <span class="math">\(\dfrac{d^2x}{dt^2}\)</span>。</p>
+
+<p>采用这种流数记号后，我们可以将上文讨论的力学方程写作如下形式：</p>
+
+<div class="table-responsive"><table class="table"><thead>
+<tr>
+  <th style="text-align:left">物理量</th>
+  <th style="text-align:left">表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:left">位移</td>
+  <td style="text-align:left"><span class="math">\(x\)</span></td>
+</tr>
+<tr>
+  <td style="text-align:left">速度</td>
+  <td style="text-align:left"><span class="math">\(v = \dot{x}\)</span></td>
+</tr>
+<tr>
+  <td style="text-align:left">加速度</td>
+  <td style="text-align:left"><span class="math">\(a = \dot{v} = \ddot{x}\)</span></td>
+</tr>
+<tr>
+  <td style="text-align:left">力</td>
+  <td style="text-align:left"><span class="math">\(f = m\dot{v} = m\ddot{x}\)</span></td>
+</tr>
+<tr>
+  <td style="text-align:left">功</td>
+  <td style="text-align:left"><span class="math">\(w = x × m \ddot{x}\)</span></td>
+</tr>
+</tbody>
+</table></div></div>
+
+    </article>
+</div>
+
+    </div>
+</main>
+
+
+
+
+
+<script defer src="../js/katex.min.js"></script>
+<script defer src="../js/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: "\\begin{align*}", right: "\\end{align*}", display: true}
+        ]
+    });
+});
+</script>
+
+
+</body>
+</html>

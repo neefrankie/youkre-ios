@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,11 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span>3.</span><span class="ps-2">导数是什么</span></h2>
-        <div><h2>常量和变量</h2>
-
-<p>在微积分中，处理的都是正在增长的量及其增长率。我们将所有量分为两类：<strong>常量</strong>和<strong>变量</strong>。</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>3.</span><span class="ps-2">导数是什么</span></h2>
+<div><p>在微积分中，处理的都是正在增长的量及其增长率。我们将所有量分为两类：<strong>常量</strong>和<strong>变量</strong>。</p>
 
 <div class="card">
 <div class="card-body">
@@ -260,7 +266,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <figure>
 
-<img alt="" src="images/cme-fig-4.svg"/>
+<p><img alt="" src="images/cme-fig-4.svg"/></p>
 <figcaption>图 4</figcaption>
 </figure>
 
@@ -276,7 +282,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <figure>
 
-<img alt="" src="images/cme-fig-5.svg"/>
+<p><img alt="" src="images/cme-fig-5.svg"/></p>
 <figcaption>图 5</figcaption>
 </figure>
 
@@ -433,6 +439,7 @@ x &amp;= \sqrt{ l^2 - y^2}
 <p>但请记住：我们要的是函数在某个点附近，<span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 都<strong>无限小</strong>的时候，在该点的变化比例。导数在某一点的真正值，是在 <span class="math">\(dy\)</span> 和 <span class="math">\(dx\)</span> 都<strong>趋于无穷小的极限情况下</strong>所趋近的那个值。</p>
 
 <p>接下来，我们就来学习如何寻找 <span class="math">\(\dfrac{dy}{dx}\)</span>。</p></div>
+
     </article>
 </div>
 

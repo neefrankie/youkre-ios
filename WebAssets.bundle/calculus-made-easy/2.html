@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span>2.</span><span class="ps-2">不同程度的微小</span></h2>
-        <div><p>在学习微积分的过程中，会遇到各种不同程度的小量。</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>2.</span><span class="ps-2">不同程度的微小</span></h2>
+<div><p>在学习微积分的过程中，会遇到各种不同程度的小量。</p>
 
 <p>我们需要学会，在什么情况下可以认为小量已经微小到可以忽略不计。一切都取决于相对的微小程度。</p>
 
@@ -278,7 +286,7 @@ f(x + \frac{1}{60}x) = x^2 + 2x \cdot \frac{1}{60}x + (\frac{1}{60}x)^2
 
 <figure>
 
-<img alt="边长x的正方形" src="images/cme-fig-1.svg"/>
+<p><img alt="边长x的正方形" src="images/cme-fig-1.svg"/></p>
 <figcaption>图 1</figcaption>
 </figure>
 
@@ -292,7 +300,7 @@ f(x + \frac{1}{60}x) = x^2 + 2x \cdot \frac{1}{60}x + (\frac{1}{60}x)^2
 
 <figure>
 
-<img alt="正方形边长x增加dx" src="images/cme-fig-2.svg"/>
+<p><img alt="正方形边长x增加dx" src="images/cme-fig-2.svg"/></p>
 <figcaption>图 2</figcaption>
 </figure>
 
@@ -304,9 +312,10 @@ f(x + \frac{1}{60}x) = x^2 + 2x \cdot \frac{1}{60}x + (\frac{1}{60}x)^2
 
 <figure>
 
-<img alt="" src="images/cme-fig-3.svg"/>
+<p><img alt="" src="images/cme-fig-3.svg"/></p>
 <figcaption>图 3</figcaption>
 </figure></div>
+
     </article>
 </div>
 

@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,11 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span>6.</span><span class="ps-2">和、差、积与商的导数</span></h2>
-        <div><h2>和、差的导数</h2>
-
-<p>我们已经学习了如何对 <span class="math">\(x^2 + c\)</span> 或 <span class="math">\(ax^4\)</span> 这样的简单代数函数求导，接下来需要探讨的是，如何对两个或多个函数的<strong>和</strong>进行求导。</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>6.</span><span class="ps-2">和、差、积与商的导数</span></h2>
+<div><p>我们已经学习了如何对 <span class="math">\(x^2 + c\)</span> 或 <span class="math">\(ax^4\)</span> 这样的简单代数函数求导，接下来需要探讨的是，如何对两个或多个函数的<strong>和</strong>进行求导。</p>
 
 <p>举个例子，假设</p>
 
@@ -448,7 +454,7 @@ $$
 
 <figure>
 
-<img alt="Long division for quotient rule" src="images/cme-fig-quotient-rule-long-division.svg"/>
+<p><img alt="Long division for quotient rule" src="images/cme-fig-quotient-rule-long-division.svg"/></p>
 </figure>
 
 <p>由于这些余项都是二阶无穷小量，在极限过程中可以忽略不计，因此除法到此为止即可——后续产生的余项只会更小。</p>
@@ -509,6 +515,7 @@ $$
 <p>计算分式的导数常常比较繁琐，但只要掌握了这个法则，过程本身并不困难。</p>
 
 <p>接下来我们给出一些完整求导的例子，来学习符合使用这些法则。</p></div>
+
     </article>
 </div>
 

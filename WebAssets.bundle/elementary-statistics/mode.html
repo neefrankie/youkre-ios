@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="ps-2">如何找出众数</span></h2>
-        <div><p><strong>众数</strong>(mode 或 modal value)是出现次数<strong>最多的那个数</strong>。</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span class="ps-2">如何找出众数</span></h2>
+<div><p><strong>众数</strong>(mode 或 modal value)是出现次数<strong>最多的那个数</strong>。</p>
 
 <div class="card">
 <div class="card-body">
@@ -329,6 +337,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>“35–39”这一组出现最多，说明通常需要大约 <strong>37</strong> 分钟来装满一个托盘。</p>
 </div>
 </div></div>
+
     </article>
 </div>
 

@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,11 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span>4.1.</span><span class="ps-2">幂法则</span></h2>
-        <div><h2>幂法则</h2>
-
-<p>现在我们已经看到了前面几个例子的求导过程都很简单。接下来，把结果整理一下，看看能不能发现什么规律。将 <span class="math">\(y\)</span> 的表达式和对应的导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 列成两列：</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>4.1.</span><span class="ps-2">幂法则</span></h2>
+<div><p>现在我们已经看到了前面几个例子的求导过程都很简单。接下来，把结果整理一下，看看能不能发现什么规律。将 <span class="math">\(y\)</span> 的表达式和对应的导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 列成两列：</p>
 
 <div class="table-responsive"><table class="table"><thead>
 <tr>
@@ -291,6 +297,7 @@ dy = 5x^4 dx
 \]</div>
 
 <p>事实上，这条规则对所有 <strong>正整数指数</strong> 都成立。也就是说，对 <span class="math">\(x^n\)</span> 求导的结果是 <span class="math">\(n x^{n-1}\)</span>。（用二项式定理展开 <span class="math">\((x + dx)^n\)</span> 就能立刻验证这一点。）不过，这条规则是否也适用于 <strong>负指数或分数指数</strong> 的情况，还需要进一步探讨。</p></div>
+
     </article>
 </div>
 

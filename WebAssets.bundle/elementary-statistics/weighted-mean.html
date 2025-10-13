@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="ps-2">加权平均数</span></h2>
-        <div><p>是一种某些数值比其他数值贡献更大的平均方式。</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span class="ps-2">加权平均数</span></h2>
+<div><p>是一种某些数值比其他数值贡献更大的平均方式。</p>
 
 <h2>平均数</h2>
 
@@ -224,7 +232,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <figure>
 
-<img alt="图片：权重相等时的平均值" src="images/weighted-average-equal.svg"/>
+<p><img alt="图片：权重相等时的平均值" src="images/weighted-average-equal.svg"/></p>
 </figure>
 
 <p>把这几个数加起来，再除以数量：</p>
@@ -251,7 +259,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <figure>
 
-<img alt="图片：某个值权重更大时的结果" src="images/weighted-average-a.svg"/>
+<p><img alt="图片：某个值权重更大时的结果" src="images/weighted-average-a.svg"/></p>
 </figure>
 
 <div class="math">\begin{align*}
@@ -266,7 +274,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <figure>
 
-<img alt="图：像跷跷板一样的加权平均" src="images/weighted-average-seesaw.svg"/>
+<p><img alt="图：像跷跷板一样的加权平均" src="images/weighted-average-seesaw.svg"/></p>
 </figure>
 
 <h2>做决定</h2>
@@ -413,6 +421,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>如果权重加起来是 1，直接把每个权重和对应数值相乘后加起来就行。</li>
 <li>否则，先乘再求和，最后除以权重总和。</li>
 </ul></div>
+
     </article>
 </div>
 

@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span>4.</span><span class="ps-2">根据基本原理找出导数</span></h2>
-        <div><p>我们来看看，从基本原理出发，如何对一些简单的函数求导。</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>4.</span><span class="ps-2">根据基本原理找出导数</span></h2>
+<div><p>我们来看看，从基本原理出发，如何对一些简单的函数求导。</p>
 
 <h2>求 <span class="math">\(y=x^2\)</span> 的导数</h2>
 
@@ -375,6 +383,7 @@ dy = 4x^3\, dx
 <div class="math">\[
 \frac{dy}{dx} = 4x^3
 \]</div></div>
+
     </article>
 </div>
 

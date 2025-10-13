@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,11 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="ps-2">代数加减</span></h2>
-        <div><h2>这里有个谜题</h2>
-
-<p>下面方块代表的数字是多少？</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span class="ps-2">代数加减</span></h2>
+<div><p>下面方块代表的数字是多少？</p>
 
 <div class="math">\[
 \Box - 2 = 4
@@ -288,21 +294,21 @@ x = 6
 
 <figure>
 
-<img alt="平衡 x - 2 vs 4" src="images/balance-1.svg"/>
+<p><img alt="平衡 x - 2 vs 4" src="images/balance-1.svg"/></p>
 </figure>
 
 <p>但是左侧加上 <span class="math">\(2\)</span> 以后打破平衡了：</p>
 
 <figure>
 
-<img alt="失衡 x - 2 + 2 vs 4" src="images/balance-2.svg"/>
+<p><img alt="失衡 x - 2 + 2 vs 4" src="images/balance-2.svg"/></p>
 </figure>
 
 <p>为了重获平衡，需要在右侧也加上 <span class="math">\(2\)</span>：</p>
 
 <figure>
 
-<img alt="再平衡 x - 2 + 2 vs 4 + 2" src="images/balance-3.svg"/>
+<p><img alt="再平衡 x - 2 + 2 vs 4 + 2" src="images/balance-3.svg"/></p>
 </figure>
 
 <p>记住，为了保持平衡，<strong>在等号一侧做了什么操作，在另一侧也得做同样的操作</strong>。</p>
@@ -332,6 +338,7 @@ x + 0 = 7
 <p>也就是：<span class="math">\(x = 7\)</span></p>
 
 <p>解出来了！</p></div>
+
     </article>
 </div>
 

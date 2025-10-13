@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,11 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="ps-2">代数乘除</span></h2>
-        <div><h2>一个谜题</h2>
-
-<p>下面方块代表的数字是多少？</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span class="ps-2">代数乘除</span></h2>
+<div><p>下面方块代表的数字是多少？</p>
 
 <div class="math">\[
 \Box \times 4 = 8
@@ -240,9 +246,11 @@ x \times 4 = 8
 
 <p>答案就是：</p>
 
-<div class="math">$$
+<div class="math">
+$$
 x = 2
-$$</div>
+$$
+</div>
 
 <h2>怎么解题</h2>
 
@@ -480,11 +488,14 @@ x + 3 - 3 = 15 - 3
 
 <p>化简得到：</p>
 
-<div class="math">$$
+<div class="math">
+$$
 x = 12
-$$</div>
+$$
+</div>
 
 <p>一样的答案！</p></div>
+
     </article>
 </div>
 

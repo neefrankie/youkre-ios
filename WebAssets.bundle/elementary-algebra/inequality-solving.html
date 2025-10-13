@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="ps-2">解不等式</span></h2>
-        <div><p>有时候我们需要解这样的不等式：</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span class="ps-2">解不等式</span></h2>
+<div><p>有时候我们需要解这样的不等式：</p>
 
 <div class="table-responsive"><table class="table"><thead>
 <tr>
@@ -290,7 +298,7 @@ x &gt; 10
 <p>但要注意一个关键点：<strong>不等号的方向可能会改变！</strong></p>
 <figure>
 
-<img alt="大于号" src="images/greater-than-symbol.svg"/>
+<p><img alt="大于号" src="images/greater-than-symbol.svg"/></p>
 </figure>
 
 <p>方向就是箭头“指向”哪一边。</p>
@@ -373,14 +381,14 @@ x &amp;&lt; 4
 
 <figure>
 
-<img alt="数轴上的不等式 x+3 &amp;lt; 7" src="images/number-line-inequal-xp3lt7.svg"/>
+<p><img alt="数轴上的不等式 x+3 &amp;lt; 7" src="images/number-line-inequal-xp3lt7.svg"/></p>
 </figure>
 
 <p>变成了 <span class="math">\(x &lt; 4\)</span>:</p>
 
 <figure>
 
-<img alt="数轴上的不等式 x &amp;lt; 4" src="images/number-line-inequal-xlt4.svg"/>
+<p><img alt="数轴上的不等式 x &amp;lt; 4" src="images/number-line-inequal-xlt4.svg"/></p>
 </figure>
 
 <h2>如果 <span class="math">\(x\)</span> 出现在右边怎么办？</h2>
@@ -442,7 +450,7 @@ y &amp;&lt; 5
 <p>例如，从 <span class="math">\(3\)</span> 到 <span class="math">\(7\)</span> 是增长，但从 <span class="math">\(-3\)</span> 到 <span class="math">\(-7\)</span> 则是减少。</p>
 <figure>
 
-<img alt="数轴上的 -7&amp;lt;-3 和 3&amp;lt;7" src="images/number-line-inequal-pos-neg.svg"/>
+<p><img alt="数轴上的 -7&amp;lt;-3 和 3&amp;lt;7" src="images/number-line-inequal-pos-neg.svg"/></p>
 </figure>
 
 <p>所以当两边乘或除以负数时，需要反转方向，例如从 <span class="math">\(&lt;\)</span> 变成 <span class="math">\(&gt;\)</span></p>
@@ -572,6 +580,7 @@ x &amp;&lt; −7
 </li>
 <li><strong>不要</strong>随意用变量去除不等式，除非你确定变量是正数或负数。</li>
 </ul></div>
+
     </article>
 </div>
 

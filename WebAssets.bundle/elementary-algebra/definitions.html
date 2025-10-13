@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,11 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="ps-2">代数中的基本定义</span></h2>
-        <div><h2>什么是等式？</h2>
-
-<p>等式表示两个事物相等。它中间有等于号 <span class="math">\(=\)</span>，比如：</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span class="ps-2">代数中的基本定义</span></h2>
+<div><p>等式表示两个事物相等。它中间有等于号 <span class="math">\(=\)</span>，比如：</p>
 
 <div class="math">\[
 x + 2 = 6
@@ -232,7 +238,7 @@ x + 2 = 6
 
 <figure>
 
-<img alt="图示：4 是系数，x 是变量，7 和 5 是常数，− 是运算符" src="images/variable-constant.svg"/>
+<p><img alt="图示：4 是系数，x 是变量，7 和 5 是常数，− 是运算符" src="images/variable-constant.svg"/></p>
 </figure>
 
 <p><strong>变量</strong>（Variable）代表一个未知的数，通常用字母表示，如 <span class="math">\(x\)</span> 或 <span class="math">\(y\)</span>，也可以是符号或单词。</p>
@@ -261,7 +267,7 @@ x + 2 = 6
 
 <figure>
 
-<img alt="图示：4x−7 是表达式，4x、7、5 是项" src="images/expression-term.svg"/>
+<p><img alt="图示：4x−7 是表达式，4x、7、5 是项" src="images/expression-term.svg"/></p>
 </figure>
 
 <p><strong>项</strong>（Term）可以是一个数、一个变量，或者数和变量的乘积。</p>
@@ -282,7 +288,7 @@ x + 2 = 6
 
 <figure class="auto-w">
 
-<img alt="8 的平方图示" src="images/exponent-8-2.svg"/>
+<p><img alt="8 的平方图示" src="images/exponent-8-2.svg"/></p>
 </figure>
 
 <div class="card">
@@ -335,12 +341,12 @@ y \times y \times y \times y \times z \times z
 
 <figure>
 
-<img alt="多项式" src="images/polynomial.svg"/>
+<p><img alt="多项式" src="images/polynomial.svg"/></p>
 </figure>
 
 <figure>
 
-<img alt="不是多项式" src="images/not-polynomial.svg"/>
+<p><img alt="不是多项式" src="images/not-polynomial.svg"/></p>
 </figure>
 
 <h2>单项式、二项式、三项式</h2>
@@ -349,7 +355,7 @@ y \times y \times y \times y \times z \times z
 
 <figure>
 
-<img alt="单项式、二项式、三项式" src="images/polynomials.svg"/>
+<p><img alt="单项式、二项式、三项式" src="images/polynomials.svg"/></p>
 </figure>
 
 <h2>同类项（Like Terms）</h2>
@@ -377,6 +383,7 @@ y \times y \times y \times y \times z \times z
 <p>这些都是<strong>同类项</strong>，因为它们的变量都是 <span class="math">\(xy^2\)</span>。</p>
 </div>
 </div></div>
+
     </article>
 </div>
 

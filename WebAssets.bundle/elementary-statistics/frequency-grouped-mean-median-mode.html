@@ -77,7 +77,7 @@ html:not([data-bs-theme="dark"]) #sun {
 figure { 
   text-align: center;
 }
-figure img {
+figure img, p img {
     max-width: 100%;
     height: auto;
     display: block;
@@ -113,6 +113,13 @@ div.math {
 }
 .card {
   margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
 }
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -212,9 +219,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <div class="container">
         
 <div class="row pt-3 justify-content-center">
-    <article class="col-12 col-md-8">
-        <h2 class="text-center"><span class="ps-2">从分组频表求平均数、中位数和众数</span></h2>
-        <div><p>用三个例子说明</p>
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span class="ps-2">从分组频表求平均数、中位数和众数</span></h2>
+<div><p>用三个例子说明</p>
 
 <h2>赛跑和调皮的小狗</h2>
 
@@ -290,7 +298,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <figure>
 
-<img alt="分组频率" src="images/grouped-freq-3.svg"/>
+<p><img alt="分组频率" src="images/grouped-freq-3.svg"/></p>
 </figure>
 
 <p>意思是：</p>
@@ -481,7 +489,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <figure>
 
-<img alt="分组频率" src="images/grouped-freq-4.svg"/>
+<p><img alt="分组频率" src="images/grouped-freq-4.svg"/></p>
 </figure>
 
 <p>怎么找到需要画线的这一个点呢？61 - 65 这一组共有8个数，它前面已经有 9 个数，第 11 大约在这一组 1/4 的位置：(11 - 9) / 8。每组的宽度是 5，它的 1/4 位置对应的数值是 (1/4)x5。这一组从 60.5 开始，加上这一段距离：60.5 + ((11 - 9) ÷ 8) ⤫ 5。</p>
@@ -995,6 +1003,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><span class="math">\(f_{m+1}\)</span> 是众数组后一组的次数</li>
 <li><span class="math">\(w\)</span> 是组距</li>
 </ul></div>
+
     </article>
 </div>
 
