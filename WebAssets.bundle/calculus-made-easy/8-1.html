@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易微积分8.1: 瞬时之变：示例 | 优克 - 数学与计算机科学</title>
+    
+<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+
+<link rel="stylesheet" href="../css/katex.min.css"/>
+
+
+    <style>:root {
+    --color-teal: #0d7680;
+    --color-teal20: #052f33;
+    --color-teal30: #08474d;
+    --color-teal40: #0a5e66;
+    --color-teal50: #0d7680;
+    --color-teal60: #0f8e99;
+    --color-teal70: #12a5b3;
+    --color-teal80: #14bdcc;
+    --color-teal90: #17d4e6;
+    --color-teal100: #1aecff;
+    --color-emerald: #009b77;
+    --color-bs-dark: #212529;
+    --color-youkre-yellow: #cabdab;
+    --color-youkre-cyan: #71a9be;
+    --color-bg-gray: #EEEDF1;
+    --header-height: 60px;
+    --footer-height: 60px;
+    --radius: 8px;
+}
+body {
+    font-family: -apple-system, sans-serif;
+    font-size: 18px;
+    padding: 8px;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-x: hidden; /* Prevent horizontal scrolling of the whole page */
+}
+a {
+    color: var(--color-teal);
+    text-decoration: none;
+}
+.bg-emerald {
+    background-color: var(--color-emerald);
+}
+.logo {
+    margin-inline-end: auto;
+    line-height: var(--header-height);
+}
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+}
+.logo a img {
+    display: inline;
+    vertical-align: middle;
+    pointer-events: none;
+    transform: translate(0, -10%);
+    border-radius: 6px;
+}
+html[data-bs-theme="dark"] #moon {
+    vertical-align: middle;
+    display: none;
+}
+html:not([data-bs-theme="dark"]) #sun {
+    display: none;
+}</style>
+    
+    <style>
+    h1, h2, h3, h4 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+figure { 
+  text-align: center;
+}
+figure img, p img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+div.math {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap; /* Prevent breaking long formulas */
+}
+.note {
+    border: 1px solid var(--color-teal);
+    border-radius: 0.375rem;
+    padding: 0.5em;
+}
+.formula-section {
+    display: grid;
+    grid-template-columns: 1fr; /* 在小屏幕上变为单列 */
+    gap: 10px;
+}
+.formula-card {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .formula-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.card {
+  margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
+}
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #222222 }
+.highlight { background: #000000; color: #CCC }
+.highlight .c { color: #000080 } /* Comment */
+.highlight .err { color: #CCC; border: 1px solid #F00 } /* Error */
+.highlight .esc { color: #CCC } /* Escape */
+.highlight .g { color: #CCC } /* Generic */
+.highlight .k { color: #CDCD00 } /* Keyword */
+.highlight .l { color: #CCC } /* Literal */
+.highlight .n { color: #CCC } /* Name */
+.highlight .o { color: #39C } /* Operator */
+.highlight .x { color: #CCC } /* Other */
+.highlight .p { color: #CCC } /* Punctuation */
+.highlight .ch { color: #000080 } /* Comment.Hashbang */
+.highlight .cm { color: #000080 } /* Comment.Multiline */
+.highlight .cp { color: #000080 } /* Comment.Preproc */
+.highlight .cpf { color: #000080 } /* Comment.PreprocFile */
+.highlight .c1 { color: #000080 } /* Comment.Single */
+.highlight .cs { color: #CD0000; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #CD0000 } /* Generic.Deleted */
+.highlight .ge { color: #CCC; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #CCC; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #F00 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00CD00 } /* Generic.Inserted */
+.highlight .go { color: #888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #CCC; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #CDCD00 } /* Keyword.Constant */
+.highlight .kd { color: #00CD00 } /* Keyword.Declaration */
+.highlight .kn { color: #CD00CD } /* Keyword.Namespace */
+.highlight .kp { color: #CDCD00 } /* Keyword.Pseudo */
+.highlight .kr { color: #CDCD00 } /* Keyword.Reserved */
+.highlight .kt { color: #00CD00 } /* Keyword.Type */
+.highlight .ld { color: #CCC } /* Literal.Date */
+.highlight .m { color: #CD00CD } /* Literal.Number */
+.highlight .s { color: #CD0000 } /* Literal.String */
+.highlight .na { color: #CCC } /* Name.Attribute */
+.highlight .nb { color: #CD00CD } /* Name.Builtin */
+.highlight .nc { color: #00CDCD } /* Name.Class */
+.highlight .no { color: #CCC } /* Name.Constant */
+.highlight .nd { color: #CCC } /* Name.Decorator */
+.highlight .ni { color: #CCC } /* Name.Entity */
+.highlight .ne { color: #669; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #CCC } /* Name.Function */
+.highlight .nl { color: #CCC } /* Name.Label */
+.highlight .nn { color: #CCC } /* Name.Namespace */
+.highlight .nx { color: #CCC } /* Name.Other */
+.highlight .py { color: #CCC } /* Name.Property */
+.highlight .nt { color: #CCC } /* Name.Tag */
+.highlight .nv { color: #00CDCD } /* Name.Variable */
+.highlight .ow { color: #CDCD00 } /* Operator.Word */
+.highlight .pm { color: #CCC } /* Punctuation.Marker */
+.highlight .w { color: #CCC } /* Text.Whitespace */
+.highlight .mb { color: #CD00CD } /* Literal.Number.Bin */
+.highlight .mf { color: #CD00CD } /* Literal.Number.Float */
+.highlight .mh { color: #CD00CD } /* Literal.Number.Hex */
+.highlight .mi { color: #CD00CD } /* Literal.Number.Integer */
+.highlight .mo { color: #CD00CD } /* Literal.Number.Oct */
+.highlight .sa { color: #CD0000 } /* Literal.String.Affix */
+.highlight .sb { color: #CD0000 } /* Literal.String.Backtick */
+.highlight .sc { color: #CD0000 } /* Literal.String.Char */
+.highlight .dl { color: #CD0000 } /* Literal.String.Delimiter */
+.highlight .sd { color: #CD0000 } /* Literal.String.Doc */
+.highlight .s2 { color: #CD0000 } /* Literal.String.Double */
+.highlight .se { color: #CD0000 } /* Literal.String.Escape */
+.highlight .sh { color: #CD0000 } /* Literal.String.Heredoc */
+.highlight .si { color: #CD0000 } /* Literal.String.Interpol */
+.highlight .sx { color: #CD0000 } /* Literal.String.Other */
+.highlight .sr { color: #CD0000 } /* Literal.String.Regex */
+.highlight .s1 { color: #CD0000 } /* Literal.String.Single */
+.highlight .ss { color: #CD0000 } /* Literal.String.Symbol */
+.highlight .bp { color: #CD00CD } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #CCC } /* Name.Function.Magic */
+.highlight .vc { color: #00CDCD } /* Name.Variable.Class */
+.highlight .vg { color: #00CDCD } /* Name.Variable.Global */
+.highlight .vi { color: #00CDCD } /* Name.Variable.Instance */
+.highlight .vm { color: #00CDCD } /* Name.Variable.Magic */
+.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */
+    </style>
+    
+    
+</head>
+<body id="top">
+
+
+
+
+<main class="min-vh-100" role="main">
+    <div class="container">
+        
+<div class="row pt-3 justify-content-center">
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center"><span>8.1.</span><span class="ps-2">瞬时之变：示例</span></h2>
+<div><p>（1）一个物体运动时，其距某定点 <span class="math">\(O\)</span> 的距离 <span class="math">\(x\)</span>（单位：米）由以下关系式给出：</p>
+
+<div class="math">
+$$
+x = 0.2t^2 + 10.4
+$$
+</div>
+
+<p>其中 <span class="math">\(t\)</span> 是从某一特定时刻起经过的时间（单位：秒）。</p>
+
+<ul>
+<li>求该物体开始运动后5秒时的速度和加速度，</li>
+<li>并求当物体移动距离达到100米时对应的速度和加速度。</li>
+<li>再求物体开始运动后前10秒内的平均速度。</li>
+</ul>
+
+<p>（假设向右的方向为正方向。）</p>
+
+<p>解：</p>
+
+<p>已知</p>
+
+<div class="math">
+$$
+x &amp;= 0.2t^2 + 10.4
+$$
+</div>
+
+<p>得：</p>
+
+<div class="math">
+$$
+v &amp;= \dot{x} = \frac{dx}{dt} = 0.4t
+$$
+</div>
+
+<p>且</p>
+
+<div class="math">
+$$
+a = \ddot{x} = \frac{d^2x}{dt^2} = 0.4 = \text{常数}
+$$
+</div>
+
+<p>当 <span class="math">\(t = 0\)</span> 时，<span class="math">\(x = 10.4\)</span>，<span class="math">\(v = 0\)</span>。这说明物体从点 <span class="math">\(O\)</span> 右侧10.4米处开始运动，时间也是从物体开始运动的瞬间算起。</p>
+
+<p>当 <span class="math">\(t = 5\)</span> 时，</p>
+
+<div class="math">
+$$
+\begin{aligned}
+v = 0.4 × 5 = 2 \text{ 米/秒} \\
+a = 0.4 \text{ 米/秒}^2
+\end{aligned}
+$$
+</div>
+
+<p>当 <span class="math">\(x = 100\)</span> 时，有 $ 100 = 0.2t^2 + 10.4 <span class="math">\(，解得 \)</span> t^2 = 448 <span class="math">\(，所以 \)</span> t = 21.17 \text{ 秒} <span class="math">\(；此时速度为 \)</span> v = 0.4 × 21.17 = 8.468 \text{ 米/秒}$</p>
+
+<p>当 <span class="math">\(t = 10\)</span> 时，</p>
+
+<div class="math">
+$$
+\begin{aligned}
+\text{移动的距离} &amp;= 0.2 × 10^2 + 10.4 - 10.4 = 20 \text{ 米} \\
+\text{平均速度} &amp;= \frac{20}{10} = 2 \text{ 米/秒}
+\end{aligned}
+$$
+</div>
+
+<p>（这个平均速度恰好等于时间中点 <span class="math">\(t = 5\)</span> 时的瞬时速度。这是因为加速度恒定，速度从 <span class="math">\(t = 0\)</span> 时的 0米/秒 均匀增加到 <span class="math">\(t = 10\)</span> 时的 4米/秒。）</p>
+
+<p>（2）在上述问题中，假设物体的运动方程为：</p>
+
+<div class="math">
+$$
+x &amp;= 0.2t^2 + 3t + 10.4
+$$
+</div>
+
+<p>则：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+v &amp;= \dot{x} = \dfrac{dx}{dt} = 0.4t + 3 \\
+a &amp;= \ddot{x} = \frac{d^2x}{dt^2} = 0.4 = \text{常数}
+\end{aligned}
+$$
+</div>
+
+<p>当 <span class="math">\(t = 0\)</span> 时，<span class="math">\(x = 10.4\)</span>，<span class="math">\(v = 3\)</span> 米/秒。</p>
+
+<p>这说明开始计算时间时，物体已经移动到距点 <span class="math">\(O\)</span> 10.4米处，而这一瞬间物体的速度已经是3米/秒了。</p>
+
+<p>为了求出物体从开始运动到 <span class="math">\(t=0\)</span> 这一时刻所经过的时间，令 <span class="math">\(v = 0\)</span>，则：</p>
+
+<div class="math">
+$$
+0.4t + 3 = 0
+$$
+</div>
+
+<p>解得</p>
+
+<div class="math">
+$$
+t = -\frac{3}{0.4} = -7.5
+$$。
+
+这表明物体在我们开始计时的7.5秒之前就已经开始运动了。从开始运动起5秒后，对应的是 $t = -2.5$，此时速度为：
+
+$$
+</div>
+
+<div 秒="" 米=""><p>v = 0.4 × (-2.5) + 3 = 2 \text</p></div>
+
+<div class="math">
+$$
+
+当 $x = 100$ 米时，
+
+$$
+</div>
+
+<p>100 = 0.2t^2 + 3t + 10.4</p>
+
+<div class="math">
+$$
+
+整理得
+
+$$
+</div>
+
+<p>t^2 + 15t - 448 = 0</p>
+
+<div class="math">
+$$
+
+解得 $ t = 14.95 $ 秒（取正值），此时速度为：
+
+$$
+</div>
+
+<div 秒="" 米=""><p>v = 0.4 × 14.95 + 3 = 8.98 \text</p></div>
+
+<div class="math">
+$$
+
+为了求物体开始运动后前10秒内所经过的距离，我们必须先知道它开始运动时距点 $O$ 有多远。
+
+当 $t = -7.5$ 时（即开始运动的时刻），
+
+$$
+</div>
+
+<div aligned=""><p>\begin{aligned}
+x &amp;= 0.2 × (-7.5)^2 + 3 × (-7.5) + 10.4 \
+&amp;= 0.2 × 56.25 - 22.5 + 10.4 \
+&amp;= 11.25 - 22.5 + 10.4 \
+&amp;= -0.85 \text{ 米}
+\end</p></div>
+
+<div class="math">
+$$
+
+即位于点 $O$ 左侧0.85米处。
+
+当 $t = 2.5$ 时（即从开始运动起经过10秒），
+
+$$
+</div>
+
+<div aligned=""><p>\begin{aligned}
+x &amp;= 0.2 × (2.5)^2 + 3 × 2.5 + 10.4 \
+&amp;= 0.2 × 6.25 + 7.5 + 10.4 \
+&amp;= 1.25 + 7.5 + 10.4 \
+&amp;= 19.15 \text{ 米}
+\end</p></div>
+
+<div class="math">
+$$
+
+因此，在这10秒内，物体实际移动的距离为：
+
+$$
+</div>
+
+<div 米=""><p>19.15 - (-0.85) = 19.15 + 0.85 = 20 \text</p></div>
+
+<div class="math">
+$$
+
+平均速度为：
+
+$$
+</div>
+
+<p>\text{平均速度} = \frac{20}{10} = 2 \text{ 米/秒}。</p>
+
+<div class="math">
+$$
+
+（3）再考虑一个类似的问题，距离由方程 $x = 0.2t^2 - 3t + 10.4$ 给出。
+
+则速度 $v = 0.4t - 3$，加速度 $a = 0.4 = \text{常数}$。
+
+当 $t = 0$ 时，$x = 10.4$（与之前相同），而 $v = -3$；这说明物体的运动方向与前两种情况相反。
+
+然而，由于加速度为正，我们可知速度将随时间推移而减小，直到变为零。
+
+令 $v = 0$，即 $0.4t - 3 = 0$，解得 $t = 7.5$ 秒。
+
+此后，速度变为正值。物体开始运动5秒后，对应 $t = 12.5$，此时
+
+$$
+</div>
+
+<p>v = 0.4 × 12.5 - 3 = 2 \text{ 米/秒}。</p>
+
+<div class="math">
+$$
+
+当 $x = 100$ 时，有
+
+$$
+</div>
+
+<p>100 = 0.2t^2 - 3t + 10.4</p>
+
+<div class="math">
+$$
+
+整理得
+
+$$
+</div>
+
+<p>t^2 - 15t - 448 = 0</p>
+
+<div class="math">
+$$
+
+解得 $t = 29.95$ 秒，此时速度为
+
+$$
+</div>
+
+<p>v = 0.4 × 29.95 - 3 = 8.98 \text{ 米/秒}。</p>
+
+<div class="math">
+$$
+
+当速度为零时，
+
+$$
+</div>
+
+<div 米=""><p>x = 0.2 × (7.5)^2 - 3 × 7.5 + 10.4 = -0.85 \text</p></div>
+
+<div class="math">
+$$
+
+这表明物体在停止前已向左越过点 $O$，到达其左侧0.85米处。再过10秒（即 $t = 17.5$），
+
+$$
+</div>
+
+<div aligned=""><p>\begin{aligned}
+x &amp;= 0.2 × (17.5)^2 - 3 × 17.5 + 10.4 \
+&amp;= 0.2 × 306.25 - 52.5 + 10.4 \
+&amp;= 61.25 - 52.5 + 10.4 = 19.15 \text{ 米}。
+\end</p></div>
+
+<div class="math">
+$$
+
+因此，物体移动的总距离为 $0.85 + 19.15 = 20.0$ 米，平均速度仍为 $2$ 米/秒。
+
+（4）再考虑另一个同类问题，设 $x = 0.2t^3 - 3t^2 + 10.4$，则速度 $v = 0.6t^2 - 6t$，加速度 $a = 1.2t - 6$。此时加速度不再是常数。
+
+当 $t = 0$ 时，$x = 10.4$，$v = 0$，$a = -6$。物体此时静止，但即将向点 $O$ 方向开始运动，因为加速度为负，意味着它将获得一个朝向点 $O$ 的速度。
+
+（5）若 $x = 0.2t^3 - 3t + 10.4$，则 $v = 0.6t^2 - 3$，$a = 1.2t$。
+
+当 $t = 0$ 时，$x = 10.4$，$v = -3$，$a = 0$。
+
+物体正以3米/秒的速度向点 $O$ 运动，而在此瞬间，加速度为零，即速度是均匀的（瞬时加速度为零）。
+
+由此可见，物体的运动状态总能立即从时间-位移方程及其一阶和二阶导函数中确定。在最后两个例子中，前10秒内的平均速度与开始运动5秒后的瞬时速度将不再相同，因为速度并非均匀增加，加速度已不再是常数。
+
+（6）一个轮子转过的角度 $\theta$（单位：弧度）由 $\theta = 3 + 2t - 0.1t^3$ 给出，其中 $t$ 是从某一特定时刻起经过的秒数。求如下情况下的角速度 $\omega$ 和角加速度 $\alpha$：
+
+(a) 1秒后；
+(b) 轮子完成一整圈（一转）后。
+
+轮子在何时静止？到那时为止它已转了多少圈？
+
+解：
+
+角速度与角加速度为：
+
+$$
+</div>
+
+<div aligned=""><p>\begin{aligned}
+\omega &amp;= \dot{\theta} = \dfrac{d\theta}{dt} = 2 - 0.3t^2,\
+\alpha &amp;= \ddot{\theta} = \dfrac{d<sup>2\theta}{dt</sup>2} = -0.6t.
+\end</p></div>
+
+<div class="math">
+$$
+
+当 $t = 0$ 时，$\theta = 3$，$\omega = 2$ 弧度/秒，$\alpha = 0$。
+
+当 $t = 1$ 时，$\omega = 2 - 0.3 = 1.7$ 弧度/秒，$\alpha = -0.6$ 弧度/秒²。
+
+此时加速度为负，表示轮子正在减速。
+
+完成一整圈时，$\theta = 2\pi \approx 6.28$，代入得：
+
+$$
+</div>
+
+<p>6.28 = 3 + 2t - 0.1t^3</p>
+
+<div class="math">
+$$
+
+通过绘制函数 $\theta = 3 + 2t - 0.1t^3$ 的图像，可以求出满足 $\theta = 6.28$ 的 $t$ 值，结果为 $t = 2.11$ 和 $t = 3.03$（还有一个负值，舍去）。
+
+当 $t = 2.11$ 时，
+
+$$
+</div>
+
+<div aligned=""><p>\begin{aligned}
+\theta &amp;= 6.28；\
+\omega &amp;= 2 - 0.3 × (2.11)^2 = 2 - 1.34 = 0.66 \text{ 弧度/秒}；\
+\alpha &amp;= -0.6 × 2.11 = -1.27 \text{ 弧度/秒}^2
+\end</p></div>
+
+<div class="math">
+$$
+
+当 $t = 3.03$ 时，
+
+$$
+</div>
+
+<div aligned=""><p>\begin{aligned}
+\theta &amp;= 6.28；\
+\omega &amp;= 2 - 0.3 × (3.03)^2 = 2 - 2.754 = -0.754 \text{ 弧度/秒}；\
+\alpha &amp;= -0.6 × 3.03 = -1.82 \text{ 弧度/秒}^2
+\end</p></div>
+
+<div class="math">
+$$
+
+角速度方向发生反转。显然，轮子在这两个时刻之间曾一度静止。令 $\omega = 0$，即 $2 - 0.3t^2 = 0$，解得 $t = \sqrt{\frac{2}{0.3}} \approx 2.58$ 秒。此时轮子已转过的圈数为：
+
+$$
+</div>
+
+<p>\begin{aligned}
+\frac{\theta}{2\pi} = \frac{3 + 2 × 2.58 - 0.1 × (2.58)^3}{6.28} \
+\approx \frac{3 + 5.16 - 0.1 × 17.17}{6.28} \
+= \frac{8.16 - 1.717}{6.28} \
+= \approx \frac{6.443}{6.28} \
+\approx 1.025 \text{ 圈}
+\end{aligned}
+$$</p></div>
+
+    </article>
+</div>
+
+    </div>
+</main>
+
+
+
+
+
+<script defer src="../js/katex.min.js"></script>
+<script defer src="../js/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: "\\begin{align*}", right: "\\end{align*}", display: true}
+        ]
+    });
+});
+</script>
+
+
+</body>
+</html>
