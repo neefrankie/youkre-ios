@@ -67,7 +67,7 @@ struct TocView: View {
     @Previewable @StateObject var themeManager = ThemeManager.shared
     
     NavigationStack {
-        TocView(course: ExampleData.courses[0])
+        TocView(course: ExampleData.courses[1])
     }
 //    To preview, place theme manager here rather than TocView.
     .environmentObject(themeManager)

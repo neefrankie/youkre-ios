@@ -16,7 +16,7 @@ struct TocListView: View {
         ScrollView {
             LazyVStack(spacing: 16) {
                 ForEach(entries) { entry in
-                    if entry.slug.isEmpty {
+                    if entry.path == nil {
                         Text(entry.title)
                             .font(.title)
                             .padding(.top, 32)
