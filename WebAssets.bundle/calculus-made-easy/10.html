@@ -224,83 +224,83 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h2 class="text-center">10. 导数的几何意义</h2>
 <div><p>考察导数的几何意义是很有用的。</p>
 
-<p>任何关于 ( x ) 的函数——例如 ( x^2 )、( \sqrt{x} ) 或 ( ax + b ) ——都可以绘制成一条曲线。</p>
+<p>任何关于 <span class="math">\(x\)</span> 的函数——例如 <span class="math">\(x^2\)</span>、<span class="math">\(\sqrt{x}\)</span> 或 <span class="math">\(ax + b\)</span> ——都可以绘制成一条曲线。</p>
 
 <p><img alt="" src="images/cme-fig-7.svg"/></p>
 
-<p>如图 7 所示，设 ( PQR ) 是在直角坐标系 ( OX ) 与 ( OY ) 下绘制出的一段曲线。
-取曲线上任意一点 ( Q )，其横坐标为 ( x )，纵坐标为 ( y )。
-现在观察当 ( x ) 发生变化时，( y ) 如何随之改变。若将 ( x ) 向右增加一个微小增量 ( dx )，则可看到（在此特定曲线上）( y ) 也相应地增加了一个微小增量 ( dy )（因为这段曲线恰好是上升的）。</p>
+<p>如图 7 所示，设 <span class="math">\(PQR\)</span> 是在直角坐标系 <span class="math">\(OX\)</span> 与 <span class="math">\(OY\)</span> 下绘制出的一段曲线。
+取曲线上任意一点 <span class="math">\(Q\)</span>，其横坐标为 <span class="math">\(x\)</span>，纵坐标为 <span class="math">\(y\)</span>。
+现在观察当 <span class="math">\(x\)</span> 发生变化时，<span class="math">\(y\)</span> 如何随之改变。若将 <span class="math">\(x\)</span> 向右增加一个微小增量 <span class="math">\(dx\)</span>，则可看到（在此特定曲线上）<span class="math">\(y\)</span> 也相应地增加了一个微小增量 <span class="math">\(dy\)</span>（因为这段曲线恰好是上升的）。</p>
 
-<p>此时，比值 ( \dfrac{dy}{dx} ) 就度量了曲线在点 ( Q ) 与点 ( T ) 之间上升的陡峭程度。
-事实上，从图中可以看出，曲线在 ( Q ) 与 ( T ) 之间的各处斜率并不相同，因此严格来说，我们无法准确谈论“( Q ) 与 ( T ) 之间曲线的斜率”。
-然而，如果 ( Q ) 与 ( T ) 足够接近，使得曲线的小段 ( QT ) 几乎是一条直线，那么就可以说，比值 ( \dfrac{dy}{dx} ) 正是这段曲线 ( QT ) 的斜率。</p>
+<p>此时，比值 <span class="math">\(\dfrac{dy}{dx}\)</span> 就度量了曲线在点 <span class="math">\(Q\)</span> 与点 <span class="math">\(T\)</span> 之间上升的陡峭程度。
+事实上，从图中可以看出，曲线在 <span class="math">\(Q\)</span> 与 <span class="math">\(T\)</span> 之间的各处斜率并不相同，因此严格来说，我们无法准确谈论“<span class="math">\(Q\)</span> 与 <span class="math">\(T\)</span> 之间曲线的斜率”。
+然而，如果 <span class="math">\(Q\)</span> 与 <span class="math">\(T\)</span> 足够接近，使得曲线的小段 <span class="math">\(QT\)</span> 几乎是一条直线，那么就可以说，比值 <span class="math">\(\dfrac{dy}{dx}\)</span> 正是这段曲线 <span class="math">\(QT\)</span> 的斜率。</p>
 
-<p>将直线段 ( QT ) 向两端延长，它仅在 ( QT ) 这一小段内与曲线相贴合；而当这一小段无限缩小时，该直线实际上只在一点处与曲线接触，从而成为曲线在该点处的<strong>切线</strong>（tangent）。</p>
+<p>将直线段 <span class="math">\(QT\)</span> 向两端延长，它仅在 <span class="math">\(QT\)</span> 这一小段内与曲线相贴合；而当这一小段无限缩小时，该直线实际上只在一点处与曲线接触，从而成为曲线在该点处的<strong>切线</strong>（tangent）。</p>
 
-<p>显然，这条切线与线段 ( QT ) 具有相同的斜率（slope）。因此，( \dfrac{dy}{dx} ) 即为曲线在点 ( Q ) 处切线的斜率，其中该值正是在点 ( Q ) 处所求得的导数值。</p>
+<p>显然，这条切线与线段 <span class="math">\(QT\)</span> 具有相同的斜率（slope）。因此，<span class="math">\(\dfrac{dy}{dx}\)</span> 即为曲线在点 <span class="math">\(Q\)</span> 处切线的斜率，其中该值正是在点 <span class="math">\(Q\)</span> 处所求得的导数值。</p>
 
 <p>我们已经看到，“曲线的斜率”这一简略说法本身并无确切含义，因为一条曲线在不同位置具有不同的斜率——实际上，曲线的每一小段都有其自身的斜率。
 但“曲线在某一点处的斜率”却是一个明确定义的概念：它指的是曲线在该点附近极小一段的斜率；而我们已知，这等价于“曲线在该点处切线的斜率”。</p>
 
-<p>注意，( dx ) 表示向右的一个微小步长，而 ( dy ) 则是相应的向上微小步长。
+<p>注意，<span class="math">\(dx\)</span> 表示向右的一个微小步长，而 <span class="math">\(dy\)</span> 则是相应的向上微小步长。
 这些步长应被视为尽可能短——实际上是无穷小的；尽管在图示中，我们不得不将它们画成有限长度的小线段，否则就无法被看见。</p>
 
-<p><em>今后我们将大量利用这样一个重要事实：( \dfrac{dy}{dx} ) 表示曲线在任意一点处的斜率。</em></p>
+<p><em>今后我们将大量利用这样一个重要事实：<span class="math">\(\dfrac{dy}{dx}\)</span> 表示曲线在任意一点处的斜率。</em></p>
 
 <p><img alt="" src="images/cme-fig-8.svg"/></p>
 
-<p>如果某条曲线在某一点处的切线与水平方向成 (45^\circ) 角向上倾斜，如图8所示，则此时 ( dy ) 与 ( dx ) 相等，因此导数 ( \dfrac{dy}{dx} = 1 )。</p>
+<p>如果某条曲线在某一点处的切线与水平方向成 (45^\circ) 角向上倾斜，如图8所示，则此时 <span class="math">\(dy\)</span> 与 <span class="math">\(dx\)</span> 相等，因此导数 <span class="math">\(\dfrac{dy}{dx} = 1\)</span>。</p>
 
-<p>若曲线在该点处比 (45^\circ) 更陡峭地上升（如图9），则 ( \dfrac{dy}{dx} &gt; 1 )。</p>
+<p>若曲线在该点处比 (45^\circ) 更陡峭地上升（如图9），则 <span class="math">\(\dfrac{dy}{dx} &gt; 1\)</span>。</p>
 
 <p><img alt="" src="images/cme-fig-9.svg"/></p>
 
-<p>若曲线上升得非常平缓，如图10所示，则 ( \dfrac{dy}{dx} ) 将是一个小于 1 的正分数。</p>
+<p>若曲线上升得非常平缓，如图10所示，则 <span class="math">\(\dfrac{dy}{dx}\)</span> 将是一个小于 1 的正分数。</p>
 
 <p><img alt="" src="images/cme-fig-10.svg"/></p>
 
-<p>对于一条水平直线，或曲线上某处为水平的部分，有 ( dy = 0 )，因此 ( \dfrac{dy}{dx} = 0 )。</p>
+<p>对于一条水平直线，或曲线上某处为水平的部分，有 <span class="math">\(dy = 0\)</span>，因此 <span class="math">\(\dfrac{dy}{dx} = 0\)</span>。</p>
 
 <p><img alt="" src="images/cme-fig-11.svg"/></p>
 
-<p>如果曲线向下倾斜，如图 11 所示，则 ( dy ) 表示一个向下的步长，应视为负值；因此 ( \dfrac{dy}{dx} ) 也将为负数。</p>
+<p>如果曲线向下倾斜，如图 11 所示，则 <span class="math">\(dy\)</span> 表示一个向下的步长，应视为负值；因此 <span class="math">\(\dfrac{dy}{dx}\)</span> 也将为负数。</p>
 
-<p>如果“曲线”恰好是一条直线，如图12所示，那么其导数 ( \dfrac{dy}{dx} ) 在整条直线上处处相同。换句话说，它的<strong>斜率是恒定的</strong>。</p>
+<p>如果“曲线”恰好是一条直线，如图12所示，那么其导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 在整条直线上处处相同。换句话说，它的<strong>斜率是恒定的</strong>。</p>
 
 <p><img alt="" src="images/cme-fig-12.svg"/></p>
 
-<p>若一条曲线向右延伸时越来越陡峭地上升，如图13所示，则其导数值 ( \dfrac{dy}{dx} ) 会随着陡峭程度的增加而不断增大。</p>
+<p>若一条曲线向右延伸时越来越陡峭地上升，如图13所示，则其导数值 <span class="math">\(\dfrac{dy}{dx}\)</span> 会随着陡峭程度的增加而不断增大。</p>
 
 <p><img alt="" src="images/cme-fig-13.svg"/></p>
 
-<p>反之，若曲线向右延伸时变得越来越平缓，如图14所示，则其导数值 ( \dfrac{dy}{dx} ) 会随着曲线趋于平坦而逐渐减小。</p>
+<p>反之，若曲线向右延伸时变得越来越平缓，如图14所示，则其导数值 <span class="math">\(\dfrac{dy}{dx}\)</span> 会随着曲线趋于平坦而逐渐减小。</p>
 
 <p><img alt="" src="images/cme-fig-14.svg"/></p>
 
 <p><img alt="" src="images/cme-fig-15.svg"/></p>
 
-<p>若曲线先下降、再上升，形成一个向上凹的形状（即呈“U”形），如图15所示，那么显然导数 ( \dfrac{dy}{dx} ) 起初为负值，并随着曲线变平而其绝对值逐渐减小；当到达曲线最低点（即“谷底”）时，( \dfrac{dy}{dx} = 0 )；从此点开始，( \dfrac{dy}{dx} ) 转为正值并持续增大。
-在这种情形下，我们说函数 ( y ) 经过了一个<strong>极小值</strong>（minimum）。
-需要注意的是，这个极小值未必是函数在整个定义域中的最小值；它仅指对应于曲线谷底处的 ( y ) 值。
-例如，在<a href="11.html#figure28">图28</a>中，谷底处的 ( y ) 值为 1，而函数在其他位置可能取到比 1 更小的值。
-极小值的关键特征在于：在该点<strong>两侧</strong>，( y ) 的值都必须<strong>增大</strong>。</p>
+<p>若曲线先下降、再上升，形成一个向上凹的形状（即呈“U”形），如图15所示，那么显然导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 起初为负值，并随着曲线变平而其绝对值逐渐减小；当到达曲线最低点（即“谷底”）时，<span class="math">\(\dfrac{dy}{dx} = 0\)</span>；从此点开始，<span class="math">\(\dfrac{dy}{dx}\)</span> 转为正值并持续增大。
+在这种情形下，我们说函数 <span class="math">\(y\)</span> 经过了一个<strong>极小值</strong>（minimum）。
+需要注意的是，这个极小值未必是函数在整个定义域中的最小值；它仅指对应于曲线谷底处的 <span class="math">\(y\)</span> 值。
+例如，在<a href="11.html#figure28">图28</a>中，谷底处的 <span class="math">\(y\)</span> 值为 1，而函数在其他位置可能取到比 1 更小的值。
+极小值的关键特征在于：在该点<strong>两侧</strong>，<span class="math">\(y\)</span> 的值都必须<strong>增大</strong>。</p>
 
-<p><strong>注意</strong>：当 ( x ) 取某个特定值使得 ( y ) 达到<strong>极小值</strong>时，必有 ( \dfrac{dy}{dx} = 0 )。</p>
+<p><strong>注意</strong>：当 <span class="math">\(x\)</span> 取某个特定值使得 <span class="math">\(y\)</span> 达到<strong>极小值</strong>时，必有 <span class="math">\(\dfrac{dy}{dx} = 0\)</span>。</p>
 
-<p>如果一条曲线先上升后下降，那么其导数 ( \dfrac{dy}{dx} ) 起初为正值；当达到顶点（即“峰顶”）时，导数为零；随后，随着曲线向下倾斜，导数变为负值，如图16所示。
-此时我们说函数 ( y ) 经过了一个<strong>极大值</strong>（maximum）。但需注意，这个极大值未必是函数在整个定义域中的最大值。
-例如，在第 11 章图 28 中，( y ) 的极大值为 ( 2\frac{1}{3} )，但这绝不是该曲线在其他位置可能取到的最大值。</p>
+<p>如果一条曲线先上升后下降，那么其导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 起初为正值；当达到顶点（即“峰顶”）时，导数为零；随后，随着曲线向下倾斜，导数变为负值，如图16所示。
+此时我们说函数 <span class="math">\(y\)</span> 经过了一个<strong>极大值</strong>（maximum）。但需注意，这个极大值未必是函数在整个定义域中的最大值。
+例如，在第 11 章图 28 中，<span class="math">\(y\)</span> 的极大值为 <span class="math">\(2\frac{1}{3}\)</span>，但这绝不是该曲线在其他位置可能取到的最大值。</p>
 
 <p><img alt="" src="images/cme-fig-16.svg"/></p>
 
 <p><img alt="" src="images/cme-fig-17.svg"/></p>
 
-<p><strong>注意</strong>：当 ( x ) 取某个特定值使得 ( y ) 达到<strong>极大值</strong>时，必有 ( \dfrac{dy}{dx} = 0 )。</p>
+<p><strong>注意</strong>：当 <span class="math">\(x\)</span> 取某个特定值使得 <span class="math">\(y\)</span> 达到<strong>极大值</strong>时，必有 <span class="math">\(\dfrac{dy}{dx} = 0\)</span>。</p>
 
-<p>若曲线具有图 17 所示的特殊形状，则其导数 ( \dfrac{dy}{dx} ) 始终为正；但在某一点处，曲线的倾斜程度最缓，此时 ( \dfrac{dy}{dx} ) 取得一个<strong>极小值</strong>——也就是说，该点处的导数值比曲线上任何其他位置都更小。</p>
+<p>若曲线具有图 17 所示的特殊形状，则其导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 始终为正；但在某一点处，曲线的倾斜程度最缓，此时 <span class="math">\(\dfrac{dy}{dx}\)</span> 取得一个<strong>极小值</strong>——也就是说，该点处的导数值比曲线上任何其他位置都更小。</p>
 
-<p>若曲线呈图 18 所示的形状，则在其上半部分 ( \dfrac{dy}{dx} ) 为负值，下半部分为正值；而在曲线前端（“尖端”）变得完全垂直的位置，导数 ( \dfrac{dy}{dx} ) 的值趋于无穷大。</p>
+<p>若曲线呈图 18 所示的形状，则在其上半部分 <span class="math">\(\dfrac{dy}{dx}\)</span> 为负值，下半部分为正值；而在曲线前端（“尖端”）变得完全垂直的位置，导数 <span class="math">\(\dfrac{dy}{dx}\)</span> 的值趋于无穷大。</p>
 
 <p><img alt="" src="images/cme-fig-18.svg"/></p></div>
 
