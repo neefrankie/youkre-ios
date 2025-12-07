@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易微积分10.1: 导数的几何意义：示例 | 优克 - 数学与计算机科学</title>
+    
+<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+
+<link rel="stylesheet" href="../css/katex.min.css"/>
+
+
+    <style>:root {
+    --color-teal: #0d7680;
+    --color-teal20: #052f33;
+    --color-teal30: #08474d;
+    --color-teal40: #0a5e66;
+    --color-teal50: #0d7680;
+    --color-teal60: #0f8e99;
+    --color-teal70: #12a5b3;
+    --color-teal80: #14bdcc;
+    --color-teal90: #17d4e6;
+    --color-teal100: #1aecff;
+    --color-emerald: #009b77;
+    --color-bs-dark: #212529;
+    --color-youkre-yellow: #cabdab;
+    --color-youkre-cyan: #71a9be;
+    --color-bg-gray: #EEEDF1;
+    --header-height: 60px;
+    --footer-height: 60px;
+    --radius: 8px;
+}
+body {
+    font-family: -apple-system, sans-serif;
+    font-size: 18px;
+    padding: 8px;
+    margin: 0;
+    word-wrap: break-word;
+    overflow-x: hidden; /* Prevent horizontal scrolling of the whole page */
+}
+a {
+    color: var(--color-teal);
+    text-decoration: none;
+}
+.bg-emerald {
+    background-color: var(--color-emerald);
+}
+.logo {
+    margin-inline-end: auto;
+    line-height: var(--header-height);
+}
+.logo a {
+    font-size: 24px;
+    font-weight: 700;
+}
+.logo a img {
+    display: inline;
+    vertical-align: middle;
+    pointer-events: none;
+    transform: translate(0, -10%);
+    border-radius: 6px;
+}
+html[data-bs-theme="dark"] #moon {
+    vertical-align: middle;
+    display: none;
+}
+html:not([data-bs-theme="dark"]) #sun {
+    display: none;
+}</style>
+    
+    <style>
+    h1, h2, h3, h4 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+figure { 
+  text-align: center;
+}
+figure img, p img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+div.math {
+    overflow-x: auto;
+    max-width: 100%;
+    white-space: nowrap; /* Prevent breaking long formulas */
+}
+.note {
+    border: 1px solid var(--color-teal);
+    border-radius: 0.375rem;
+    padding: 0.5em;
+}
+.formula-section {
+    display: grid;
+    grid-template-columns: 1fr; /* 在小屏幕上变为单列 */
+    gap: 10px;
+}
+.formula-card {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    overflow-x: auto;
+    max-width: 100%;
+}
+@media (min-width: 768px) {
+    .formula-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.card {
+  margin-bottom: 1em;
+}
+
+blockquote {
+    margin: 20px 0;
+    padding: 0 14px;
+    border-inline-start: 3px solid var(--bs-border-color);
+    border-width: 5px
+}
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #222222 }
+.highlight { background: #000000; color: #CCC }
+.highlight .c { color: #000080 } /* Comment */
+.highlight .err { color: #CCC; border: 1px solid #F00 } /* Error */
+.highlight .esc { color: #CCC } /* Escape */
+.highlight .g { color: #CCC } /* Generic */
+.highlight .k { color: #CDCD00 } /* Keyword */
+.highlight .l { color: #CCC } /* Literal */
+.highlight .n { color: #CCC } /* Name */
+.highlight .o { color: #39C } /* Operator */
+.highlight .x { color: #CCC } /* Other */
+.highlight .p { color: #CCC } /* Punctuation */
+.highlight .ch { color: #000080 } /* Comment.Hashbang */
+.highlight .cm { color: #000080 } /* Comment.Multiline */
+.highlight .cp { color: #000080 } /* Comment.Preproc */
+.highlight .cpf { color: #000080 } /* Comment.PreprocFile */
+.highlight .c1 { color: #000080 } /* Comment.Single */
+.highlight .cs { color: #CD0000; font-weight: bold } /* Comment.Special */
+.highlight .gd { color: #CD0000 } /* Generic.Deleted */
+.highlight .ge { color: #CCC; font-style: italic } /* Generic.Emph */
+.highlight .ges { color: #CCC; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.highlight .gr { color: #F00 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00CD00 } /* Generic.Inserted */
+.highlight .go { color: #888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #CCC; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #04D } /* Generic.Traceback */
+.highlight .kc { color: #CDCD00 } /* Keyword.Constant */
+.highlight .kd { color: #00CD00 } /* Keyword.Declaration */
+.highlight .kn { color: #CD00CD } /* Keyword.Namespace */
+.highlight .kp { color: #CDCD00 } /* Keyword.Pseudo */
+.highlight .kr { color: #CDCD00 } /* Keyword.Reserved */
+.highlight .kt { color: #00CD00 } /* Keyword.Type */
+.highlight .ld { color: #CCC } /* Literal.Date */
+.highlight .m { color: #CD00CD } /* Literal.Number */
+.highlight .s { color: #CD0000 } /* Literal.String */
+.highlight .na { color: #CCC } /* Name.Attribute */
+.highlight .nb { color: #CD00CD } /* Name.Builtin */
+.highlight .nc { color: #00CDCD } /* Name.Class */
+.highlight .no { color: #CCC } /* Name.Constant */
+.highlight .nd { color: #CCC } /* Name.Decorator */
+.highlight .ni { color: #CCC } /* Name.Entity */
+.highlight .ne { color: #669; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #CCC } /* Name.Function */
+.highlight .nl { color: #CCC } /* Name.Label */
+.highlight .nn { color: #CCC } /* Name.Namespace */
+.highlight .nx { color: #CCC } /* Name.Other */
+.highlight .py { color: #CCC } /* Name.Property */
+.highlight .nt { color: #CCC } /* Name.Tag */
+.highlight .nv { color: #00CDCD } /* Name.Variable */
+.highlight .ow { color: #CDCD00 } /* Operator.Word */
+.highlight .pm { color: #CCC } /* Punctuation.Marker */
+.highlight .w { color: #CCC } /* Text.Whitespace */
+.highlight .mb { color: #CD00CD } /* Literal.Number.Bin */
+.highlight .mf { color: #CD00CD } /* Literal.Number.Float */
+.highlight .mh { color: #CD00CD } /* Literal.Number.Hex */
+.highlight .mi { color: #CD00CD } /* Literal.Number.Integer */
+.highlight .mo { color: #CD00CD } /* Literal.Number.Oct */
+.highlight .sa { color: #CD0000 } /* Literal.String.Affix */
+.highlight .sb { color: #CD0000 } /* Literal.String.Backtick */
+.highlight .sc { color: #CD0000 } /* Literal.String.Char */
+.highlight .dl { color: #CD0000 } /* Literal.String.Delimiter */
+.highlight .sd { color: #CD0000 } /* Literal.String.Doc */
+.highlight .s2 { color: #CD0000 } /* Literal.String.Double */
+.highlight .se { color: #CD0000 } /* Literal.String.Escape */
+.highlight .sh { color: #CD0000 } /* Literal.String.Heredoc */
+.highlight .si { color: #CD0000 } /* Literal.String.Interpol */
+.highlight .sx { color: #CD0000 } /* Literal.String.Other */
+.highlight .sr { color: #CD0000 } /* Literal.String.Regex */
+.highlight .s1 { color: #CD0000 } /* Literal.String.Single */
+.highlight .ss { color: #CD0000 } /* Literal.String.Symbol */
+.highlight .bp { color: #CD00CD } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #CCC } /* Name.Function.Magic */
+.highlight .vc { color: #00CDCD } /* Name.Variable.Class */
+.highlight .vg { color: #00CDCD } /* Name.Variable.Global */
+.highlight .vi { color: #00CDCD } /* Name.Variable.Instance */
+.highlight .vm { color: #00CDCD } /* Name.Variable.Magic */
+.highlight .il { color: #CD00CD } /* Literal.Number.Integer.Long */
+    </style>
+    
+    
+</head>
+<body id="top">
+
+
+
+
+<main class="min-vh-100" role="main">
+    <div class="container">
+        
+<div class="row pt-3 justify-content-center">
+    <article class="col-12 col-lg-8 mx-auto">
+    
+<h2 class="text-center">10.1. 导数的几何意义：示例</h2>
+<div><p>既然我们已经理解了 ( \dfrac{dy}{dx} ) 表示曲线在任意一点处的陡峭程度（即切线斜率），接下来回顾一些已经学过的、可以求导的函数表达式。</p>
+
+<p>（1）先看最简单的情形：</p>
+
+<div class="math">
+$$
+y = x + b
+$$
+</div>
+
+<p><img alt="" src="images/cme-fig-19.svg"/></p>
+
+<p><img alt="" src="images/cme-fig-20.svg"/></p>
+
+<p>在图19中，x 和 y 轴以相同的单位比例绘制了该函数的图像。
+若令 ( x = 0 )，则对应的纵坐标为 ( y = b )；也就是说，这条“曲线”（实际上是一条直线）在 ( y )-轴上的截距为 ( b )。
+从该点起，它以 (45^\circ) 角向上延伸；因为无论给 ( x ) 赋予怎样的正值，( y ) 都会相应地增加相同的量。
+因此，这条直线的坡度（或称斜率）为 (1:1)。</p>
+
+<p>现在，按照我们已学过的幂函数和常量求导法则，对 ( y = x + b ) 求导，得到：</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = 1.
+$$
+</div>
+
+<p>这说明：对于向右的任意微小步长 ( dx )，曲线上升的步长 ( dy ) 与之相等。
+而且这一斜率是恒定的——处处相同。</p>
+
+<p>（2）再考虑另一种情形：</p>
+
+<div class="math">
+$$
+y = ax + b.
+$$
+</div>
+
+<p>我们知道，这条直线同样会在 ( y )-轴上高度为 ( b ) 处开始。但在作图之前，先通过求导确定其斜率：</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = a
+$$
+</div>
+
+<p>斜率恒定不变，其倾斜角的正切值即为 ( a )。
+不妨给 ( a ) 赋一个具体数值，例如 ( \frac{1}{3} )。
+那么这条直线应具有“每向右走 3 单位，向上走 1 单位”的坡度；换言之，( dx ) 是 ( dy ) 的 3 倍，如图21所示（放大图示）。
+于是，我们便可在图20中按此斜率画出该直线。</p>
+
+<p><img alt="" src="images/cme-fig-21.svg"/></p>
+
+<p>（3）现在来看一个稍复杂些的例子：</p>
+
+<div class="math">
+$$
+y = ax^2 + b
+$$
+</div>
+
+<p>这条曲线同样在 ( y )-轴上、距原点高度为 ( b ) 处起始。</p>
+
+<p>对其求导：</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = 2ax.
+$$
+</div>
+
+<p><img alt="" src="images/cme-fig-22.svg"/></p>
+
+<p>这表明：曲线的陡峭程度不是恒定的，而是随 ( x ) 的增大而增大。
+在起点 ( P )（即 ( x = 0 ) 处），曲线（见图22）没有倾斜——它是水平的。
+而在原点左侧（即 ( x &lt; 0 ) 的区域），( \dfrac{dy}{dx} ) 为负值，意味着曲线从左向右是下降的，如图所示。</p>
+
+<p>我们通过一个具体例子来说明这一点。考虑方程：</p>
+
+<div class="math">
+$$
+y = \tfrac{1}{4}x^2 + 3,
+$$
+</div>
+
+<p>对其求导得：</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = \tfrac{1}{2}x.
+$$
+</div>
+
+<p>现在给 ( x ) 赋一系列连续的值（例如从 0 到 5），分别用第一个方程计算对应的 ( y ) 值，用第二个方程计算对应的 ( \dfrac{dy}{dx} ) 值。整理成下表：</p>
+
+<div class="table-responsive"><table class="table"><thead>
+<tr>
+  <th>( x )</th>
+  <th>0</th>
+  <th>1</th>
+  <th>2</th>
+  <th>3</th>
+  <th>4</th>
+  <th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>( y )</td>
+  <td>3</td>
+  <td>(3\frac{1}{4})</td>
+  <td>4</td>
+  <td>(5\frac{1}{4})</td>
+  <td>7</td>
+  <td>(9\frac{1}{4})</td>
+</tr>
+<tr>
+  <td>( \dfrac{dy}{dx} )</td>
+  <td>0</td>
+  <td>( \frac{1}{2} )</td>
+  <td>1</td>
+  <td>(1\frac{1}{2})</td>
+  <td>2</td>
+  <td>(2\frac{1}{2})</td>
+</tr>
+</tbody>
+</table></div>
+
+<p>接着，我们在两个图中分别绘制这些数据：</p>
+
+<ul>
+<li>图23：以 ( x ) 为横坐标，( y ) 为纵坐标，绘出原函数曲线；</li>
+<li>图24：以 ( x ) 为横坐标，( \dfrac{dy}{dx} ) 为纵坐标，绘出导函数曲线。</li>
+</ul>
+
+<p>对于任意给定的 ( x ) 值，第二条曲线（导函数）中对应点的<strong>纵坐标高度</strong>，正比于第一条曲线（原函数）在该点处的<strong>切线斜率</strong>。</p>
+
+<p><img alt="" src="images/cme-fig-23.svg"/></p>
+
+<p><img alt="" src="images/cme-fig-24.svg"/></p>
+
+<p>如果曲线在某处出现尖角（cusp），如图25所示，则该点的斜率会突然从向上变为向下。
+此时，( \dfrac{dy}{dx} ) 显然会经历一次从正值到负值的突变。</p>
+
+<p><img alt="" src="images/cme-fig-25.svg"/></p>
+
+<p>以下例题进一步展示上述原理的应用。</p>
+
+<p>（4）求曲线</p>
+
+<div class="math">
+$$
+y = \frac{1}{2x} + 3
+$$
+</div>
+
+<p>在 ( x = -1 ) 处的切线斜率，并求该切线与曲线 ( y = 2x^2 + 2 ) 的夹角。</p>
+
+<p><img alt="" src="images/cme-fig-10-4.svg"/></p>
+
+<p>切线的斜率即为曲线在切点处的斜率，也就是该点处函数的导数值 ( \dfrac{dy}{dx} )。</p>
+
+<p>对 ( y = \dfrac{1}{2x} + 3 ) 求导，得</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = -\dfrac{1}{2x^2}
+$$
+</div>
+
+<p>当 ( x = -1 ) 时，</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = -\dfrac{1}{2(-1)^2} = -\dfrac{1}{2}
+$$
+</div>
+
+<p>这就是该点处切线（以及曲线本身）的斜率。</p>
+
+<p>由于切线是一条直线，其方程可写为 ( y = ax + b )，而其斜率即为 ( a = \dfrac{dy}{dx} = -\dfrac{1}{2} )。</p>
+
+<p>又当 ( x = -1 ) 时，原函数值为</p>
+
+<div class="math">
+$$
+y = \frac{1}{2(-1)} + 3 = -\frac{1}{2} + 3 = 2\frac{1}{2}
+$$
+</div>
+
+<p>因为切线经过点 ( (-1,, 2\frac{1}{2}) )，该点坐标必须满足切线方程：</p>
+
+<div class="math">
+$$
+y = -\frac{1}{2}x + b
+$$
+</div>
+
+<p>代入得</p>
+
+<div class="math">
+$$
+\begin{aligned}
+2\frac{1}{2} &amp;= -\frac{1}{2} \cdot (-1) + b \\
+\frac{5}{2} &amp;= \frac{1}{2} + b \\
+b &amp;= 2
+\end{aligned}
+$$
+</div>
+
+<p>因此，切线的方程为</p>
+
+<div class="math">
+$$
+y = -\frac{1}{2}x + 2
+$$
+</div>
+
+<hr/>
+
+<p>接下来，考虑这条切线与另一条曲线 ( y = 2x^2 + 2 ) 的交点。<br/>
+两曲线的交点是它们共有的点，其坐标必须同时满足两个方程，即求解以下联立方程组：</p>
+
+<div class="math">
+$$
+\begin{cases}
+y = 2x^2 + 2, \\
+y = -\dfrac{1}{2}x + 2
+\end{cases}
+$$
+</div>
+
+<p>令两式右边相等：</p>
+
+<div class="math">
+$$
+2x^2 + 2 = -\frac{1}{2}x + 2
+$$
+</div>
+
+<p>整理得</p>
+
+<div class="math">
+$$
+2x^2 + \frac{1}{2}x = 0
+x\left(2x + \frac{1}{2}\right) = 0
+$$
+</div>
+
+<p>解得</p>
+
+<div class="math">
+$$
+x = 0 \quad\text{或}\quad x = -\frac{1}{4}.
+$$
+</div>
+
+<hr/>
+
+<p>现在考察曲线 ( y = 2x^2 + 2 ) 在这两个交点处的斜率。<br/>
+其导数为</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = 4x
+$$
+</div>
+
+<p>当 ( x = 0 ) 时，( \dfrac{dy}{dx} = 0 )，即曲线在此处水平.</p>
+
+<p>当 ( x = -\dfrac{1}{4} ) 时，</p>
+
+<div class="math">
+$$
+\begin{aligned}
+\dfrac{dy}{dx}
+&amp;= 4 \cdot \left(-\dfrac{1}{4}\right) \\
+&amp;= -1
+\end{aligned}
+$$
+</div>
+
+<p>即曲线在此点向右下方倾斜，与水平方向夹角 ( \theta ) 满足 ( \tan\theta = 1 )，故 ( \theta = 45^\circ )。</p>
+
+<p>而切线（直线）的斜率为 ( -\dfrac{1}{2} )，表示它也向右下方倾斜，与水平方向夹角 ( \phi ) 满足 ( \tan\phi = \dfrac{1}{2} )，即 ( \phi \approx 26^\circ 34' )。</p>
+
+<p>因此，在第一个交点（( x = 0 )）处，曲线水平，切线与之成 ( 26^\circ 34' ) 的夹角；在第二个交点（( x = -\dfrac{1}{4} )）处，曲线斜率为 (-1)（即与水平成 (45^\circ) 向下），切线斜率为 (-\dfrac{1}{2})（即与水平成 (26^\circ 34') 向下），故二者之间的夹角为：</p>
+
+<div class="math">
+$$
+45^\circ - 26^\circ 34' = 18^\circ 26'
+$$
+</div>
+
+<hr/>
+
+<p>（5）过点 ( (2, -1) ) 作一条直线，使其与曲线</p>
+
+<div class="math">
+$$
+y = x^2 - 5x + 6
+$$
+</div>
+
+<p>相切。求切点的坐标。</p>
+
+<p><img alt="" src="images/cme-fig-10-5.svg"/></p>
+
+<p>切线的斜率必须等于该曲线在切点处的导数值。对曲线求导得</p>
+
+<div class="math">
+$$
+\dfrac{dy}{dx} = 2x - 5
+$$
+</div>
+
+<p>因此切线斜率为 ( 2x - 5 )。</p>
+
+<p>设所求切线的方程为 ( y = ax + b )。
+由于该直线经过点 ( (2,, -1) )，代入得</p>
+
+<div class="math">
+$$
+-1 = 2a + b
+$$
+</div>
+
+<p>又因该直线是曲线的切线，其斜率 ( a ) 必须等于曲线在切点处的导数，即</p>
+
+<div class="math">
+$$
+a = 2x - 5
+$$
+</div>
+
+<p>此外，切点 ( (x, y) ) 同时满足曲线方程和切线方程：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+y &amp;= x^2 - 5x + 6 &amp;&amp;\text{(i)}\\
+y &amp;= ax + b &amp;&amp;\text{(ii)} \\
+-1 &amp;= 2a + b &amp;&amp;\text{(iii)} \\
+a &amp;= 2x - 5 &amp;&amp;\text{(iv)}
+\end{aligned}
+$$
+</div>
+
+<p>于是我们得到关于未知数 ( a, b, x, y ) 的四个方程。</p>
+
+<p>由（i）和（ii）可得：</p>
+
+<div class="math">
+$$
+x^2 - 5x + 6 = ax + b
+$$
+</div>
+
+<p>将（iii）中的 ( b = -1 - 2a ) 和（iv）中的 ( a = 2x - 5 ) 代入上式：</p>
+
+<div class="math">
+$$
+x^2 - 5x + 6 = (2x - 5)x + (-1 - 2(2x - 5))
+$$
+</div>
+
+<p>展开右边：</p>
+
+<div class="math">
+$$
+\begin{aligned}
+(2x - 5)x &amp;= 2x^2 - 5x \\
+-1 - 2(2x - 5) &amp;= -1 - 4x + 10 \\
+&amp;= 9 - 4x
+\end{aligned}
+$$
+</div>
+
+<p>所以右边化简为</p>
+
+<div class="math">
+$$
+2x^2 - 5x + 9 - 4x = 2x^2 - 9x + 9
+$$
+</div>
+
+<p>于是方程变为：</p>
+
+<div class="math">
+$$
+x^2 - 5x + 6 = 2x^2 - 9x + 9
+$$
+</div>
+
+<p>移项整理：</p>
+
+<div class="math">
+$$
+0 = x^2 - 4x + 3
+$$
+</div>
+
+<p>即</p>
+
+<div class="math">
+$$
+x^2 - 4x + 3 = 0.
+$$
+</div>
+
+<p>解得</p>
+
+<div class="math">
+$$
+x = 1 \quad \text{或} \quad x = 3
+$$
+</div>
+
+<p>代入曲线方程（i）求对应的 ( y ) 值：</p>
+
+<ul>
+<li>当 ( x = 1 ) 时，( y = 1^2 - 5 \cdot 1 + 6 = 2 )；</li>
+<li>当 ( x = 3 ) 时，( y = 3^2 - 5 \cdot 3 + 6 = 0 )。</li>
+</ul>
+
+<p>因此，存在两个切点，分别为 <span class="math">\((1, 2)\)</span> 和 <span class="math">\((3, 0)\)</span>。</p>
+
+<p><strong>注</strong>：在所有涉及曲线的练习中，若能通过实际绘制曲线来验证所得到的结论，将会大有裨益，极具启发性。</p></div>
+
+    </article>
+</div>
+
+    </div>
+</main>
+
+
+
+
+
+<script defer src="../js/katex.min.js"></script>
+<script defer src="../js/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true},
+            {left: "\\begin{align*}", right: "\\end{align*}", display: true}
+        ]
+    });
+});
+</script>
+
+
+</body>
+</html>
